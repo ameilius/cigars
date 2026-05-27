@@ -97,6 +97,19 @@
                 display: block !important;
                 visibility: visible !important;
             }
+
+            /* Make sure mobile drawer content is always visible when open */
+            #drawer-mobile:not(.hidden) {
+                display: flex !important;
+                flex-direction: column;
+            }
+            
+            #drawer-mobile .p-5.flex-1 {
+                flex: 1 1 auto;
+                overflow-y: auto;
+                min-height: 150px;
+                padding-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -1179,10 +1192,10 @@
                 document.body.appendChild(backdrop);
             }
 
-            // Update the correct title elements
-            const title = document.getElementById("drawer-title");
+            // Update title for whichever drawer is active
+            const titleDesktop = document.getElementById("drawer-title");
             const titleMobile = document.getElementById("drawer-title-mobile");
-            if (title) title.innerHTML = d.name;
+            if (titleDesktop) titleDesktop.innerHTML = d.name;
             if (titleMobile) titleMobile.innerHTML = d.name;
             const meta = document.getElementById("drawer-meta");
             const typeLabel = (d.type ?? "node").toString().toUpperCase();
@@ -1343,11 +1356,19 @@
                 buyWrap.classList.remove("hidden");
                 affiliate.classList.remove("hidden");
                 buyContainer.innerHTML = buyLinks.map(l => `
-                    <a href="${l.url}" target="_blank" rel="noopener noreferrer"
+                    <a href="${l.url}", target="_blank" rel="noopener noreferrer"
                        class="block px-4 py-3 bg-[#6b2d2d] hover:bg-[#5a2525] text-white text-sm font-semibold rounded-2xl text-center">
                         ${l.label} <span class="text-xs opacity-70">(affiliate)</span>
                     </a>
                 `).join("");
+            }
+
+            // On mobile, scroll the drawer content to top when opened
+            if (window.innerWidth < 1024) {
+                const mobileContent = document.querySelector('#drawer-mobile .p-5.flex-1');
+                if (mobileContent) {
+                    setTimeout(() => { mobileContent.scrollTop = 0; }, 50);
+                }
             }
         }
 
