@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cigar Nexus • Cigar Connections</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; }
+        .node { cursor: pointer; }
+        .link { stroke: #9ca3af; stroke-opacity: 0.6; }
+        .drawer { transition: transform 0.3s ease; }
+    </style>
+</head>
+<body class="bg-[#f8f5f0] text-gray-800">
+    <!-- Header -->
+    <header class="bg-[#6b2d2d] text-white">
+        <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center">
+                    <span class="text-[#6b2d2d] text-xl font-bold">CN</span>
+                </div>
+                <div>
+                    <div class="font-semibold text-2xl tracking-tight">Cigar Nexus</div>
+                    <div class="text-xs text-white/70 -mt-1">A Cigar Family Tree</div>
+                </div>
+            </div>
+            
+            <div class="flex-1 max-w-md mx-8">
+                <input id="search" 
+                       type="text" 
+                       placeholder="Search brands, families, or connections..." 
+                       class="w-full px-4 py-2.5 rounded-full bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]">
+            </div>
+            
+            <div class="flex items-center gap-x-2 text-sm">
+                <a href="#" class="px-4 py-2 hover:bg-white/10 rounded-full">About</a>
+                <button id="open-submit"
+                        class="px-4 py-2 hover:bg-white/10 rounded-full">
+                    Submit Connection
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-screen-xl mx-auto px-6 pt-6">
+        <!-- Graph Container -->
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Graph -->
+            <div class="relative flex-1 bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px]">
+                <!-- View controls -->
+                <div class="absolute top-4 left-4 z-10 flex gap-2">
+                    <button onclick="zoomToFit()"
+                            class="px-3 py-2 rounded-full bg-white/95 border border-gray-200 shadow-sm text-xs font-semibold text-gray-700 hover:border-[#6b2d2d] hover:text-[#6b2d2d]">
+                        Zoom to fit
+                    </button>
+                    <button onclick="resetZoom()"
+                            class="px-3 py-2 rounded-full bg-white/95 border border-gray-200 shadow-sm text-xs font-semibold text-gray-700 hover:border-[#6b2d2d] hover:text-[#6b2d2d]">
+                        Reset
+                    </button>
+                </div>
+                <!-- Legend -->
+                <div class="absolute top-4 right-4 z-10 bg-white/95 border border-gray-200 shadow-sm rounded-2xl px-3 py-2 max-w-[42vw]">
+                    <div class="text-[10px] font-semibold text-gray-500 mb-1 tracking-wide">LEGEND</div>
+                    <div class="flex items-center gap-2 text-xs text-gray-700">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span>
+                        <span>Family-owned</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-gray-700 mt-1">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#6b2d2d"></span>
+                        <span>Corporate</span>
+                    </div>
+                </div>
+                <div id="graph" class="w-full h-full"></div>
+            </div>
+
+            <!-- Right Drawer -->
+            <div id="drawer" 
+                 class="w-full lg:w-80 bg-white rounded-3xl shadow-sm border border-gray-200 hidden flex-col h-[52vh] min-h-[360px] lg:h-[620px]">
+                <div class="p-5 border-b flex justify-between items-start gap-3">
+                    <div class="min-w-0">
+                        <div id="drawer-title" class="font-semibold text-xl leading-tight truncate"></div>
+                        <div id="drawer-meta" class="mt-2 flex flex-wrap gap-2"></div>
+                    </div>
+                    <button onclick="closeDrawer()" class="text-gray-400 hover:text-gray-600 text-2xl leading-none -mt-1">×</button>
+                </div>
+                
+                <div class="p-5 flex-1 overflow-auto">
+                    <div id="drawer-description" class="text-sm text-gray-600 leading-relaxed"></div>
+                    <div class="my-5 h-px bg-gray-100"></div>
+                    
+                    <div class="mb-4">
+                        <div class="text-xs font-semibold text-gray-500 mb-2 tracking-wide">CONNECTIONS</div>
+                        <div id="drawer-connections" class="space-y-2"></div>
+                    </div>
+                    
+                    <div id="drawer-buy-wrap">
+                        <div class="my-5 h-px bg-gray-100"></div>
+                        <div class="text-xs font-semibold text-gray-500 mb-2 tracking-wide">FIND THESE CIGARS</div>
+                        <div class="space-y-2" id="drawer-buy"></div>
+                    </div>
+                </div>
+                
+                <div id="drawer-affiliate" class="p-4 border-t text-[10px] text-gray-400">
+                    As an affiliate I may earn a commission from qualifying purchases.
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex flex-wrap gap-2 mt-4 mb-8">
+            <div onclick="filterGraph('all')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
+            <div onclick="filterGraph('family')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family-Owned</div>
+            <div onclick="filterGraph('nicaragua')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
+            <div onclick="filterGraph('dominican')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
+        </div>
+    </div>
+
+    <!-- Submit Connection Modal -->
+    <div id="submit-modal" class="fixed inset-0 hidden items-center justify-center z-50">
+        <div class="absolute inset-0 bg-black/40" onclick="closeSubmitModal()"></div>
+        <div class="relative w-[min(720px,92vw)] bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
+            <div class="px-6 py-5 border-b flex items-center justify-between">
+                <div>
+                    <div class="font-semibold text-xl tracking-tight">Submit a connection</div>
+                    <div class="text-xs text-gray-500 mt-1">Adds nodes/links to your graph and saves locally on this device.</div>
+                </div>
+                <button onclick="closeSubmitModal()" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">×</button>
+            </div>
+
+            <form id="submit-form" class="p-6 space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                        <label class="text-xs font-semibold text-gray-600">Mode</label>
+                        <select id="submit-mode" class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]">
+                            <option value="new-to-existing">Add a new node + connect to an existing node</option>
+                            <option value="existing-to-existing">Connect two existing nodes</option>
+                        </select>
+                    </div>
+
+                    <div id="new-node-fields" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="md:col-span-2">
+                            <label class="text-xs font-semibold text-gray-600">New node name</label>
+                            <input id="new-name" type="text" placeholder="e.g., Padron"
+                                   class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]" />
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-gray-600">Type</label>
+                            <select id="new-type" class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]">
+                                <option value="brand">Brand</option>
+                                <option value="person">Person</option>
+                                <option value="company">Company</option>
+                                <option value="factory">Factory</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-gray-600">Group</label>
+                            <input id="new-group" type="text" placeholder="e.g., family, corporate, boutique"
+                                   class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]" />
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="text-xs font-semibold text-gray-600">Country tag</label>
+                            <input id="new-country" type="text" placeholder="e.g., nicaragua, dominican, usa"
+                                   class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600">From</label>
+                        <select id="from-node" class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]"></select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600">To</label>
+                        <select id="to-node" class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]"></select>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="text-xs font-semibold text-gray-600">Connection type</label>
+                        <input id="conn-type" type="text" placeholder="e.g., owned by, manufactures at, blended by, partnership"
+                               class="mt-1 w-full px-4 py-2.5 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6b2d2d]" />
+                        <div class="text-[11px] text-gray-500 mt-2">
+                            Tip: use consistent verbs (e.g. <span class="font-medium">owned by</span>, <span class="font-medium">manufactures at</span>, <span class="font-medium">handmade at</span>).
+                        </div>
+                    </div>
+                </div>
+
+                <div id="submit-error" class="hidden text-sm text-red-700 bg-red-50 border border-red-200 px-4 py-3 rounded-2xl"></div>
+
+                <div class="flex items-center justify-end gap-2 pt-1">
+                    <button type="button" onclick="closeSubmitModal()"
+                            class="px-4 py-2.5 rounded-full border border-gray-200 text-sm font-semibold text-gray-700 hover:border-gray-300">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                            class="px-5 py-2.5 rounded-full bg-[#6b2d2d] hover:bg-[#5a2525] text-white text-sm font-semibold">
+                        Add to graph
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ==================== SAMPLE DATA ====================
+        // Expanded seed graph with real-world relationships (ownership, manufacturing, partnerships).
+        const baseGraphData = {
+            nodes: [
+                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua" },
+                { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
+                { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa" },
+                { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa" },
+                { id: "lazona", name: "La Zona (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "laranja", name: "Laranja Reserva", type: "brand", group: "family", country: "nicaragua" },
+                { id: "espinosahabano", name: "Espinosa Habano", type: "brand", group: "family", country: "nicaragua" },
+                { id: "crema", name: "Crema", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "eobrands", name: "EO Brands (legacy)", type: "company", group: "family", country: "usa" },
+                { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa" },
+                { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua" },
+                { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua" },
+                { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua" },
+                { id: "joseopadron", name: "José Orlando Padrón", type: "person", group: "family", country: "usa" },
+                { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa" },
+                { id: "orlandopadron", name: "Orlando Padrón", type: "person", group: "family", country: "usa" },
+                { id: "tabacoscubanica", name: "Tabacos Cubanica (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua" },
+                { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican" },
+                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican" },
+                { id: "griffins", name: "The Griffin’s", type: "brand", group: "corporate", country: "dominican" },
+                { id: "tabadom", name: "Tabadom (Villa González)", type: "factory", group: "corporate", country: "dominican" },
+                { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland" },
+
+                { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican" },
+                { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
+                { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican" },
+
+                { id: "belladama", name: "Bella Dama", type: "brand", group: "family", country: "nicaragua" },
+                { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa" },
+                { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican" },
+
+                { id: "stg", name: "Scandinavian Tobacco Group (STG)", type: "company", group: "corporate", country: "denmark" },
+                { id: "generalcigar", name: "General Cigar Co.", type: "company", group: "corporate", country: "usa" },
+                { id: "forged", name: "Forged Cigar Co.", type: "company", group: "corporate", country: "usa" },
+
+                { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican" },
+                { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua" },
+                { id: "cohiba_nc", name: "Cohiba (Non‑Cuban)", type: "brand", group: "corporate", country: "dominican" },
+                { id: "partagas_nc", name: "Partagas (Non‑Cuban)", type: "brand", group: "corporate", country: "dominican" },
+                { id: "punch_nc", name: "Punch (Non‑Cuban)", type: "brand", group: "corporate", country: "dominican" }
+            ],
+            links: [
+                { source: "myfather", target: "pepin", type: "founded by" },
+                { source: "pepin", target: "tatuaje", type: "manufactures for" },
+                { source: "myfather", target: "tatuaje", type: "shared factory roots" },
+                { source: "myfather", target: "belladama", type: "manufactures at" },
+                { source: "pepin", target: "belladama", type: "blended by" },
+
+                { source: "espinosa", target: "erikespinosa", type: "founded by" },
+                { source: "espinosa", target: "lazona", type: "opened factory" },
+                { source: "lazona", target: "laranja", type: "manufactures" },
+                { source: "lazona", target: "espinosahabano", type: "manufactures" },
+                { source: "lazona", target: "crema", type: "manufactures" },
+                { source: "laranja", target: "espinosa", type: "brand of" },
+                { source: "espinosahabano", target: "espinosa", type: "brand of" },
+                { source: "crema", target: "espinosa", type: "brand of" },
+
+                { source: "eobrands", target: "erikespinosa", type: "co-founded by" },
+                { source: "eobrands", target: "eddieortega", type: "co-founded by" },
+                { source: "sixzeroone", target: "eobrands", type: "originated at" },
+                { source: "murcielago", target: "eobrands", type: "originated at" },
+                { source: "sixzeroone", target: "espinosa", type: "brand of" },
+                { source: "murcielago", target: "espinosa", type: "brand of" },
+
+                { source: "sixzeroone", target: "ajfernandez", type: "manufactured by" },
+                { source: "murcielago", target: "ajfernandez", type: "manufactured by" },
+                { source: "ajfernandez", target: "sanlotano", type: "operates" },
+
+                { source: "padron", target: "joseopadron", type: "founded by" },
+                { source: "padron", target: "tabacoscubanica", type: "manufactures at" },
+                { source: "padron", target: "jorgepadron", type: "family leadership" },
+                { source: "padron", target: "orlandopadron", type: "family leadership" },
+                { source: "padron1964", target: "padron", type: "series of" },
+                { source: "padron1926", target: "padron", type: "series of" },
+                { source: "tabacoscubanica", target: "padron1964", type: "manufactures" },
+                { source: "tabacoscubanica", target: "padron1926", type: "manufactures" },
+
+                { source: "davidoff", target: "oettinger", type: "owned by" },
+                { source: "avo", target: "oettinger", type: "owned by" },
+                { source: "griffins", target: "oettinger", type: "owned by" },
+                { source: "davidoff", target: "tabadom", type: "manufactures at" },
+                { source: "avo", target: "tabadom", type: "manufactures at" },
+                { source: "griffins", target: "tabadom", type: "manufactures at" },
+                { source: "tabadom", target: "oettinger", type: "subsidiary of" },
+
+                { source: "arturo", target: "tabafuente", type: "manufactures at" },
+                { source: "opusx", target: "arturo", type: "flagship line of" },
+                { source: "diamondcrown", target: "jcnewman", type: "brand of" },
+                { source: "diamondcrown", target: "tabafuente", type: "handmade at" },
+                { source: "jcnewman", target: "arturo", type: "longtime partnership" },
+
+                { source: "generalcigar", target: "stg", type: "owned by" },
+                { source: "forged", target: "stg", type: "owned by" },
+                { source: "macanudo", target: "generalcigar", type: "sold by" },
+                { source: "cao", target: "generalcigar", type: "sold by" },
+                { source: "partagas_nc", target: "generalcigar", type: "sold by" },
+                { source: "cohiba_nc", target: "forged", type: "sold by" },
+                { source: "punch_nc", target: "forged", type: "sold by" }
+            ]
+        };
+
+        // ==================== D3 GRAPH ====================
+        let graphData;
+        let svg, viewport, zoomBehavior, simulation, node, link, linkLayer, nodeLayer;
+        let graphWidth = 0, graphHeight = 620;
+
+        const FIXED_GROUP_COLORS = {
+            family: "#166534",    // green
+            corporate: "#6b2d2d"  // maroon
+        };
+
+        const GROUP_COLORS = [
+            "#1d4ed8", // blue
+            "#7c3aed", // violet
+            "#b45309", // amber
+            "#be123c", // rose
+            "#0f766e", // teal
+            "#4338ca", // indigo
+            "#0e7490", // cyan
+            "#a21caf", // fuchsia
+            "#4d7c0f", // lime
+            "#b91c1c"  // red
+        ];
+
+        const groupColorScale = d3.scaleOrdinal(GROUP_COLORS);
+
+        function colorForGroup(group) {
+            const key = (group ?? "unknown").toString().trim().toLowerCase() || "unknown";
+            if (FIXED_GROUP_COLORS[key]) return FIXED_GROUP_COLORS[key];
+            return groupColorScale(key);
+        }
+
+        function getId(v) {
+            return (typeof v === "object" && v !== null) ? v.id : v;
+        }
+
+        function getNodeNameById(id) {
+            return graphData.nodes.find(n => n.id === id)?.name ?? String(id);
+        }
+
+        function safeLinkKey(l) {
+            return `${getId(l.source)}__${getId(l.target)}__${l.type ?? ""}`;
+        }
+
+        function slugifyId(input) {
+            const raw = String(input ?? "").trim().toLowerCase();
+            const slug = raw
+                .normalize("NFKD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/&/g, " and ")
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)+/g, "");
+            return slug || `node-${Math.random().toString(16).slice(2)}`;
+        }
+
+        function uniqIdFromName(name) {
+            const base = slugifyId(name);
+            let id = base;
+            let i = 2;
+            const taken = new Set(graphData.nodes.map(n => n.id));
+            while (taken.has(id)) {
+                id = `${base}-${i++}`;
+            }
+            return id;
+        }
+
+        const STORAGE_KEY = "cigar-nexus-graph-v1";
+
+        function loadGraph() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (!saved) return structuredClone(baseGraphData);
+                const parsed = JSON.parse(saved);
+                if (!parsed || !Array.isArray(parsed.nodes) || !Array.isArray(parsed.links)) return structuredClone(baseGraphData);
+
+                const merged = structuredClone(baseGraphData);
+                const existingIds = new Set(merged.nodes.map(n => n.id));
+                for (const n of parsed.nodes) {
+                    if (n && n.id && !existingIds.has(n.id)) {
+                        merged.nodes.push(n);
+                        existingIds.add(n.id);
+                    }
+                }
+                const existingLinks = new Set(merged.links.map(safeLinkKey));
+                for (const l of parsed.links) {
+                    if (!l || !l.source || !l.target) continue;
+                    const normalized = { source: getId(l.source), target: getId(l.target), type: l.type ?? "" };
+                    const key = safeLinkKey(normalized);
+                    if (!existingLinks.has(key)) {
+                        merged.links.push(normalized);
+                        existingLinks.add(key);
+                    }
+                }
+                return merged;
+            } catch {
+                return structuredClone(baseGraphData);
+            }
+        }
+
+        function saveGraph() {
+            const payload = {
+                nodes: graphData.nodes.map(n => ({ ...n })),
+                links: graphData.links.map(l => ({ source: getId(l.source), target: getId(l.target), type: l.type ?? "" }))
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+        }
+
+        function initGraph() {
+            const container = d3.select("#graph");
+            const rect = container.node().getBoundingClientRect();
+            graphWidth = rect.width;
+            graphHeight = rect.height || 620;
+
+            svg = container.append("svg")
+                .attr("width", graphWidth)
+                .attr("height", graphHeight);
+
+            // A dedicated zoom viewport prevents zoom/pan transforms
+            // from fighting the simulation's per-node positioning transforms.
+            viewport = svg.append("g").attr("class", "viewport");
+
+            simulation = d3.forceSimulation(graphData.nodes)
+                .force("link", d3.forceLink(graphData.links).id(d => d.id).distance(90))
+                .force("charge", d3.forceManyBody().strength(-300))
+                .force("center", d3.forceCenter(graphWidth / 2, graphHeight / 2))
+                .force("collision", d3.forceCollide().radius(35));
+
+            linkLayer = viewport.append("g").attr("class", "links");
+            nodeLayer = viewport.append("g").attr("class", "nodes");
+
+            renderGraph();
+
+            simulation.on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node
+                    .attr("transform", d => `translate(${d.x},${d.y})`);
+            });
+
+            // Zoom
+            zoomBehavior = d3.zoom()
+                .extent([[0, 0], [graphWidth, graphHeight]])
+                // Allow deeper zoom-out so "fit all" can always succeed as the graph grows.
+                .scaleExtent([0.05, 3])
+                .on("zoom", (event) => {
+                    viewport.attr("transform", event.transform);
+                });
+
+            svg.call(zoomBehavior);
+
+            // Start with a fit view once nodes get initial positions.
+            // (A short delay avoids fitting on all-NaN coords in some browsers.)
+            setTimeout(() => zoomToFit(true), 60);
+        }
+
+        function resizeGraph() {
+            const container = d3.select("#graph");
+            const rect = container.node().getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height || 620;
+            if (!svg || !zoomBehavior || !simulation) return;
+            if (!Number.isFinite(w) || !Number.isFinite(h) || w <= 0 || h <= 0) return;
+
+            graphWidth = w;
+            graphHeight = h;
+
+            svg.attr("width", graphWidth).attr("height", graphHeight);
+            zoomBehavior.extent([[0, 0], [graphWidth, graphHeight]]);
+
+            // Recenter forces to new viewport.
+            simulation.force("center", d3.forceCenter(graphWidth / 2, graphHeight / 2));
+            simulation.alpha(0.25).restart();
+
+            // Keep everything visible after resize/rotation.
+            setTimeout(() => zoomToFit(true), 30);
+        }
+
+        function renderGraph() {
+            link = linkLayer
+                .selectAll("line")
+                .data(graphData.links, safeLinkKey)
+                .join(
+                    enter => enter.append("line")
+                        .attr("class", "link")
+                        .attr("stroke-width", 1.5),
+                    update => update,
+                    exit => exit.remove()
+                );
+
+            node = nodeLayer
+                .selectAll("g")
+                .data(graphData.nodes, d => d.id)
+                .join(
+                    enter => {
+                        const g = enter.append("g")
+                            .attr("class", "node")
+                            .call(d3.drag()
+                                .on("start", dragstarted)
+                                .on("drag", dragged)
+                                .on("end", dragended))
+                            .on("click", (event, d) => showDrawer(d));
+
+                        g.append("circle")
+                            .attr("r", d => d.type === "person" ? 18 : 26)
+                            .attr("fill", d => colorForGroup(d.group))
+                            .attr("stroke", "#fff")
+                            .attr("stroke-width", 3);
+
+                        g.append("text")
+                            .text(d => d.name)
+                            .attr("text-anchor", "middle")
+                            .attr("dy", d => d.type === "person" ? 32 : 38)
+                            .attr("font-size", "11px")
+                            .attr("fill", "#374151")
+                            .attr("font-weight", "500");
+
+                        return g;
+                    },
+                    update => {
+                        update.select("circle")
+                            .attr("r", d => d.type === "person" ? 18 : 26)
+                            .attr("fill", d => colorForGroup(d.group));
+                        update.select("text").text(d => d.name);
+                        return update;
+                    },
+                    exit => exit.remove()
+                );
+        }
+
+        function refreshSimulation() {
+            simulation.nodes(graphData.nodes);
+            simulation.force("link").links(graphData.links);
+            simulation.alpha(0.9).restart();
+        }
+
+        function resetZoom() {
+            if (!svg || !zoomBehavior) return;
+            svg.transition().duration(350).call(zoomBehavior.transform, d3.zoomIdentity);
+        }
+
+        function zoomToFit(skipAnimation = false) {
+            if (!svg || !zoomBehavior) return;
+
+            // Prefer fitting the actual rendered bounds (includes labels),
+            // then fall back to node coordinate bounds if needed.
+            let minX, maxX, minY, maxY;
+
+            try {
+                // getBBox() is in the element's local coordinate system (ignores the viewport zoom transform)
+                // but *does* include child transforms (node translations), which is what we want.
+                const bbox = viewport.node().getBBox();
+                if (Number.isFinite(bbox.x) && Number.isFinite(bbox.y) && Number.isFinite(bbox.width) && Number.isFinite(bbox.height) && bbox.width > 0 && bbox.height > 0) {
+                    minX = bbox.x;
+                    minY = bbox.y;
+                    maxX = bbox.x + bbox.width;
+                    maxY = bbox.y + bbox.height;
+                }
+            } catch {
+                // ignore and use fallback below
+            }
+
+            if (![minX, maxX, minY, maxY].every(Number.isFinite)) {
+                const nodes = graphData.nodes.filter(n => Number.isFinite(n.x) && Number.isFinite(n.y));
+                if (nodes.length === 0) return;
+                minX = d3.min(nodes, d => d.x);
+                maxX = d3.max(nodes, d => d.x);
+                minY = d3.min(nodes, d => d.y);
+                maxY = d3.max(nodes, d => d.y);
+            }
+
+            const pad = 110; // breathing room for labels + UI overlap
+            const bboxWidth = Math.max(1, (maxX - minX));
+            const bboxHeight = Math.max(1, (maxY - minY));
+
+            // Standard "fit bbox into viewport" transform:
+            // translate to center -> scale -> translate bbox center to origin.
+            const extent = zoomBehavior.scaleExtent();
+            const scale = Math.max(
+                extent[0],
+                Math.min(extent[1], 0.95 / Math.max(bboxWidth / (graphWidth - pad * 2), bboxHeight / (graphHeight - pad * 2)))
+            );
+
+            const cx = minX + bboxWidth / 2;
+            const cy = minY + bboxHeight / 2;
+
+            const t = d3.zoomIdentity
+                .translate(graphWidth / 2, graphHeight / 2)
+                .scale(scale)
+                .translate(-cx, -cy);
+
+            const sel = skipAnimation ? svg : svg.transition().duration(450);
+            sel.call(zoomBehavior.transform, t);
+        }
+
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            // When zoomed/panned, map pointer coords back into graph coords.
+            const t = d3.zoomTransform(svg.node());
+            d.fx = t.invertX(event.x);
+            d.fy = t.invertY(event.y);
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        // ==================== DRAWER ====================
+        function showDrawer(d) {
+            const drawer = document.getElementById("drawer");
+            drawer.classList.remove("hidden");
+
+            document.getElementById("drawer-title").innerHTML = d.name;
+            const meta = document.getElementById("drawer-meta");
+            const typeLabel = (d.type ?? "node").toString().toUpperCase();
+            const groupLabel = (d.group ?? "unknown").toString();
+            const countryLabel = (d.country ?? "unknown").toString();
+
+            const chip = (label, opts = {}) => {
+                const { dotColor } = opts;
+                const dot = dotColor
+                    ? `<span class="inline-block w-2 h-2 rounded-full" style="background:${dotColor}"></span>`
+                    : "";
+                return `
+                    <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[11px] font-semibold border border-gray-200 bg-gray-50 text-gray-700">
+                        ${dot}${label}
+                    </span>
+                `;
+            };
+            meta.innerHTML = [
+                chip(typeLabel),
+                chip(groupLabel, { dotColor: colorForGroup(d.group) }),
+                chip(countryLabel.toLowerCase())
+            ].join("");
+
+            // Description (customize per node later)
+            const descriptions = {
+                myfather: "Multi-generational García family enterprise known for bold Nicaragua-forward blends and deep factory relationships.",
+                pepin: "José ‘Pepín’ García is a cornerstone figure in modern Nicaraguan cigars as a blender and factory leader.",
+                tatuaje: "Boutique-leaning brand with strong Nicaragua manufacturing ties and a reputation for Cuban-style profile blends.",
+                espinosa: "Independent cigar company founded in 2012, anchored by the La Zona factory in Estelí and a portfolio built on Nicaragua-forward blends.",
+                erikespinosa: "Industry veteran and brand owner; co-founded EO Brands (601, Murciélago) before launching Espinosa Premium Cigars and La Zona in 2012.",
+                lazona: "Espinosa’s Estelí factory opened around 2012; known for small-operation craftsmanship and producing core Espinosa lines like Laranja, Crema, and Espinosa Habano.",
+                laranja: "Espinosa line produced at La Zona; one of the most visible parts of the modern Espinosa portfolio.",
+                espinosahabano: "Core Espinosa line produced at La Zona with a classic Habano-forward profile.",
+                crema: "A smoother Espinosa line produced at La Zona, often positioned as a creamy, approachable counterpoint within the portfolio.",
+                eobrands: "Legacy partnership (Espinosa + Ortega) associated with boutique-era brands like 601 and Murciélago before splitting in 2012.",
+                eddieortega: "Co-founder of EO Brands with Erik Espinosa; the partnership dissolved in 2012 as both moved on to separate companies.",
+                sixzeroone: "Boutique brand that originated under EO Brands and later moved under Espinosa; certain production has been handled by A.J. Fernandez.",
+                murcielago: "Brand that originated under EO Brands and later moved under Espinosa; production for some lines has been handled by A.J. Fernandez.",
+                ajfernandez: "Prominent Nicaraguan cigar maker associated with the San Lotano factory and contract production for multiple brands.",
+                sanlotano: "A.J. Fernandez’s well-known Estelí factory used for both house lines and contract manufacturing.",
+                padron: "Legendary family-owned cigar maker known for consistency and vertically integrated Nicaragua production, anchored in Estelí at Tabacos Cubanica.",
+                joseopadron: "Cuban-born founder who started the company in the 1960s and established its Nicaragua production base in Estelí.",
+                jorgepadron: "President and key second-generation leader who helped expand the modern Padrón operation and global reputation.",
+                orlandopadron: "Padrón family executive leadership supporting long-term operations and production focus.",
+                tabacoscubanica: "Padrón’s Estelí manufacturing home, known as Tabacos Cubanica—central to its vertically integrated production approach.",
+                padron1964: "Anniversary series that helped define Padrón’s premium identity and is produced as part of the core Nicaragua portfolio.",
+                padron1926: "Premium series named for José Orlando Padrón’s birth year, produced within the Padrón Nicaragua operation.",
+                davidoff: "Luxury cigar house produced in the Dominican Republic with a strong ‘crop-to-shop’ philosophy via its parent group.",
+                tabadom: "Dominican manufacturing hub (Villa González) associated with Davidoff-group production and blending operations.",
+                oettinger: "Parent group behind Davidoff and related brands, anchored by Dominican production through Tabadom.",
+                arturo: "Iconic Dominican family brand known for meticulous construction and signature lines like OpusX.",
+                tabafuente: "Legendary Dominican factory producing Arturo Fuente cigars and select partner projects.",
+                diamondcrown: "J.C. Newman luxury line handmade at Tabacalera A. Fuente via a long-running Newman–Fuente partnership.",
+                stg: "Large cigar & tobacco group with U.S. premium brands distributed through internal divisions like General and Forged.",
+                generalcigar: "STG’s U.S. premium cigar arm handling major non‑Cuban legacy marks and modern portfolio brands.",
+                forged: "STG’s premium division managing several ‘power brands’ and portfolio lines in the U.S. market."
+            };
+            let desc = descriptions[d.id] || "A notable player in the premium cigar world with meaningful connections across factories, owners, and partnerships.";
+            document.getElementById("drawer-description").innerHTML = desc;
+
+            // Connections
+            const connContainer = document.getElementById("drawer-connections");
+            connContainer.innerHTML = "";
+
+            const getName = (v) => (typeof v === "object" && v !== null) ? v.name : getNodeNameById(v);
+
+            const connections = graphData.links.filter(l => getId(l.source) === d.id || getId(l.target) === d.id);
+            const connectionItems = connections
+                .map(conn => {
+                    const other = getId(conn.source) === d.id ? conn.target : conn.source;
+                    const otherId = getId(other);
+                    const otherName = getName(other);
+                    const type = (conn.type ?? "").toString();
+                    return { otherId, otherName, type };
+                })
+                .sort((a, b) => a.otherName.localeCompare(b.otherName));
+
+            if (connectionItems.length === 0) {
+                connContainer.innerHTML = `<div class="text-sm text-gray-500">No connections yet.</div>`;
+            } else {
+                connectionItems.forEach(item => {
+                    const row = document.createElement("button");
+                    row.type = "button";
+                    row.className = "w-full text-left flex items-center justify-between gap-3 px-3 py-2 rounded-2xl border border-gray-200 bg-white hover:border-[#6b2d2d]/40 hover:bg-[#6b2d2d]/[0.03]";
+                    row.innerHTML = `
+                        <div class="min-w-0">
+                            <div class="text-sm font-semibold text-gray-800 truncate">${item.otherName}</div>
+                            <div class="text-[11px] text-gray-500 truncate">${item.type}</div>
+                        </div>
+                        <div class="text-gray-300 text-xl leading-none">›</div>
+                    `;
+                    row.addEventListener("click", () => focusNode(item.otherId));
+                    connContainer.appendChild(row);
+                });
+            }
+
+            // Buy buttons
+            const buyWrap = document.getElementById("drawer-buy-wrap");
+            const affiliate = document.getElementById("drawer-affiliate");
+            const buyContainer = document.getElementById("drawer-buy");
+
+            const buyLinks = Array.isArray(d.buyLinks) ? d.buyLinks : [];
+            if (buyLinks.length === 0) {
+                buyWrap.classList.add("hidden");
+                affiliate.classList.add("hidden");
+                buyContainer.innerHTML = "";
+            } else {
+                buyWrap.classList.remove("hidden");
+                affiliate.classList.remove("hidden");
+                buyContainer.innerHTML = buyLinks.map(l => `
+                    <a href="${l.url}" target="_blank" rel="noopener noreferrer"
+                       class="block px-4 py-3 bg-[#6b2d2d] hover:bg-[#5a2525] text-white text-sm font-semibold rounded-2xl text-center">
+                        ${l.label} <span class="text-xs opacity-70">(affiliate)</span>
+                    </a>
+                `).join("");
+            }
+        }
+
+        function focusNode(nodeId) {
+            const target = graphData.nodes.find(n => n.id === nodeId);
+            if (!target || !svg || !zoomBehavior || !viewport) return;
+
+            // Zoom/pan so the node is visible and centered nicely.
+            const t0 = d3.zoomTransform(svg.node());
+            const scale = Math.max(0.9, Math.min(2.2, t0.k));
+            const t = d3.zoomIdentity
+                .translate(graphWidth / 2, graphHeight / 2)
+                .scale(scale)
+                .translate(-target.x, -target.y);
+
+            svg.transition().duration(450).call(zoomBehavior.transform, t);
+            showDrawer(target);
+        }
+
+        function closeDrawer() {
+            const drawer = document.getElementById("drawer");
+            drawer.classList.add("hidden");
+        }
+
+        // ==================== SEARCH & FILTER ====================
+        function filterGraph(type) {
+            // Simple filter example - you can expand this a lot
+            node.style("opacity", d => {
+                if (type === "all") return 1;
+                if (type === "family" && d.group === "family") return 1;
+                if (type === "nicaragua" && d.country === "nicaragua") return 1;
+                if (type === "dominican" && d.country === "dominican") return 1;
+                return 0.15;
+            });
+        }
+
+        // Search
+        document.getElementById("search").addEventListener("input", function() {
+            const term = this.value.toLowerCase();
+            node.style("opacity", d => d.name.toLowerCase().includes(term) ? 1 : 0.2);
+        });
+
+        // ==================== INIT ====================
+        window.onload = function() {
+            graphData = loadGraph();
+            initGraph();
+            initSubmitUI();
+            
+            // Auto-open My Father drawer on load (for demo)
+            setTimeout(() => {
+                const myFather = graphData.nodes.find(n => n.id === "myfather");
+                if (myFather) showDrawer(myFather);
+            }, 1200);
+
+            // Mobile-friendly: keep graph sizing correct on resize/orientation changes.
+            let resizeTimer;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(resizeGraph, 120);
+            });
+        };
+
+        // ==================== SUBMIT CONNECTION UI ====================
+        function initSubmitUI() {
+            document.getElementById("open-submit")?.addEventListener("click", (e) => {
+                e.preventDefault();
+                openSubmitModal();
+            });
+
+            document.getElementById("submit-mode")?.addEventListener("change", syncSubmitModeUI);
+
+            document.getElementById("submit-form")?.addEventListener("submit", (e) => {
+                e.preventDefault();
+                submitConnection();
+            });
+        }
+
+        function openSubmitModal() {
+            const modal = document.getElementById("submit-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            clearSubmitError();
+            populateNodeSelects();
+            syncSubmitModeUI();
+        }
+
+        function closeSubmitModal() {
+            const modal = document.getElementById("submit-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        function syncSubmitModeUI() {
+            const mode = document.getElementById("submit-mode").value;
+            const newFields = document.getElementById("new-node-fields");
+            const from = document.getElementById("from-node");
+            const to = document.getElementById("to-node");
+
+            if (mode === "existing-to-existing") {
+                newFields.classList.add("hidden");
+                from.disabled = false;
+                to.disabled = false;
+            } else {
+                newFields.classList.remove("hidden");
+                // In new-to-existing mode:
+                // - "From" is the new node
+                // - "To" is an existing node
+                from.disabled = true;
+                from.innerHTML = `<option value="__new__">New node</option>`;
+                to.disabled = false;
+            }
+        }
+
+        function populateNodeSelects() {
+            const from = document.getElementById("from-node");
+            const to = document.getElementById("to-node");
+
+            const sorted = [...graphData.nodes].sort((a, b) => a.name.localeCompare(b.name));
+            const options = sorted.map(n => `<option value="${n.id}">${n.name}</option>`).join("");
+
+            from.innerHTML = options;
+            to.innerHTML = options;
+        }
+
+        function showSubmitError(msg) {
+            const el = document.getElementById("submit-error");
+            el.textContent = msg;
+            el.classList.remove("hidden");
+        }
+
+        function clearSubmitError() {
+            const el = document.getElementById("submit-error");
+            el.textContent = "";
+            el.classList.add("hidden");
+        }
+
+        function submitConnection() {
+            clearSubmitError();
+            const mode = document.getElementById("submit-mode").value;
+            const connType = (document.getElementById("conn-type").value || "").trim();
+            if (!connType) return showSubmitError("Please enter a connection type (e.g., “owned by”, “manufactures at”, “partnership”).");
+
+            let sourceId, targetId;
+
+            if (mode === "existing-to-existing") {
+                sourceId = document.getElementById("from-node").value;
+                targetId = document.getElementById("to-node").value;
+                if (sourceId === targetId) return showSubmitError("Pick two different nodes to connect.");
+            } else {
+                const name = (document.getElementById("new-name").value || "").trim();
+                if (!name) return showSubmitError("Please enter a name for the new node.");
+
+                const type = document.getElementById("new-type").value;
+                const group = (document.getElementById("new-group").value || "").trim() || "family";
+                const country = (document.getElementById("new-country").value || "").trim() || "unknown";
+
+                const newId = uniqIdFromName(name);
+                graphData.nodes.push({ id: newId, name, type, group, country });
+
+                sourceId = newId;
+                targetId = document.getElementById("to-node").value;
+                if (sourceId === targetId) return showSubmitError("The new node can’t connect to itself.");
+            }
+
+            // Add link (normalized to ids; D3 will rehydrate to node objects via forceLink id())
+            const newLink = { source: sourceId, target: targetId, type: connType };
+            const linkKey = safeLinkKey(newLink);
+            const existing = new Set(graphData.links.map(safeLinkKey));
+            if (existing.has(linkKey)) return showSubmitError("That exact connection already exists.");
+
+            graphData.links.push(newLink);
+            saveGraph();
+
+            renderGraph();
+            refreshSimulation();
+            populateNodeSelects();
+
+            // Focus view around the updated graph.
+            setTimeout(() => zoomToFit(), 40);
+            closeSubmitModal();
+        }
+    </script>
+</body>
+</html>
