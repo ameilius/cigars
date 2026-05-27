@@ -150,8 +150,12 @@
 
     <div class="max-w-screen-xl mx-auto px-6 pt-6">
         
-        <!-- Graph -->
-        <div id="graph-container" class="relative rounded-3xl border border-[#d4c4a8] overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px] shadow-[0_20px_60px_-15px_rgb(92,46,46,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
+        <!-- Graph + Desktop Drawer side-by-side on large screens -->
+        <div class="lg:flex lg:gap-6">
+            
+            <!-- Graph -->
+            <div class="flex-1">
+                <div id="graph-container" class="relative rounded-3xl border border-[#d4c4a8] overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px] shadow-[0_20px_60px_-15px_rgb(92,46,46,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
             <!-- View controls -->
             <div class="absolute top-4 left-4 z-10 flex gap-2">
                 <button onclick="zoomToFit()"
@@ -176,7 +180,42 @@
             <div id="graph" class="w-full h-full"></div>
         </div>
 
-        <!-- Filters -->
+        <!-- Desktop Sidebar Drawer -->
+        <div class="hidden lg:block lg:w-80 lg:shrink-0">
+            <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px]">
+                <!-- drawer content (same as before) -->
+                <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
+                    <div class="min-w-0">
+                        <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
+                        <div id="drawer-meta" class="mt-2.5 flex flex-wrap gap-2"></div>
+                    </div>
+                    <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
+                </div>
+                
+                <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
+                    <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
+                    <div class="my-6 h-px bg-[#d4c4a8]"></div>
+                    
+                    <div class="mb-4">
+                        <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
+                        <div id="drawer-connections" class="space-y-2"></div>
+                    </div>
+                    
+                    <div id="drawer-buy-wrap">
+                        <div class="my-6 h-px bg-[#d4c4a8]"></div>
+                        <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
+                        <div class="space-y-2" id="drawer-buy"></div>
+                    </div>
+                </div>
+                
+                <div id="drawer-affiliate" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
+                    As an affiliate I may earn a commission from qualifying purchases.
+                </div>
+            </div>
+        </div>
+    </div>   <!-- close the lg:flex -->
+
+    <!-- Filters -->
         <div class="flex flex-wrap gap-2 mt-5 mb-6" id="filter-chips">
             <div onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
             <div onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
@@ -188,9 +227,9 @@
             <div onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
         </div>
 
-        <!-- Desktop Sidebar Drawer -->
-        <div class="hidden lg:block lg:w-80 lg:fixed lg:right-6 lg:top-[140px] lg:bottom-6">
-            <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-full">
+        <!-- Desktop Sidebar Drawer (flows next to graph on large screens) -->
+        <div class="hidden lg:block lg:w-80 lg:shrink-0">
+            <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px] sticky top-4">
                 <!-- drawer content -->
                 <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
                     <div class="min-w-0">
@@ -1348,19 +1387,21 @@
             const buyContainer = document.getElementById("drawer-buy") || document.getElementById("drawer-buy-mobile");
 
             const buyLinks = Array.isArray(d.buyLinks) ? d.buyLinks : [];
+            // Always keep the section visible; just control inner content
+            if (buyWrap) buyWrap.classList.remove("hidden");
+            if (affiliate) affiliate.classList.remove("hidden");
+
             if (buyLinks.length === 0) {
-                buyWrap.classList.add("hidden");
-                affiliate.classList.add("hidden");
-                buyContainer.innerHTML = "";
+                if (buyContainer) buyContainer.innerHTML = `<div class="text-sm text-gray-500">No direct affiliate links for this node yet.</div>`;
             } else {
-                buyWrap.classList.remove("hidden");
-                affiliate.classList.remove("hidden");
-                buyContainer.innerHTML = buyLinks.map(l => `
-                    <a href="${l.url}", target="_blank" rel="noopener noreferrer"
-                       class="block px-4 py-3 bg-[#6b2d2d] hover:bg-[#5a2525] text-white text-sm font-semibold rounded-2xl text-center">
-                        ${l.label} <span class="text-xs opacity-70">(affiliate)</span>
-                    </a>
-                `).join("");
+                if (buyContainer) {
+                    buyContainer.innerHTML = buyLinks.map(l => `
+                        <a href="${l.url}" target="_blank" rel="noopener noreferrer"
+                           class="block px-4 py-3 bg-[#6b2d2d] hover:bg-[#5a2525] text-white text-sm font-semibold rounded-2xl text-center">
+                            ${l.label} <span class="text-xs opacity-70">(affiliate)</span>
+                        </a>
+                    `).join("");
+                }
             }
 
             // On mobile, scroll the drawer content to top when opened
