@@ -11,6 +11,11 @@
         .node { cursor: pointer; }
         .link { stroke: #9ca3af; stroke-opacity: 0.6; }
         .drawer { transition: transform 0.3s ease; }
+        .filter-chip.filter-active {
+            background-color: #6b2d2d;
+            color: white;
+            border-color: #6b2d2d;
+        }
     </style>
 </head>
 <body class="bg-[#f8f5f0] text-gray-800">
@@ -106,16 +111,16 @@
             </div>
         </div>
 
-        <!-- Filter Chips -->
-        <div class="flex flex-wrap gap-2 mt-4 mb-8">
-            <div onclick="filterGraph('all')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
-            <div onclick="filterGraph('family')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
-            <div onclick="filterGraph('corporate')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Corporate / Group</div>
-            <div onclick="filterGraph('nicaragua')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
-            <div onclick="filterGraph('dominican')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
-            <div onclick="filterGraph('honduras')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Honduras</div>
-            <div onclick="filterGraph('boutique')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Boutique</div>
-            <div onclick="filterGraph('factory')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
+        <!-- Filter Chips (multi-select capable) -->
+        <div class="flex flex-wrap gap-2 mt-4 mb-8" id="filter-chips">
+            <div onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
+            <div onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
+            <div onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Corporate / Group</div>
+            <div onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
+            <div onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
+            <div onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Honduras</div>
+            <div onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Boutique</div>
+            <div onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
         </div>
     </div>
 
@@ -474,7 +479,19 @@
 
                 // HVC (now has own factory)
                 { source: "hvc", target: "reinierlorenzo", type: "founded by" },
-                { source: "hvc", target: "hvcfactory", type: "operates own factory" }
+                { source: "hvc", target: "hvcfactory", type: "operates own factory" },
+
+                // === Data cleanup / strengthening round (more accurate contract links) ===
+                { source: "oliva", target: "perdomo", type: "industry competitor / peer (major Nicaraguan producers)" },
+                { source: "joyafactory", target: "drewestate", type: "historical contract production (MUWAT era)" },
+                { source: "joyafactory", target: "warped", type: "occasional production" },
+                { source: "perdomofactory", target: "perdomo", type: "core production for all Perdomo lines" },
+                { source: "tabolisa", target: "oliva", type: "primary rolling for Serie V / Melanio / NUb" },
+                { source: "sobremesa", target: "joyafactory", type: "primary production location" },
+                { source: "dunbarton", target: "nacsa", type: "some Muestra de Saka / Mi Querida production" },
+                { source: "perdomo", target: "stg", type: "occasional leaf / industry relationship" },
+                { source: "hvc", target: "tabsa", type: "early production before own factory" },
+                { source: "viaje", target: "hvc", type: "shared Nicaraguan production ecosystem" }
             ]
         };
 
@@ -482,6 +499,9 @@
         let graphData;
         let svg, viewport, zoomBehavior, simulation, node, link, linkLayer, nodeLayer;
         let graphWidth = 0, graphHeight = 620;
+
+        // Multi-filter state (for task 2 refinement)
+        let activeFilters = new Set();
 
         const FIXED_GROUP_COLORS = {
             family: "#166534",    // green
@@ -507,6 +527,21 @@
             const key = (group ?? "unknown").toString().trim().toLowerCase() || "unknown";
             if (FIXED_GROUP_COLORS[key]) return FIXED_GROUP_COLORS[key];
             return groupColorScale(key);
+        }
+
+        // Enhanced node color for visual polish (task 3)
+        function getNodeColor(d) {
+            if (d.type === "factory") return "#b45309"; // amber for factories/growers
+            if (d.type === "person") return "#374151";  // dark gray for people
+            return colorForGroup(d.group);
+        }
+
+        // Smarter node sizing (task 3)
+        function getNodeRadius(d) {
+            if (d.type === "factory") return 30;
+            if (d.type === "person") return 17;
+            if (d.type === "brand" && d.group === "corporate") return 24;
+            return 27; // default for most brands and companies
         }
 
         function getId(v) {
@@ -665,8 +700,29 @@
                 .join(
                     enter => enter.append("line")
                         .attr("class", "link")
-                        .attr("stroke-width", 1.5),
-                    update => update,
+                        .attr("stroke-width", d => {
+                            const t = (d.type || "").toLowerCase();
+                            if (t.includes("owns") || t.includes("operates")) return 2.8;
+                            if (t.includes("manufactures") || t.includes("production") || t.includes("contract")) return 2.0;
+                            return 1.4;
+                        })
+                        .attr("stroke-dasharray", d => {
+                            const t = (d.type || "").toLowerCase();
+                            if (t.includes("contract") || t.includes("partnership") || t.includes("historical")) return "4,3";
+                            return null;
+                        }),
+                    update => update
+                        .attr("stroke-width", d => {
+                            const t = (d.type || "").toLowerCase();
+                            if (t.includes("owns") || t.includes("operates")) return 2.8;
+                            if (t.includes("manufactures") || t.includes("production") || t.includes("contract")) return 2.0;
+                            return 1.4;
+                        })
+                        .attr("stroke-dasharray", d => {
+                            const t = (d.type || "").toLowerCase();
+                            if (t.includes("contract") || t.includes("partnership") || t.includes("historical")) return "4,3";
+                            return null;
+                        }),
                     exit => exit.remove()
                 );
 
@@ -684,8 +740,8 @@
                             .on("click", (event, d) => showDrawer(d));
 
                         g.append("circle")
-                            .attr("r", d => d.type === "person" ? 18 : 26)
-                            .attr("fill", d => colorForGroup(d.group))
+                            .attr("r", d => getNodeRadius(d))
+                            .attr("fill", d => getNodeColor(d))
                             .attr("stroke", "#fff")
                             .attr("stroke-width", 3);
 
@@ -701,8 +757,8 @@
                     },
                     update => {
                         update.select("circle")
-                            .attr("r", d => d.type === "person" ? 18 : 26)
-                            .attr("fill", d => colorForGroup(d.group));
+                            .attr("r", d => getNodeRadius(d))
+                            .attr("fill", d => getNodeColor(d));
                         update.select("text").text(d => d.name);
                         return update;
                     },
@@ -984,33 +1040,65 @@
             drawer.classList.add("hidden");
         }
 
-        // ==================== SEARCH & FILTER ====================
-        function filterGraph(type) {
+        // ==================== SEARCH & FILTER (Refined multi-select - task 2) ====================
+        function applyFiltersAndSearch() {
+            const searchTerm = (document.getElementById("search")?.value || "").toLowerCase().trim();
+
             node.style("opacity", d => {
-                if (type === "all") return 1;
+                // Search first (if active)
+                if (searchTerm && !d.name.toLowerCase().includes(searchTerm)) {
+                    return 0.08;
+                }
 
-                if (type === "family" && (d.group === "family" || d.group === "family")) return 1;
-                if (type === "corporate" && d.group === "corporate") return 1;
+                if (activeFilters.size === 0) return 1; // nothing selected = show all
 
-                if (type === "nicaragua" && d.country === "nicaragua") return 1;
-                if (type === "dominican" && d.country === "dominican") return 1;
-                if (type === "honduras" && d.country === "honduras") return 1;
+                // A node must match EVERY active filter (AND logic)
+                for (const f of activeFilters) {
+                    let matches = false;
 
-                // Boutique = smaller/independent brands (not big corporate groups)
-                if (type === "boutique" && d.type === "brand" && d.group !== "corporate") return 1;
+                    if (f === "family" && d.group === "family") matches = true;
+                    else if (f === "corporate" && d.group === "corporate") matches = true;
+                    else if (f === "nicaragua" && d.country === "nicaragua") matches = true;
+                    else if (f === "dominican" && d.country === "dominican") matches = true;
+                    else if (f === "honduras" && d.country === "honduras") matches = true;
+                    else if (f === "boutique" && d.type === "brand" && d.group !== "corporate") matches = true;
+                    else if (f === "factory" && (d.type === "factory" || d.name.toLowerCase().includes("factory") || d.name.toLowerCase().includes("tabacalera") || d.name.toLowerCase().includes("aganorsa") || d.name.toLowerCase().includes("tabolisa") || d.name.toLowerCase().includes("monstro"))) matches = true;
+                    else if (f === "all") matches = true;
 
-                // Factory / Grower nodes
-                if (type === "factory" && (d.type === "factory" || d.name.toLowerCase().includes("factory") || d.name.toLowerCase().includes("tabacalera") || d.name.toLowerCase().includes("aganorsa"))) return 1;
-
-                return 0.12;
+                    if (!matches) return 0.08;
+                }
+                return 1;
             });
         }
 
-        // Search
+        function toggleFilter(type, element) {
+            if (type === "all") {
+                activeFilters.clear();
+                // Remove active class from all chips
+                document.querySelectorAll('.filter-chip').forEach(el => el.classList.remove('filter-active'));
+            } else {
+                if (activeFilters.has(type)) {
+                    activeFilters.delete(type);
+                    element.classList.remove('filter-active');
+                } else {
+                    activeFilters.add(type);
+                    element.classList.add('filter-active');
+                }
+            }
+            applyFiltersAndSearch();
+        }
+
+        // Search (now respects active filters)
         document.getElementById("search").addEventListener("input", function() {
-            const term = this.value.toLowerCase();
-            node.style("opacity", d => d.name.toLowerCase().includes(term) ? 1 : 0.2);
+            applyFiltersAndSearch();
         });
+
+        // Initial filter function kept for backward compatibility with onclicks
+        function filterGraph(type) {
+            // For chips that still use old onclick, convert to toggle
+            const chip = event?.currentTarget || event?.target;
+            toggleFilter(type, chip);
+        }
 
         // ==================== INIT ====================
         window.onload = function() {
