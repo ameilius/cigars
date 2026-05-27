@@ -529,19 +529,50 @@
             return groupColorScale(key);
         }
 
+        // Helper used by both coloring and filtering for consistency
+        function isFactoryNode(d) {
+            const name = (d.name || "").toLowerCase();
+            return d.type === "factory" ||
+                name.includes("factory") ||
+                name.includes("tabacalera") ||
+                name.includes("tabolisa") ||
+                name.includes("monstro") ||
+                name.includes("aganorsa") ||
+                name.includes("nacsa") ||
+                name.includes("tavicusa") ||
+                name.includes("san lotano") ||
+                name.includes("la gran");
+        }
+
         // Enhanced node color for visual polish (task 3)
+        // Now correctly matches the legend categories the user sees
         function getNodeColor(d) {
-            if (d.type === "factory") return "#b45309"; // amber for factories/growers
-            if (d.type === "person") return "#374151";  // dark gray for people
+            // Factory / Grower nodes → Amber (orange) as shown in legend
+            if (isFactoryNode(d)) {
+                return "#b45309";
+            }
+
+            // Boutique brands → Blue (as shown in legend)
+            // Definition matches the filter: brand that is not under a big corporate group
+            if (d.type === "brand" && d.group !== "corporate") {
+                return "#1d4ed8";   // blue
+            }
+
+            // People get a neutral dark color
+            if (d.type === "person") {
+                return "#374151";
+            }
+
+            // Fall back to group color (green for family/independent, maroon for corporate)
             return colorForGroup(d.group);
         }
 
-        // Smarter node sizing (task 3)
+        // Smarter node sizing (task 3) - consistent with getNodeColor
         function getNodeRadius(d) {
-            if (d.type === "factory") return 30;
-            if (d.type === "person") return 17;
+            if (isFactoryNode(d)) return 30;                 // factories biggest
+            if (d.type === "person") return 17;              // people smallest
             if (d.type === "brand" && d.group === "corporate") return 24;
-            return 27; // default for most brands and companies
+            return 27;
         }
 
         function getId(v) {
@@ -1062,7 +1093,7 @@
                     else if (f === "dominican" && d.country === "dominican") matches = true;
                     else if (f === "honduras" && d.country === "honduras") matches = true;
                     else if (f === "boutique" && d.type === "brand" && d.group !== "corporate") matches = true;
-                    else if (f === "factory" && (d.type === "factory" || d.name.toLowerCase().includes("factory") || d.name.toLowerCase().includes("tabacalera") || d.name.toLowerCase().includes("aganorsa") || d.name.toLowerCase().includes("tabolisa") || d.name.toLowerCase().includes("monstro"))) matches = true;
+                    else if (f === "factory" && isFactoryNode(d)) matches = true;
                     else if (f === "all") matches = true;
 
                     if (!matches) return 0.08;
