@@ -500,6 +500,9 @@
         let svg, viewport, zoomBehavior, simulation, node, link, linkLayer, nodeLayer;
         let graphWidth = 0, graphHeight = 620;
 
+        // Track current zoom level for label visibility logic
+        let currentZoomScale = 1;
+
         // Multi-filter state (for task 2 refinement)
         let activeFilters = new Set();
 
@@ -573,6 +576,19 @@
             if (d.type === "person") return 17;              // people smallest
             if (d.type === "brand" && d.group === "corporate") return 24;
             return 27;
+        }
+
+        // === Label visibility control to prevent overlap when zoomed out or panning ===
+        function updateLabelVisibility(scale) {
+            if (!node) return;
+
+            // Show labels only when reasonably zoomed in.
+            // Below ~0.75x we hide labels to avoid massive overlap.
+            const showLabels = scale > 0.72;
+
+            node.select("text")
+                .style("opacity", showLabels ? 1 : 0)
+                .style("pointer-events", showLabels ? "auto" : "none");
         }
 
         function getId(v) {
@@ -668,12 +684,17 @@
                 .force("link", d3.forceLink(graphData.links).id(d => d.id).distance(90))
                 .force("charge", d3.forceManyBody().strength(-300))
                 .force("center", d3.forceCenter(graphWidth / 2, graphHeight / 2))
-                .force("collision", d3.forceCollide().radius(35));
+                .force("collision", d3.forceCollide().radius(38));   // slightly stronger to help with labels
 
             linkLayer = viewport.append("g").attr("class", "links");
             nodeLayer = viewport.append("g").attr("class", "nodes");
 
             renderGraph();
+
+            // Set initial label visibility based on default zoom
+            setTimeout(() => {
+                updateLabelVisibility(currentZoomScale || 1);
+            }, 80);
 
             simulation.on("tick", () => {
                 link
@@ -693,13 +714,22 @@
                 .scaleExtent([0.05, 3])
                 .on("zoom", (event) => {
                     viewport.attr("transform", event.transform);
+                    currentZoomScale = event.transform.k;
+                    updateLabelVisibility(currentZoomScale);
+
+                    // Slightly stronger collision when labels are visible (zoomed in)
+                    const collisionRadius = currentZoomScale > 0.72 ? 42 : 38;
+                    simulation.force("collision", d3.forceCollide().radius(collisionRadius));
                 });
 
             svg.call(zoomBehavior);
 
             // Start with a fit view once nodes get initial positions.
             // (A short delay avoids fitting on all-NaN coords in some browsers.)
-            setTimeout(() => zoomToFit(true), 60);
+            setTimeout(() => {
+                zoomToFit(true);
+                updateLabelVisibility(currentZoomScale);
+            }, 80);
         }
 
         function resizeGraph() {
@@ -721,7 +751,10 @@
             simulation.alpha(0.25).restart();
 
             // Keep everything visible after resize/rotation.
-            setTimeout(() => zoomToFit(true), 30);
+            setTimeout(() => {
+                zoomToFit(true);
+                updateLabelVisibility(currentZoomScale);
+            }, 30);
         }
 
         function renderGraph() {
@@ -780,9 +813,13 @@
                             .text(d => d.name)
                             .attr("text-anchor", "middle")
                             .attr("dy", d => d.type === "person" ? 32 : 38)
-                            .attr("font-size", "11px")
+                            .attr("font-size", "10.5px")
                             .attr("fill", "#374151")
-                            .attr("font-weight", "500");
+                            .attr("font-weight", "500")
+                            .attr("paint-order", "stroke")
+                            .attr("stroke", "#f8f5f0")
+                            .attr("stroke-width", 2.5)
+                            .attr("stroke-linejoin", "round");
 
                         return g;
                     },
@@ -790,7 +827,11 @@
                         update.select("circle")
                             .attr("r", d => getNodeRadius(d))
                             .attr("fill", d => getNodeColor(d));
-                        update.select("text").text(d => d.name);
+                        update.select("text")
+                            .text(d => d.name)
+                            .attr("paint-order", "stroke")
+                            .attr("stroke", "#f8f5f0")
+                            .attr("stroke-width", 2.5);
                         return update;
                     },
                     exit => exit.remove()
@@ -806,6 +847,7 @@
         function resetZoom() {
             if (!svg || !zoomBehavior) return;
             svg.transition().duration(350).call(zoomBehavior.transform, d3.zoomIdentity);
+            setTimeout(() => updateLabelVisibility(1), 380);
         }
 
         function zoomToFit(skipAnimation = false) {
@@ -860,6 +902,11 @@
 
             const sel = skipAnimation ? svg : svg.transition().duration(450);
             sel.call(zoomBehavior.transform, t);
+
+            // Refresh label visibility after fitting animation
+            setTimeout(() => {
+                updateLabelVisibility(currentZoomScale);
+            }, skipAnimation ? 50 : 480);
         }
 
         function dragstarted(event, d) {
