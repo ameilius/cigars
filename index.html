@@ -83,6 +83,26 @@
         .gold-accent {
             color: #c5a26f;
         }
+
+        /* Emergency mobile fixes */
+        @media (max-width: 1023px) {
+            header .flex.items-center.justify-between > div:nth-child(2) {
+                max-width: 140px;
+            }
+            
+            #graph-container, #graph {
+                min-height: 420px !important;
+                height: 55vh !important;
+            }
+            
+            #drawer-mobile {
+                display: none;
+            }
+            
+            #drawer-mobile:not(.hidden) {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#f8f5f0] text-gray-800">
@@ -103,18 +123,18 @@
                 </div>
             </div>
             
-            <div class="flex-1 max-w-md mx-8 search-container">
+            <div class="flex-1 max-w-[180px] sm:max-w-md mx-2 sm:mx-8 search-container">
                 <input id="search" 
                        type="text" 
-                       placeholder="Search brands, families, or connections..." 
-                       class="w-full px-5 py-2.5 rounded-2xl bg-[#f4e9d8] text-[#3f2a2a] placeholder-[#8b6f5c] focus:outline-none focus:ring-2 focus:ring-[#c5a26f] shadow-inner text-sm transition-all">
+                       placeholder="Search..." 
+                       class="w-full px-4 py-2 rounded-2xl bg-[#f4e9d8] text-[#3f2a2a] placeholder-[#8b6f5c] focus:outline-none focus:ring-2 focus:ring-[#c5a26f] shadow-inner text-sm transition-all">
             </div>
             
-            <div class="flex items-center gap-x-1.5 text-sm">
-                <a href="#" class="px-4 py-2 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">About</a>
+            <div class="flex items-center gap-x-1 text-xs sm:text-sm">
+                <a href="#" class="hidden sm:block px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">About</a>
                 <button id="open-submit"
-                        class="px-4 py-2 bg-[#c5a26f] hover:bg-[#d4b17e] text-[#5c2e2e] font-semibold rounded-2xl text-sm shadow-sm active:scale-[0.985] transition-all">
-                    Submit Connection
+                        class="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#c5a26f] hover:bg-[#d4b17e] text-[#5c2e2e] font-semibold rounded-2xl text-xs sm:text-sm shadow-sm active:scale-[0.985] transition-all whitespace-nowrap">
+                    Submit
                 </button>
             </div>
         </div>
@@ -1196,23 +1216,33 @@
 
         // ==================== DRAWER ====================
         function showDrawer(d) {
-            const drawer = document.getElementById("drawer");
-            drawer.classList.remove("hidden");
+            // Try mobile drawer first on small screens
+            let drawer = (window.innerWidth < 1024) 
+                ? document.getElementById("drawer-mobile") || document.getElementById("drawer")
+                : document.getElementById("drawer");
 
-            // Mobile: show a backdrop behind the drawer
+            if (drawer) drawer.classList.remove("hidden");
+
+            // Mobile backdrop
             if (window.innerWidth < 1024) {
                 let backdrop = document.getElementById("mobile-drawer-backdrop");
                 if (!backdrop) {
                     backdrop = document.createElement("div");
                     backdrop.id = "mobile-drawer-backdrop";
                     backdrop.className = "fixed inset-0 bg-black/40 z-40 lg:hidden";
-                    backdrop.onclick = closeDrawer;
+                    backdrop.onclick = () => {
+                        const d = document.getElementById("drawer-mobile") || document.getElementById("drawer");
+                        if (d) d.classList.add("hidden");
+                        backdrop.classList.add("hidden");
+                    };
                     document.body.appendChild(backdrop);
                 }
                 backdrop.classList.remove("hidden");
             }
 
-            document.getElementById("drawer-title").innerHTML = d.name;
+            // Update content for whichever drawer is visible
+            const titleEl = document.getElementById("drawer-title") || document.getElementById("drawer-title-mobile");
+            if (titleEl) titleEl.innerHTML = d.name;
             const meta = document.getElementById("drawer-meta");
             const typeLabel = (d.type ?? "node").toString().toUpperCase();
             const groupLabel = (d.group ?? "unknown").toString();
@@ -1393,10 +1423,9 @@
         }
 
         function closeDrawer() {
-            const drawer = document.getElementById("drawer");
-            drawer.classList.add("hidden");
+            const drawer = document.getElementById("drawer") || document.getElementById("drawer-mobile");
+            if (drawer) drawer.classList.add("hidden");
 
-            // Remove mobile backdrop
             const backdrop = document.getElementById("mobile-drawer-backdrop");
             if (backdrop) backdrop.classList.add("hidden");
         }
