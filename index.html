@@ -123,7 +123,7 @@
                 </div>
             </div>
             
-            <div class="flex-1 max-w-[180px] sm:max-w-md mx-2 sm:mx-8 search-container">
+            <div class="hidden sm:flex flex-1 max-w-md mx-8 search-container">
                 <input id="search" 
                        type="text" 
                        placeholder="Search..." 
@@ -142,139 +142,48 @@
 
     <div class="max-w-screen-xl mx-auto px-6 pt-6">
         
-        <!-- Desktop: Two column layout (Graph | Drawer) -->
-        <div class="hidden lg:grid lg:grid-cols-12 lg:gap-6">
-            
-            <!-- Graph -->
-            <div class="lg:col-span-8">
-                <div id="graph-container" class="relative rounded-3xl border border-[#d4c4a8] overflow-hidden h-[620px] shadow-[0_20px_60px_-15px_rgb(92,46,46,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
-                    <!-- View controls -->
-                    <div class="absolute top-4 left-4 z-10 flex gap-2">
-                        <button onclick="zoomToFit()"
-                                class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
-                            Zoom to fit
-                        </button>
-                        <button onclick="resetZoom()"
-                                class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
-                            Reset
-                        </button>
-                    </div>
-                    <!-- Legend -->
-                    <div class="absolute top-4 right-4 z-10 bg-[#f4e9d8]/95 border border-[#d4c4a8] shadow-sm rounded-2xl px-4 py-2.5 max-w-[42vw]">
-                        <div class="text-[10px] font-semibold text-[#8b6f5c] mb-1.5 tracking-[0.5px]">LEGEND</div>
-                        <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-[#5c2e2e]">
-                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span> Family / Independent</div>
-                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#5c2e2e"></span> Corporate / Group</div>
-                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#1d4ed8"></span> Boutique Brand</div>
-                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
-                        </div>
-                    </div>
-                    <div id="graph" class="w-full h-full"></div>
+        <!-- Graph -->
+        <div id="graph-container" class="relative rounded-3xl border border-[#d4c4a8] overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px] shadow-[0_20px_60px_-15px_rgb(92,46,46,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
+            <!-- View controls -->
+            <div class="absolute top-4 left-4 z-10 flex gap-2">
+                <button onclick="zoomToFit()"
+                        class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
+                    Zoom to fit
+                </button>
+                <button onclick="resetZoom()"
+                        class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
+                    Reset
+                </button>
+            </div>
+            <!-- Legend -->
+            <div class="absolute top-4 right-4 z-10 bg-[#f4e9d8]/95 border border-[#d4c4a8] shadow-sm rounded-2xl px-4 py-2.5 max-w-[42vw]">
+                <div class="text-[10px] font-semibold text-[#8b6f5c] mb-1.5 tracking-[0.5px]">LEGEND</div>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-[#5c2e2e]">
+                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span> Family / Independent</div>
+                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#5c2e2e"></span> Corporate / Group</div>
+                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#1d4ed8"></span> Boutique Brand</div>
+                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
                 </div>
             </div>
-
-            <!-- Desktop Drawer (always visible on lg) -->
-            <div class="lg:col-span-4">
-                <div id="drawer" 
-                     class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px]">
-                    <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
-                        <div class="min-w-0">
-                            <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
-                            <div id="drawer-meta" class="mt-2.5 flex flex-wrap gap-2"></div>
-                        </div>
-                        <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
-                    </div>
-                    
-                    <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
-                        <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
-                        
-                        <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                        
-                        <div class="mb-4">
-                            <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
-                            <div id="drawer-connections" class="space-y-2"></div>
-                        </div>
-                        
-                        <div id="drawer-buy-wrap">
-                            <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                            <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
-                            <div class="space-y-2" id="drawer-buy"></div>
-                        </div>
-                    </div>
-                    
-                    <div id="drawer-affiliate" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
-                        As an affiliate I may earn a commission from qualifying purchases.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Filters (below the two-column layout on desktop) -->
-            <div class="lg:col-span-12">
-                <div class="flex flex-wrap gap-2" id="filter-chips">
-                    <div onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
-                    <div onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
-                    <div onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Corporate / Group</div>
-                    <div onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
-                    <div onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
-                    <div onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Honduras</div>
-                    <div onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Boutique</div>
-                    <div onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
-                </div>
-            </div>
+            <div id="graph" class="w-full h-full"></div>
         </div>
 
-        <!-- Mobile-only layout: Graph → Filters → Drawer -->
-        <div class="lg:hidden space-y-6">
-            
-            <!-- Graph on mobile -->
-            <div id="graph-container" class="relative rounded-3xl border border-[#d4c4a8] overflow-hidden h-[62vh] min-h-[420px] shadow-[0_20px_60px_-15px_rgb(92,46,46,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
-                <!-- View controls -->
-                <div class="absolute top-4 left-4 z-10 flex gap-2">
-                    <button onclick="zoomToFit()"
-                            class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
-                        Zoom to fit
-                    </button>
-                    <button onclick="resetZoom()"
-                            class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
-                        Reset
-                    </button>
-                </div>
-                <!-- Legend -->
-                <div class="absolute top-4 right-4 z-10 bg-[#f4e9d8]/95 border border-[#d4c4a8] shadow-sm rounded-2xl px-4 py-2.5 max-w-[42vw]">
-                    <div class="text-[10px] font-semibold text-[#8b6f5c] mb-1.5 tracking-[0.5px]">LEGEND</div>
-                    <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-[#5c2e2e]">
-                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span> Family / Independent</div>
-                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#5c2e2e"></span> Corporate / Group</div>
-                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#1d4ed8"></span> Boutique Brand</div>
-                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
-                    </div>
-                </div>
-                <div id="graph" class="w-full h-full"></div>
-            </div>
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-2 mt-5 mb-6" id="filter-chips">
+            <div onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
+            <div onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
+            <div onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Corporate / Group</div>
+            <div onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
+            <div onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
+            <div onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Honduras</div>
+            <div onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Boutique</div>
+            <div onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
+        </div>
 
-            <!-- Filters on mobile (between graph and info) -->
-            <div>
-                <div class="flex flex-wrap gap-2" id="filter-chips-mobile">
-                    <div onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
-                    <div onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
-                    <div onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Corporate / Group</div>
-                    <div onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
-                    <div onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
-                    <div onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Honduras</div>
-                    <div onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Boutique</div>
-                    <div onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
-                </div>
-            </div>
-
-            <!-- Mobile Drawer (now correctly placed after filters) -->
-            <div id="drawer" 
-                 class="w-full bg-[#f4e9d8] shadow-2xl border border-[#d4c4a8] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl lg:hidden max-h-[75vh]">
-                
-                <!-- Drag Handle for Bottom Sheet -->
-                <div class="flex justify-center pt-2 pb-1">
-                    <div class="w-10 h-1 bg-[#d4c4a8] rounded-full"></div>
-                </div>
-
+        <!-- Desktop Sidebar Drawer -->
+        <div class="hidden lg:block lg:w-80 lg:fixed lg:right-6 lg:top-[140px] lg:bottom-6">
+            <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-full">
+                <!-- drawer content -->
                 <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
                     <div class="min-w-0">
                         <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
@@ -285,7 +194,6 @@
                 
                 <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
                     <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
-                    
                     <div class="my-6 h-px bg-[#d4c4a8]"></div>
                     
                     <div class="mb-4">
@@ -304,7 +212,44 @@
                     As an affiliate I may earn a commission from qualifying purchases.
                 </div>
             </div>
+        </div>
 
+        <!-- Mobile Drawer (bottom sheet) -->
+        <div id="drawer-mobile" 
+             class="lg:hidden w-full bg-[#f4e9d8] shadow-2xl border border-[#d4c4a8] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl max-h-[75vh]">
+            
+            <div class="flex justify-center pt-2 pb-1">
+                <div class="w-10 h-1 bg-[#d4c4a8] rounded-full"></div>
+            </div>
+
+            <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
+                <div class="min-w-0">
+                    <div id="drawer-title-mobile" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
+                    <div id="drawer-meta-mobile" class="mt-2.5 flex flex-wrap gap-2"></div>
+                </div>
+                <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
+            </div>
+            
+            <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
+                <div id="drawer-description-mobile" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
+                
+                <div class="my-6 h-px bg-[#d4c4a8]"></div>
+                
+                <div class="mb-4">
+                    <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
+                    <div id="drawer-connections-mobile" class="space-y-2"></div>
+                </div>
+                
+                <div id="drawer-buy-wrap-mobile">
+                    <div class="my-6 h-px bg-[#d4c4a8]"></div>
+                    <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
+                    <div class="space-y-2" id="drawer-buy-mobile"></div>
+                </div>
+            </div>
+            
+            <div id="drawer-affiliate-mobile" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
+                As an affiliate I may earn a commission from qualifying purchases.
+            </div>
         </div>
 
     </div>
@@ -1216,12 +1161,16 @@
 
         // ==================== DRAWER ====================
         function showDrawer(d) {
-            // Try mobile drawer first on small screens
-            let drawer = (window.innerWidth < 1024) 
-                ? document.getElementById("drawer-mobile") || document.getElementById("drawer")
-                : document.getElementById("drawer");
+            // Desktop drawer
+            const desktopDrawer = document.getElementById("drawer");
+            // Mobile bottom sheet
+            const mobileDrawer = document.getElementById("drawer-mobile");
 
-            if (drawer) drawer.classList.remove("hidden");
+            if (window.innerWidth < 1024 && mobileDrawer) {
+                mobileDrawer.classList.remove("hidden");
+            } else if (desktopDrawer) {
+                desktopDrawer.classList.remove("hidden");
+            }
 
             // Mobile backdrop
             if (window.innerWidth < 1024) {
@@ -1230,19 +1179,17 @@
                     backdrop = document.createElement("div");
                     backdrop.id = "mobile-drawer-backdrop";
                     backdrop.className = "fixed inset-0 bg-black/40 z-40 lg:hidden";
-                    backdrop.onclick = () => {
-                        const d = document.getElementById("drawer-mobile") || document.getElementById("drawer");
-                        if (d) d.classList.add("hidden");
-                        backdrop.classList.add("hidden");
-                    };
+                    backdrop.onclick = closeDrawer;
                     document.body.appendChild(backdrop);
                 }
                 backdrop.classList.remove("hidden");
             }
 
-            // Update content for whichever drawer is visible
-            const titleEl = document.getElementById("drawer-title") || document.getElementById("drawer-title-mobile");
-            if (titleEl) titleEl.innerHTML = d.name;
+            // Update the correct title elements
+            const title = document.getElementById("drawer-title");
+            const titleMobile = document.getElementById("drawer-title-mobile");
+            if (title) title.innerHTML = d.name;
+            if (titleMobile) titleMobile.innerHTML = d.name;
             const meta = document.getElementById("drawer-meta");
             const typeLabel = (d.type ?? "node").toString().toUpperCase();
             const groupLabel = (d.group ?? "unknown").toString();
@@ -1259,13 +1206,17 @@
                     </span>
                 `;
             };
-            meta.innerHTML = [
-                chip(typeLabel),
-                chip(groupLabel, { dotColor: colorForGroup(d.group) }),
-                chip(countryLabel.toLowerCase())
-            ].join("");
+            const metaEl = document.getElementById("drawer-meta") || document.getElementById("drawer-meta-mobile");
+            if (metaEl) {
+                metaEl.innerHTML = [
+                    chip(typeLabel),
+                    chip(groupLabel, { dotColor: colorForGroup(d.group) }),
+                    chip(countryLabel.toLowerCase())
+                ].join("");
+            }
 
             // Description (customize per node later)
+            const descEl = document.getElementById("drawer-description") || document.getElementById("drawer-description-mobile");
             const descriptions = {
                 myfather: "Multi-generational García family enterprise known for bold Nicaragua-forward blends and deep factory relationships.",
                 pepin: "José ‘Pepín’ García is a cornerstone figure in modern Nicaraguan cigars as a blender and factory leader.",
@@ -1346,11 +1297,11 @@
                 hvcfactory: "HVC’s own modern factory in Estelí. Represents the brand’s move toward greater production independence while remaining a respected boutique operation."
             };
             let desc = descriptions[d.id] || "A notable player in the premium cigar world with meaningful connections across factories, owners, and partnerships.";
-            document.getElementById("drawer-description").innerHTML = desc;
+            if (descEl) descEl.innerHTML = desc;
 
             // Connections
-            const connContainer = document.getElementById("drawer-connections");
-            connContainer.innerHTML = "";
+            const connContainer = document.getElementById("drawer-connections") || document.getElementById("drawer-connections-mobile");
+            if (connContainer) connContainer.innerHTML = "";
 
             const getName = (v) => (typeof v === "object" && v !== null) ? v.name : getNodeNameById(v);
 
@@ -1385,9 +1336,9 @@
             }
 
             // Buy buttons
-            const buyWrap = document.getElementById("drawer-buy-wrap");
-            const affiliate = document.getElementById("drawer-affiliate");
-            const buyContainer = document.getElementById("drawer-buy");
+            const buyWrap = document.getElementById("drawer-buy-wrap") || document.getElementById("drawer-buy-wrap-mobile");
+            const affiliate = document.getElementById("drawer-affiliate") || document.getElementById("drawer-affiliate-mobile");
+            const buyContainer = document.getElementById("drawer-buy") || document.getElementById("drawer-buy-mobile");
 
             const buyLinks = Array.isArray(d.buyLinks) ? d.buyLinks : [];
             if (buyLinks.length === 0) {
@@ -1423,8 +1374,11 @@
         }
 
         function closeDrawer() {
-            const drawer = document.getElementById("drawer") || document.getElementById("drawer-mobile");
-            if (drawer) drawer.classList.add("hidden");
+            const desktop = document.getElementById("drawer");
+            const mobile = document.getElementById("drawer-mobile");
+
+            if (desktop) desktop.classList.add("hidden");
+            if (mobile) mobile.classList.add("hidden");
 
             const backdrop = document.getElementById("mobile-drawer-backdrop");
             if (backdrop) backdrop.classList.add("hidden");
