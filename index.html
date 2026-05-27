@@ -42,7 +42,10 @@
         @media (max-width: 1023px) {
             #drawer {
                 z-index: 50;
-                max-height: 70vh;
+                max-height: 75vh;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                box-shadow: 0 -10px 30px -10px rgba(92, 46, 46, 0.25);
             }
             
             .filter-chip {
@@ -51,6 +54,16 @@
                 padding-right: 14px;
                 padding-top: 6px;
                 padding-bottom: 6px;
+            }
+        }
+
+        /* Very small screens: collapse legend */
+        @media (max-width: 480px) {
+            .legend-compact .text-xs {
+                font-size: 9px;
+            }
+            .legend-compact .grid {
+                gap: 4px;
             }
         }
 
@@ -90,11 +103,11 @@
                 </div>
             </div>
             
-            <div class="flex-1 max-w-md mx-8">
+            <div class="flex-1 max-w-md mx-8 search-container">
                 <input id="search" 
                        type="text" 
                        placeholder="Search brands, families, or connections..." 
-                       class="w-full px-5 py-2.5 rounded-2xl bg-[#f4e9d8] text-[#3f2a2a] placeholder-[#8b6f5c] focus:outline-none focus:ring-2 focus:ring-[#c5a26f] shadow-inner text-sm">
+                       class="w-full px-5 py-2.5 rounded-2xl bg-[#f4e9d8] text-[#3f2a2a] placeholder-[#8b6f5c] focus:outline-none focus:ring-2 focus:ring-[#c5a26f] shadow-inner text-sm transition-all">
             </div>
             
             <div class="flex items-center gap-x-1.5 text-sm">
@@ -235,7 +248,13 @@
 
             <!-- Mobile Drawer (now correctly placed after filters) -->
             <div id="drawer" 
-                 class="w-full bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] hidden flex-col">
+                 class="w-full bg-[#f4e9d8] shadow-2xl border border-[#d4c4a8] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl lg:hidden max-h-[75vh]">
+                
+                <!-- Drag Handle for Bottom Sheet -->
+                <div class="flex justify-center pt-2 pb-1">
+                    <div class="w-10 h-1 bg-[#d4c4a8] rounded-full"></div>
+                </div>
+
                 <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
                     <div class="min-w-0">
                         <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
@@ -270,10 +289,17 @@
 
     </div>
 
+    <!-- Floating Filters Button (Mobile) -->
+    <button id="floating-filters-btn"
+            onclick="document.getElementById('filter-chips').scrollIntoView({ behavior: 'smooth', block: 'center' })"
+            class="lg:hidden fixed bottom-6 right-6 z-40 hidden px-4 py-2.5 bg-[#5c2e2e] text-[#f4e9d8] text-sm font-semibold rounded-2xl shadow-xl flex items-center gap-2 active:scale-95 transition-all">
+        <span>Filters</span>
+    </button>
+
     <!-- Submit Connection Modal -->
     <div id="submit-modal" class="fixed inset-0 hidden items-center justify-center z-50">
         <div class="absolute inset-0 bg-black/50" onclick="closeSubmitModal()"></div>
-        <div class="relative w-[min(720px,92vw)] bg-[#f4e9d8] rounded-3xl shadow-2xl border border-[#d4c4a8] overflow-hidden">
+        <div class="relative w-[min(720px,92vw)] lg:rounded-3xl bg-[#f4e9d8] rounded-t-3xl shadow-2xl border border-[#d4c4a8] overflow-hidden lg:bottom-auto bottom-0 fixed lg:static">
             
             <!-- Modal Header -->
             <div class="px-6 py-5 border-b border-[#d4c4a8] bg-[#e8d9c3]/60 flex items-center justify-between">
@@ -285,7 +311,7 @@
                         class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
             </div>
 
-            <form id="submit-form" class="p-6 space-y-5 text-[#3f2a2a]">
+            <form id="submit-form" class="p-5 lg:p-6 space-y-4 lg:space-y-5 text-[#3f2a2a] max-h-[80vh] overflow-auto">
                 
                 <div class="text-xs text-[#8b6f5c] bg-[#e8d9c3] border border-[#d4c4a8] px-4 py-3 rounded-2xl">
                     Use this form to grow the graph manually. New nodes and connections are saved only in your browser.
@@ -1375,6 +1401,40 @@
             if (backdrop) backdrop.classList.add("hidden");
         }
 
+        // Simple swipe-down to close for mobile bottom sheet
+        function enableDrawerSwipeToClose() {
+            const drawer = document.getElementById("drawer");
+            if (!drawer) return;
+
+            let startY = 0;
+
+            drawer.addEventListener("touchstart", (e) => {
+                startY = e.touches[0].clientY;
+            }, { passive: true });
+
+            drawer.addEventListener("touchmove", (e) => {
+                const currentY = e.touches[0].clientY;
+                const diff = currentY - startY;
+
+                if (diff > 0) {
+                    drawer.style.transform = `translateY(${diff}px)`;
+                    drawer.style.transition = "none";
+                }
+            }, { passive: true });
+
+            drawer.addEventListener("touchend", (e) => {
+                const endY = e.changedTouches[0].clientY;
+                const diff = endY - startY;
+
+                drawer.style.transition = "transform 0.25s ease";
+                drawer.style.transform = "";
+
+                if (diff > 80) {
+                    closeDrawer();
+                }
+            });
+        }
+
         // ==================== SEARCH & FILTER (Refined multi-select - task 2) ====================
         function applyFiltersAndSearch() {
             const searchTerm = (document.getElementById("search")?.value || "").toLowerCase().trim();
@@ -1457,6 +1517,54 @@
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(resizeGraph, 120);
             });
+
+            // Enable swipe-to-close on mobile drawer
+            enableDrawerSwipeToClose();
+
+            // Mobile search bar improvements
+            const searchInput = document.getElementById("search");
+            const headerRight = document.querySelector("header .flex.items-center.gap-x-1\\.5");
+
+            if (searchInput && window.innerWidth < 1024) {
+                searchInput.addEventListener("focus", () => {
+                    if (headerRight) headerRight.style.display = "none";
+                    searchInput.parentElement.style.flex = "1 1 100%";
+                });
+
+                searchInput.addEventListener("blur", () => {
+                    if (headerRight) headerRight.style.display = "";
+                    searchInput.parentElement.style.flex = "";
+                });
+            }
+
+            // Collapse legend on very small screens
+            if (window.innerWidth < 480) {
+                document.querySelectorAll('#graph-container > div.absolute').forEach(el => {
+                    if (el.textContent.includes('LEGEND')) {
+                        el.classList.add('legend-compact');
+                    }
+                });
+            }
+
+            // Floating Filters button on mobile
+            const floatingBtn = document.getElementById("floating-filters-btn");
+            const filterSection = document.getElementById("filter-chips");
+
+            if (floatingBtn && filterSection && window.innerWidth < 1024) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) {
+                            floatingBtn.classList.remove("hidden");
+                            floatingBtn.classList.add("flex");
+                        } else {
+                            floatingBtn.classList.add("hidden");
+                            floatingBtn.classList.remove("flex");
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                observer.observe(filterSection);
+            }
         };
 
         // ==================== SUBMIT CONNECTION UI ====================
