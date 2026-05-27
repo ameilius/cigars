@@ -579,16 +579,65 @@
         }
 
         // === Label visibility control to prevent overlap when zoomed out or panning ===
+        let nodeDegrees = new Map();
+
+        function computeNodeDegrees() {
+            nodeDegrees.clear();
+            if (!graphData || !graphData.links) return;
+
+            // Count connections for every node
+            graphData.nodes.forEach(n => nodeDegrees.set(n.id, 0));
+
+            graphData.links.forEach(l => {
+                const s = getId(l.source);
+                const t = getId(l.target);
+                if (nodeDegrees.has(s)) nodeDegrees.set(s, nodeDegrees.get(s) + 1);
+                if (nodeDegrees.has(t)) nodeDegrees.set(t, nodeDegrees.get(t) + 1);
+            });
+        }
+
+        function isLandmarkNode(d) {
+            // Manual override if someone adds landmark: true in the data
+            if (d.landmark === true) return true;
+
+            const degree = nodeDegrees.get(d.id) || 0;
+
+            // Consider high-degree nodes as landmarks in overview mode
+            // Threshold can be tuned. With current data size, 4+ connections is reasonable.
+            return degree >= 4;
+        }
+
         function updateLabelVisibility(scale) {
             if (!node) return;
 
-            // Show labels only when reasonably zoomed in.
-            // Below ~0.75x we hide labels to avoid massive overlap.
-            const showLabels = scale > 0.72;
+            const isOverview = scale <= 0.72;
 
-            node.select("text")
-                .style("opacity", showLabels ? 1 : 0)
-                .style("pointer-events", showLabels ? "auto" : "none");
+            node.select("text").each(function(d) {
+                const textEl = d3.select(this);
+                const isLandmark = isLandmarkNode(d);
+
+                if (isOverview) {
+                    // Overview mode: only show important nodes with subtle styling
+                    if (isLandmark) {
+                        textEl
+                            .style("opacity", 0.75)
+                            .style("font-size", "9.5px")
+                            .style("font-weight", "600")
+                            .style("pointer-events", "none");
+                    } else {
+                        textEl
+                            .style("opacity", 0)
+                            .style("pointer-events", "none");
+                    }
+                } else {
+                    // Detailed mode: show all labels normally
+                    textEl
+                        .style("opacity", 1)
+                        .style("font-size", "10.5px")
+                        .style("font-weight", "500")
+                        .style("pointer-events", "auto");
+                }
+            });
         }
 
         function getId(v) {
@@ -1147,6 +1196,9 @@
                 }
                 return 1;
             });
+
+            // Re-apply label visibility rules after filtering (important for overview mode)
+            updateLabelVisibility(currentZoomScale);
         }
 
         function toggleFilter(type, element) {
@@ -1181,6 +1233,7 @@
         // ==================== INIT ====================
         window.onload = function() {
             graphData = loadGraph();
+            computeNodeDegrees();   // Used for overview landmark labels
             initGraph();
             initSubmitUI();
             
@@ -1309,6 +1362,7 @@
             graphData.links.push(newLink);
             saveGraph();
 
+            computeNodeDegrees();   // Recompute so new nodes can become landmarks
             renderGraph();
             refreshSimulation();
             populateNodeSelects();
