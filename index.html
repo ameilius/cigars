@@ -67,6 +67,26 @@
             }
         }
 
+        /* === Targeted Cleanup for Desktop/Mobile Issues === */
+        /* Hide duplicate stray drawers that are causing floating/misalignment */
+        .max-w-screen-xl > div.hidden.lg\\:block.lg\\:w-80:not(:first-of-type) {
+            display: none !important;
+        }
+
+        /* Force proper desktop two-column when possible */
+        @media (min-width: 1024px) {
+            .max-w-screen-xl > div.lg\\:flex {
+                display: flex !important;
+            }
+        }
+
+        /* On mobile, hide the desktop sidebar drawer */
+        @media (max-width: 1023px) {
+            .max-w-screen-xl > div.hidden.lg\\:block {
+                display: none !important;
+            }
+        }
+
         /* Premium graph container */
         #graph-container {
             background: linear-gradient(145deg, #f8f5f0 0%, #f0e9df 100%);
@@ -150,72 +170,72 @@
 
     <div class="max-w-screen-xl mx-auto px-6 pt-6">
         
-        <!-- Graph + Desktop Drawer side-by-side on large screens -->
+        <!-- Main content: Graph + (Desktop Drawer) -->
         <div class="lg:flex lg:gap-6">
             
             <!-- Graph -->
             <div class="flex-1">
                 <div id="graph-container" class="relative rounded-3xl border border-[#d4c4a8] overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px] shadow-[0_20px_60px_-15px_rgb(92,46,46,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
-            <!-- View controls -->
-            <div class="absolute top-4 left-4 z-10 flex gap-2">
-                <button onclick="zoomToFit()"
-                        class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
-                    Zoom to fit
-                </button>
-                <button onclick="resetZoom()"
-                        class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
-                    Reset
-                </button>
-            </div>
-            <!-- Legend -->
-            <div class="absolute top-4 right-4 z-10 bg-[#f4e9d8]/95 border border-[#d4c4a8] shadow-sm rounded-2xl px-4 py-2.5 max-w-[42vw]">
-                <div class="text-[10px] font-semibold text-[#8b6f5c] mb-1.5 tracking-[0.5px]">LEGEND</div>
-                <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-[#5c2e2e]">
-                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span> Family / Independent</div>
-                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#5c2e2e"></span> Corporate / Group</div>
-                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#1d4ed8"></span> Boutique Brand</div>
-                    <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
+                    <!-- View controls -->
+                    <div class="absolute top-4 left-4 z-10 flex gap-2">
+                        <button onclick="zoomToFit()"
+                                class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
+                            Zoom to fit
+                        </button>
+                        <button onclick="resetZoom()"
+                                class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
+                            Reset
+                        </button>
+                    </div>
+                    <!-- Legend -->
+                    <div class="absolute top-4 right-4 z-10 bg-[#f4e9d8]/95 border border-[#d4c4a8] shadow-sm rounded-2xl px-4 py-2.5 max-w-[42vw]">
+                        <div class="text-[10px] font-semibold text-[#8b6f5c] mb-1.5 tracking-[0.5px]">LEGEND</div>
+                        <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-[#5c2e2e]">
+                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span> Family / Independent</div>
+                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#5c2e2e"></span> Corporate / Group</div>
+                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#1d4ed8"></span> Boutique Brand</div>
+                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
+                        </div>
+                    </div>
+                    <div id="graph" class="w-full h-full"></div>
                 </div>
             </div>
-            <div id="graph" class="w-full h-full"></div>
-        </div>
 
-        <!-- Desktop Sidebar Drawer -->
-        <div class="hidden lg:block lg:w-80 lg:shrink-0">
-            <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px]">
-                <!-- drawer content (same as before) -->
-                <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
-                    <div class="min-w-0">
-                        <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
-                        <div id="drawer-meta" class="mt-2.5 flex flex-wrap gap-2"></div>
-                    </div>
-                    <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
-                </div>
-                
-                <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
-                    <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
-                    <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                    
-                    <div class="mb-4">
-                        <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
-                        <div id="drawer-connections" class="space-y-2"></div>
+            <!-- Desktop Sidebar Drawer (in normal flow on lg) -->
+            <div class="hidden lg:block lg:w-80 lg:shrink-0">
+                <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px] lg:sticky lg:top-4">
+                    <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
+                        <div class="min-w-0">
+                            <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
+                            <div id="drawer-meta" class="mt-2.5 flex flex-wrap gap-2"></div>
+                        </div>
+                        <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
                     </div>
                     
-                    <div id="drawer-buy-wrap">
+                    <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
+                        <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
                         <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                        <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
-                        <div class="space-y-2" id="drawer-buy"></div>
+                        
+                        <div class="mb-4">
+                            <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
+                            <div id="drawer-connections" class="space-y-2"></div>
+                        </div>
+                        
+                        <div id="drawer-buy-wrap">
+                            <div class="my-6 h-px bg-[#d4c4a8]"></div>
+                            <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
+                            <div class="space-y-2" id="drawer-buy"></div>
+                        </div>
                     </div>
-                </div>
-                
-                <div id="drawer-affiliate" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
-                    As an affiliate I may earn a commission from qualifying purchases.
+                    
+                    <div id="drawer-affiliate" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
+                        As an affiliate I may earn a commission from qualifying purchases.
+                    </div>
                 </div>
             </div>
         </div>
-    </div>   <!-- close the lg:flex -->
 
-    <!-- Filters -->
+        <!-- Filters -->
         <div class="flex flex-wrap gap-2 mt-5 mb-6" id="filter-chips">
             <div onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
             <div onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
@@ -227,44 +247,11 @@
             <div onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
         </div>
 
-        <!-- Desktop Sidebar Drawer (flows next to graph on large screens) -->
-        <div class="hidden lg:block lg:w-80 lg:shrink-0">
-            <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px] sticky top-4">
-                <!-- drawer content -->
-                <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
-                    <div class="min-w-0">
-                        <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
-                        <div id="drawer-meta" class="mt-2.5 flex flex-wrap gap-2"></div>
-                    </div>
-                    <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
-                </div>
-                
-                <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
-                    <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
-                    <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                    
-                    <div class="mb-4">
-                        <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
-                        <div id="drawer-connections" class="space-y-2"></div>
-                    </div>
-                    
-                    <div id="drawer-buy-wrap">
-                        <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                        <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
-                        <div class="space-y-2" id="drawer-buy"></div>
-                    </div>
-                </div>
-                
-                <div id="drawer-affiliate" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
-                    As an affiliate I may earn a commission from qualifying purchases.
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Drawer (bottom sheet) -->
+        <!-- Mobile Bottom Sheet Drawer (same element, different styling on mobile) -->
         <div id="drawer-mobile" 
              class="lg:hidden w-full bg-[#f4e9d8] shadow-2xl border border-[#d4c4a8] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl max-h-[75vh]">
             
+            <!-- Drag Handle -->
             <div class="flex justify-center pt-2 pb-1">
                 <div class="w-10 h-1 bg-[#d4c4a8] rounded-full"></div>
             </div>
