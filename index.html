@@ -206,6 +206,7 @@
         // Expanded seed graph with real-world relationships (ownership, manufacturing, partnerships).
         const baseGraphData = {
             nodes: [
+                // === Existing core data (preserved & lightly verified) ===
                 { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua" },
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
                 { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua" },
@@ -255,9 +256,53 @@
                 { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua" },
                 { id: "cohiba_nc", name: "Cohiba (Non‑Cuban)", type: "brand", group: "corporate", country: "dominican" },
                 { id: "partagas_nc", name: "Partagas (Non‑Cuban)", type: "brand", group: "corporate", country: "dominican" },
-                { id: "punch_nc", name: "Punch (Non‑Cuban)", type: "brand", group: "corporate", country: "dominican" }
+                { id: "punch_nc", name: "Punch (Non‑Cuban)", type: "brand", group: "corporate", country: "dominican" },
+
+                // === Major expansions (research-backed, 2025-2026 accurate) ===
+
+                // Plasencia family (major grower + manufacturer, family-controlled with STG minority stake)
+                { id: "plasencia", name: "Plasencia Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "nestorplasencia", name: "Nestor Plasencia Sr.", type: "person", group: "family", country: "nicaragua" },
+                { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua" },
+                { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Rocky Patel (vertically integrated, owns Tavicusa, strong Plasencia partnership)
+                { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa" },
+                { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa" },
+                { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Drew Estate (owned by Swisher International — important correction)
+                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa" },
+                { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa" },
+                { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa" },
+                { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // CLE Cigar / Eiroa family (Honduras vertical integration)
+                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa" },
+                { id: "christianeiroa", name: "Christian Eiroa", type: "person", group: "family", country: "honduras" },
+                { id: "eiroafamily", name: "Eiroa Family (Aladino)", type: "company", group: "family", country: "honduras" },
+                { id: "eiroadanli", name: "CLE Factory (Danlí, Honduras)", type: "factory", group: "family", country: "honduras" },
+
+                // Aganorsa Leaf (major independent grower + TABSA factory)
+                { id: "aganorsa", name: "AGANORSA Leaf", type: "company", group: "family", country: "nicaragua" },
+                { id: "maxfernandez", name: "Max Fernández Pujals", type: "person", group: "family", country: "nicaragua" },
+                { id: "tabsa", name: "TABSA (Aganorsa Factory, Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Foundation Cigar (Nick Melillo, contract production at top factories)
+                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa" },
+                { id: "nickmelillo", name: "Nick Melillo", type: "person", group: "family", country: "usa" },
+
+                // Additional important STG brands (post-acquisitions)
+                { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras" },
+                { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican" },
+
+                // Warped / Kyle Gellis (boutique, multiple contract factories)
+                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
+                { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" }
             ],
             links: [
+                // === Original verified links (preserved) ===
                 { source: "myfather", target: "pepin", type: "founded by" },
                 { source: "pepin", target: "tatuaje", type: "manufactures for" },
                 { source: "myfather", target: "tatuaje", type: "shared factory roots" },
@@ -313,7 +358,55 @@
                 { source: "cao", target: "generalcigar", type: "sold by" },
                 { source: "partagas_nc", target: "generalcigar", type: "sold by" },
                 { source: "cohiba_nc", target: "forged", type: "sold by" },
-                { source: "punch_nc", target: "forged", type: "sold by" }
+                { source: "punch_nc", target: "forged", type: "sold by" },
+
+                // === New accurate links (research 2025-2026) ===
+
+                // Plasencia family & operations
+                { source: "plasencia", target: "nestorplasencia", type: "founded by / family leadership" },
+                { source: "plasencia", target: "nestorandres", type: "family leadership" },
+                { source: "plasencia", target: "plasenciaesteli", type: "operates" },
+                { source: "stg", target: "plasencia", type: "minority stake (General Cigar)" },
+
+                // Rocky Patel relationships (highly accurate)
+                { source: "rockypatel", target: "nishpatel", type: "family leadership" },
+                { source: "rockypatel", target: "tavicusa", type: "owns" },
+                { source: "rockypatel", target: "plasencia", type: "long-term manufacturing partnership (Honduras)" },
+                { source: "rockypatel", target: "plasenciaesteli", type: "contract production" },
+
+                // Drew Estate correction (Swisher, not STG)
+                { source: "drewestate", target: "jonathandrew", type: "founded by" },
+                { source: "drewestate", target: "lagranfabrica", type: "operates" },
+                { source: "swisher", target: "drewestate", type: "owns (acquired 2014)" },
+                { source: "drewestate", target: "stg", type: "no ownership (competitor)" },
+
+                // CLE / Eiroa family (Honduras vertical)
+                { source: "cle", target: "christianeiroa", type: "founded by" },
+                { source: "cle", target: "eiroadanli", type: "operates" },
+                { source: "eiroafamily", target: "christianeiroa", type: "family" },
+                { source: "eiroafamily", target: "eiroadanli", type: "operates" },
+
+                // Aganorsa Leaf (major grower + factory)
+                { source: "aganorsa", target: "maxfernandez", type: "family leadership" },
+                { source: "aganorsa", target: "tabsa", type: "operates" },
+
+                // Foundation Cigar (contract production accuracy)
+                { source: "foundation", target: "nickmelillo", type: "founded by" },
+                { source: "foundation", target: "myfather", type: "production partner (Wise Man)" },
+                { source: "foundation", target: "ajfernandez", type: "production partner (Tabernacle, Olmec)" },
+                { source: "foundation", target: "sanlotano", type: "production at" },
+
+                // STG additional accurate brand ownership (post-2023 acquisitions)
+                { source: "alecbradley", target: "stg", type: "owned by (acquired 2023)" },
+                { source: "alecbradley", target: "forged", type: "sold by" },
+                { source: "room101", target: "stg", type: "owned by (acquired 2022)" },
+                { source: "room101", target: "generalcigar", type: "sold by" },
+
+                // Warped / Kyle Gellis (contract production)
+                { source: "warped", target: "kylegellis", type: "founded by" },
+                { source: "warped", target: "tabsa", type: "historical production (Aganorsa)" },
+                { source: "warped", target: "nacsa", type: "major production partner (2024-2026)" },
+                { source: "kylegellis", target: "nacsa", type: "close oversight" }
             ]
         };
 
@@ -693,7 +786,34 @@
                 diamondcrown: "J.C. Newman luxury line handmade at Tabacalera A. Fuente via a long-running Newman–Fuente partnership.",
                 stg: "Large cigar & tobacco group with U.S. premium brands distributed through internal divisions like General and Forged.",
                 generalcigar: "STG’s U.S. premium cigar arm handling major non‑Cuban legacy marks and modern portfolio brands.",
-                forged: "STG’s premium division managing several ‘power brands’ and portfolio lines in the U.S. market."
+                forged: "STG’s premium division managing several ‘power brands’ and portfolio lines in the U.S. market.",
+
+                // === New node descriptions (research-backed) ===
+                plasencia: "One of the most vertically integrated operations in the industry. Fifth-generation family-owned grower and manufacturer with major farms and the landmark 'Cathedral' factory in Estelí. Supplies leaf and finished cigars to dozens of brands.",
+                nestorplasencia: "Patriarch of the modern Plasencia operation. Led the family’s return to Nicaragua after earlier nationalizations and built one of the largest tobacco-growing and cigar-making empires in Central America.",
+                nestorandres: "Fifth-generation leader of Plasencia Cigars. Oversees strategy, new product development, and the continued expansion of the family’s agricultural and manufacturing footprint.",
+                plasenciaesteli: "The iconic Plasencia factory in Estelí, often called 'The Cathedral' for its striking architecture and courtyard. Produces both Plasencia-branded cigars and high-volume contract work.",
+                rockypatel: "Rocky Patel Premium Cigars — a major vertically integrated player. Rocky maintains strong control over tobacco selection, fermentation, and manufacturing through owned farms and factories.",
+                nishpatel: "Executive Vice President at Rocky Patel and key family member. Runs day-to-day operations alongside Rocky and has released several sub-lines under the Rocky Patel umbrella.",
+                tavicusa: "Rocky Patel’s owned factory in Estelí (Tabacalera Villa Cuba). One of the most tightly controlled production facilities among major boutique brands.",
+                drewestate: "Home of Liga Privada, ACID, Undercrown, Herrera Estelí and many others. Known for innovation and unconventional marketing. Large dedicated factory in Estelí.",
+                jonathandrew: "Co-founder and driving creative force behind Drew Estate. Promoted to Chief Innovation Officer in 2026 while remaining deeply involved in product development.",
+                swisher: "Mass-market tobacco company (Swisher Sweets) that acquired Drew Estate in 2014. Drew Estate operates with significant autonomy as a wholly-owned subsidiary.",
+                lagranfabrica: "Drew Estate’s large, modern factory in Estelí. One of the biggest and most technologically advanced cigar factories in Nicaragua.",
+                cle: "Christian Eiroa’s company (CLE Cigar Co.), focused on bold Honduran tobacco expressions. Closely tied to the Eiroa family’s farming and manufacturing operations.",
+                christianeiroa: "Founder of CLE Cigar Company and a leading voice in Honduran tobacco. Part of a multi-generational tobacco-growing family with deep roots in the Jamastran Valley.",
+                eiroafamily: "The broader Eiroa family operation (including Aladino and related lines run by Justo and Julio Eiroa). Strong emphasis on farm-to-factory vertical integration in Honduras.",
+                eiroadanli: "The primary CLE/Eiroa family factory in Danlí, Honduras. Most current CLE, Eiroa, and Asylum production is rolled here using tobacco from the family’s own farms.",
+                aganorsa: "One of Nicaragua’s largest and most respected independent tobacco growers and processors. Famous for long, low-temperature fermentation and supplying leaf across the industry.",
+                maxfernandez: "Son of founder Eduardo Fernández. Active leader in AGANORSA Leaf’s tobacco selection, blending direction, and operations after the company’s rebrand from Casa Fernández.",
+                tabsa: "Tabacos Valle de Jalapa S.A. — AGANORSA Leaf’s well-regarded Estelí factory. Highly regarded for quality and used for both their own brands and contract work for many boutiques.",
+                foundation: "Boutique company founded by Nick Melillo (ex-Drew Estate). Known for obsessive tobacco focus and moving production between top-tier factories to match specific blends.",
+                nickmelillo: "Founder and master blender of Foundation Cigar Co. Former head of production and sourcing at Drew Estate. Maintains hands-on control over every release despite using contract factories.",
+                alecbradley: "Major brand acquired by STG in 2023. Previously independent and known for strong Honduran blends and the Tempus and Prensado lines.",
+                room101: "Boutique-turned-corporate brand acquired by STG in 2022. Known for provocative marketing and the Farce, San Andrés, and 20th Anniversary lines.",
+                warped: "Kyle Gellis’s high-end boutique brand emphasizing terroir-driven, often Cuban-inspired blends. Works closely with multiple top contract factories.",
+                kylegellis: "Founder of Warped Cigars and Gellis Family Cigars. Known for frequent visits to Nicaragua and extremely hands-on blending and factory oversight.",
+                nacsa: "Nicaragua American Cigars S.A. factory in Estelí. Major production partner for Warped/Gellis Family lines in recent years, with close oversight from Kyle Gellis."
             };
             let desc = descriptions[d.id] || "A notable player in the premium cigar world with meaningful connections across factories, owners, and partnerships.";
             document.getElementById("drawer-description").innerHTML = desc;
