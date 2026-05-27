@@ -1,0 +1,4 @@
+# Ignore helper/development scripts  
+do-*.ps1  
+*.tmp  
+commitmsg.txt  
