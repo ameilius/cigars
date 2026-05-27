@@ -63,13 +63,11 @@
                 <!-- Legend -->
                 <div class="absolute top-4 right-4 z-10 bg-white/95 border border-gray-200 shadow-sm rounded-2xl px-3 py-2 max-w-[42vw]">
                     <div class="text-[10px] font-semibold text-gray-500 mb-1 tracking-wide">LEGEND</div>
-                    <div class="flex items-center gap-2 text-xs text-gray-700">
-                        <span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span>
-                        <span>Family-owned</span>
-                    </div>
-                    <div class="flex items-center gap-2 text-xs text-gray-700 mt-1">
-                        <span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#6b2d2d"></span>
-                        <span>Corporate</span>
+                    <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-gray-700">
+                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span> Family / Independent</div>
+                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#6b2d2d"></span> Corporate / Group</div>
+                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#1d4ed8"></span> Boutique Brand</div>
+                        <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
                     </div>
                 </div>
                 <div id="graph" class="w-full h-full"></div>
@@ -111,9 +109,13 @@
         <!-- Filter Chips -->
         <div class="flex flex-wrap gap-2 mt-4 mb-8">
             <div onclick="filterGraph('all')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
-            <div onclick="filterGraph('family')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family-Owned</div>
+            <div onclick="filterGraph('family')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
+            <div onclick="filterGraph('corporate')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Corporate / Group</div>
             <div onclick="filterGraph('nicaragua')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
             <div onclick="filterGraph('dominican')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
+            <div onclick="filterGraph('honduras')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Honduras</div>
+            <div onclick="filterGraph('boutique')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Boutique</div>
+            <div onclick="filterGraph('factory')" class="cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
         </div>
     </div>
 
@@ -299,7 +301,42 @@
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
                 { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa" },
                 { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
-                { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" }
+                { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // === New major additions this round ===
+
+                // Oliva (Vandermarliere family - major vertically integrated player)
+                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua" },
+                { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium" },
+                { id: "tabolisa", name: "Tabolisa (Oliva Estelí)", type: "factory", group: "corporate", country: "nicaragua" },
+
+                // Perdomo (fully family-owned major with huge vertical operation)
+                { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "nickperdomo", name: "Nick Perdomo Jr.", type: "person", group: "family", country: "usa" },
+                { id: "perdomofactory", name: "Tabacalera Perdomo (El Monstro, Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Joya de Nicaragua (oldest premium factory in Nicaragua, contract manufacturer)
+                { id: "joya", name: "Joya de Nicaragua", type: "brand", group: "family", country: "nicaragua" },
+                { id: "joyafactory", name: "Joya de Nicaragua Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "alejandromartinez", name: "Alejandro Martínez Cuenca", type: "person", group: "family", country: "nicaragua" },
+
+                // Dunbarton Tobacco & Trust (Steve Saka)
+                { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa" },
+                { id: "stevesaka", name: "Steve Saka", type: "person", group: "family", country: "usa" },
+                { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua" },
+
+                // Illusione (Dion Giolito)
+                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "diongiolito", name: "Dion Giolito", type: "person", group: "family", country: "usa" },
+
+                // Viaje (Andre Farkas)
+                { id: "viaje", name: "Viaje Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "andrefarkas", name: "Andre Farkas", type: "person", group: "family", country: "usa" },
+
+                // HVC (Reinier Lorenzo - now with own factory)
+                { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "reinierlorenzo", name: "Reinier Lorenzo", type: "person", group: "family", country: "nicaragua" },
+                { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -406,7 +443,38 @@
                 { source: "warped", target: "kylegellis", type: "founded by" },
                 { source: "warped", target: "tabsa", type: "historical production (Aganorsa)" },
                 { source: "warped", target: "nacsa", type: "major production partner (2024-2026)" },
-                { source: "kylegellis", target: "nacsa", type: "close oversight" }
+                { source: "kylegellis", target: "nacsa", type: "close oversight" },
+
+                // === New contract & ownership links (heavy factory-to-brand focus) ===
+
+                // Oliva (major vertical player)
+                { source: "oliva", target: "fredvandermarliere", type: "owned by (Vandermarliere family)" },
+                { source: "oliva", target: "tabolisa", type: "operates" },
+                { source: "oliva", target: "aganorsa", type: "major tobacco supplier" },
+
+                // Perdomo (large independent vertical operation)
+                { source: "perdomo", target: "nickperdomo", type: "founded by / family leadership" },
+                { source: "perdomo", target: "perdomofactory", type: "operates (El Monstro)" },
+
+                // Joya de Nicaragua factory (important contract manufacturer)
+                { source: "joya", target: "joyafactory", type: "produced at" },
+                { source: "joyafactory", target: "alejandromartinez", type: "family ownership" },
+                { source: "sobremesa", target: "joyafactory", type: "produced at (Dunbarton)" },
+                { source: "dunbarton", target: "stevesaka", type: "founded by" },
+                { source: "dunbarton", target: "sobremesa", type: "core brand" },
+                { source: "joyafactory", target: "dunbarton", type: "contract production" },
+
+                // Illusione & Viaje (heavy Aganorsa users)
+                { source: "illusione", target: "diongiolito", type: "founded by" },
+                { source: "illusione", target: "tabsa", type: "long-term production (Aganorsa)" },
+                { source: "illusione", target: "sanlotano", type: "some production" },
+                { source: "viaje", target: "andrefarkas", type: "founded by" },
+                { source: "viaje", target: "tabsa", type: "frequent production partner" },
+                { source: "viaje", target: "joyafactory", type: "production at Joya" },
+
+                // HVC (now has own factory)
+                { source: "hvc", target: "reinierlorenzo", type: "founded by" },
+                { source: "hvc", target: "hvcfactory", type: "operates own factory" }
             ]
         };
 
@@ -813,7 +881,26 @@
                 room101: "Boutique-turned-corporate brand acquired by STG in 2022. Known for provocative marketing and the Farce, San Andrés, and 20th Anniversary lines.",
                 warped: "Kyle Gellis’s high-end boutique brand emphasizing terroir-driven, often Cuban-inspired blends. Works closely with multiple top contract factories.",
                 kylegellis: "Founder of Warped Cigars and Gellis Family Cigars. Known for frequent visits to Nicaragua and extremely hands-on blending and factory oversight.",
-                nacsa: "Nicaragua American Cigars S.A. factory in Estelí. Major production partner for Warped/Gellis Family lines in recent years, with close oversight from Kyle Gellis."
+                nacsa: "Nicaragua American Cigars S.A. factory in Estelí. Major production partner for Warped/Gellis Family lines in recent years, with close oversight from Kyle Gellis.",
+                oliva: "One of the largest and most vertically integrated Nicaraguan cigar operations. Owned by Belgium’s Vandermarliere family since 2016. Famous for Serie V, Melanio, and NUb lines.",
+                fredvandermarliere: "Owner of Oliva Cigar Co. through the Vandermarliere family group. Has driven significant expansion and investment while preserving the brand’s reputation for consistency.",
+                tabolisa: "Oliva’s primary rolling factories in Estelí (Tabolisa I & II), supported by the large Las Mesitas processing and aging facility. One of the biggest production operations in Nicaragua.",
+                perdomo: "Major independent family-owned Nicaraguan producer led by Nick Perdomo Jr. Extremely vertically integrated with massive farms, fermentation, and the huge 'El Monstro' factory.",
+                nickperdomo: "Founder and leader of Perdomo Cigars. Third-generation cigar man with deep roots in the industry. Known for strong vertical integration and competitive pricing.",
+                perdomofactory: "Perdomo’s enormous flagship factory in Estelí, often called 'El Monstro'. One of the largest cigar factories in Nicaragua with full in-house control from farm to box.",
+                joya: "Joya de Nicaragua — one of the most historic Nicaraguan brands. The company also operates the oldest premium cigar factory in the country and does significant contract work.",
+                joyafactory: "Fábrica de Tabacos Joya de Nicaragua in Estelí. The oldest operating premium cigar factory in Nicaragua (founded 1968). Important contract manufacturer for several boutique brands.",
+                alejandromartinez: "Chairman and key owner of Joya de Nicaragua. Nicaraguan family that has owned and operated the historic factory since 1994.",
+                dunbarton: "Dunbarton Tobacco & Trust, founded by Steve Saka. Known for high-quality, thoughtfully blended cigars with distinctive packaging and strong Nicaraguan production ties.",
+                stevesaka: "Founder of Dunbarton Tobacco & Trust. Former Drew Estate executive turned independent blender. Known for detailed blending notes and Sobremesa, Sin Compromiso, and Mi Querida lines.",
+                sobremesa: "Flagship line from Dunbarton. Consistently produced at the Joya de Nicaragua factory with Ecuadorian wrappers over rich Nicaraguan and Mexican fillers.",
+                illusione: "Boutique brand founded by Dion Giolito. Long associated with Aganorsa tobacco and the TABSA factory. Known for powerful, well-aged Nicaraguan blends.",
+                diongiolito: "Founder of Illusione Cigars. Highly respected for his deep knowledge of Nicaraguan tobacco and long-standing relationships with top growers and factories.",
+                viaje: "Boutique brand created by Andre Farkas. Known for creative, often limited releases and flexible use of top Nicaraguan factories (especially Aganorsa and Joya).",
+                andrefarkas: "Founder of Viaje Cigars. Known for frequent travel to Nicaragua, close factory relationships, and a wide range of creative, high-end limited editions.",
+                hvc: "HVC Cigars, founded by Reinier Lorenzo. Has grown rapidly with its own dedicated factory in Estelí. Strong focus on consistent Nicaraguan puros.",
+                reinierlorenzo: "Founder of HVC Cigars. Built his own factory in Estelí and maintains tight control over production quality and blending.",
+                hvcfactory: "HVC’s own modern factory in Estelí. Represents the brand’s move toward greater production independence while remaining a respected boutique operation."
             };
             let desc = descriptions[d.id] || "A notable player in the premium cigar world with meaningful connections across factories, owners, and partnerships.";
             document.getElementById("drawer-description").innerHTML = desc;
@@ -899,13 +986,23 @@
 
         // ==================== SEARCH & FILTER ====================
         function filterGraph(type) {
-            // Simple filter example - you can expand this a lot
             node.style("opacity", d => {
                 if (type === "all") return 1;
-                if (type === "family" && d.group === "family") return 1;
+
+                if (type === "family" && (d.group === "family" || d.group === "family")) return 1;
+                if (type === "corporate" && d.group === "corporate") return 1;
+
                 if (type === "nicaragua" && d.country === "nicaragua") return 1;
                 if (type === "dominican" && d.country === "dominican") return 1;
-                return 0.15;
+                if (type === "honduras" && d.country === "honduras") return 1;
+
+                // Boutique = smaller/independent brands (not big corporate groups)
+                if (type === "boutique" && d.type === "brand" && d.group !== "corporate") return 1;
+
+                // Factory / Grower nodes
+                if (type === "factory" && (d.type === "factory" || d.name.toLowerCase().includes("factory") || d.name.toLowerCase().includes("tabacalera") || d.name.toLowerCase().includes("aganorsa"))) return 1;
+
+                return 0.12;
             });
         }
 
