@@ -84,23 +84,18 @@
             color: #c5a26f;
         }
 
-        /* Emergency mobile fixes */
+        /* Mobile fixes */
         @media (max-width: 1023px) {
-            header .flex.items-center.justify-between > div:nth-child(2) {
-                max-width: 140px;
-            }
-            
-            #graph-container, #graph {
+            #graph-container {
                 min-height: 420px !important;
-                height: 55vh !important;
+                height: 58vh !important;
             }
             
-            #drawer-mobile {
-                display: none;
-            }
-            
-            #drawer-mobile:not(.hidden) {
-                display: flex;
+            /* Force the main graph to be visible and have height on mobile */
+            #graph-container,
+            #graph {
+                display: block !important;
+                visibility: visible !important;
             }
         }
     </style>
@@ -254,10 +249,10 @@
 
     </div>
 
-    <!-- Floating Filters Button (Mobile) -->
+    <!-- Floating Filters Button (Mobile) - always shown on mobile for reliability -->
     <button id="floating-filters-btn"
             onclick="document.getElementById('filter-chips').scrollIntoView({ behavior: 'smooth', block: 'center' })"
-            class="lg:hidden fixed bottom-6 right-6 z-40 hidden px-4 py-2.5 bg-[#5c2e2e] text-[#f4e9d8] text-sm font-semibold rounded-2xl shadow-xl flex items-center gap-2 active:scale-95 transition-all">
+            class="lg:hidden fixed bottom-6 right-6 z-40 px-4 py-2.5 bg-[#5c2e2e] text-[#f4e9d8] text-sm font-semibold rounded-2xl shadow-xl flex items-center gap-2 active:scale-95 transition-all">
         <span>Filters</span>
     </button>
 
@@ -1172,17 +1167,16 @@
                 desktopDrawer.classList.remove("hidden");
             }
 
-            // Mobile backdrop
+            // Mobile backdrop (create only when opening the drawer)
             if (window.innerWidth < 1024) {
-                let backdrop = document.getElementById("mobile-drawer-backdrop");
-                if (!backdrop) {
-                    backdrop = document.createElement("div");
-                    backdrop.id = "mobile-drawer-backdrop";
-                    backdrop.className = "fixed inset-0 bg-black/40 z-40 lg:hidden";
-                    backdrop.onclick = closeDrawer;
-                    document.body.appendChild(backdrop);
-                }
-                backdrop.classList.remove("hidden");
+                // Clean up any stray backdrops first
+                document.querySelectorAll('#mobile-drawer-backdrop').forEach(el => el.remove());
+
+                const backdrop = document.createElement("div");
+                backdrop.id = "mobile-drawer-backdrop";
+                backdrop.className = "fixed inset-0 bg-black/40 z-40 lg:hidden";
+                backdrop.onclick = closeDrawer;
+                document.body.appendChild(backdrop);
             }
 
             // Update the correct title elements
@@ -1380,13 +1374,13 @@
             if (desktop) desktop.classList.add("hidden");
             if (mobile) mobile.classList.add("hidden");
 
-            const backdrop = document.getElementById("mobile-drawer-backdrop");
-            if (backdrop) backdrop.classList.add("hidden");
+            // Remove backdrop completely to avoid stale overlays
+            document.querySelectorAll('#mobile-drawer-backdrop').forEach(el => el.remove());
         }
 
         // Simple swipe-down to close for mobile bottom sheet
         function enableDrawerSwipeToClose() {
-            const drawer = document.getElementById("drawer");
+            const drawer = document.getElementById("drawer-mobile") || document.getElementById("drawer");
             if (!drawer) return;
 
             let startY = 0;
@@ -1529,24 +1523,22 @@
                 });
             }
 
-            // Floating Filters button on mobile
+            // Ensure floating filters button is visible on mobile
             const floatingBtn = document.getElementById("floating-filters-btn");
-            const filterSection = document.getElementById("filter-chips");
+            if (floatingBtn && window.innerWidth < 1024) {
+                floatingBtn.style.display = "flex";
+            }
 
-            if (floatingBtn && filterSection && window.innerWidth < 1024) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (!entry.isIntersecting) {
-                            floatingBtn.classList.remove("hidden");
-                            floatingBtn.classList.add("flex");
-                        } else {
-                            floatingBtn.classList.add("hidden");
-                            floatingBtn.classList.remove("flex");
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                observer.observe(filterSection);
+            // Mobile safeguard: force graph to render after short delay
+            if (window.innerWidth < 1024) {
+                setTimeout(() => {
+                    if (typeof resizeGraph === 'function') {
+                        resizeGraph();
+                    }
+                    if (simulation) {
+                        simulation.alpha(0.6).restart();
+                    }
+                }, 400);
             }
         };
 
