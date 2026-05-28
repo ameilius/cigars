@@ -273,10 +273,14 @@ function initializeApp() {
   // Make floating filters button scroll to filters on mobile
   const fab = document.getElementById('floating-filters-btn');
   if (fab) {
-    fab.addEventListener('click', () => {
+    fab.addEventListener('click', (e) => {
+      e.preventDefault();
       const chips = document.getElementById('filter-chips');
-      if (chips) chips.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
+      if (chips) {
+        // Ensure filters are visible before scrolling
+        chips.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, { passive: false });
   }
 
   // Initial render of any saved state
