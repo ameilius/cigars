@@ -444,18 +444,20 @@ function updateGraph() {
   const labelEnter = labelSel.enter().append('text')
     .attr('class', 'node-label')
     .attr('text-anchor', 'middle')
-    .attr('dy', d => getNodeRadius(d) + 13)
-    .attr('font-size', '10px')
+    .attr('dy', d => getNodeRadius(d) + 12)
+    .attr('font-size', '9.5px')
     .attr('fill', '#3f2a2a')
     .attr('paint-order', 'stroke')
     .attr('stroke', '#f8f5f0')
     .attr('stroke-width', 3)
     .attr('stroke-linejoin', 'round')
-    .text(d => d.name.length > 18 ? d.name.slice(0, 17) + '…' : d.name)
+    .text(d => d.name)
+    .attr('title', d => d.name)
     .style('pointer-events', 'none')
     .style('opacity', 0);
 
-  labels = labelEnter.merge(labelSel);
+  labels = labelEnter.merge(labelSel)
+    .attr('title', d => d.name);
 
   // Update simulation
   simulation.nodes(filteredData.nodes);
