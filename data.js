@@ -1,0 +1,284 @@
+﻿const baseGraphData = {
+            nodes: [
+                // === Existing core data (preserved & lightly verified) ===
+                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua" },
+                { id: "pepin", name: "Pep├¡n García", type: "person", group: "family", country: "nicaragua" },
+                { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa" },
+                { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa" },
+                { id: "lazona", name: "La Zona (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "laranja", name: "Laranja Reserva", type: "brand", group: "family", country: "nicaragua" },
+                { id: "espinosahabano", name: "Espinosa Habano", type: "brand", group: "family", country: "nicaragua" },
+                { id: "crema", name: "Crema", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "eobrands", name: "EO Brands (legacy)", type: "company", group: "family", country: "usa" },
+                { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa" },
+                { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua" },
+                { id: "murcielago", name: "Murci├⌐lago", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua" },
+                { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua" },
+                { id: "joseopadron", name: "Jos├⌐ Orlando Padrón", type: "person", group: "family", country: "usa" },
+                { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa" },
+                { id: "orlandopadron", name: "Orlando Padrón", type: "person", group: "family", country: "usa" },
+                { id: "tabacoscubanica", name: "Tabacos Cubanica (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua" },
+                { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua" },
+
+                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican" },
+                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican" },
+                { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican" },
+                { id: "tabadom", name: "Tabadom (Villa Gonz├ílez)", type: "factory", group: "corporate", country: "dominican" },
+                { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland" },
+
+                { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican" },
+                { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
+                { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican" },
+
+                { id: "belladama", name: "Bella Dama", type: "brand", group: "family", country: "nicaragua" },
+                { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa" },
+                { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican" },
+
+                { id: "stg", name: "Scandinavian Tobacco Group (STG)", type: "company", group: "corporate", country: "denmark" },
+                { id: "generalcigar", name: "General Cigar Co.", type: "company", group: "corporate", country: "usa" },
+                { id: "forged", name: "Forged Cigar Co.", type: "company", group: "corporate", country: "usa" },
+
+                { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican" },
+                { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua" },
+                { id: "cohiba_nc", name: "Cohiba (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
+                { id: "partagas_nc", name: "Partagas (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
+                { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
+
+                // === Major expansions (research-backed, 2025-2026 accurate) ===
+
+                // Plasencia family (major grower + manufacturer, family-controlled with STG minority stake)
+                { id: "plasencia", name: "Plasencia Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "nestorplasencia", name: "Nestor Plasencia Sr.", type: "person", group: "family", country: "nicaragua" },
+                { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua" },
+                { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Rocky Patel (vertically integrated, owns Tavicusa, strong Plasencia partnership)
+                { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa" },
+                { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa" },
+                { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Drew Estate (owned by Swisher International ΓÇö important correction)
+                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa" },
+                { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa" },
+                { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa" },
+                { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // CLE Cigar / Eiroa family (Honduras vertical integration)
+                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa" },
+                { id: "christianeiroa", name: "Christian Eiroa", type: "person", group: "family", country: "honduras" },
+                { id: "eiroafamily", name: "Eiroa Family (Aladino)", type: "company", group: "family", country: "honduras" },
+                { id: "eiroadanli", name: "CLE Factory (Danlí, Honduras)", type: "factory", group: "family", country: "honduras" },
+
+                // Aganorsa Leaf (major independent grower + TABSA factory)
+                { id: "aganorsa", name: "AGANORSA Leaf", type: "company", group: "family", country: "nicaragua" },
+                { id: "maxfernandez", name: "Max Fernández Pujals", type: "person", group: "family", country: "nicaragua" },
+                { id: "tabsa", name: "TABSA (Aganorsa Factory, Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Foundation Cigar (Nick Melillo, contract production at top factories)
+                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa" },
+                { id: "nickmelillo", name: "Nick Melillo", type: "person", group: "family", country: "usa" },
+
+                // Additional important STG brands (post-acquisitions)
+                { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras" },
+                { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican" },
+
+                // Warped / Kyle Gellis (boutique, multiple contract factories)
+                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
+                { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // === New major additions this round ===
+
+                // Oliva (Vandermarliere family - major vertically integrated player)
+                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua" },
+                { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium" },
+                { id: "tabolisa", name: "Tabolisa (Oliva Estelí)", type: "factory", group: "corporate", country: "nicaragua" },
+
+                // Perdomo (fully family-owned major with huge vertical operation)
+                { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "nickperdomo", name: "Nick Perdomo Jr.", type: "person", group: "family", country: "usa" },
+                { id: "perdomofactory", name: "Tabacalera Perdomo (El Monstro, Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Joya de Nicaragua (oldest premium factory in Nicaragua, contract manufacturer)
+                { id: "joya", name: "Joya de Nicaragua", type: "brand", group: "family", country: "nicaragua" },
+                { id: "joyafactory", name: "Joya de Nicaragua Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "alejandromartinez", name: "Alejandro Martínez Cuenca", type: "person", group: "family", country: "nicaragua" },
+
+                // Dunbarton Tobacco & Trust (Steve Saka)
+                { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa" },
+                { id: "stevesaka", name: "Steve Saka", type: "person", group: "family", country: "usa" },
+                { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua" },
+
+                // Illusione (Dion Giolito)
+                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "diongiolito", name: "Dion Giolito", type: "person", group: "family", country: "usa" },
+
+                // Viaje (Andre Farkas)
+                { id: "viaje", name: "Viaje Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "andrefarkas", name: "Andre Farkas", type: "person", group: "family", country: "usa" },
+
+                // HVC (Reinier Lorenzo - now with own factory)
+                { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "reinierlorenzo", name: "Reinier Lorenzo", type: "person", group: "family", country: "nicaragua" },
+                { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" }
+            ],
+            links: [
+                // === Original verified links (preserved) ===
+                { source: "myfather", target: "pepin", type: "founded by" },
+                { source: "pepin", target: "tatuaje", type: "manufactures for" },
+                { source: "myfather", target: "tatuaje", type: "shared factory roots" },
+                { source: "myfather", target: "belladama", type: "manufactures at" },
+                { source: "pepin", target: "belladama", type: "blended by" },
+
+                { source: "espinosa", target: "erikespinosa", type: "founded by" },
+                { source: "espinosa", target: "lazona", type: "opened factory" },
+                { source: "lazona", target: "laranja", type: "manufactures" },
+                { source: "lazona", target: "espinosahabano", type: "manufactures" },
+                { source: "lazona", target: "crema", type: "manufactures" },
+                { source: "laranja", target: "espinosa", type: "brand of" },
+                { source: "espinosahabano", target: "espinosa", type: "brand of" },
+                { source: "crema", target: "espinosa", type: "brand of" },
+
+                { source: "eobrands", target: "erikespinosa", type: "co-founded by" },
+                { source: "eobrands", target: "eddieortega", type: "co-founded by" },
+                { source: "sixzeroone", target: "eobrands", type: "originated at" },
+                { source: "murcielago", target: "eobrands", type: "originated at" },
+                { source: "sixzeroone", target: "espinosa", type: "brand of" },
+                { source: "murcielago", target: "espinosa", type: "brand of" },
+
+                { source: "sixzeroone", target: "ajfernandez", type: "manufactured by" },
+                { source: "murcielago", target: "ajfernandez", type: "manufactured by" },
+                { source: "ajfernandez", target: "sanlotano", type: "operates" },
+
+                { source: "padron", target: "joseopadron", type: "founded by" },
+                { source: "padron", target: "tabacoscubanica", type: "manufactures at" },
+                { source: "padron", target: "jorgepadron", type: "family leadership" },
+                { source: "padron", target: "orlandopadron", type: "family leadership" },
+                { source: "padron1964", target: "padron", type: "series of" },
+                { source: "padron1926", target: "padron", type: "series of" },
+                { source: "tabacoscubanica", target: "padron1964", type: "manufactures" },
+                { source: "tabacoscubanica", target: "padron1926", type: "manufactures" },
+
+                { source: "davidoff", target: "oettinger", type: "owned by" },
+                { source: "avo", target: "oettinger", type: "owned by" },
+                { source: "griffins", target: "oettinger", type: "owned by" },
+                { source: "davidoff", target: "tabadom", type: "manufactures at" },
+                { source: "avo", target: "tabadom", type: "manufactures at" },
+                { source: "griffins", target: "tabadom", type: "manufactures at" },
+                { source: "tabadom", target: "oettinger", type: "subsidiary of" },
+
+                { source: "arturo", target: "tabafuente", type: "manufactures at" },
+                { source: "opusx", target: "arturo", type: "flagship line of" },
+                { source: "diamondcrown", target: "jcnewman", type: "brand of" },
+                { source: "diamondcrown", target: "tabafuente", type: "handmade at" },
+                { source: "jcnewman", target: "arturo", type: "longtime partnership" },
+
+                { source: "generalcigar", target: "stg", type: "owned by" },
+                { source: "forged", target: "stg", type: "owned by" },
+                { source: "macanudo", target: "generalcigar", type: "sold by" },
+                { source: "cao", target: "generalcigar", type: "sold by" },
+                { source: "partagas_nc", target: "generalcigar", type: "sold by" },
+                { source: "cohiba_nc", target: "forged", type: "sold by" },
+                { source: "punch_nc", target: "forged", type: "sold by" },
+
+                // === New accurate links (research 2025-2026) ===
+
+                // Plasencia family & operations
+                { source: "plasencia", target: "nestorplasencia", type: "founded by / family leadership" },
+                { source: "plasencia", target: "nestorandres", type: "family leadership" },
+                { source: "plasencia", target: "plasenciaesteli", type: "operates" },
+                { source: "stg", target: "plasencia", type: "minority stake (General Cigar)" },
+
+                // Rocky Patel relationships (highly accurate)
+                { source: "rockypatel", target: "nishpatel", type: "family leadership" },
+                { source: "rockypatel", target: "tavicusa", type: "owns" },
+                { source: "rockypatel", target: "plasencia", type: "long-term manufacturing partnership (Honduras)" },
+                { source: "rockypatel", target: "plasenciaesteli", type: "contract production" },
+
+                // Drew Estate correction (Swisher, not STG)
+                { source: "drewestate", target: "jonathandrew", type: "founded by" },
+                { source: "drewestate", target: "lagranfabrica", type: "operates" },
+                { source: "swisher", target: "drewestate", type: "owns (acquired 2014)" },
+                { source: "drewestate", target: "stg", type: "no ownership (competitor)" },
+
+                // CLE / Eiroa family (Honduras vertical)
+                { source: "cle", target: "christianeiroa", type: "founded by" },
+                { source: "cle", target: "eiroadanli", type: "operates" },
+                { source: "eiroafamily", target: "christianeiroa", type: "family" },
+                { source: "eiroafamily", target: "eiroadanli", type: "operates" },
+
+                // Aganorsa Leaf (major grower + factory)
+                { source: "aganorsa", target: "maxfernandez", type: "family leadership" },
+                { source: "aganorsa", target: "tabsa", type: "operates" },
+
+                // Foundation Cigar (contract production accuracy)
+                { source: "foundation", target: "nickmelillo", type: "founded by" },
+                { source: "foundation", target: "myfather", type: "production partner (Wise Man)" },
+                { source: "foundation", target: "ajfernandez", type: "production partner (Tabernacle, Olmec)" },
+                { source: "foundation", target: "sanlotano", type: "production at" },
+
+                // STG additional accurate brand ownership (post-2023 acquisitions)
+                { source: "alecbradley", target: "stg", type: "owned by (acquired 2023)" },
+                { source: "alecbradley", target: "forged", type: "sold by" },
+                { source: "room101", target: "stg", type: "owned by (acquired 2022)" },
+                { source: "room101", target: "generalcigar", type: "sold by" },
+
+                // Warped / Kyle Gellis (contract production)
+                { source: "warped", target: "kylegellis", type: "founded by" },
+                { source: "warped", target: "tabsa", type: "historical production (Aganorsa)" },
+                { source: "warped", target: "nacsa", type: "major production partner (2024-2026)" },
+                { source: "kylegellis", target: "nacsa", type: "close oversight" },
+
+                // === New contract & ownership links (heavy factory-to-brand focus) ===
+
+                // Oliva (major vertical player)
+                { source: "oliva", target: "fredvandermarliere", type: "owned by (Vandermarliere family)" },
+                { source: "oliva", target: "tabolisa", type: "operates" },
+                { source: "oliva", target: "aganorsa", type: "major tobacco supplier" },
+
+                // Perdomo (large independent vertical operation)
+                { source: "perdomo", target: "nickperdomo", type: "founded by / family leadership" },
+                { source: "perdomo", target: "perdomofactory", type: "operates (El Monstro)" },
+
+                // Joya de Nicaragua factory (important contract manufacturer)
+                { source: "joya", target: "joyafactory", type: "produced at" },
+                { source: "joyafactory", target: "alejandromartinez", type: "family ownership" },
+                { source: "sobremesa", target: "joyafactory", type: "produced at (Dunbarton)" },
+                { source: "dunbarton", target: "stevesaka", type: "founded by" },
+                { source: "dunbarton", target: "sobremesa", type: "core brand" },
+                { source: "joyafactory", target: "dunbarton", type: "contract production" },
+
+                // Illusione & Viaje (heavy Aganorsa users)
+                { source: "illusione", target: "diongiolito", type: "founded by" },
+                { source: "illusione", target: "tabsa", type: "long-term production (Aganorsa)" },
+                { source: "illusione", target: "sanlotano", type: "some production" },
+                { source: "viaje", target: "andrefarkas", type: "founded by" },
+                { source: "viaje", target: "tabsa", type: "frequent production partner" },
+                { source: "viaje", target: "joyafactory", type: "production at Joya" },
+
+                // HVC (now has own factory)
+                { source: "hvc", target: "reinierlorenzo", type: "founded by" },
+                { source: "hvc", target: "hvcfactory", type: "operates own factory" },
+
+                // === Data cleanup / strengthening round (more accurate contract links) ===
+                { source: "oliva", target: "perdomo", type: "industry competitor / peer (major Nicaraguan producers)" },
+                { source: "joyafactory", target: "drewestate", type: "historical contract production (MUWAT era)" },
+                { source: "joyafactory", target: "warped", type: "occasional production" },
+                { source: "perdomofactory", target: "perdomo", type: "core production for all Perdomo lines" },
+                { source: "tabolisa", target: "oliva", type: "primary rolling for Serie V / Melanio / NUb" },
+                { source: "sobremesa", target: "joyafactory", type: "primary production location" },
+                { source: "dunbarton", target: "nacsa", type: "some Muestra de Saka / Mi Querida production" },
+                { source: "perdomo", target: "stg", type: "occasional leaf / industry relationship" },
+                { source: "hvc", target: "tabsa", type: "early production before own factory" },
+                { source: "viaje", target: "hvc", type: "shared Nicaraguan production ecosystem" }
+            ]
+        };
+

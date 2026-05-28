@@ -14,11 +14,17 @@
 
 ## 🚀 Getting Started
 
-This is a completely self-contained single-file application. No build step, no server required.
+This project is split into clean, maintainable files with **no build step** required. Open directly in any browser.
 
-### Option 1: Open Locally (Recommended)
+### Open Locally (Recommended)
 1. Download or clone this repository
 2. Open `index.html` in any modern browser (Chrome, Firefox, Edge, Safari)
+
+The app consists of:
+- `index.html` – Light HTML shell + structure
+- `styles.css` – All custom cigar-lounge styling
+- `data.js` – The core researched graph data (nodes & links)
+- `script.js` – Full D3.js visualization, filters, drawers, submit form, persistence
 
 ### Option 2: View Online
 If this repo is hosted via GitHub Pages or similar, you can view it directly in the browser.
@@ -56,8 +62,11 @@ The data focuses on ownership, manufacturing partnerships, and historical connec
 Contributions are welcome! Whether you have corrections to existing relationships, new verified connections, or UI improvements:
 
 - Fork the repo
-- Edit `index.html` directly (the entire app lives in one file)
+- Edit `data.js` to expand the graph (or use the in-app "Submit Connection" form)
+- Tweak `script.js` or `styles.css` for behavior / visual changes
 - Submit a pull request
+
+The project is intentionally kept as a simple multi-file static site (no bundler) so anyone can open it instantly.
 
 Please keep data changes factual and well-sourced when possible.
 

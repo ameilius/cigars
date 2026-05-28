@@ -1,0 +1,124 @@
+body { 
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+}
+
+.node { 
+    cursor: pointer; 
+    transition: filter 0.15s ease;
+}
+
+.link { 
+    stroke: #8b7a6f; 
+    stroke-opacity: 0.45; 
+    transition: stroke 0.2s ease;
+}
+
+.drawer { transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); }
+
+.filter-chip {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.filter-chip.filter-active {
+    background-color: #5c2e2e;
+    color: #f4e9d8;
+    border-color: #5c2e2e;
+    box-shadow: 0 1px 3px rgba(92, 46, 46, 0.3);
+}
+.filter-chip:hover:not(.filter-active) {
+    border-color: #8b5e5e;
+    background-color: #f4e9d8;
+}
+
+/* Mobile refinements */
+@media (max-width: 1023px) {
+    #drawer {
+        z-index: 50;
+        max-height: 75vh;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: 0 -10px 30px -10px rgba(92, 46, 46, 0.25);
+    }
+    
+    .filter-chip {
+        font-size: 13px;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+}
+
+/* Very small screens: collapse legend */
+@media (max-width: 480px) {
+    .legend-compact .text-xs {
+        font-size: 9px;
+    }
+    .legend-compact .grid {
+        gap: 4px;
+    }
+}
+
+/* === Targeted Cleanup for Desktop/Mobile Issues === */
+/* Hide duplicate stray drawers that are causing floating/misalignment */
+.max-w-screen-xl > div.hidden.lg\\:block.lg\\:w-80:not(:first-of-type) {
+    display: none !important;
+}
+
+/* Force proper desktop two-column when possible */
+@media (min-width: 1024px) {
+    .max-w-screen-xl > div.lg\\:flex {
+        display: flex !important;
+    }
+}
+
+/* On mobile, hide the desktop sidebar drawer */
+@media (max-width: 1023px) {
+    .max-w-screen-xl > div.hidden.lg\\:block {
+        display: none !important;
+    }
+}
+
+/* Premium graph container */
+#graph-container {
+    background: linear-gradient(145deg, #f8f5f0 0%, #f0e9df 100%);
+    box-shadow: inset 0 2px 8px rgba(139, 122, 111, 0.12),
+                0 10px 30px -10px rgba(92, 46, 46, 0.15);
+}
+
+/* Nicer node hover */
+.node:hover circle {
+    filter: brightness(1.08) saturate(1.1);
+}
+
+/* Subtle gold accents */
+.gold-accent {
+    color: #c5a26f;
+}
+
+/* Mobile fixes */
+@media (max-width: 1023px) {
+    #graph-container {
+        min-height: 420px !important;
+        height: 58vh !important;
+    }
+    
+    /* Force the main graph to be visible and have height on mobile */
+    #graph-container,
+    #graph {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    /* Make sure mobile drawer content is always visible when open */
+    #drawer-mobile:not(.hidden) {
+        display: flex !important;
+        flex-direction: column;
+    }
+    
+    #drawer-mobile .p-5.flex-1 {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        min-height: 150px;
+        padding-bottom: 20px;
+    }
+}
