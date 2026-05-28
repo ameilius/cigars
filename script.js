@@ -581,6 +581,8 @@ function showDrawer(node) {
   const metaEl = document.getElementById('drawer-meta');
   const descEl = document.getElementById('drawer-description');
   const connEl = document.getElementById('drawer-connections');
+  const productLinesWrap = document.getElementById('drawer-product-lines-wrap');
+  const productLinesEl = document.getElementById('drawer-product-lines');
   const buyWrap = document.getElementById('drawer-buy-wrap');
   const buyEl = document.getElementById('drawer-buy');
 
@@ -590,6 +592,8 @@ function showDrawer(node) {
   const mMeta = document.getElementById('drawer-meta-mobile');
   const mDesc = document.getElementById('drawer-description-mobile');
   const mConn = document.getElementById('drawer-connections-mobile');
+  const mProductLinesWrap = document.getElementById('drawer-product-lines-wrap-mobile');
+  const mProductLinesEl = document.getElementById('drawer-product-lines-mobile');
   const mBuyWrap = document.getElementById('drawer-buy-wrap-mobile');
   const mBuy = document.getElementById('drawer-buy-mobile');
 
@@ -625,6 +629,16 @@ function showDrawer(node) {
     });
   }
 
+  // Product Lines / Notable Cigars
+  let productLinesHTML = '';
+  const hasProductLines = node.productLines && node.productLines.length > 0;
+
+  if (hasProductLines) {
+    productLinesHTML = node.productLines.map(line => 
+      `<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#d4c4a8] text-[#5c2e2e]">${line}</span>`
+    ).join('');
+  }
+
   // Buy links (placeholder - extend with real affiliate data if available)
   const buyHTML = (node.buyLinks && node.buyLinks.length)
     ? node.buyLinks.map(b => `<a href="${b.url}" target="_blank" class="block text-xs px-3 py-1.5 rounded-xl bg-[#5c2e2e] text-[#f4e9d8] hover:bg-[#4a2424]">${b.label || 'Shop now'}</a>`).join('')
@@ -635,6 +649,10 @@ function showDrawer(node) {
     metaEl.innerHTML = metaHTML;
     descEl.textContent = desc;
     connEl.innerHTML = connHTML;
+
+    if (productLinesEl) productLinesEl.innerHTML = productLinesHTML;
+    if (productLinesWrap) productLinesWrap.style.display = hasProductLines ? 'block' : 'none';
+
     buyEl.innerHTML = buyHTML;
     buyWrap.style.display = (node.buyLinks && node.buyLinks.length) ? 'block' : 'block';
     drawer.classList.remove('hidden');
@@ -646,6 +664,10 @@ function showDrawer(node) {
     mMeta.innerHTML = metaHTML;
     mDesc.textContent = desc;
     mConn.innerHTML = connHTML;
+
+    if (mProductLinesEl) mProductLinesEl.innerHTML = productLinesHTML;
+    if (mProductLinesWrap) mProductLinesWrap.style.display = hasProductLines ? 'block' : 'none';
+
     mBuy.innerHTML = buyHTML;
     mBuyWrap.style.display = 'block';
     mDrawer.classList.remove('hidden');
@@ -710,9 +732,46 @@ window.closeDrawer = closeDrawer;
 window.showDrawerFromId = showDrawerFromId;
 
 // -----------------------------
+// Age Verification Gate
+// -----------------------------
+function initAgeGate() {
+  const gate = document.getElementById('age-gate');
+  if (!gate) return;
+
+  // Check if user has already verified
+  if (localStorage.getItem('cigarNexus_ageVerified') === 'true') {
+    gate.style.display = 'none';
+    return;
+  }
+
+  // Show the gate
+  gate.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  const yesBtn = document.getElementById('age-yes');
+  const noBtn = document.getElementById('age-no');
+
+  if (yesBtn) {
+    yesBtn.addEventListener('click', () => {
+      localStorage.setItem('cigarNexus_ageVerified', 'true');
+      gate.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  }
+
+  if (noBtn) {
+    noBtn.addEventListener('click', () => {
+      // Redirect away from age-restricted content
+      window.location.href = 'https://www.google.com';
+    });
+  }
+}
+
+// -----------------------------
 // Boot
 // -----------------------------
 document.addEventListener('DOMContentLoaded', () => {
+  initAgeGate();      // Age verification first
   initializeApp();
 });
 
