@@ -130,7 +130,12 @@
                 // HVC (Reinier Lorenzo - now with own factory)
                 { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Hot Cake", "Black Friday", "Edición Limitada", "Pan Caliente"] },
                 { id: "reinierlorenzo", name: "Reinier Lorenzo", type: "person", group: "family", country: "nicaragua" },
-                { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" }
+                { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // West Tampa Tobacco Co. (Rick Rodriguez)
+                { id: "rickrodriguez", name: "Rick Rodriguez", type: "person", group: "family", country: "usa" },
+                { id: "westtampa", name: "West Tampa Tobacco Co.", type: "brand", group: "family", country: "usa", productLines: ["White", "Black", "Red", "Attic Series", "Circle of Life", "Dark Time"] },
+                { id: "garmendia", name: "Garmendia Cigars (Estelí)", type: "factory", group: "family", country: "nicaragua" }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -285,7 +290,14 @@
                 { source: "dunbarton", target: "nacsa", type: "some Muestra de Saka / Mi Querida production" },
                 { source: "perdomo", target: "stg", type: "occasional leaf / industry relationship" },
                 { source: "hvc", target: "tabsa", type: "early production before own factory" },
-                { source: "viaje", target: "hvc", type: "shared Nicaraguan production ecosystem" }
+                { source: "viaje", target: "hvc", type: "shared Nicaraguan production ecosystem" },
+
+                // West Tampa Tobacco Co. connections
+                { source: "westtampa", target: "rickrodriguez", type: "founded by" },
+                { source: "rickrodriguez", target: "generalcigar", type: "longtime blender (CAO)" },
+                { source: "rickrodriguez", target: "cao", type: "longtime blender and ambassador" },
+                { source: "westtampa", target: "garmendia", type: "manufactured at" },
+                { source: "westtampa", target: "nacsa", type: "some production at" }
             ]
         };
 

@@ -141,6 +141,11 @@ const descriptions = {
   "alecbradley": "Alec Bradley is a well-known brand acquired by STG in 2023. It offers a wide range of cigars with a reputation for value and consistent quality.",
   "room101": "Room101 is a bold, irreverent brand with a strong cult following. It has been associated with both independent and larger corporate ownership over the years.",
 
+  // West Tampa Tobacco Co.
+  "westtampa": "West Tampa Tobacco Co. is a Tampa-based boutique brand founded in 2022 by Rick Rodriguez (former long-time CAO blender at General Cigar) and Gus Martinez. Most production is at Garmendia in Estelí.",
+  "rickrodriguez": "Rick Rodriguez co-founded West Tampa Tobacco Co. in 2022 after nearly 30 years as a blender and ambassador for CAO at General Cigar. His family has deep roots in Tampa's historic West Tampa cigar district.",
+  "garmendia": "Garmendia Cigars is a respected factory in Estelí, Nicaragua. It produces the majority of West Tampa Tobacco Co. cigars as well as other boutique brands.",
+
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
 };
