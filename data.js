@@ -7,10 +7,12 @@
 
                 { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa" },
                 { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa" },
+                { id: "guyfieri", name: "Guy Fieri", type: "person", group: "family", country: "usa" },
                 { id: "lazona", name: "La Zona (Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "laranja", name: "Laranja Reserva", type: "brand", group: "family", country: "nicaragua" },
                 { id: "espinosahabano", name: "Espinosa Habano", type: "brand", group: "family", country: "nicaragua" },
                 { id: "crema", name: "Crema", type: "brand", group: "family", country: "nicaragua" },
+                { id: "knucklesandwich", name: "Knuckle Sandwich", type: "brand", group: "family", country: "nicaragua" },
 
                 { id: "eobrands", name: "EO Brands (legacy)", type: "company", group: "family", country: "usa" },
                 { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa" },
@@ -146,6 +148,11 @@
                 { source: "laranja", target: "espinosa", type: "brand of" },
                 { source: "espinosahabano", target: "espinosa", type: "brand of" },
                 { source: "crema", target: "espinosa", type: "brand of" },
+                { source: "knucklesandwich", target: "espinosa", type: "collaboration / produced under" },
+                { source: "knucklesandwich", target: "erikespinosa", type: "collaboration with" },
+                { source: "knucklesandwich", target: "guyfieri", type: "co-branded with" },
+                { source: "knucklesandwich", target: "sanlotano", type: "manufactured at" },
+                { source: "knucklesandwich", target: "ajfernandez", type: "produced by" },
 
                 { source: "eobrands", target: "erikespinosa", type: "co-founded by" },
                 { source: "eobrands", target: "eddieortega", type: "co-founded by" },

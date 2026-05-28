@@ -17,6 +17,8 @@ const descriptions = {
   "tatuaje": "Tatuaje is a highly acclaimed boutique brand founded by Pete Johnson in collaboration with Pepín García. Famous for the Tatuaje Serie P and the Reserva line.",
   "espinosa": "Espinosa Premium Cigars, led by Erik Espinosa, produces bold, innovative cigars. The La Zona factory in Estelí is a hub for many boutique projects.",
   "erikespinosa": "Founder of Espinosa Premium Cigars and owner of La Zona factory in Estelí. Previously partnered in EO Brands before launching his own operation in 2012; known for the 601 and Murciélago lines.",
+  "guyfieri": "Celebrity chef and TV personality (Diners, Drive-Ins and Dives). Co-creator of the Knuckle Sandwich cigar line with Erik Espinosa; actively involved in blending, marketing, and promotion.",
+  "knucklesandwich": "Knuckle Sandwich is a popular collaboration between Guy Fieri and Erik Espinosa. Full-bodied Nicaraguan cigars primarily manufactured at A.J. Fernandez’s San Lotano factory, with blending roots at Espinosa’s La Zona.",
   "padron": "Padrón is a family-owned icon founded by José Orlando Padrón. World-renowned for consistency, quality, and the legendary 1964 Anniversary and 1926 Serie lines.",
   "joseopadron": "José Orlando Padrón founded the Padrón brand in 1964 after arriving from Cuba. His vision of uncompromising quality established one of the most respected names in cigars.",
   "jorgepadron": "Jorge Padrón is part of the family leadership at Padrón, helping guide the company’s continued focus on excellence and consistency.",
