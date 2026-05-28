@@ -183,7 +183,13 @@
                 // Karen Berger Cigars (continues Don Kiki legacy, vertically integrated in Estelí)
                 { id: "karenberger", name: "Karen Berger Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Don Kiki Platinum", "K by Karen Berger Habano", "K by Karen Berger Maduro", "Ixtelli", "Halftime"] },
                 { id: "karenbergerperson", name: "Karen Berger", type: "person", group: "family", country: "nicaragua" },
-                { id: "tabacaleraesteli", name: "Tabacalera Estelí", type: "factory", group: "family", country: "nicaragua" }
+                { id: "tabacaleraesteli", name: "Tabacalera Estelí", type: "factory", group: "family", country: "nicaragua" },
+
+                // La Palina (revived by Bill Paley, negociant model)
+                { id: "billpaley", name: "Bill Paley", type: "person", group: "family", country: "usa" },
+                { id: "lapalina", name: "La Palina", type: "brand", group: "family", country: "usa", productLines: ["Goldie", "El Diario", "Mr. Sam", "Classic", "125th Anniversary"] },
+                { id: "eltitandebronze", name: "El Titan de Bronze (Miami)", type: "factory", group: "family", country: "usa" },
+                { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican" }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -399,7 +405,13 @@
 
                 // Karen Berger Cigars connections
                 { source: "karenberger", target: "karenbergerperson", type: "founded and led by" },
-                { source: "karenberger", target: "tabacaleraesteli", type: "manufactured at (own factory)" }
+                { source: "karenberger", target: "tabacaleraesteli", type: "manufactured at (own factory)" },
+
+                // La Palina connections
+                { source: "lapalina", target: "billpaley", type: "revived by" },
+                { source: "lapalina", target: "eltitandebronze", type: "Goldie produced at" },
+                { source: "lapalina", target: "ajfernandez", type: "some production with AJ Fernandez" },
+                { source: "lapalina", target: "pdr", type: "some production at PDR" }
             ]
         };
 

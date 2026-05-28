@@ -174,6 +174,12 @@ const descriptions = {
   "karenbergerperson": "Karen Berger is the owner and leader of Karen Berger Cigars. She began rolling cigars in Estelí at 18 and has built a family operation honoring her late husband Enrique 'Don Kiki' Berger.",
   "tabacaleraesteli": "Tabacalera Estelí is the vertically integrated factory and tobacco operation of Karen Berger Cigars in Estelí, Nicaragua. They grow, ferment, and roll many of their own cigars on-site.",
 
+  // La Palina
+  "lapalina": "La Palina is a revived historic brand led by Bill Paley. It operates as a negociant, producing ultra-premium lines like Goldie at El Titan de Bronze in Miami and other lines with AJ Fernandez and PDR.",
+  "billpaley": "Bill Paley revived the historic La Palina brand in 2010 as a personal, high-end project honoring his family’s cigar heritage.",
+  "eltitandebronze": "El Titan de Bronze is a renowned small-batch factory in Miami’s Little Havana. It produces La Palina’s flagship Goldie line and other ultra-premium cigars.",
+  "pdr": "PDR Cigars is a respected factory in the Dominican Republic that produces several La Palina lines.",
+
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
 };
