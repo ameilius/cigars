@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ameilius.github.io/cigars/sitemap.xml
+Sitemap: https://cigarnexus.app/sitemap.xml
