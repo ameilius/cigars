@@ -2,7 +2,7 @@
   "name": "Cigar Nexus",
   "short_name": "Cigar Nexus",
   "description": "An interactive visual map of the premium cigar industry.",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#f8f5f0",
   "theme_color": "#5c2e2e",
