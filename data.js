@@ -2,7 +2,7 @@
             nodes: [
                 // === Existing core data (preserved & lightly verified) ===
                 { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua" },
-                { id: "pepin", name: "Pep├¡n García", type: "person", group: "family", country: "nicaragua" },
+                { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
                 { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua" },
 
                 { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa" },
@@ -15,13 +15,13 @@
                 { id: "eobrands", name: "EO Brands (legacy)", type: "company", group: "family", country: "usa" },
                 { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa" },
                 { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua" },
-                { id: "murcielago", name: "Murci├⌐lago", type: "brand", group: "family", country: "nicaragua" },
+                { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua" },
 
                 { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua" },
                 { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua" },
-                { id: "joseopadron", name: "Jos├⌐ Orlando Padrón", type: "person", group: "family", country: "usa" },
+                { id: "joseopadron", name: "José Orlando Padrón", type: "person", group: "family", country: "usa" },
                 { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa" },
                 { id: "orlandopadron", name: "Orlando Padrón", type: "person", group: "family", country: "usa" },
                 { id: "tabacoscubanica", name: "Tabacos Cubanica (Estelí)", type: "factory", group: "family", country: "nicaragua" },
@@ -31,7 +31,7 @@
                 { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican" },
                 { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican" },
                 { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican" },
-                { id: "tabadom", name: "Tabadom (Villa Gonz├ílez)", type: "factory", group: "corporate", country: "dominican" },
+                { id: "tabadom", name: "Tabadom (Villa González)", type: "factory", group: "corporate", country: "dominican" },
                 { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland" },
 
                 { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican" },
@@ -65,7 +65,7 @@
                 { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa" },
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
-                // Drew Estate (owned by Swisher International ΓÇö important correction)
+                // Drew Estate (owned by Swisher International — important correction)
                 { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa" },
                 { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa" },
                 { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa" },
