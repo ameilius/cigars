@@ -48,13 +48,15 @@ body {
     }
 }
 
-/* Very small screens: collapse legend */
+/* Very small screens: improve legend readability */
 @media (max-width: 480px) {
-    .legend-compact .text-xs {
-        font-size: 9px;
+    #graph-container > div.absolute.top-4.right-4 {
+        max-width: 62vw;
+        padding: 8px 10px;
     }
-    .legend-compact .grid {
-        gap: 4px;
+    #graph-container > div.absolute.top-4.right-4 .grid {
+        gap: 3px 8px;
+        font-size: 9px;
     }
 }
 
