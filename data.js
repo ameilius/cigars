@@ -3,7 +3,7 @@
                 // === Existing core data (preserved & lightly verified) ===
                 { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"] },
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
-                { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua" },
+                { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua", productLines: ["Brown Label", "Black Label", "Havana VI", "Reserva", "Fausto", "Cojonú"] },
 
                 { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["601", "Murciélago", "Laranja", "Espinosa Habano", "Knuckle Sandwich"] },
                 { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa" },
@@ -40,7 +40,7 @@
                 { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
                 { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican" },
 
-                { id: "belladama", name: "Bella Dama", type: "brand", group: "family", country: "nicaragua" },
+                { id: "belladama", name: "Bella Dama", type: "brand", group: "family", country: "nicaragua", productLines: ["Bella Dama", "Bella Dama Habano", "Bella Dama Connecticut"] },
                 { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa" },
                 { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican" },
 
