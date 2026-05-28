@@ -373,9 +373,10 @@ function initializeGraph() {
   svg.call(zoomBehavior);
 
   // Build simulation
+  // Tweaked for better clustering of related nodes (corporate ownership, factory relationships, etc.)
   simulation = d3.forceSimulation()
-    .force('link', d3.forceLink().id(d => d.id).distance(85).strength(0.65))
-    .force('charge', d3.forceManyBody().strength(-420))
+    .force('link', d3.forceLink().id(d => d.id).distance(70).strength(0.85))
+    .force('charge', d3.forceManyBody().strength(-310))
     .force('collide', d3.forceCollide().radius(d => getNodeRadius(d) + 6).strength(0.85))
     .force('x', d3.forceX(graphWidth / 2).strength(0.06))
     .force('y', d3.forceY(graphHeight / 2).strength(0.06))
