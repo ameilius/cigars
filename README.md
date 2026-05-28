@@ -9,7 +9,7 @@
 - **Force-directed graph** — Drag nodes, zoom, and pan to explore the network
 - **Rich details drawer** — Click any node to see descriptions, connections, and context
 - **Powerful search & filters** — Find brands instantly or filter by ownership type (Family-Owned / Corporate) and country
-- **Add your own connections** — Use the "Submit Connection" form to extend the graph. New nodes and links are saved locally in your browser
+- **Curated data** — All relationships are maintained directly in `data.js` for accuracy and control
 - **Beautiful, responsive UI** — Built with Tailwind CSS and D3.js
 
 ## 🚀 Getting Started
@@ -24,7 +24,7 @@ The app consists of:
 - `index.html` – Light HTML shell + structure
 - `styles.css` – All custom cigar-lounge styling
 - `data.js` – The core researched graph data (nodes & links)
-- `script.js` – Full D3.js visualization, filters, drawers, submit form, persistence
+- `script.js` – Full D3.js visualization, filters, drawers, search, and interactions
 
 ### Option 2: View Online
 If this repo is hosted via GitHub Pages or similar, you can view it directly in the browser.
@@ -39,30 +39,21 @@ The graph contains curated, real-world relationships between major players in th
 
 The data focuses on ownership, manufacturing partnerships, and historical connections.
 
-> **Note**: This is a living visualization. The "Submit Connection" feature lets you experiment and extend the graph yourself. All additions are stored only in your browser's localStorage.
+> **Note**: This is a curated visualization. All data lives in `data.js`. To add or correct relationships, edit the data file directly.
 
 ## 🛠 Tech Stack
 
 - **D3.js v7** — Force simulation, zooming, dragging, and rendering
 - **Tailwind CSS** (via CDN) — Modern, responsive styling
 - **Vanilla JavaScript** — No frameworks, fully self-contained
-- **localStorage** — Persistent user-added nodes and links
-
-## 📝 Adding New Connections
-
-1. Click **"Submit Connection"** in the header
-2. Choose between:
-   - Adding a new node and connecting it to an existing one
-   - Connecting two existing nodes
-3. Fill in the relationship type (e.g. "owned by", "manufactures at", "blended by")
-4. Submit — the change is immediately visible and saved locally
+- **No persistence** — Data is static in `data.js` for full author control
 
 ## 🤝 Contributing
 
 Contributions are welcome! Whether you have corrections to existing relationships, new verified connections, or UI improvements:
 
 - Fork the repo
-- Edit `data.js` to expand the graph (or use the in-app "Submit Connection" form)
+- Edit `data.js` to expand the graph or correct relationships
 - Tweak `script.js` or `styles.css` for behavior / visual changes
 - Submit a pull request
 

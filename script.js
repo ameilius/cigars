@@ -5,11 +5,9 @@
 // ============================================
 
 // -----------------------------
-// Data (loaded from data.js + localStorage)
+// Data (loaded from data.js)
 // -----------------------------
 let graphData = { nodes: [], links: [] };
-let userAddedNodes = [];
-let userAddedLinks = [];
 
 // Node descriptions for the drawer (expand as needed)
 const descriptions = {
@@ -75,51 +73,15 @@ function getLinkColor(link) {
   return '#8b7a6f';
 }
 
-// -----------------------------
-// Persistence (localStorage)
-// -----------------------------
-function loadUserData() {
-  try {
-    const savedNodes = localStorage.getItem('cigarNexus_userNodes');
-    const savedLinks = localStorage.getItem('cigarNexus_userLinks');
-    userAddedNodes = savedNodes ? JSON.parse(savedNodes) : [];
-    userAddedLinks = savedLinks ? JSON.parse(savedLinks) : [];
-  } catch (e) {
-    userAddedNodes = [];
-    userAddedLinks = [];
-  }
-}
-
-function saveUserData() {
-  try {
-    localStorage.setItem('cigarNexus_userNodes', JSON.stringify(userAddedNodes));
-    localStorage.setItem('cigarNexus_userLinks', JSON.stringify(userAddedLinks));
-  } catch (e) {}
-}
-
 function mergeData() {
   const baseNodes = (baseGraphData && baseGraphData.nodes) ? baseGraphData.nodes : [];
   const baseLinks = (baseGraphData && baseGraphData.links) ? baseGraphData.links : [];
 
-  const nodeMap = new Map();
-  [...baseNodes, ...userAddedNodes].forEach(n => {
-    if (n && n.id) nodeMap.set(n.id, { ...n });
-  });
-  const mergedNodes = Array.from(nodeMap.values());
-
-  const linkSet = new Set();
-  const mergedLinks = [];
-  [...baseLinks, ...userAddedLinks].forEach(l => {
-    const s = (l.source && l.source.id) ? l.source.id : l.source;
-    const t = (l.target && l.target.id) ? l.target.id : l.target;
-    const key = `${s}__${t}__${l.type || ''}`;
-    if (!linkSet.has(key)) {
-      linkSet.add(key);
-      mergedLinks.push({ source: s, target: t, type: l.type || 'related' });
-    }
-  });
-
-  graphData = { nodes: mergedNodes, links: mergedLinks };
+  // Simple passthrough — full control lives in data.js
+  graphData = {
+    nodes: baseNodes.map(n => ({ ...n })),
+    links: baseLinks.map(l => ({ ...l }))
+  };
 }
 
 // -----------------------------
@@ -140,14 +102,14 @@ let graphWidth = 800, graphHeight = 620;
 // Initialize Everything
 // -----------------------------
 function initializeApp() {
-  loadUserData();
   mergeData();
 
   // Initial filter state
   activeFilters = new Set(['all']);
 
-  // Setup filter chips
-  setupFilterChips();
+  // Give the "All" chip its initial active visual state
+  const allChip = document.querySelector('.filter-chip');
+  if (allChip) allChip.classList.add('filter-active');
 
   // Setup search
   const searchInput = document.getElementById('search');
@@ -158,26 +120,13 @@ function initializeApp() {
     });
   }
 
-  // Setup submit modal
-  setupSubmitModal();
-
   // Initialize the graph
   initializeGraph();
 
-  // Zoom buttons
-  const fitBtn = document.querySelector('button[onclick="zoomToFit()"]');
-  const resetBtn = document.querySelector('button[onclick="resetZoom()"]');
-  // (onclick attributes already in HTML)
-
-  // Keyboard escape for drawers/modals
+  // Keyboard escape closes drawer
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      const modal = document.getElementById('submit-modal');
-      if (modal && !modal.classList.contains('hidden')) {
-        closeSubmitModal();
-      } else {
-        closeDrawer();
-      }
+      closeDrawer();
     }
   });
 
@@ -197,24 +146,6 @@ function initializeApp() {
 // -----------------------------
 // Filter Chips
 // -----------------------------
-function setupFilterChips() {
-  const chips = document.querySelectorAll('.filter-chip');
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const text = chip.textContent.trim().toLowerCase();
-      let key = 'all';
-      if (text.includes('family')) key = 'family';
-      else if (text.includes('corporate')) key = 'corporate';
-      else if (text.includes('nicaragua')) key = 'nicaragua';
-      else if (text.includes('dominican')) key = 'dominican';
-      else if (text.includes('honduras')) key = 'honduras';
-      else if (text.includes('boutique')) key = 'boutique';
-      else if (text.includes('factory')) key = 'factory';
-
-      toggleFilter(key, chip);
-    });
-  });
-}
 
 function toggleFilter(key, element) {
   if (key === 'all') {
@@ -654,149 +585,6 @@ function createOrShowBackdrop() {
 function removeBackdrop() {
   const backdrop = document.getElementById('drawer-backdrop');
   if (backdrop) backdrop.style.display = 'none';
-}
-
-// -----------------------------
-// Submit Connection Modal + Logic
-// -----------------------------
-function setupSubmitModal() {
-  const openBtn = document.getElementById('open-submit');
-  const modal = document.getElementById('submit-modal');
-  const form = document.getElementById('submit-form');
-  const modeSel = document.getElementById('submit-mode');
-  const newFields = document.getElementById('new-node-fields');
-
-  if (openBtn && modal) {
-    openBtn.onclick = () => {
-      modal.classList.remove('hidden');
-      modal.style.display = 'flex';
-      populateNodeSelects();
-    };
-  }
-
-  if (modeSel && newFields) {
-    modeSel.onchange = () => {
-      newFields.style.display = (modeSel.value === 'new-to-existing') ? 'grid' : 'none';
-    };
-  }
-
-  if (form) {
-    form.onsubmit = handleSubmitConnection;
-  }
-
-  // Close when clicking outside content on mobile
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeSubmitModal();
-    });
-  }
-}
-
-function closeSubmitModal() {
-  const modal = document.getElementById('submit-modal');
-  if (modal) {
-    modal.style.display = 'none';
-    modal.classList.add('hidden');
-  }
-}
-
-function populateNodeSelects() {
-  const fromSel = document.getElementById('from-node');
-  const toSel = document.getElementById('to-node');
-  if (!fromSel || !toSel) return;
-
-  const options = graphData.nodes
-    .slice()
-    .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id))
-    .map(n => `<option value="${n.id}">${n.name || n.id}</option>`)
-    .join('');
-
-  fromSel.innerHTML = '<option value="">Select node...</option>' + options;
-  toSel.innerHTML = '<option value="">Select node...</option>' + options;
-}
-
-function handleSubmitConnection(e) {
-  e.preventDefault();
-
-  const errorBox = document.getElementById('submit-error');
-  errorBox.classList.add('hidden');
-  errorBox.textContent = '';
-
-  const mode = document.getElementById('submit-mode').value;
-  const fromId = document.getElementById('from-node').value;
-  const toId = document.getElementById('to-node').value;
-  const connType = document.getElementById('conn-type').value.trim() || 'related';
-
-  if (!fromId || !toId) {
-    errorBox.textContent = 'Please select both From and To nodes.';
-    errorBox.classList.remove('hidden');
-    return;
-  }
-  if (fromId === toId) {
-    errorBox.textContent = 'From and To cannot be the same node.';
-    errorBox.classList.remove('hidden');
-    return;
-  }
-
-  let success = false;
-
-  if (mode === 'new-to-existing') {
-    const newName = document.getElementById('new-name').value.trim();
-    const newType = document.getElementById('new-type').value;
-    const newGroup = document.getElementById('new-group').value.trim() || 'family';
-    const newCountry = document.getElementById('new-country').value.trim();
-
-    if (!newName) {
-      errorBox.textContent = 'New node name is required.';
-      errorBox.classList.remove('hidden');
-      return;
-    }
-
-    const newId = newName.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 24) + '_' + Date.now().toString(36).slice(-4);
-
-    // Avoid duplicate IDs
-    if (graphData.nodes.some(n => n.id === newId)) {
-      errorBox.textContent = 'A node with a similar ID already exists.';
-      errorBox.classList.remove('hidden');
-      return;
-    }
-
-    const newNode = {
-      id: newId,
-      name: newName,
-      type: newType,
-      group: newGroup,
-      country: newCountry
-    };
-
-    userAddedNodes.push(newNode);
-    userAddedLinks.push({ source: fromId, target: newId, type: connType });
-
-    success = true;
-  } else {
-    // existing-to-existing
-    userAddedLinks.push({ source: fromId, target: toId, type: connType });
-    success = true;
-  }
-
-  if (success) {
-    saveUserData();
-    mergeData();
-    updateGraph();
-    populateNodeSelects();
-    closeSubmitModal();
-
-    // Reset form
-    e.target.reset();
-    document.getElementById('new-node-fields').style.display = 'grid';
-
-    // Show the new connection
-    const newNodeId = (mode === 'new-to-existing') ? userAddedNodes[userAddedNodes.length - 1].id : toId;
-    setTimeout(() => {
-      const n = graphData.nodes.find(x => x.id === newNodeId);
-      if (n) showDrawer(n);
-    }, 220);
-  }
 }
 
 // -----------------------------
