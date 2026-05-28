@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ameilius.github.io/cigars/">
+
     <!-- Primary Meta Tags -->
     <title>Cigar Nexus • Interactive Map of the Cigar Industry</title>
     <meta name="title" content="Cigar Nexus • Interactive Map of the Cigar Industry">
     <meta name="description" content="Explore the relationships between premium cigar brands, factories, families, and owners in an interactive force-directed graph. Focus on Nicaragua, Dominican Republic, and beyond.">
     <meta name="theme-color" content="#5c2e2e">
+    <meta name="author" content="Cigar Nexus">
+
+    <!-- Favicons & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- Open Graph / Facebook / Discord / LinkedIn -->
     <meta property="og:type" content="website">
@@ -35,6 +44,28 @@
     <!-- Data first, then main script -->
     <script src="data.js"></script>
     <script src="script.js" defer></script>
+
+    <!-- JSON-LD Structured Data for SEO and LLMs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Cigar Nexus",
+      "url": "https://ameilius.github.io/cigars/",
+      "description": "An interactive force-directed graph visualizing relationships between cigar brands, factories, families, and corporate owners in the premium cigar industry.",
+      "applicationCategory": "ReferenceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Cigar Nexus"
+      }
+    }
+    </script>
 </head>
 <body class="bg-[#f8f5f0] text-gray-800">
     <!-- Header -->
