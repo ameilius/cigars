@@ -135,7 +135,12 @@
                 // West Tampa Tobacco Co. (Rick Rodriguez)
                 { id: "rickrodriguez", name: "Rick Rodriguez", type: "person", group: "family", country: "usa" },
                 { id: "westtampa", name: "West Tampa Tobacco Co.", type: "brand", group: "family", country: "usa", productLines: ["White", "Black", "Red", "Attic Series", "Circle of Life", "Dark Time"] },
-                { id: "garmendia", name: "Garmendia Cigars (Estelí)", type: "factory", group: "family", country: "nicaragua" }
+                { id: "garmendia", name: "Garmendia Cigars (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Bella Dama Cigars (Chantel Leavitt - independent boutique brand)
+                { id: "chantelleavitt", name: "Chantel Leavitt", type: "person", group: "family", country: "usa" },
+                { id: "belladamacigars", name: "Bella Dama Cigars", type: "brand", group: "family", country: "usa", productLines: ["The King", "Ace", "The Queen", "Flush", "Full House", "All-In", "Dealer's Choice"] },
+                { id: "tabacaleraaragon", name: "Tabacalera Aragon (Estelí)", type: "factory", group: "family", country: "nicaragua" }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -297,7 +302,11 @@
                 { source: "rickrodriguez", target: "generalcigar", type: "longtime blender (CAO)" },
                 { source: "rickrodriguez", target: "cao", type: "longtime blender and ambassador" },
                 { source: "westtampa", target: "garmendia", type: "manufactured at" },
-                { source: "westtampa", target: "nacsa", type: "some production at" }
+                { source: "westtampa", target: "nacsa", type: "some production at" },
+
+                // Bella Dama Cigars (Chantel Leavitt version)
+                { source: "belladamacigars", target: "chantelleavitt", type: "founded by" },
+                { source: "belladamacigars", target: "tabacaleraaragon", type: "manufactured at" }
             ]
         };
 

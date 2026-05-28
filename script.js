@@ -146,6 +146,11 @@ const descriptions = {
   "rickrodriguez": "Rick Rodriguez co-founded West Tampa Tobacco Co. in 2022 after nearly 30 years as a blender and ambassador for CAO at General Cigar. His family has deep roots in Tampa's historic West Tampa cigar district.",
   "garmendia": "Garmendia Cigars is a respected factory in Estelí, Nicaragua. It produces the majority of West Tampa Tobacco Co. cigars as well as other boutique brands.",
 
+  // Bella Dama Cigars (Chantel Leavitt - independent)
+  "belladamacigars": "Bella Dama Cigars is an independent, woman-owned boutique brand founded by Chantel Leavitt. It features a strong poker theme honoring her father and is currently produced at Tabacalera Aragon in Estelí.",
+  "chantelleavitt": "Chantel Leavitt is the founder of Bella Dama Cigars. She launched the brand as a tribute to her late father, a professional poker player, with a distinctive poker/card room theme across the lineup.",
+  "tabacaleraaragon": "Tabacalera Aragon is a factory in Estelí, Nicaragua. It currently produces Bella Dama Cigars along with other boutique brands.",
+
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
 };
