@@ -224,13 +224,31 @@ function initializeApp() {
   const allChip = document.querySelector('.filter-chip');
   if (allChip) allChip.classList.add('filter-active');
 
-  // Setup search
+  // Setup search + clear button
   const searchInput = document.getElementById('search');
+  const clearBtn = document.getElementById('search-clear');
+
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       searchTerm = e.target.value.trim().toLowerCase();
       applyFiltersAndSearch();
+
+      // Show/hide clear button
+      if (clearBtn) {
+        clearBtn.classList.toggle('hidden', !searchInput.value);
+      }
     });
+
+    // Clear button functionality
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchTerm = '';
+        clearBtn.classList.add('hidden');
+        applyFiltersAndSearch();
+        searchInput.focus();
+      });
+    }
   }
 
   // Initialize the graph
