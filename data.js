@@ -178,7 +178,12 @@
                 { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"] },
 
                 // Mayflower Cigars (Michael Knowles, made at Oliva)
-                { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"] }
+                { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"] },
+
+                // Karen Berger Cigars (continues Don Kiki legacy, vertically integrated in Estelí)
+                { id: "karenberger", name: "Karen Berger Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Don Kiki Platinum", "K by Karen Berger Habano", "K by Karen Berger Maduro", "Ixtelli", "Halftime"] },
+                { id: "karenbergerperson", name: "Karen Berger", type: "person", group: "family", country: "nicaragua" },
+                { id: "tabacaleraesteli", name: "Tabacalera Estelí", type: "factory", group: "family", country: "nicaragua" }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -390,7 +395,11 @@
 
                 // Mayflower Cigars (Michael Knowles, Oliva factory)
                 { source: "mayflower", target: "oliva", type: "produced at Oliva factory" },
-                { source: "mayflower", target: "tabolisa", type: "manufactured at" }
+                { source: "mayflower", target: "tabolisa", type: "manufactured at" },
+
+                // Karen Berger Cigars connections
+                { source: "karenberger", target: "karenbergerperson", type: "founded and led by" },
+                { source: "karenberger", target: "tabacaleraesteli", type: "manufactured at (own factory)" }
             ]
         };
 

@@ -169,6 +169,11 @@ const descriptions = {
   "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic, still family-owned by the León family since 1903.",
   "mayflower": "Mayflower Cigars was launched by Michael Knowles and is produced at the Oliva factory in Estelí, Nicaragua.",
 
+  // Karen Berger Cigars
+  "karenberger": "Karen Berger Cigars is a vertically integrated Nicaraguan brand led by Karen Berger, continuing the legacy of Don Kiki Cigars. Known for quality Nicaraguan puros from their own Estelí farms and factory.",
+  "karenbergerperson": "Karen Berger is the owner and leader of Karen Berger Cigars. She began rolling cigars in Estelí at 18 and has built a family operation honoring her late husband Enrique 'Don Kiki' Berger.",
+  "tabacaleraesteli": "Tabacalera Estelí is the vertically integrated factory and tobacco operation of Karen Berger Cigars in Estelí, Nicaragua. They grow, ferment, and roll many of their own cigars on-site.",
+
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
 };
