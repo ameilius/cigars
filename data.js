@@ -1,11 +1,11 @@
 ﻿const baseGraphData = {
             nodes: [
                 // === Existing core data (preserved & lightly verified) ===
-                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua" },
+                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"] },
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
                 { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua" },
 
-                { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa" },
+                { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["601", "Murciélago", "Laranja", "Espinosa Habano", "Knuckle Sandwich"] },
                 { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa" },
                 { id: "guyfieri", name: "Guy Fieri", type: "person", group: "family", country: "usa" },
                 { id: "lazona", name: "La Zona (Estelí)", type: "factory", group: "family", country: "nicaragua" },
@@ -19,10 +19,10 @@
                 { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua" },
                 { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua" },
 
-                { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua" },
+                { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua", productLines: ["San Lotano", "New World", "Enclave", "Bellagio", "Last Call"] },
                 { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
-                { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua" },
+                { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua", productLines: ["1964 Anniversary", "1926 Serie", "3000", "4000", "5000", "6000"] },
                 { id: "joseopadron", name: "José Orlando Padrón", type: "person", group: "family", country: "usa" },
                 { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa" },
                 { id: "orlandopadron", name: "Orlando Padrón", type: "person", group: "family", country: "usa" },
@@ -30,13 +30,13 @@
                 { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua" },
                 { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua" },
 
-                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican" },
-                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican" },
-                { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican" },
+                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican", productLines: ["Grand Cru", "Millennium", "Nicaragua", "Winston Churchill", "Late Hour"] },
+                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Heritage", "Syncro", "XO", "Proper"] },
+                { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Vintage", "Escudo", "Naturale"] },
                 { id: "tabadom", name: "Tabadom (Villa González)", type: "factory", group: "corporate", country: "dominican" },
                 { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland" },
 
-                { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican" },
+                { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican", productLines: ["OpusX", "Hemingway", "Don Carlos", "Flor Fina 8-5-8", "Añejo"] },
                 { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
                 { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican" },
 
@@ -48,33 +48,33 @@
                 { id: "generalcigar", name: "General Cigar Co.", type: "company", group: "corporate", country: "usa" },
                 { id: "forged", name: "Forged Cigar Co.", type: "company", group: "corporate", country: "usa" },
 
-                { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican" },
-                { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua" },
+                { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican", productLines: ["Cafe", "Vintage", "Cru Royale", "Inspirado", "Estate Reserve"] },
+                { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Brazilia", "Ecuador", "Flathead", "MX2", "Conquest"] },
                 { id: "cohiba_nc", name: "Cohiba (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
                 { id: "partagas_nc", name: "Partagas (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
-                { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
+                { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Punch", "Punch Signature", "Punch Deluxe"] },
 
                 // === Major expansions (research-backed, 2025-2026 accurate) ===
 
                 // Plasencia family (major grower + manufacturer, family-controlled with STG minority stake)
-                { id: "plasencia", name: "Plasencia Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "plasencia", name: "Plasencia Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Alma Fuerte", "Alma del Campo", "Alma del Fuego", "Cosecha 146", "1865"] },
                 { id: "nestorplasencia", name: "Nestor Plasencia Sr.", type: "person", group: "family", country: "nicaragua" },
                 { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua" },
                 { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Rocky Patel (vertically integrated, owns Tavicusa, strong Plasencia partnership)
-                { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa" },
+                { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["Decade", "Olde World", "Vintage 1990", "The Edge", "Sun Grown"] },
                 { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa" },
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Drew Estate (owned by Swisher International — important correction)
-                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa" },
+                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Herrera Estelí", "Acid", "MUWAT"] },
                 { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa" },
                 { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa" },
                 { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // CLE Cigar / Eiroa family (Honduras vertical integration)
-                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa" },
+                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa", productLines: ["Corojo", "Connecticut", "Cuarenta", "Plus", "Eiroa"] },
                 { id: "christianeiroa", name: "Christian Eiroa", type: "person", group: "family", country: "honduras" },
                 { id: "eiroafamily", name: "Eiroa Family (Aladino)", type: "company", group: "family", country: "honduras" },
                 { id: "eiroadanli", name: "CLE Factory (Danlí, Honduras)", type: "factory", group: "family", country: "honduras" },
@@ -85,50 +85,50 @@
                 { id: "tabsa", name: "TABSA (Aganorsa Factory, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Foundation Cigar (Nick Melillo, contract production at top factories)
-                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa" },
+                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa", productLines: ["The Tabernacle", "Olmec", "El Güegüense", "Guardian of the Farm"] },
                 { id: "nickmelillo", name: "Nick Melillo", type: "person", group: "family", country: "usa" },
 
                 // Additional important STG brands (post-acquisitions)
-                { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras" },
+                { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras", productLines: ["Prensado", "Tempus", "Cigar of the Year", "Black Market", "Magic Toast"] },
                 { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican" },
 
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
-                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"] },
                 { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
                 { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // === New major additions this round ===
 
                 // Oliva (Vandermarliere family - major vertically integrated player)
-                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua" },
+                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "V Melanio", "Serie G"] },
                 { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium" },
                 { id: "tabolisa", name: "Tabolisa (Oliva Estelí)", type: "factory", group: "corporate", country: "nicaragua" },
 
                 // Perdomo (fully family-owned major with huge vertical operation)
-                { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Reserve 10th Anniversary", "Lot 23", "Champagne", "Patrón", "20th Anniversary"] },
                 { id: "nickperdomo", name: "Nick Perdomo Jr.", type: "person", group: "family", country: "usa" },
                 { id: "perdomofactory", name: "Tabacalera Perdomo (El Monstro, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Joya de Nicaragua (oldest premium factory in Nicaragua, contract manufacturer)
-                { id: "joya", name: "Joya de Nicaragua", type: "brand", group: "family", country: "nicaragua" },
+                { id: "joya", name: "Joya de Nicaragua", type: "brand", group: "family", country: "nicaragua", productLines: ["Antaño 1970", "Clásico", "Cinco Décadas", "Joya Red", "Joya Silver"] },
                 { id: "joyafactory", name: "Joya de Nicaragua Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "alejandromartinez", name: "Alejandro Martínez Cuenca", type: "person", group: "family", country: "nicaragua" },
 
                 // Dunbarton Tobacco & Trust (Steve Saka)
-                { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa" },
+                { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa", productLines: ["Sobremesa", "Mi Querida", "Muestra de Saka", "Sin Compromiso", "Todos Los Días"] },
                 { id: "stevesaka", name: "Steve Saka", type: "person", group: "family", country: "usa" },
                 { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua" },
 
                 // Illusione (Dion Giolito)
-                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa", productLines: ["Original Document", "Singularé", "88", "CG4", "Epernay"] },
                 { id: "diongiolito", name: "Dion Giolito", type: "person", group: "family", country: "usa" },
 
                 // Viaje (Andre Farkas)
-                { id: "viaje", name: "Viaje Cigars", type: "brand", group: "family", country: "usa" },
+                { id: "viaje", name: "Viaje Cigars", type: "brand", group: "family", country: "usa", productLines: ["Exclusivo", "Double Ligero", "Placeres", "Oro", "Summerfest"] },
                 { id: "andrefarkas", name: "Andre Farkas", type: "person", group: "family", country: "usa" },
 
                 // HVC (Reinier Lorenzo - now with own factory)
-                { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua" },
+                { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Hot Cake", "Black Friday", "Edición Limitada", "Pan Caliente"] },
                 { id: "reinierlorenzo", name: "Reinier Lorenzo", type: "person", group: "family", country: "nicaragua" },
                 { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" }
             ],
