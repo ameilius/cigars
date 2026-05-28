@@ -141,6 +141,12 @@ const descriptions = {
   "alecbradley": "Alec Bradley is a well-known brand acquired by STG in 2023. It offers a wide range of cigars with a reputation for value and consistent quality.",
   "room101": "Room101 is a bold, irreverent brand with a strong cult following. It has been associated with both independent and larger corporate ownership over the years.",
 
+  // Camacho
+  "camacho": "Camacho is a bold Honduran brand with deep roots under the Eiroa family before being acquired by Davidoff in 2008. Known for powerful Corojo cigars and strong, full-flavored profiles.",
+
+  // Zino
+  "zino": "Zino is a Davidoff Group brand created by Zino Davidoff himself. It offers approachable, well-made cigars with strong value, primarily produced in Honduras.",
+
   // West Tampa Tobacco Co.
   "westtampa": "West Tampa Tobacco Co. is a Tampa-based boutique brand founded in 2022 by Rick Rodriguez (former long-time CAO blender at General Cigar) and Gus Martinez. Most production is at Garmendia in Estelí.",
   "rickrodriguez": "Rick Rodriguez co-founded West Tampa Tobacco Co. in 2022 after nearly 30 years as a blender and ambassador for CAO at General Cigar. His family has deep roots in Tampa's historic West Tampa cigar district.",

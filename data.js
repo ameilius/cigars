@@ -140,7 +140,13 @@
                 // Bella Dama Cigars (Chantel Leavitt - independent boutique brand)
                 { id: "chantelleavitt", name: "Chantel Leavitt", type: "person", group: "family", country: "usa" },
                 { id: "belladamacigars", name: "Bella Dama Cigars", type: "brand", group: "family", country: "usa", productLines: ["The King", "Ace", "The Queen", "Flush", "Full House", "All-In", "Dealer's Choice"] },
-                { id: "tabacaleraaragon", name: "Tabacalera Aragon (Estelí)", type: "factory", group: "family", country: "nicaragua" }
+                { id: "tabacaleraaragon", name: "Tabacalera Aragon (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+
+                // Camacho (Eiroa family historically, now Davidoff)
+                { id: "camacho", name: "Camacho", type: "brand", group: "corporate", country: "honduras", productLines: ["Corojo", "Connecticut", "Triple Maduro", "Broadleaf", "Ecuador"] },
+
+                // Zino (Davidoff group)
+                { id: "zino", name: "Zino", type: "brand", group: "corporate", country: "honduras", productLines: ["Zino Platinum", "Zino Nicaragua", "Zino Honduras"] }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -306,7 +312,17 @@
 
                 // Bella Dama Cigars (Chantel Leavitt version)
                 { source: "belladamacigars", target: "chantelleavitt", type: "founded by" },
-                { source: "belladamacigars", target: "tabacaleraaragon", type: "manufactured at" }
+                { source: "belladamacigars", target: "tabacaleraaragon", type: "manufactured at" },
+
+                // Camacho connections
+                { source: "camacho", target: "davidoff", type: "owned by (Davidoff group)" },
+                { source: "camacho", target: "oettinger", type: "owned by (Oettinger Davidoff)" },
+                { source: "camacho", target: "christianeiroa", type: "historical ownership (Eiroa family)" },
+                { source: "camacho", target: "cle", type: "historical roots (Christian Eiroa)" },
+
+                // Zino connections
+                { source: "zino", target: "davidoff", type: "owned by (Davidoff group)" },
+                { source: "zino", target: "oettinger", type: "owned by (Oettinger Davidoff)" }
             ]
         };
 
