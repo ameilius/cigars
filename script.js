@@ -157,6 +157,18 @@ const descriptions = {
   "chantelleavitt": "Chantel Leavitt is the founder of Bella Dama Cigars. She launched the brand as a tribute to her late father, a professional poker player, with a distinctive poker/card room theme across the lineup.",
   "tabacaleraaragon": "Tabacalera Aragon is a factory in Estelí, Nicaragua. It currently produces Bella Dama Cigars along with other boutique brands.",
 
+  // New brands added
+  "laaromadecuba": "La Aroma de Cuba is owned by Ashton (Levin family) and produced by the Garcia family at My Father in Estelí. Known for excellent value and consistent high ratings.",
+  "sancristobal": "San Cristobal is owned by Ashton and made by the Garcia family at My Father. Strong family ties to Pete Johnson (Tatuaje) through Janny Garcia.",
+  "ashton": "Ashton is a long-standing premium brand owned by the Levin family and produced at the Arturo Fuente factory in the Dominican Republic.",
+  "lure": "Lure Cigars is an independent boutique brand founded by Lou Cross III with a fishing/outdoors theme. Produced in Estelí, Nicaragua.",
+  "definition": "Definition Cigars is a boutique brand founded by Jamond Hackley emphasizing craftsmanship and balance. Made at the Luciano factory in Estelí.",
+  "lagloriacubana": "La Gloria Cubana (non-Cuban) is owned by General Cigar / STG. Famous for powerful Serie R and other full-flavored Dominican cigars.",
+  "domain": "Domain Cigars is a vertically integrated boutique brand founded by Esteban Disla and Daniel Lance with their own factory in Estelí.",
+  "elseptimo": "El Septimo is a luxury brand owned by Zaya Younan, known for long-aged, high-elevation Costa Rican tobacco and artistic collections.",
+  "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic, still family-owned by the León family since 1903.",
+  "mayflower": "Mayflower Cigars was launched by Michael Knowles and is produced at the Oliva factory in Estelí, Nicaragua.",
+
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
 };

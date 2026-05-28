@@ -146,7 +146,39 @@
                 { id: "camacho", name: "Camacho", type: "brand", group: "corporate", country: "honduras", productLines: ["Corojo", "Connecticut", "Triple Maduro", "Broadleaf", "Ecuador"] },
 
                 // Zino (Davidoff group)
-                { id: "zino", name: "Zino", type: "brand", group: "corporate", country: "honduras", productLines: ["Zino Platinum", "Zino Nicaragua", "Zino Honduras"] }
+                { id: "zino", name: "Zino", type: "brand", group: "corporate", country: "honduras", productLines: ["Zino Platinum", "Zino Nicaragua", "Zino Honduras"] },
+
+                // === New brands added per request ===
+
+                // La Aroma de Cuba (Ashton / Levin family, made by Garcia/My Father)
+                { id: "laaromadecuba", name: "La Aroma de Cuba", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Mi Amor", "Edición Especial", "Pasión", "Noblesse", "Connecticut"] },
+
+                // San Cristobal (Ashton / Levin family, made by Garcia/My Father)
+                { id: "sancristobal", name: "San Cristobal", type: "brand", group: "family", country: "nicaragua", productLines: ["Clasico", "Revelation", "Quintessence", "La Fuerza", "Paradiso"] },
+
+                // Ashton Cigars (Levin family, made at Arturo Fuente)
+                { id: "ashton", name: "Ashton", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Cabinet Selection", "Aged Maduro", "VSG", "ESG", "Symmetry"] },
+
+                // Lure Cigars (Lou Cross III, made at Tabacalera Pages / Valacari)
+                { id: "lure", name: "Lure Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Corojo", "Habano", "Oscuro", "Maduro", "All-In"] },
+
+                // Definition Cigars (Jamond Hackley, made at Luciano)
+                { id: "definition", name: "Definition Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["GEN 413", "919 Series", "Noir", "Conception", "The Pig"] },
+
+                // La Gloria Cubana (General Cigar / STG)
+                { id: "lagloriacubana", name: "La Gloria Cubana", type: "brand", group: "corporate", country: "dominican", productLines: ["Serie R", "Original", "Intención", "Los Gloriosos", "100 Años"] },
+
+                // Domain Cigars (Esteban Disla & Daniel Lance, own factory)
+                { id: "domain", name: "Domain Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Neutron", "Negentropy", "Entropy"] },
+
+                // El Septimo (Zaya Younan, Costa Rica)
+                { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh"] },
+
+                // La Aurora (León family, oldest DR manufacturer)
+                { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"] },
+
+                // Mayflower Cigars (Michael Knowles, made at Oliva)
+                { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"] }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -322,7 +354,43 @@
 
                 // Zino connections
                 { source: "zino", target: "davidoff", type: "owned by (Davidoff group)" },
-                { source: "zino", target: "oettinger", type: "owned by (Oettinger Davidoff)" }
+                { source: "zino", target: "oettinger", type: "owned by (Oettinger Davidoff)" },
+
+                // La Aroma de Cuba (Ashton owned, Garcia/My Father made)
+                { source: "laaromadecuba", target: "myfather", type: "produced at My Father factory" },
+                { source: "laaromadecuba", target: "ashton", type: "owned by (Levin family / Ashton)" },
+
+                // San Cristobal (Ashton owned, Garcia/My Father made, Pete Johnson family tie)
+                { source: "sancristobal", target: "myfather", type: "produced at My Father factory" },
+                { source: "sancristobal", target: "ashton", type: "owned by (Levin family / Ashton)" },
+                { source: "sancristobal", target: "tatuaje", type: "family connection (Pete Johnson & Janny Garcia)" },
+
+                // Ashton (Levin family, produced at Fuente)
+                { source: "ashton", target: "arturo", type: "produced at Arturo Fuente factory" },
+                { source: "ashton", target: "tabafuente", type: "manufactured at" },
+
+                // Lure Cigars (Lou Cross III)
+                { source: "lure", target: "esteli", type: "produced in Estelí" },  // loose ecosystem link if node exists
+
+                // Definition Cigars (Jamond Hackley, Luciano factory)
+                { source: "definition", target: "esteli", type: "produced in Estelí" },
+
+                // La Gloria Cubana (General Cigar / STG)
+                { source: "lagloriacubana", target: "generalcigar", type: "owned by (General Cigar / STG)" },
+                { source: "lagloriacubana", target: "stg", type: "owned by" },
+
+                // Domain Cigars (Disla & Lance, own factory)
+                { source: "domain", target: "esteli", type: "produced in Estelí" },
+
+                // El Septimo (Zaya Younan, Costa Rica)
+                { source: "elseptimo", target: "esteli", type: "some production ties" }, // loose
+
+                // La Aurora (León family, DR)
+                { source: "laaurora", target: "dominican", type: "produced in Dominican Republic" }, // loose
+
+                // Mayflower Cigars (Michael Knowles, Oliva factory)
+                { source: "mayflower", target: "oliva", type: "produced at Oliva factory" },
+                { source: "mayflower", target: "tabolisa", type: "manufactured at" }
             ]
         };
 
