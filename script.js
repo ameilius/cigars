@@ -304,19 +304,6 @@ function initializeApp() {
     }
   });
 
-  // Make floating filters button scroll to filters on mobile
-  const fab = document.getElementById('floating-filters-btn');
-  if (fab) {
-    fab.addEventListener('click', (e) => {
-      e.preventDefault();
-      const chips = document.getElementById('filter-chips');
-      if (chips) {
-        // Ensure filters are visible before scrolling
-        chips.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, { passive: false });
-  }
-
   // Initial render of any saved state
   console.log('Cigar Nexus initialized. Nodes:', graphData.nodes.length, 'Links:', graphData.links.length);
 }
