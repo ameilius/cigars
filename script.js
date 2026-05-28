@@ -235,7 +235,11 @@ function initializeApp() {
 
       // Show/hide clear button
       if (clearBtn) {
-        clearBtn.classList.toggle('hidden', !searchInput.value);
+        if (searchInput.value.length > 0) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
       }
     });
 
