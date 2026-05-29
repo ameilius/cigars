@@ -816,17 +816,23 @@ function showDrawer(node) {
 
   let connHTML = '';
   if (connections.length === 0) {
-    connHTML = '<div class="text-xs text-[#8b6f5c]">No direct connections shown with current filters.</div>';
+    connHTML = '<div class="text-xs text-[#8b6f5c] italic">No direct connections shown with current filters.</div>';
   } else {
     connections.slice(0, 12).forEach(l => {
       const otherId = (l.source.id || l.source) === node.id ? (l.target.id || l.target) : (l.source.id || l.source);
       const other = graphData.nodes.find(n => n.id === otherId);
       const otherName = other ? other.name : otherId;
-      connHTML += `<div class="text-xs px-2.5 py-1 rounded-xl bg-white/70 border border-[#d4c4a8] flex items-center gap-2">
-        <span class="font-medium">${l.type || 'related'}</span> 
-        <span class="text-[#8b6f5c]">→</span> 
-        <span class="cursor-pointer hover:underline" onclick="showDrawerFromId('${otherId}')">${otherName}</span>
-      </div>`;
+      const relType = l.type || 'related';
+
+      connHTML += `
+        <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#d4c4a8] text-xs">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="connection-type font-medium text-[10px] px-1.5 py-0.5 rounded bg-[#f4e9d8] text-[#8b6f5c]">${relType}</span>
+            <span class="text-[#c5a26f] text-xs">→</span>
+          </div>
+          <span class="connection-name font-medium text-[#3f2a2a] hover:text-[#5c2e2e] cursor-pointer leading-snug" 
+                title="${otherName}" onclick="showDrawerFromId('${otherId}')">${otherName}</span>
+        </div>`;
     });
   }
 
