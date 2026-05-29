@@ -109,6 +109,21 @@
 
     <div class="max-w-screen-xl mx-auto px-6 pt-6">
         
+        <!-- Filters (moved above graph for prominence + mobile friendly) -->
+        <div class="mb-3 sm:mb-4">
+            <div class="text-[10px] font-semibold tracking-[0.6px] text-[#8b6f5c] mb-1.5 px-0.5">FILTER THE MAP</div>
+            <div class="flex flex-wrap gap-2" id="filter-chips">
+                <div data-key="all" onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">All <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="family" onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Family / Independent <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="corporate" onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Corporate / Group <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="nicaragua" onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Nicaragua <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="dominican" onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Dominican Republic <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="honduras" onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Honduras <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="boutique" onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Boutique <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="factory" onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Factory / Grower <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+            </div>
+        </div>
+
         <!-- Graph + Desktop Drawer -->
         <div class="lg:flex lg:gap-6">
             
@@ -124,6 +139,11 @@
                         <button onclick="resetZoom()"
                                 class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
                             Reset
+                        </button>
+                        <button onclick="showHowTo()"
+                                class="px-3 py-2 rounded-2xl bg-[#c5a26f] text-[#5c2e2e] border border-[#b38c4f] shadow-sm text-xs font-semibold hover:bg-[#d4b17e] active:scale-[0.985] transition-all"
+                                title="Show guide &amp; example nodes">
+                            How to explore
                         </button>
                     </div>
                     <!-- Legend -->
@@ -178,18 +198,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Filters -->
-        <div class="flex flex-wrap gap-2 mt-5 mb-6" id="filter-chips">
-            <div onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">All</div>
-            <div onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Family / Independent</div>
-            <div onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Corporate / Group</div>
-            <div onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Nicaragua</div>
-            <div onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Dominican Republic</div>
-            <div onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Honduras</div>
-            <div onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Boutique</div>
-            <div onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium">Factory / Grower</div>
         </div>
 
         <!-- Mobile Bottom Sheet Drawer -->

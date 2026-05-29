@@ -139,6 +139,66 @@ body {
     animation: scaleIn 0.25s ease-out forwards;
 }
 
+/* Filter chips above graph - more prominent header + mobile polish */
+#filter-chips {
+    padding-bottom: 2px;
+}
+.filter-chip .chip-count {
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+/* Onboarding "Start Here" example pills (sidebar + mobile sheet) */
+.example-pill {
+    transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 2px rgba(92, 46, 46, 0.06);
+}
+.example-pill:active {
+    transform: translateY(1px);
+}
+.example-pill:hover {
+    border-color: #c5a26f;
+    background-color: #fdfaf3;
+}
+
+/* Mobile refinements for the prominent filters + larger example targets */
+@media (max-width: 640px) {
+    .filter-chip {
+        font-size: 12.5px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+    .filter-chip .chip-count {
+        font-size: 10px;
+    }
+    #filter-chips {
+        gap: 6px;
+    }
+    .example-pill {
+        font-size: 14.5px;
+        min-height: 58px;
+    }
+}
+
+/* Desktop sidebar example buttons */
+#drawer .example-pill {
+    min-height: 52px;
+}
+
+/* The new "How to explore" trigger button (top-left of graph) */
+#graph-container button[onclick*="showHowTo"] {
+    font-size: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+@media (max-width: 480px) {
+    #graph-container button[onclick*="showHowTo"] {
+        display: none; /* keep the area clean on tiny phones; users can still tap nodes */
+    }
+}
+
 @keyframes scaleIn {
     from { 
         transform: scale(0.95); 

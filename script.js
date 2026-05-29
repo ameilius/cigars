@@ -256,11 +256,18 @@ let graphWidth = 800, graphHeight = 620;
 function initializeApp() {
   mergeData();
 
+  // Populate filter chip counts (defensive)
+  try {
+    updateFilterChipCounts();
+  } catch (e) {
+    console.warn('Filter counts failed (non-fatal):', e);
+  }
+
   // Initial filter state
   activeFilters = new Set(['all']);
 
-  // Give the "All" chip its initial active visual state
-  const allChip = document.querySelector('.filter-chip');
+  // Give the "All" chip its initial active visual state (use data-key for robustness)
+  const allChip = document.querySelector('.filter-chip[data-key="all"]') || document.querySelector('.filter-chip');
   if (allChip) allChip.classList.add('filter-active');
 
   // Setup search + clear button
@@ -294,8 +301,12 @@ function initializeApp() {
     }
   }
 
-  // Initialize the graph
-  initializeGraph();
+  // Initialize the graph (wrapped so one error doesn't kill filters or drawer)
+  try {
+    initializeGraph();
+  } catch (e) {
+    console.error('initializeGraph threw:', e);
+  }
 
   // Keyboard escape closes drawer
   document.addEventListener('keydown', (e) => {
@@ -306,6 +317,31 @@ function initializeApp() {
 
   // Initial render of any saved state
   console.log('Cigar Nexus initialized. Nodes:', graphData.nodes.length, 'Links:', graphData.links.length);
+
+  // Show the "How to" guide reliably (independent of graph render success)
+  // Desktop: fills the sidebar
+  // Mobile: only on very first visit
+  setTimeout(() => {
+    try {
+      const drawerEl = document.getElementById('drawer');
+      const drawerInLayout = drawerEl && (drawerEl.offsetParent !== null || getComputedStyle(drawerEl).display !== 'none');
+
+      if (drawerInLayout) {
+        showDesktopHowTo();
+        console.log('[Cigar Nexus] Desktop how-to intro shown');
+      } else {
+        const seen = localStorage.getItem('cigarNexus_seenIntro') === 'true' ||
+                     sessionStorage.getItem('cigarNexus_seenIntro') === 'true';
+        if (!seen) {
+          setTimeout(() => {
+            if (window.innerWidth < 1024) showMobileHowTo();
+          }, 600);
+        }
+      }
+    } catch (e) {
+      console.warn('How-to intro scheduling error:', e);
+    }
+  }, 800);
 }
 
 // -----------------------------
@@ -320,7 +356,10 @@ function toggleFilter(key, element) {
     if (element) element.classList.add('filter-active');
   } else {
     activeFilters.delete('all');
-    const allChip = Array.from(document.querySelectorAll('.filter-chip')).find(c => c.textContent.trim().toLowerCase() === 'all');
+
+    // Robust lookup using data-key instead of fragile textContent (which now includes counts)
+    const allChip = Array.from(document.querySelectorAll('.filter-chip'))
+      .find(c => c.getAttribute('data-key') === 'all');
     if (allChip) allChip.classList.remove('filter-active');
 
     if (activeFilters.has(key)) {
@@ -345,78 +384,96 @@ function initializeGraph() {
   const container = document.getElementById('graph');
   if (!container) return;
 
-  // Clear any previous
-  container.innerHTML = '';
+  try {
+    // Clear any previous
+    container.innerHTML = '';
 
-  const rect = container.getBoundingClientRect();
-  graphWidth = rect.width || 800;
-  graphHeight = rect.height || 620;
+    const rect = container.getBoundingClientRect();
+    graphWidth = rect.width || 800;
+    graphHeight = rect.height || 620;
 
-  svg = d3.select('#graph')
-    .append('svg')
-    .attr('width', '100%')
-    .attr('height', '100%')
-    .attr('viewBox', `0 0 ${graphWidth} ${graphHeight}`)
-    .style('background', 'transparent');
+    svg = d3.select('#graph')
+      .append('svg')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', `0 0 ${graphWidth} ${graphHeight}`)
+      .style('background', 'transparent');
 
-  // Zoom layer
-  viewport = svg.append('g').attr('class', 'viewport');
+    // Zoom layer
+    viewport = svg.append('g').attr('class', 'viewport');
 
-  // Layers for links and nodes
-  const linkLayer = viewport.append('g').attr('class', 'links');
-  const nodeLayer = viewport.append('g').attr('class', 'nodes');
-  const labelLayer = viewport.append('g').attr('class', 'labels');
+    // Layers for links and nodes
+    const linkLayer = viewport.append('g').attr('class', 'links');
+    const nodeLayer = viewport.append('g').attr('class', 'nodes');
+    const labelLayer = viewport.append('g').attr('class', 'labels');
 
-  links = linkLayer.selectAll('line');
-  nodes = nodeLayer.selectAll('g');
-  labels = labelLayer.selectAll('text');
+    links = linkLayer.selectAll('line');
+    nodes = nodeLayer.selectAll('g');
+    labels = labelLayer.selectAll('text');
 
-  // Zoom behavior
-  zoomBehavior = d3.zoom()
-    .scaleExtent([0.25, 4])
-    .on('zoom', (event) => {
-      currentTransform = event.transform;
-      viewport.attr('transform', currentTransform);
-      updateLabelVisibility();
+    // Zoom behavior
+    zoomBehavior = d3.zoom()
+      .scaleExtent([0.25, 4])
+      .on('zoom', (event) => {
+        currentTransform = event.transform;
+        viewport.attr('transform', currentTransform);
+        updateLabelVisibility();
+      });
+
+    svg.call(zoomBehavior);
+
+    // Build simulation
+    simulation = d3.forceSimulation()
+      .force('link', d3.forceLink().id(d => d.id).distance(70).strength(0.85))
+      .force('charge', d3.forceManyBody().strength(-310))
+      .force('collide', d3.forceCollide().radius(d => getNodeRadius(d) + 6).strength(0.85))
+      .force('x', d3.forceX(graphWidth / 2).strength(0.06))
+      .force('y', d3.forceY(graphHeight / 2).strength(0.06))
+      .force('center', d3.forceCenter(graphWidth / 2, graphHeight / 2));
+
+    // Initial render
+    updateGraph();
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      const newRect = container.getBoundingClientRect();
+      if (newRect.width > 50) {
+        graphWidth = newRect.width;
+        graphHeight = newRect.height || 620;
+        svg.attr('viewBox', `0 0 ${graphWidth} ${graphHeight}`);
+        simulation.force('center', d3.forceCenter(graphWidth / 2, graphHeight / 2));
+        simulation.alpha(0.3).restart();
+      }
     });
 
-  svg.call(zoomBehavior);
+    // Initial zoom to fit after first layout
+    setTimeout(() => {
+      zoomToFit(true);
+    }, 650);
 
-  // Build simulation
-  // Tweaked for better clustering of related nodes (corporate ownership, factory relationships, etc.)
-  simulation = d3.forceSimulation()
-    .force('link', d3.forceLink().id(d => d.id).distance(70).strength(0.85))
-    .force('charge', d3.forceManyBody().strength(-310))
-    .force('collide', d3.forceCollide().radius(d => getNodeRadius(d) + 6).strength(0.85))
-    .force('x', d3.forceX(graphWidth / 2).strength(0.06))
-    .force('y', d3.forceY(graphHeight / 2).strength(0.06))
-    .force('center', d3.forceCenter(graphWidth / 2, graphHeight / 2));
-
-  // Initial render
-  updateGraph();
-
-  // Handle resize
-  window.addEventListener('resize', () => {
-    const newRect = container.getBoundingClientRect();
-    if (newRect.width > 50) {
-      graphWidth = newRect.width;
-      graphHeight = newRect.height || 620;
-      svg.attr('viewBox', `0 0 ${graphWidth} ${graphHeight}`);
-      simulation.force('center', d3.forceCenter(graphWidth / 2, graphHeight / 2));
-      simulation.alpha(0.3).restart();
-    }
-  });
-
-  // Initial zoom to fit after first layout
-  setTimeout(() => {
-    zoomToFit(true);
-  }, 650);
+  } catch (err) {
+    console.error('Failed to initialize graph (nodes may not appear):', err);
+    // Try a minimal fallback render so the page isn't completely dead
+    try {
+      const fallback = document.getElementById('graph');
+      if (fallback) fallback.innerHTML = '<div style="padding:20px;color:#8b6f5c;font-size:13px;">Graph failed to load. Try refreshing the page (Ctrl+Shift+R).</div>';
+    } catch (_) {}
+  }
 }
 
 function updateGraph() {
-  if (!viewport || !simulation) return;
+  if (!viewport || !simulation) {
+    console.warn('updateGraph called before graph was initialized');
+    return;
+  }
 
-  const filteredData = getFilteredData();
+  let filteredData;
+  try {
+    filteredData = getFilteredData();
+  } catch (e) {
+    console.error('getFilteredData failed:', e);
+    filteredData = { nodes: graphData.nodes || [], links: graphData.links || [] };
+  }
 
   // Links
   const linkSel = viewport.select('.links').selectAll('line')
@@ -572,6 +629,38 @@ function applyFiltersAndSearch() {
   updateGraph();
 }
 
+// Update the counts shown inside each filter chip (full dataset totals)
+function updateFilterChipCounts() {
+  const chips = document.querySelectorAll('#filter-chips [data-key]');
+  const nodes = graphData.nodes || [];
+  if (!chips.length || !nodes.length) return;
+
+  chips.forEach(chip => {
+    const key = chip.getAttribute('data-key');
+    const countSpan = chip.querySelector('.chip-count');
+    if (!countSpan) return;
+
+    let count = nodes.length;
+    if (key === 'family') {
+      count = nodes.filter(n => n.group === 'family').length;
+    } else if (key === 'corporate') {
+      count = nodes.filter(n => n.group === 'corporate').length;
+    } else if (key === 'nicaragua') {
+      count = nodes.filter(n => (n.country || '').toLowerCase().includes('nicaragua')).length;
+    } else if (key === 'dominican') {
+      count = nodes.filter(n => (n.country || '').toLowerCase().includes('dominican')).length;
+    } else if (key === 'honduras') {
+      count = nodes.filter(n => (n.country || '').toLowerCase().includes('honduras')).length;
+    } else if (key === 'boutique') {
+      count = nodes.filter(n => n.type === 'brand' && n.group === 'family').length;
+    } else if (key === 'factory') {
+      count = nodes.filter(n => n.type === 'factory' || isFactoryNode(n)).length;
+    }
+    // 'all' keeps total
+    countSpan.textContent = `(${count})`;
+  });
+}
+
 // -----------------------------
 // Drag handlers
 // -----------------------------
@@ -620,6 +709,37 @@ function resetZoom() {
   svg.transition().duration(550).call(zoomBehavior.transform, d3.zoomIdentity);
 }
 
+// Smoothly zoom + center on a specific node (used by the "Start Here" examples)
+function zoomToNode(targetNode) {
+  if (!svg || !viewport || !targetNode || !simulation) {
+    zoomToFit();
+    return;
+  }
+
+  // Find the live datum (has current x/y after forces)
+  let live = null;
+  viewport.selectAll('.node-group').each(function(d) {
+    if (d.id === targetNode.id) live = d;
+  });
+
+  // Fallback to the node object itself if simulation hasn't attached coords yet
+  const d = live || targetNode;
+
+  if (typeof d.x !== 'number' || typeof d.y !== 'number') {
+    // Not positioned yet — just zoom to fit and open
+    zoomToFit();
+    return;
+  }
+
+  const scale = 1.9;
+  const tx = graphWidth / 2 - scale * d.x;
+  const ty = graphHeight / 2 - scale * d.y;
+
+  svg.transition()
+    .duration(620)
+    .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
 // -----------------------------
 // Drawer (Desktop + Mobile)
 // -----------------------------
@@ -629,6 +749,32 @@ function showDrawer(node) {
   currentDrawerNode = node;
 
   const isMobile = window.innerWidth < 1024;
+
+  // Restore normal section labels + visibility if we were previously showing the intro
+  const connSection = document.querySelector('#drawer-connections')?.parentElement;
+  let connLabel = connSection ? connSection.querySelector('.text-xs.font-semibold') : null;
+  if (!connLabel && connSection) {
+    connLabel = Array.from(connSection.querySelectorAll('div')).find(d => /start here|connections/i.test(d.textContent || ''));
+  }
+  if (connLabel && /start here/i.test(connLabel.textContent)) connLabel.textContent = 'Connections';
+
+  const mConnSection = document.querySelector('#drawer-connections-mobile')?.parentElement;
+  let mConnLabel = mConnSection ? mConnSection.querySelector('.text-xs.font-semibold') : null;
+  if (!mConnLabel && mConnSection) {
+    mConnLabel = Array.from(mConnSection.querySelectorAll('div')).find(d => /start here|connections/i.test(d.textContent || ''));
+  }
+  if (mConnLabel && /start here/i.test(mConnLabel.textContent)) mConnLabel.textContent = 'Connections';
+
+  // Reset intro sections without redeclaring variables that exist later in the function
+  const _pw = document.getElementById('drawer-product-lines-wrap');
+  if (_pw) _pw.style.display = '';
+  const _bw = document.getElementById('drawer-buy-wrap');
+  if (_bw) _bw.style.display = '';
+
+  const _mpw = document.getElementById('drawer-product-lines-wrap-mobile');
+  if (_mpw) _mpw.style.display = '';
+  const _mbw = document.getElementById('drawer-buy-wrap-mobile');
+  if (_mbw) _mbw.style.display = '';
 
   // Desktop drawer
   const drawer = document.getElementById('drawer');
@@ -777,14 +923,148 @@ function removeBackdrop() {
   if (backdrop) backdrop.style.display = 'none';
 }
 
-// -----------------------------
-// Public helpers for HTML onclick
-// -----------------------------
+// ============================================
+// Onboarding "How to" intro (replaces blank initial drawer state)
+// 4 clickable examples that zoom the map + open real drawer
+// Fully mobile-aware (larger touch targets in bottom sheet)
+// ============================================
+
+function selectExample(nodeId) {
+  const node = graphData.nodes.find(n => n.id === nodeId);
+  if (!node) return;
+
+  closeDrawer();
+
+  setTimeout(() => {
+    zoomToNode(node);
+    setTimeout(() => {
+      showDrawer(node);
+      try { sessionStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
+    }, 580);
+  }, 90);
+}
+
+function showDesktopHowTo() {
+  const drawer = document.getElementById('drawer');
+  if (!drawer) return;
+
+  // Make sure the sidebar container is visible even on borderline widths
+  const parent = drawer.parentElement;
+  if (parent && parent.classList.contains('hidden')) {
+    parent.classList.remove('hidden');
+    parent.style.display = 'block';
+  }
+
+  const titleEl = document.getElementById('drawer-title');
+  const metaEl = document.getElementById('drawer-meta');
+  const descEl = document.getElementById('drawer-description');
+  const connEl = document.getElementById('drawer-connections');
+  const connSection = connEl ? connEl.parentElement : null;
+
+  // More robust label finding (matches the actual "Connections" text)
+  let connLabel = connSection ? connSection.querySelector('.text-xs.font-semibold') : null;
+  if (!connLabel && connSection) {
+    connLabel = Array.from(connSection.querySelectorAll('div')).find(d => /connections/i.test(d.textContent || ''));
+  }
+
+  const productWrap = document.getElementById('drawer-product-lines-wrap');
+  const buyWrap = document.getElementById('drawer-buy-wrap');
+
+  if (!titleEl || !descEl) return;
+
+  titleEl.textContent = 'How to Explore';
+  if (metaEl) metaEl.innerHTML = `<span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">Interactive Map</span>`;
+
+  descEl.innerHTML = `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
+
+  if (connLabel) connLabel.textContent = 'START HERE — Tap an example';
+  if (connEl) {
+    connEl.innerHTML = `
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="selectExample('padron')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">Padrón<br><span class="text-[10px] text-[#8b6f5c] font-normal">Nicaragua family icon</span></button>
+        <button onclick="selectExample('warped')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">Warped<br><span class="text-[10px] text-[#8b6f5c] font-normal">Modern boutique</span></button>
+        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">Davidoff<br><span class="text-[10px] text-[#8b6f5c] font-normal">Luxury corporate</span></button>
+        <button onclick="selectExample('myfather')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">My Father<br><span class="text-[10px] text-[#8b6f5c] font-normal">Nicaragua powerhouse</span></button>
+      </div>
+      <div class="mt-3 text-[11px] text-[#8b6f5c]">Drag nodes • Scroll/pinch to zoom • Tap anything for details</div>
+    `;
+  }
+
+  if (productWrap) productWrap.style.display = 'none';
+  if (buyWrap) buyWrap.style.display = 'none';
+
+  drawer.style.display = 'flex';
+  drawer.classList.remove('hidden');
+}
+
+function showMobileHowTo() {
+  const mDrawer = document.getElementById('drawer-mobile');
+  if (!mDrawer) return;
+
+  const mTitle = document.getElementById('drawer-title-mobile');
+  const mMeta = document.getElementById('drawer-meta-mobile');
+  const mDesc = document.getElementById('drawer-description-mobile');
+  const mConn = document.getElementById('drawer-connections-mobile');
+  const connSection = mConn ? mConn.parentElement : null;
+  const connLabel = connSection ? connSection.querySelector('.text-xs.font-semibold') : null;
+  const mProductWrap = document.getElementById('drawer-product-lines-wrap-mobile');
+  const mBuyWrap = document.getElementById('drawer-buy-wrap-mobile');
+
+  if (!mTitle || !mDesc) return;
+
+  mTitle.textContent = 'How to Explore';
+  if (mMeta) mMeta.innerHTML = `<span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">Interactive Map</span>`;
+
+  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Filters above the map let you narrow by ownership, country, or boutique.`;
+
+  if (connLabel) connLabel.textContent = 'START HERE';
+  if (mConn) {
+    mConn.innerHTML = `
+      <div class="grid grid-cols-2 gap-2.5">
+        <button onclick="selectExample('padron')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">Padrón <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Nicaragua legend</span></button>
+        <button onclick="selectExample('warped')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">Warped <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Boutique favorite</span></button>
+        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">Davidoff <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Premium classic</span></button>
+        <button onclick="selectExample('myfather')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">My Father <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Nicaragua star</span></button>
+      </div>
+      <div class="mt-3 text-xs text-[#8b6f5c]">Pinch to zoom • Drag to pan • Tap nodes for full info</div>
+    `;
+  }
+
+  if (mProductWrap) mProductWrap.style.display = 'none';
+  if (mBuyWrap) mBuyWrap.style.display = 'none';
+
+  mDrawer.style.display = 'flex';
+  mDrawer.classList.remove('hidden');
+  createOrShowBackdrop();
+
+  // Remember so we don't auto-show the intro sheet on every mobile visit (but manual "How to" button can still trigger it)
+  try { localStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
+}
+
+// Public/manual trigger for the How To guide (used by the new "How to explore" button + reliable fallback)
+function showHowTo() {
+  const isMobile = window.innerWidth < 1024;
+  const drawerEl = document.getElementById('drawer');
+  const drawerVisible = drawerEl && (drawerEl.offsetParent !== null || getComputedStyle(drawerEl).display !== 'none');
+
+  if (!isMobile && drawerVisible) {
+    showDesktopHowTo();
+  } else {
+    // Mobile (or desktop sidebar not visible) → open the bottom sheet version
+    // Always allow manual trigger even if previously seen
+    showMobileHowTo();
+  }
+}
+
+// Early exposure so buttons work even if later code has issues
 window.zoomToFit = zoomToFit;
 window.resetZoom = resetZoom;
 window.toggleFilter = toggleFilter;
 window.closeDrawer = closeDrawer;
 window.showDrawerFromId = showDrawerFromId;
+window.zoomToNode = zoomToNode;
+window.showHowTo = showHowTo;
+window.selectExample = selectExample;
 
 // -----------------------------
 // Age Verification Gate
