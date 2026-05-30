@@ -1,7 +1,7 @@
 ﻿const baseGraphData = {
             nodes: [
                 // === Existing core data (preserved & lightly verified) ===
-                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"] },
+                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"], logo: "logos/myfather.png" },
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
                 { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua", productLines: ["Brown Label", "Black Label", "Havana VI", "Reserva", "Fausto", "Cojonú"], logo: "logos/tatuaje.png" },
 
@@ -85,7 +85,7 @@
                 { id: "tabsa", name: "TABSA (Aganorsa Factory, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Foundation Cigar (Nick Melillo, contract production at top factories)
-                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa", productLines: ["The Tabernacle", "Olmec", "El Güegüense", "Guardian of the Farm"] },
+                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa", productLines: ["The Tabernacle", "Olmec", "El Güegüense", "Guardian of the Farm"], logo: "logos/foundation.jpg" },
                 { id: "nickmelillo", name: "Nick Melillo", type: "person", group: "family", country: "usa" },
 
                 // Additional important STG brands (post-acquisitions)
@@ -120,7 +120,7 @@
                 { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua" },
 
                 // Illusione (Dion Giolito)
-                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa", productLines: ["Original Document", "Singularé", "88", "CG4", "Epernay"] },
+                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa", productLines: ["Original Document", "Singularé", "88", "CG4", "Epernay"], logo: "logos/illusione.png" },
                 { id: "diongiolito", name: "Dion Giolito", type: "person", group: "family", country: "usa" },
 
                 // Viaje (Andre Farkas)
@@ -128,7 +128,7 @@
                 { id: "andrefarkas", name: "Andre Farkas", type: "person", group: "family", country: "usa" },
 
                 // HVC (Reinier Lorenzo - now with own factory)
-                { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Hot Cake", "Black Friday", "Edición Limitada", "Pan Caliente"] },
+                { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Hot Cake", "Black Friday", "Edición Limitada", "Pan Caliente"], logo: "logos/hvc.webp" },
                 { id: "reinierlorenzo", name: "Reinier Lorenzo", type: "person", group: "family", country: "nicaragua" },
                 { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
