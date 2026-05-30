@@ -1,7 +1,7 @@
 ﻿const baseGraphData = {
             nodes: [
                 // === Existing core data (preserved & lightly verified) ===
-                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"], logo: "logos/my-father.png" },
+                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"] },
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
                 { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua", productLines: ["Brown Label", "Black Label", "Havana VI", "Reserva", "Fausto", "Cojonú"], logo: "logos/tatuaje.png" },
 
@@ -30,7 +30,7 @@
                 { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua" },
                 { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua" },
 
-                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican", productLines: ["Grand Cru", "Millennium", "Nicaragua", "Winston Churchill", "Late Hour"], logo: "logos/davidoff.png" },
+                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican", productLines: ["Grand Cru", "Millennium", "Nicaragua", "Winston Churchill", "Late Hour"] },
                 { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Heritage", "Syncro", "XO", "Proper"] },
                 { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Vintage", "Escudo", "Naturale"] },
                 { id: "tabadom", name: "Tabadom (Villa González)", type: "factory", group: "corporate", country: "dominican" },
@@ -68,7 +68,7 @@
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Drew Estate (owned by Swisher International — important correction)
-                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Herrera Estelí", "Acid", "MUWAT"], logo: "logos/drew-estate.png" },
+                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Herrera Estelí", "Acid", "MUWAT"] },
                 { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa" },
                 { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa" },
                 { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
@@ -93,14 +93,14 @@
                 { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican" },
 
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
-                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"], logo: "logos/warped.png" },
+                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"] },
                 { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
                 { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // === New major additions this round ===
 
                 // Oliva (Vandermarliere family - major vertically integrated player)
-                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "V Melanio", "Serie G"], logo: "logos/oliva.png" },
+                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "V Melanio", "Serie G"] },
                 { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium" },
                 { id: "tabolisa", name: "Tabolisa (Oliva Estelí)", type: "factory", group: "corporate", country: "nicaragua" },
 
