@@ -163,12 +163,20 @@
             <!-- Desktop Sidebar Drawer -->
             <div class="hidden lg:block lg:w-80 lg:shrink-0">
                 <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px] lg:sticky lg:top-4">
-                    <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
-                        <div class="min-w-0">
-                            <div id="drawer-title" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
-                            <div id="drawer-meta" class="mt-2.5 flex flex-wrap gap-2"></div>
+                    <div class="p-5 border-b border-[#d4c4a8]">
+                        <!-- Logo in its own prominent box (mimicking example) -->
+                        <div id="drawer-logo-container" class="hidden mb-4 bg-white rounded-2xl border border-[#d4c4a8] p-4 flex items-center justify-center">
+                            <img id="drawer-logo" class="max-h-[120px] max-w-full object-contain" alt="Brand logo">
                         </div>
-                        <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
+
+                        <div class="flex justify-between items-start gap-3">
+                            <div class="min-w-0 flex-1">
+                                <div id="drawer-title" class="font-semibold text-2xl leading-tight tracking-tight text-[#3f2a2a]"></div>
+                                <div id="drawer-meta" class="mt-1.5 flex flex-wrap gap-1.5"></div>
+                            </div>
+
+                            <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
+                        </div>
                     </div>
                     
                     <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
@@ -208,12 +216,20 @@
                 <div class="w-10 h-1 bg-[#d4c4a8] rounded-full"></div>
             </div>
 
-            <div class="p-5 border-b border-[#d4c4a8] flex justify-between items-start gap-3">
-                <div class="min-w-0">
-                    <div id="drawer-title-mobile" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
-                    <div id="drawer-meta-mobile" class="mt-2.5 flex flex-wrap gap-2"></div>
+            <div class="p-5 border-b border-[#d4c4a8]">
+                <!-- Logo in its own prominent box (mimicking example) -->
+                <div id="drawer-logo-container-mobile" class="hidden mb-3 bg-white rounded-2xl border border-[#d4c4a8] p-3 flex items-center justify-center">
+                    <img id="drawer-logo-mobile" class="max-h-[90px] max-w-full object-contain" alt="Brand logo">
                 </div>
-                <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors">×</button>
+
+                <div class="flex justify-between items-start gap-3">
+                    <div class="min-w-0 flex-1">
+                        <div id="drawer-title-mobile" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
+                        <div id="drawer-meta-mobile" class="mt-1 flex flex-wrap gap-1.5"></div>
+                    </div>
+
+                    <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
+                </div>
             </div>
             
             <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">

@@ -799,6 +799,34 @@ function showDrawer(node) {
   const mBuy = document.getElementById('drawer-buy-mobile');
 
   const name = node.name || node.id;
+
+  // Logo handling for drawer (desktop + mobile) - mimic example layout
+  const logoContainerDesktop = document.getElementById('drawer-logo-container');
+  const logoImgDesktop = document.getElementById('drawer-logo');
+  const logoContainerMobile = document.getElementById('drawer-logo-container-mobile');
+  const logoImgMobile = document.getElementById('drawer-logo-mobile');
+  const hasLogo = node.logo && node.logo.trim() !== '';
+
+  if (logoContainerDesktop && logoImgDesktop) {
+    if (hasLogo) {
+      logoImgDesktop.src = node.logo;
+      logoImgDesktop.alt = name + ' logo';
+      logoContainerDesktop.classList.remove('hidden');
+    } else {
+      logoContainerDesktop.classList.add('hidden');
+    }
+  }
+
+  if (logoContainerMobile && logoImgMobile) {
+    if (hasLogo) {
+      logoImgMobile.src = node.logo;
+      logoImgMobile.alt = name + ' logo';
+      logoContainerMobile.classList.remove('hidden');
+    } else {
+      logoContainerMobile.classList.add('hidden');
+    }
+  }
+
   const metaHTML = `
     <span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">${node.type || 'node'}</span>
     <span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">${node.group || ''}</span>
