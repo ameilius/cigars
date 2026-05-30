@@ -30,11 +30,11 @@
                 { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua" },
                 { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua" },
 
-                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican", productLines: ["Grand Cru", "Millennium", "Nicaragua", "Winston Churchill", "Late Hour"] },
-                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Heritage", "Syncro", "XO", "Proper"] },
-                { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Vintage", "Escudo", "Naturale"] },
+                { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican", productLines: ["Grand Cru", "Millennium", "Nicaragua", "Winston Churchill", "Late Hour"], logo: "logos/davidoff.png" },
+                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Heritage", "Syncro", "XO", "Proper"], logo: "logos/avo.jpg" },
+                { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Vintage", "Escudo", "Naturale"], logo: "logos/thegriffins.jpg" },
                 { id: "tabadom", name: "Tabadom (Villa González)", type: "factory", group: "corporate", country: "dominican" },
-                { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland" },
+                { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland", logo: "logos/oettingerdavidoff.svg" },
 
                 { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican", productLines: ["OpusX", "Hemingway", "Don Carlos", "Flor Fina 8-5-8", "Añejo"] },
                 { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
@@ -74,7 +74,7 @@
                 { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // CLE Cigar / Eiroa family (Honduras vertical integration)
-                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa", productLines: ["Corojo", "Connecticut", "Cuarenta", "Plus", "Eiroa"] },
+                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa", productLines: ["Corojo", "Connecticut", "Cuarenta", "Plus", "Eiroa"], logo: "logos/clecigars.webp" },
                 { id: "christianeiroa", name: "Christian Eiroa", type: "person", group: "family", country: "honduras" },
                 { id: "eiroafamily", name: "Eiroa Family (Aladino)", type: "company", group: "family", country: "honduras" },
                 { id: "eiroadanli", name: "CLE Factory (Danlí, Honduras)", type: "factory", group: "family", country: "honduras" },
@@ -143,10 +143,10 @@
                 { id: "tabacaleraaragon", name: "Tabacalera Aragon (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Camacho (Eiroa family historically, now Davidoff)
-                { id: "camacho", name: "Camacho", type: "brand", group: "corporate", country: "honduras", productLines: ["Corojo", "Connecticut", "Triple Maduro", "Broadleaf", "Ecuador"] },
+                { id: "camacho", name: "Camacho", type: "brand", group: "corporate", country: "honduras", productLines: ["Corojo", "Connecticut", "Triple Maduro", "Broadleaf", "Ecuador"], logo: "logos/camacho.jpg" },
 
                 // Zino (Davidoff group)
-                { id: "zino", name: "Zino", type: "brand", group: "corporate", country: "honduras", productLines: ["Zino Platinum", "Zino Nicaragua", "Zino Honduras"] },
+                { id: "zino", name: "Zino", type: "brand", group: "corporate", country: "honduras", productLines: ["Zino Platinum", "Zino Nicaragua", "Zino Honduras"], logo: "logos/zino.jpg" },
 
                 // === New brands added per request ===
 
