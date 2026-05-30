@@ -74,7 +74,7 @@
                 { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // CLE Cigar / Eiroa family (Honduras vertical integration)
-                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa", productLines: ["Corojo", "Connecticut", "Cuarenta", "Plus", "Eiroa"], logo: "logos/clecigars.webp" },
+                { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa", productLines: ["Corojo", "Connecticut", "Cuarenta", "Plus", "Eiroa"], logo: "logos/cle.webp" },
                 { id: "christianeiroa", name: "Christian Eiroa", type: "person", group: "family", country: "honduras" },
                 { id: "eiroafamily", name: "Eiroa Family (Aladino)", type: "company", group: "family", country: "honduras" },
                 { id: "eiroadanli", name: "CLE Factory (Danlí, Honduras)", type: "factory", group: "family", country: "honduras" },
