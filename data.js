@@ -120,7 +120,7 @@
                 { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua" },
 
                 // Illusione (Dion Giolito)
-                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa", productLines: ["Original Document", "Singularé", "88", "CG4", "Epernay"], logo: "logos/illusione.png" },
+                { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa", productLines: ["Original Document", "Singularé", "88", "CG4", "Epernay"], logo: "logos/illusione.jpg" },
                 { id: "diongiolito", name: "Dion Giolito", type: "person", group: "family", country: "usa" },
 
                 // Viaje (Andre Farkas)
