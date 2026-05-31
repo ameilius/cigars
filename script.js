@@ -91,9 +91,9 @@ const descriptions = {
   "eiroadanli": "CLE Factory (Danlí, Honduras) is the state-of-the-art Aladino factory opened by Christian Eiroa in 2013 on the site of his grandfather’s historic theater.",
 
   // === Aganorsa / TABSA ===
-  "aganorsa": "AGANORSA Leaf, led by Max Fernández Pujals, is one of Nicaragua's most important independent tobacco growers. Their TABSA factory in Estelí produces many top boutique brands.",
-  "maxfernandez": "Max Fernández Pujals leads AGANORSA Leaf, a major grower and manufacturer known for high-quality Nicaraguan tobacco used by many premium brands.",
-  "tabsa": "TABSA (Aganorsa Factory, Estelí) is the highly regarded production facility of AGANORSA Leaf. It has been praised as one of the best factories in Nicaragua and rolls for Illusione, Foundation, Viaje, and others.",
+  "aganorsa": "Aganorsa Leaf, led by Max Fernández Pujals, is one of Nicaragua's most important independent tobacco growers. Their TABSA factory in Estelí produces many top boutique brands.",
+  "maxfernandez": "Max Fernández Pujals leads Aganorsa Leaf, a major grower and manufacturer known for high-quality Nicaraguan tobacco used by many premium brands.",
+  "tabsa": "TABSA (Aganorsa Factory, Estelí) is the highly regarded production facility of Aganorsa Leaf. It has been praised as one of the best factories in Nicaragua and rolls for Illusione, Foundation, Viaje, and others.",
 
   // === Foundation ===
   "foundation": "Foundation Cigar Company (Nick Melillo) produces critically acclaimed lines like The Tabernacle and Olmec. They use contract production at top factories including My Father and A.J. Fernandez.",
@@ -125,7 +125,7 @@ const descriptions = {
   "sobremesa": "Sobremesa is the flagship brand of Dunbarton Tobacco & Trust. Created by Steve Saka, it is celebrated for its complexity, balance, and the convivial spirit the name evokes.",
 
   // === Illusione ===
-  "illusione": "Illusione, founded by Dion Giolito, is a cult favorite known for powerful, refined Nicaraguan cigars. Long-time user of AGANORSA / TABSA tobacco and production.",
+  "illusione": "Illusione, founded by Dion Giolito, is a cult favorite known for powerful, refined Nicaraguan cigars. Long-time user of Aganorsa / TABSA tobacco and production.",
   "diongiolito": "Dion Giolito is the founder of Illusione Cigars. He is known for his exacting standards and preference for powerful, terroir-driven Nicaraguan blends.",
 
   // === Viaje ===
