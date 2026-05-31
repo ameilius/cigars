@@ -124,7 +124,7 @@
                 { id: "diongiolito", name: "Dion Giolito", type: "person", group: "family", country: "usa" },
 
                 // Viaje (Andre Farkas)
-                { id: "viaje", name: "Viaje Cigars", type: "brand", group: "family", country: "usa", productLines: ["Exclusivo", "Double Ligero", "Placeres", "Oro", "Summerfest"] },
+                { id: "viaje", name: "Viaje Cigars", type: "brand", group: "family", country: "usa", productLines: ["Exclusivo", "Double Ligero", "Placeres", "Oro", "Summerfest"], logo: "logos/viaje.jpg" },
                 { id: "andrefarkas", name: "Andre Farkas", type: "person", group: "family", country: "usa" },
 
                 // HVC (Reinier Lorenzo - now with own factory)
