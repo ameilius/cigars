@@ -93,7 +93,7 @@
                 { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican" },
 
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
-                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"] },
+                { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"], logo: "logos/warped.svg" },
                 { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
                 { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
