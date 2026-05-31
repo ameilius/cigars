@@ -80,7 +80,7 @@
                 { id: "eiroadanli", name: "CLE Factory (Danlí, Honduras)", type: "factory", group: "family", country: "honduras" },
 
                 // Aganorsa Leaf (major independent grower + TABSA factory)
-                { id: "aganorsa", name: "AGANORSA Leaf", type: "company", group: "family", country: "nicaragua", logo: "logos/aganorsa.jpg" },
+                { id: "aganorsa", name: "Aganorsa Leaf", type: "company", group: "family", country: "nicaragua", logo: "logos/aganorsa.jpg" },
                 { id: "maxfernandez", name: "Max Fernández Pujals", type: "person", group: "family", country: "nicaragua" },
                 { id: "tabsa", name: "TABSA (Aganorsa Factory, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
