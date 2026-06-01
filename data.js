@@ -5,14 +5,14 @@
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua" },
                 { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua", productLines: ["Brown Label", "Black Label", "Havana VI", "Reserva", "Fausto", "Cojonú"], logo: "logos/tatuaje.png" },
 
-                { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["601", "Murciélago", "Laranja", "Espinosa Habano", "Knuckle Sandwich"] },
+                { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["601", "Murciélago", "Laranja", "Espinosa Habano", "Knuckle Sandwich"], logo: "logos/espinosa.webp" },
                 { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa" },
                 { id: "guyfieri", name: "Guy Fieri", type: "person", group: "family", country: "usa" },
                 { id: "lazona", name: "La Zona (Estelí)", type: "factory", group: "family", country: "nicaragua" },
-                { id: "laranja", name: "Laranja Reserva", type: "brand", group: "family", country: "nicaragua" },
+                { id: "laranja", name: "Laranja Reserva", type: "brand", group: "family", country: "nicaragua", logo: "logos/laranja.webp" },
                 { id: "espinosahabano", name: "Espinosa Habano", type: "brand", group: "family", country: "nicaragua" },
                 { id: "crema", name: "Crema", type: "brand", group: "family", country: "nicaragua" },
-                { id: "knucklesandwich", name: "Knuckle Sandwich", type: "brand", group: "family", country: "nicaragua" },
+                { id: "knucklesandwich", name: "Knuckle Sandwich", type: "brand", group: "family", country: "nicaragua", logo: "logos/knucklesandwich.jpg" },
 
                 { id: "eobrands", name: "EO Brands (legacy)", type: "company", group: "family", country: "usa" },
                 { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa" },
@@ -40,7 +40,7 @@
                 { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
                 { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican" },
 
-                { id: "belladama", name: "Bella Dama", type: "brand", group: "family", country: "nicaragua", productLines: ["Bella Dama", "Bella Dama Habano", "Bella Dama Connecticut"] },
+                
                 { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa" },
                 { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican" },
 
@@ -139,7 +139,7 @@
 
                 // Bella Dama Cigars (Chantel Leavitt - independent boutique brand)
                 { id: "chantelleavitt", name: "Chantel Leavitt", type: "person", group: "family", country: "usa" },
-                { id: "belladamacigars", name: "Bella Dama Cigars", type: "brand", group: "family", country: "usa", productLines: ["The King", "Ace", "The Queen", "Flush", "Full House", "All-In", "Dealer's Choice"] },
+                { id: "belladamacigars", name: "Bella Dama Cigars", type: "brand", group: "family", country: "usa", productLines: ["The King", "Ace", "The Queen", "Flush", "Full House", "All-In", "Dealer's Choice"], logo: "logos/belladama.png" },
                 { id: "tabacaleraaragon", name: "Tabacalera Aragon (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Camacho (Eiroa family historically, now Davidoff)
@@ -169,7 +169,7 @@
                 { id: "lagloriacubana", name: "La Gloria Cubana", type: "brand", group: "corporate", country: "dominican", productLines: ["Serie R", "Original", "Intención", "Los Gloriosos", "100 Años"] },
 
                 // Domain Cigars (Esteban Disla & Daniel Lance, own factory)
-                { id: "domain", name: "Domain Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Neutron", "Negentropy", "Entropy"] },
+                { id: "domain", name: "Domain Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Neutron", "Negentropy", "Entropy"], logo: "logos/domain.webp" },
 
                 // El Septimo (Zaya Younan, Costa Rica)
                 { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh"] },
@@ -187,7 +187,7 @@
 
                 // La Palina (revived by Bill Paley, negociant model)
                 { id: "billpaley", name: "Bill Paley", type: "person", group: "family", country: "usa" },
-                { id: "lapalina", name: "La Palina", type: "brand", group: "family", country: "usa", productLines: ["Goldie", "El Diario", "Mr. Sam", "Classic", "125th Anniversary"] },
+                { id: "lapalina", name: "La Palina", type: "brand", group: "family", country: "usa", productLines: ["Goldie", "El Diario", "Mr. Sam", "Classic", "125th Anniversary"], logo: "logos/lapalina.png" },
                 { id: "eltitandebronze", name: "El Titan de Bronze (Miami)", type: "factory", group: "family", country: "usa" },
                 { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican" }
             ],
@@ -196,8 +196,7 @@
                 { source: "myfather", target: "pepin", type: "founded by" },
                 { source: "pepin", target: "tatuaje", type: "manufactures for" },
                 { source: "myfather", target: "tatuaje", type: "shared factory roots" },
-                { source: "myfather", target: "belladama", type: "manufactures at" },
-                { source: "pepin", target: "belladama", type: "blended by" },
+                
 
                 { source: "espinosa", target: "erikespinosa", type: "founded by" },
                 { source: "espinosa", target: "lazona", type: "opened factory" },

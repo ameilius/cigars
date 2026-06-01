@@ -46,7 +46,7 @@ const descriptions = {
   "jcnewman": "J.C. Newman is America’s oldest family-owned cigar company, founded in 1895. It produces the Diamond Crown and Brick House lines in the Dominican Republic.",
   "diamondcrown": "Diamond Crown is the ultra-premium flagship line of J.C. Newman. Made at Tabacalera A. Fuente, it is known for its exceptional quality and elegant presentation.",
 
-  "belladama": "Bella Dama is a Nicaraguan brand produced at the My Father factory. It offers approachable, well-made cigars that highlight the factory’s expertise.",
+
 
   // === Espinosa family & La Zona ===
   "lazona": "La Zona (Estelí) is Erik Espinosa’s factory in Nicaragua, opened in 2012. It produces the 601, Murciélago, Laranja, and many boutique and contract lines.",
