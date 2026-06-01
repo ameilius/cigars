@@ -100,12 +100,12 @@
                 // === New major additions this round ===
 
                 // Oliva (Vandermarliere family - major vertically integrated player)
-                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "V Melanio", "Serie G"] },
+                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "V Melanio", "Serie G"], logo: "logos/oliva.webp" },
                 { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium" },
                 { id: "tabolisa", name: "Tabolisa (Oliva Estelí)", type: "factory", group: "corporate", country: "nicaragua" },
 
                 // Perdomo (fully family-owned major with huge vertical operation)
-                { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Reserve 10th Anniversary", "Lot 23", "Champagne", "Patrón", "20th Anniversary"] },
+                { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Reserve 10th Anniversary", "Lot 23", "Champagne", "Patrón", "20th Anniversary"], logo: "logos/perdomo.webp" },
                 { id: "nickperdomo", name: "Nick Perdomo Jr.", type: "person", group: "family", country: "usa" },
                 { id: "perdomofactory", name: "Tabacalera Perdomo (El Monstro, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
@@ -172,13 +172,13 @@
                 { id: "domain", name: "Domain Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Neutron", "Negentropy", "Entropy"], logo: "logos/domain.webp" },
 
                 // El Septimo (Zaya Younan, Costa Rica)
-                { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh"] },
+                { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh"], logo: "logos/elseptimo.png" },
 
                 // La Aurora (León family, oldest DR manufacturer)
                 { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"] },
 
                 // Mayflower Cigars (Michael Knowles, made at Oliva)
-                { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"] },
+                { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"], logo: "logos/mayflower.png" },
 
                 // Karen Berger Cigars (continues Don Kiki legacy, vertically integrated in Estelí)
                 { id: "karenberger", name: "Karen Berger Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Don Kiki Platinum", "K by Karen Berger Habano", "K by Karen Berger Maduro", "Ixtelli", "Halftime"] },
