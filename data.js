@@ -151,13 +151,13 @@
                 // === New brands added per request ===
 
                 // La Aroma de Cuba (Ashton / Levin family, made by Garcia/My Father)
-                { id: "laaromadecuba", name: "La Aroma de Cuba", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Mi Amor", "Edición Especial", "Pasión", "Noblesse", "Connecticut"] },
+                { id: "laaromadecuba", name: "La Aroma de Cuba", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Mi Amor", "Edición Especial", "Pasión", "Noblesse", "Connecticut"], logo: "logos/laaroma.svg" },
 
                 // San Cristobal (Ashton / Levin family, made by Garcia/My Father)
-                { id: "sancristobal", name: "San Cristobal", type: "brand", group: "family", country: "nicaragua", productLines: ["Clasico", "Revelation", "Quintessence", "La Fuerza", "Paradiso"] },
+                { id: "sancristobal", name: "San Cristobal", type: "brand", group: "family", country: "nicaragua", productLines: ["Clasico", "Revelation", "Quintessence", "La Fuerza", "Paradiso"], logo: "logos/sancristobal.svg" },
 
                 // Ashton Cigars (Levin family, made at Arturo Fuente)
-                { id: "ashton", name: "Ashton", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Cabinet Selection", "Aged Maduro", "VSG", "ESG", "Symmetry"] },
+                { id: "ashton", name: "Ashton", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Cabinet Selection", "Aged Maduro", "VSG", "ESG", "Symmetry"], logo: "logos/ashton.svg" },
 
                 // Lure Cigars (Lou Cross III, made at Tabacalera Pages / Valacari)
                 { id: "lure", name: "Lure Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Corojo", "Habano", "Oscuro", "Maduro", "All-In"] },
