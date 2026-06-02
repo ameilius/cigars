@@ -49,7 +49,7 @@
                 { id: "forged", name: "Forged Cigar Co.", type: "company", group: "corporate", country: "usa" },
 
                 { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican", productLines: ["Cafe", "Vintage", "Cru Royale", "Inspirado", "Estate Reserve"] },
-                { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Brazilia", "Ecuador", "Flathead", "MX2", "Conquest"] },
+                { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Brazilia", "Ecuador", "Flathead", "MX2", "Conquest"], logo: "logos/cao.jpg" },
                 { id: "cohiba_nc", name: "Cohiba (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
                 { id: "partagas_nc", name: "Partagas (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
                 { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Punch", "Punch Signature", "Punch Deluxe"] },
@@ -68,9 +68,9 @@
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Drew Estate (owned by Swisher International — important correction)
-                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Herrera Estelí", "Acid", "MUWAT"] },
+                { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Herrera Estelí", "Acid", "MUWAT"], logo: "logos/drewestate.jpg" },
                 { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa" },
-                { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa" },
+                { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa", logo: "logos/swisher.svg" },
                 { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // CLE Cigar / Eiroa family (Honduras vertical integration)
@@ -90,7 +90,7 @@
 
                 // Additional important STG brands (post-acquisitions)
                 { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras", productLines: ["Prensado", "Tempus", "Cigar of the Year", "Black Market", "Magic Toast"] },
-                { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican" },
+                { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican", logo: "logos/room101.jpg" },
 
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
                 { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"], logo: "logos/warped.svg" },
