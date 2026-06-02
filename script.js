@@ -180,6 +180,12 @@ const descriptions = {
   "eltitandebronze": "El Titan de Bronze is a renowned small-batch factory in Miami’s Little Havana. It produces La Palina’s flagship Goldie line and other ultra-premium cigars.",
   "pdr": "PDR Cigars is a respected factory in the Dominican Republic that produces several La Palina lines.",
 
+  // Rojas Cigars (Noel Rojas)
+  "noelrojas": "Noel Rojas is a Cuban-American master blender and founder of Rojas Cigars. Known as the 'King of Small Ring Gauges,' he specializes in boutique, balanced blends; his key projects include the original Guayacan brand and New Order of the Ages.",
+  "rojas": "Rojas Cigars is the boutique brand founded by Noel Rojas. Lines include Guayacan, Havana Nights, Unfinished Business, and Street Tacos. Primary production and rolling for these Nicaraguan cigars is at A.J. Fernandez's facility in Estelí.",
+  "guayacan": "Guayacan by Noel Rojas is the pioneering brand line that established his reputation. Features Nicaraguan tobacco (including Aganorsa influence) in approachable, well-made cigars; rolled at A.J. Fernandez and partner facilities in Estelí.",
+  "neworder": "New Order of the Ages (NOA) originated as a collaborative factory/brand project led by Noel Rojas (with Renegade ties) in Estelí. The blends continue under Rojas with primary manufacturing at A.J. Fernandez Tabacalera.",
+
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
 };

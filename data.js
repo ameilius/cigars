@@ -189,7 +189,13 @@
                 { id: "billpaley", name: "Bill Paley", type: "person", group: "family", country: "usa" },
                 { id: "lapalina", name: "La Palina", type: "brand", group: "family", country: "usa", productLines: ["Goldie", "El Diario", "Mr. Sam", "Classic", "125th Anniversary"], logo: "logos/lapalina.png" },
                 { id: "eltitandebronze", name: "El Titan de Bronze (Miami)", type: "factory", group: "family", country: "usa" },
-                { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican" }
+                { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican" },
+
+                // Rojas Cigars (Noel Rojas - Nicaraguan/Cuban-American master blender behind Guayacan and New Order of the Ages; boutique brand with primary rolling at A.J. Fernandez in Estelí)
+                { id: "noelrojas", name: "Noel Rojas", type: "person", group: "family", country: "usa" },
+                { id: "rojas", name: "Rojas Cigars", type: "brand", group: "family", country: "usa", productLines: ["Guayacan", "Havana Nights", "Unfinished Business", "Street Tacos"], logo: "logos/rojas.png" },
+                { id: "guayacan", name: "Guayacan", type: "brand", group: "family", country: "nicaragua" },
+                { id: "neworder", name: "New Order of the Ages", type: "brand", group: "family", country: "nicaragua" }
             ],
             links: [
                 // === Original verified links (preserved) ===
@@ -410,7 +416,15 @@
                 { source: "lapalina", target: "billpaley", type: "revived by" },
                 { source: "lapalina", target: "eltitandebronze", type: "Goldie produced at" },
                 { source: "lapalina", target: "ajfernandez", type: "some production with AJ Fernandez" },
-                { source: "lapalina", target: "pdr", type: "some production at PDR" }
+                { source: "lapalina", target: "pdr", type: "some production at PDR" },
+
+                // Rojas Cigars (Noel Rojas) - Guayacan & New Order of the Ages; primary contract production/rolling at A.J. Fernandez (no own factory node to avoid erroneous ownership)
+                { source: "rojas", target: "noelrojas", type: "founded by" },
+                { source: "guayacan", target: "rojas", type: "brand of" },
+                { source: "neworder", target: "rojas", type: "brand of / originated as" },
+                { source: "guayacan", target: "ajfernandez", type: "rolled at" },
+                { source: "neworder", target: "ajfernandez", type: "rolled at" },
+                { source: "rojas", target: "ajfernandez", type: "contract manufactured at" }
             ]
         };
 
