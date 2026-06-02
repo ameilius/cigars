@@ -16,8 +16,8 @@
 
                 { id: "eobrands", name: "EO Brands (legacy)", type: "company", group: "family", country: "usa" },
                 { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa" },
-                { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua" },
-                { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua" },
+                { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua", logo: "logos/601.webp" },
+                { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua", logo: "logos/murcielago.png" },
 
                 { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua", productLines: ["San Lotano", "New World", "Enclave", "Bellagio", "Last Call"] },
                 { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
@@ -160,7 +160,7 @@
                 { id: "ashton", name: "Ashton", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Cabinet Selection", "Aged Maduro", "VSG", "ESG", "Symmetry"], logo: "logos/ashton.svg" },
 
                 // Lure Cigars (Lou Cross III, made at Tabacalera Pages / Valacari)
-                { id: "lure", name: "Lure Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Corojo", "Habano", "Oscuro", "Maduro", "All-In"] },
+                { id: "lure", name: "Lure Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Corojo", "Habano", "Oscuro", "Maduro", "All-In"], logo: "logos/lure.png" },
 
                 // Definition Cigars (Jamond Hackley, made at Luciano)
                 { id: "definition", name: "Definition Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["GEN 413", "919 Series", "Noir", "Conception", "The Pig"] },
