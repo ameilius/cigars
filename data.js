@@ -110,14 +110,14 @@
                 { id: "perdomofactory", name: "Tabacalera Perdomo (El Monstro, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Joya de Nicaragua (oldest premium factory in Nicaragua, contract manufacturer)
-                { id: "joya", name: "Joya de Nicaragua", type: "brand", group: "family", country: "nicaragua", productLines: ["Antaño 1970", "Clásico", "Cinco Décadas", "Joya Red", "Joya Silver"] },
+                { id: "joya", name: "Joya de Nicaragua", type: "brand", group: "family", country: "nicaragua", productLines: ["Antaño 1970", "Clásico", "Cinco Décadas", "Joya Red", "Joya Silver"], logo: "logos/joya.png" },
                 { id: "joyafactory", name: "Joya de Nicaragua Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "alejandromartinez", name: "Alejandro Martínez Cuenca", type: "person", group: "family", country: "nicaragua" },
 
                 // Dunbarton Tobacco & Trust (Steve Saka)
                 { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa", productLines: ["Sobremesa", "Mi Querida", "Muestra de Saka", "Sin Compromiso", "Todos Los Días"] },
                 { id: "stevesaka", name: "Steve Saka", type: "person", group: "family", country: "usa" },
-                { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua" },
+                { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua", logo: "logos/sobremesa.png" },
 
                 // Illusione (Dion Giolito)
                 { id: "illusione", name: "Illusione Cigars", type: "brand", group: "family", country: "usa", productLines: ["Original Document", "Singularé", "88", "CG4", "Epernay"], logo: "logos/illusione.jpg" },
@@ -134,7 +134,7 @@
 
                 // West Tampa Tobacco Co. (Rick Rodriguez)
                 { id: "rickrodriguez", name: "Rick Rodriguez", type: "person", group: "family", country: "usa" },
-                { id: "westtampa", name: "West Tampa Tobacco Co.", type: "brand", group: "family", country: "usa", productLines: ["White", "Black", "Red", "Attic Series", "Circle of Life", "Dark Time"] },
+                { id: "westtampa", name: "West Tampa Tobacco Co.", type: "brand", group: "family", country: "usa", productLines: ["White", "Black", "Red", "Attic Series", "Circle of Life", "Dark Time"], logo: "logos/westtampa.jpg" },
                 { id: "garmendia", name: "Garmendia Cigars (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Bella Dama Cigars (Chantel Leavitt - independent boutique brand)
