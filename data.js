@@ -46,13 +46,13 @@
 
                 { id: "stg", name: "Scandinavian Tobacco Group (STG)", type: "company", group: "corporate", country: "denmark" },
                 { id: "generalcigar", name: "General Cigar Co.", type: "company", group: "corporate", country: "usa" },
-                { id: "forged", name: "Forged Cigar Co.", type: "company", group: "corporate", country: "usa" },
+                { id: "forged", name: "Forged Cigar Co.", type: "company", group: "corporate", country: "usa", logo: "logos/forgedcigarcompany.webp" },
 
                 { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican", productLines: ["Cafe", "Vintage", "Cru Royale", "Inspirado", "Estate Reserve"] },
                 { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Brazilia", "Ecuador", "Flathead", "MX2", "Conquest"], logo: "logos/cao.jpg" },
-                { id: "cohiba_nc", name: "Cohiba (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
+                { id: "cohiba_nc", name: "Cohiba (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", logo: "logos/cohiba.jpg" },
                 { id: "partagas_nc", name: "Partagas (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
-                { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Punch", "Punch Signature", "Punch Deluxe"] },
+                { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Punch", "Punch Signature", "Punch Deluxe"], logo: "logos/punch.jpg" },
 
                 // === Major expansions (research-backed, 2025-2026 accurate) ===
 
@@ -63,7 +63,7 @@
                 { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Rocky Patel (vertically integrated, owns Tavicusa, strong Plasencia partnership)
-                { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["Decade", "Olde World", "Vintage 1990", "The Edge", "Sun Grown"] },
+                { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["Decade", "Olde World", "Vintage 1990", "The Edge", "Sun Grown"], logo: "logos/rockypatel.webp" },
                 { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa" },
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
@@ -89,7 +89,7 @@
                 { id: "nickmelillo", name: "Nick Melillo", type: "person", group: "family", country: "usa" },
 
                 // Additional important STG brands (post-acquisitions)
-                { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras", productLines: ["Prensado", "Tempus", "Cigar of the Year", "Black Market", "Magic Toast"] },
+                { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras", productLines: ["Prensado", "Tempus", "Cigar of the Year", "Black Market", "Magic Toast"], logo: "logos/alecbradley.webp" },
                 { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican", logo: "logos/room101.jpg" },
 
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
