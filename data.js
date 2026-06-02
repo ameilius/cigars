@@ -27,8 +27,8 @@
                 { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa" },
                 { id: "orlandopadron", name: "Orlando Padrón", type: "person", group: "family", country: "usa" },
                 { id: "tabacoscubanica", name: "Tabacos Cubanica (Estelí)", type: "factory", group: "family", country: "nicaragua" },
-                { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua" },
-                { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua" },
+                { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua", logo: "logos/padron1964.jpg" },
+                { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua", logo: "logos/padron1926.jpg" },
 
                 { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican", productLines: ["Grand Cru", "Millennium", "Nicaragua", "Winston Churchill", "Late Hour"], logo: "logos/davidoff.png" },
                 { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Heritage", "Syncro", "XO", "Proper"], logo: "logos/avo.jpg" },
@@ -163,7 +163,7 @@
                 { id: "lure", name: "Lure Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Corojo", "Habano", "Oscuro", "Maduro", "All-In"], logo: "logos/lure.png" },
 
                 // Definition Cigars (Jamond Hackley, made at Luciano)
-                { id: "definition", name: "Definition Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["GEN 413", "919 Series", "Noir", "Conception", "The Pig"] },
+                { id: "definition", name: "Definition Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["GEN 413", "919 Series", "Noir", "Conception", "The Pig"], logo: "logos/definition.png" },
 
                 // La Gloria Cubana (General Cigar / STG)
                 { id: "lagloriacubana", name: "La Gloria Cubana", type: "brand", group: "corporate", country: "dominican", productLines: ["Serie R", "Original", "Intención", "Los Gloriosos", "100 Años"] },
