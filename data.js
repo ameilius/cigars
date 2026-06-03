@@ -188,8 +188,8 @@
                 // La Palina (revived by Bill Paley, negociant model)
                 { id: "billpaley", name: "Bill Paley", type: "person", group: "family", country: "usa" },
                 { id: "lapalina", name: "La Palina", type: "brand", group: "family", country: "usa", productLines: ["Goldie", "El Diario", "Mr. Sam", "Classic", "125th Anniversary"], logo: "logos/lapalina.png" },
-                { id: "eltitandebronze", name: "El Titan de Bronze (Miami)", type: "factory", group: "family", country: "usa" },
-                { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican" },
+                { id: "eltitandebronze", name: "El Titan de Bronze (Miami)", type: "factory", group: "family", country: "usa", logo: "logos/eltitan.jpg" },
+                { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican", logo: "logos/pdrcigars.jpg" },
 
                 // Rojas Cigars (Noel Rojas - Nicaraguan/Cuban-American master blender behind Guayacan and New Order of the Ages; boutique brand with primary rolling at A.J. Fernandez in Estelí)
                 { id: "noelrojas", name: "Noel Rojas", type: "person", group: "family", country: "usa" },
