@@ -135,7 +135,7 @@
                 // West Tampa Tobacco Co. (Rick Rodriguez)
                 { id: "rickrodriguez", name: "Rick Rodriguez", type: "person", group: "family", country: "usa" },
                 { id: "westtampa", name: "West Tampa Tobacco Co.", type: "brand", group: "family", country: "usa", productLines: ["White", "Black", "Red", "Attic Series", "Circle of Life", "Dark Time"], logo: "logos/westtampa.jpg" },
-                { id: "garmendia", name: "Garmendia Cigars (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "garmendia", name: "Garmendia Cigars (Estelí)", type: "factory", group: "family", country: "nicaragua", logo: "logos/garmendia.png" },
 
                 // Bella Dama Cigars (Chantel Leavitt - independent boutique brand)
                 { id: "chantelleavitt", name: "Chantel Leavitt", type: "person", group: "family", country: "usa" },
