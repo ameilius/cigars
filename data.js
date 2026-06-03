@@ -194,7 +194,7 @@
                 // Rojas Cigars (Noel Rojas - Nicaraguan/Cuban-American master blender behind Guayacan and New Order of the Ages; boutique brand with primary rolling at A.J. Fernandez in Estelí)
                 { id: "noelrojas", name: "Noel Rojas", type: "person", group: "family", country: "usa" },
                 { id: "rojas", name: "Rojas Cigars", type: "brand", group: "family", country: "usa", productLines: ["Guayacan", "Havana Nights", "Unfinished Business", "Street Tacos"], logo: "logos/rojas.png" },
-                { id: "guayacan", name: "Guayacan", type: "brand", group: "family", country: "nicaragua" },
+                { id: "guayacan", name: "Guayacan", type: "brand", group: "family", country: "nicaragua", logo: "logos/guayacan.png" },
                 { id: "neworder", name: "New Order of the Ages", type: "brand", group: "family", country: "nicaragua" }
             ],
             links: [
