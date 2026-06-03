@@ -44,14 +44,14 @@
                 { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa" },
                 { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican" },
 
-                { id: "stg", name: "Scandinavian Tobacco Group (STG)", type: "company", group: "corporate", country: "denmark" },
-                { id: "generalcigar", name: "General Cigar Co.", type: "company", group: "corporate", country: "usa" },
+                { id: "stg", name: "Scandinavian Tobacco Group (STG)", type: "company", group: "corporate", country: "denmark", logo: "logos/scandinavian.svg" },
+                { id: "generalcigar", name: "General Cigar Co.", type: "company", group: "corporate", country: "usa", logo: "logos/generalcigar.jpg" },
                 { id: "forged", name: "Forged Cigar Co.", type: "company", group: "corporate", country: "usa", logo: "logos/forgedcigarcompany.webp" },
 
-                { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican", productLines: ["Cafe", "Vintage", "Cru Royale", "Inspirado", "Estate Reserve"] },
+                { id: "macanudo", name: "Macanudo", type: "brand", group: "corporate", country: "dominican", productLines: ["Cafe", "Vintage", "Cru Royale", "Inspirado", "Estate Reserve"], logo: "logos/macanudo.svg" },
                 { id: "cao", name: "CAO", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Brazilia", "Ecuador", "Flathead", "MX2", "Conquest"], logo: "logos/cao.jpg" },
                 { id: "cohiba_nc", name: "Cohiba (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", logo: "logos/cohiba.jpg" },
-                { id: "partagas_nc", name: "Partagas (Non-Cuban)", type: "brand", group: "corporate", country: "dominican" },
+                { id: "partagas_nc", name: "Partagas (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", logo: "logos/partagas.svg" },
                 { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Punch", "Punch Signature", "Punch Deluxe"], logo: "logos/punch.jpg" },
 
                 // === Major expansions (research-backed, 2025-2026 accurate) ===
@@ -166,7 +166,7 @@
                 { id: "definition", name: "Definition Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["GEN 413", "919 Series", "Noir", "Conception", "The Pig"], logo: "logos/definition.png" },
 
                 // La Gloria Cubana (General Cigar / STG)
-                { id: "lagloriacubana", name: "La Gloria Cubana", type: "brand", group: "corporate", country: "dominican", productLines: ["Serie R", "Original", "Intención", "Los Gloriosos", "100 Años"] },
+                { id: "lagloriacubana", name: "La Gloria Cubana", type: "brand", group: "corporate", country: "dominican", productLines: ["Serie R", "Original", "Intención", "Los Gloriosos", "100 Años"], logo: "logos/lagloria.jpg" },
 
                 // Domain Cigars (Esteban Disla & Daniel Lance, own factory)
                 { id: "domain", name: "Domain Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Neutron", "Negentropy", "Entropy"], logo: "logos/domain.webp" },
