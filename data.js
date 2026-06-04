@@ -36,13 +36,13 @@
                 { id: "tabadom", name: "Tabadom (Villa González)", type: "factory", group: "corporate", country: "dominican" },
                 { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland", logo: "logos/oettingerdavidoff.svg" },
 
-                { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican", productLines: ["OpusX", "Hemingway", "Don Carlos", "Flor Fina 8-5-8", "Añejo"] },
+                { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican", productLines: ["OpusX", "Hemingway", "Don Carlos", "Flor Fina 8-5-8", "Añejo"], logo: "logos/arturofuente.png" },
                 { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
-                { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican" },
+                { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican", logo: "logos/fuenteopusx.jpg" },
 
                 
-                { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa" },
-                { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican" },
+                { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa", logo: "logos/jcnewman.webp" },
+                { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican", logo: "logos/diamondcrown.webp" },
 
                 { id: "stg", name: "Scandinavian Tobacco Group (STG)", type: "company", group: "corporate", country: "denmark", logo: "logos/scandinavian.svg" },
                 { id: "generalcigar", name: "General Cigar Co.", type: "company", group: "corporate", country: "usa", logo: "logos/generalcigar.jpg" },
