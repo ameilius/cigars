@@ -95,7 +95,7 @@
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
                 { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"], logo: "logos/warped.svg" },
                 { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
-                { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua", logo: "logos/nacsa.jpg" },
 
                 // === New major additions this round ===
 
@@ -115,7 +115,7 @@
                 { id: "alejandromartinez", name: "Alejandro Martínez Cuenca", type: "person", group: "family", country: "nicaragua" },
 
                 // Dunbarton Tobacco & Trust (Steve Saka)
-                { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa", productLines: ["Sobremesa", "Mi Querida", "Muestra de Saka", "Sin Compromiso", "Todos Los Días"] },
+                { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa", productLines: ["Sobremesa", "Mi Querida", "Muestra de Saka", "Sin Compromiso", "Todos Los Días"], logo: "logos/dunbarton.webp" },
                 { id: "stevesaka", name: "Steve Saka", type: "person", group: "family", country: "usa" },
                 { id: "sobremesa", name: "Sobremesa", type: "brand", group: "family", country: "nicaragua", logo: "logos/sobremesa.png" },
 
