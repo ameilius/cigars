@@ -175,7 +175,7 @@
                 { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh"], logo: "logos/elseptimo.png" },
 
                 // La Aurora (León family, oldest DR manufacturer)
-                { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"] },
+                { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"], logo: "logos/laaurora.svg" },
 
                 // Mayflower Cigars (Michael Knowles, made at Oliva)
                 { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"], logo: "logos/mayflower.png" },
