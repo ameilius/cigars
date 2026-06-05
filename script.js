@@ -231,6 +231,56 @@ function getLinkColor(link) {
   return '#8b7a6f';
 }
 
+function escapeMetaLabel(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+/** Legend-aligned meta pills for the drawer (visual only). */
+function buildMetaPills(node) {
+  const pills = [];
+  const push = (label, variant) => {
+    if (label) pills.push(`<span class="meta-pill meta-pill--${variant}">${escapeMetaLabel(label)}</span>`);
+  };
+
+  if (node.type) {
+    let typeVariant = 'neutral';
+    if (node.type === 'factory' || isFactoryNode(node)) typeVariant = 'factory';
+    else if (node.type === 'brand') typeVariant = 'boutique';
+    push(node.type, typeVariant);
+  }
+  if (node.group) {
+    push(node.group, node.group === 'corporate' ? 'corporate' : 'family');
+  }
+  if (node.country) {
+    const c = node.country.toLowerCase();
+    if (c.includes('nicaragua')) push(node.country, 'nicaragua');
+    else if (c.includes('dominican')) push(node.country, 'dominican');
+    else if (c.includes('honduras')) push(node.country, 'honduras');
+    else push(node.country, 'neutral');
+  }
+  return pills.join('');
+}
+
+function setSelectedNode(nodeId) {
+  if (!viewport) return;
+  viewport.selectAll('.node-group').classed('node-selected', d => d.id === nodeId);
+}
+
+function clearSelectedNode() {
+  if (!viewport) return;
+  viewport.selectAll('.node-group').classed('node-selected', false);
+}
+
+function pulseDrawerOpen(el) {
+  if (!el) return;
+  el.classList.remove('drawer-open');
+  void el.offsetWidth;
+  requestAnimationFrame(() => el.classList.add('drawer-open'));
+}
+
 function mergeData() {
   const baseNodes = (baseGraphData && baseGraphData.nodes) ? baseGraphData.nodes : [];
   const baseLinks = (baseGraphData && baseGraphData.links) ? baseGraphData.links : [];
@@ -750,6 +800,7 @@ function zoomToNode(targetNode) {
 // Drawer (Desktop + Mobile)
 // -----------------------------
 let currentDrawerNode = null;
+let mobileDrawerHideTimer = null;
 
 function showDrawer(node) {
   currentDrawerNode = node;
@@ -833,11 +884,8 @@ function showDrawer(node) {
     }
   }
 
-  const metaHTML = `
-    <span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">${node.type || 'node'}</span>
-    <span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">${node.group || ''}</span>
-    ${node.country ? `<span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">${node.country}</span>` : ''}
-  `;
+  const metaHTML = buildMetaPills(node);
+  setSelectedNode(node.id);
 
   const desc = descriptions[node.id] || "A notable node in the cigar industry with connections to the brands and factories shown in the graph.";
 
@@ -898,9 +946,14 @@ function showDrawer(node) {
     buyWrap.style.display = (node.buyLinks && node.buyLinks.length) ? 'block' : 'block';
     drawer.classList.remove('hidden');
     drawer.style.display = 'flex';
+    pulseDrawerOpen(drawer);
   }
 
   if (isMobile && mDrawer) {
+    if (mobileDrawerHideTimer) {
+      clearTimeout(mobileDrawerHideTimer);
+      mobileDrawerHideTimer = null;
+    }
     mTitle.textContent = name;
     mMeta.innerHTML = metaHTML;
     mDesc.textContent = desc;
@@ -913,6 +966,7 @@ function showDrawer(node) {
     mBuyWrap.style.display = 'block';
     mDrawer.classList.remove('hidden');
     mDrawer.style.display = 'flex';
+    pulseDrawerOpen(mDrawer);
 
     // Backdrop
     createOrShowBackdrop();
@@ -935,13 +989,30 @@ function showDrawerFromId(id) {
 function closeDrawer() {
   const drawer = document.getElementById('drawer');
   const mDrawer = document.getElementById('drawer-mobile');
+  clearSelectedNode();
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (drawer) {
+    drawer.classList.remove('drawer-open');
     drawer.style.display = 'none';
   }
   if (mDrawer) {
-    mDrawer.style.display = 'none';
-    mDrawer.classList.add('hidden');
+    mDrawer.classList.remove('drawer-open');
+    if (mobileDrawerHideTimer) {
+      clearTimeout(mobileDrawerHideTimer);
+      mobileDrawerHideTimer = null;
+    }
+    const hideMobile = () => {
+      mDrawer.style.display = 'none';
+      mDrawer.classList.add('hidden');
+      mobileDrawerHideTimer = null;
+    };
+    if (!reducedMotion) {
+      mobileDrawerHideTimer = setTimeout(hideMobile, 280);
+    } else {
+      hideMobile();
+    }
   }
   removeBackdrop();
 }
@@ -1013,7 +1084,8 @@ function showDesktopHowTo() {
   if (!titleEl || !descEl) return;
 
   titleEl.textContent = 'How to Explore';
-  if (metaEl) metaEl.innerHTML = `<span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">Interactive Map</span>`;
+  if (metaEl) metaEl.innerHTML = `<span class="meta-pill meta-pill--guide">Interactive Map</span>`;
+  clearSelectedNode();
 
   descEl.innerHTML = `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
 
@@ -1035,6 +1107,7 @@ function showDesktopHowTo() {
 
   drawer.style.display = 'flex';
   drawer.classList.remove('hidden');
+  pulseDrawerOpen(drawer);
 }
 
 function showMobileHowTo() {
@@ -1053,7 +1126,7 @@ function showMobileHowTo() {
   if (!mTitle || !mDesc) return;
 
   mTitle.textContent = 'How to Explore';
-  if (mMeta) mMeta.innerHTML = `<span class="inline-block px-2.5 py-0.5 text-[10px] font-semibold rounded-full border" style="border-color:#c5a26f;color:#5c2e2e;background:#f4e9d8">Interactive Map</span>`;
+  if (mMeta) mMeta.innerHTML = `<span class="meta-pill meta-pill--guide">Interactive Map</span>`;
 
   mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Filters above the map let you narrow by ownership, country, or boutique.`;
 
@@ -1075,6 +1148,7 @@ function showMobileHowTo() {
 
   mDrawer.style.display = 'flex';
   mDrawer.classList.remove('hidden');
+  pulseDrawerOpen(mDrawer);
   createOrShowBackdrop();
 
   // Remember so we don't auto-show the intro sheet on every mobile visit (but manual "How to" button can still trigger it)

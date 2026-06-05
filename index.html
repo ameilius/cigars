@@ -38,6 +38,9 @@
     <meta name="twitter:image" content="https://cigarnexus.app/social-preview.jpg">
 
     <!-- Scripts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -70,7 +73,7 @@
 </head>
 <body class="bg-[#f8f5f0] text-gray-800">
     <!-- Header -->
-    <header class="bg-[#5c2e2e] text-white shadow-lg">
+    <header class="site-header bg-[#5c2e2e] text-white shadow-lg">
         <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-x-3.5">
                 <!-- Premium logo -->
@@ -101,7 +104,7 @@
             </div>
             
             <div class="flex items-center gap-x-1 text-xs sm:text-sm">
-                <a href="index.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">Map</a>
+                <a href="index.html" class="nav-link nav-link--active px-3 py-1.5 rounded-2xl text-[#c5a26f] font-medium transition-colors">Map</a>
                 <a href="about.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">About</a>
             </div>
         </div>
@@ -162,7 +165,7 @@
 
             <!-- Desktop Sidebar Drawer -->
             <div class="hidden lg:block lg:w-80 lg:shrink-0">
-                <div id="drawer" class="bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px] lg:sticky lg:top-4">
+                <div id="drawer" class="drawer-panel bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px] lg:sticky lg:top-4">
                     <div class="p-5 border-b border-[#d4c4a8]">
                         <!-- Logo in its own prominent box (mimicking example) -->
                         <div id="drawer-logo-container" class="hidden mb-4 bg-white rounded-2xl border border-[#d4c4a8] p-4 flex items-center justify-center">
@@ -210,7 +213,7 @@
 
         <!-- Mobile Bottom Sheet Drawer -->
         <div id="drawer-mobile" 
-             class="lg:hidden w-full bg-[#f4e9d8] shadow-2xl border border-[#d4c4a8] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl max-h-[75vh]">
+             class="drawer-panel drawer-panel--mobile lg:hidden w-full bg-[#f4e9d8] shadow-2xl border border-[#d4c4a8] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl max-h-[75vh]">
             
             <div class="flex justify-center pt-2 pb-1">
                 <div class="w-10 h-1 bg-[#d4c4a8] rounded-full"></div>
