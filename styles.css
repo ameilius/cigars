@@ -309,7 +309,24 @@ h1, h2, .font-display,
 /* Section headers inside drawer (Connections, Notable Cigars, Find These Cigars) */
 #drawer .text-xs.font-semibold.text-\[\#8b6f5c\],
 #drawer-mobile .text-xs.font-semibold.text-\[\#8b6f5c\] {
-    letter-spacing: 0.8px;
+    color: #5c4638;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 6px;
+}
+
+#drawer .text-xs.font-semibold.text-\[\#8b6f5c\]::before,
+#drawer-mobile .text-xs.font-semibold.text-\[\#8b6f5c\]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+    background: linear-gradient(#c5a26f, #d4b17e);
+    border-radius: 2px;
 }
 
 /* ============================================
