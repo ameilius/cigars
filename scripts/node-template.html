@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{NAME}} | Cigar Nexus</title>
+  <meta name="description" content="{{DESCRIPTION}} | Explore the connections of {{NAME}} in the premium cigar industry.">
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .node-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+    .node-header { margin-bottom: 2rem; }
+    .node-meta { display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap; }
+    .node-meta span { background: #f4e9d8; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; }
+    .node-connections, .product-lines { list-style: none; padding: 0; }
+    .node-connections li { margin: 0.5rem 0; padding: 0.5rem; background: #f8f5f0; border-radius: 8px; }
+    .back-link { display: inline-block; margin-top: 2rem; color: #c5a26f; text-decoration: underline; }
+  </style>
+</head>
+<body class="bg-[#f8f5f0] text-[#3f2a2a]">
+  <header class="site-header bg-[#5c2e2e] text-white shadow-lg">
+    <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-x-3.5">
+        <a href="/" class="font-semibold text-2xl tracking-[-0.5px] flex items-baseline gap-1">Cigar Nexus</a>
+      </div>
+      <div class="flex items-center gap-x-1 text-xs sm:text-sm">
+        <a href="/" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">Map</a>
+        <a href="/about.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">About</a>
+      </div>
+    </div>
+  </header>
+  <main class="node-page">
+    <div class="node-header">
+      <h1 class="text-4xl font-semibold tracking-tight">{{NAME}}</h1>
+      <div class="node-meta">
+        <span>{{TYPE}}</span>
+        <span>{{COUNTRY}}</span>
+      </div>
+    </div>
+    <div class="prose max-w-none text-[#5c4638]">
+      <p>{{DESCRIPTION}}</p>
+    </div>
+    <div class="mt-8">
+      <h2 class="text-2xl font-semibold mb-4">Connections</h2>
+      {{CONNECTIONS}}
+    </div>
+    {{PRODUCT_LINES}}
+    <a href="{{BACK_TO_MAP}}" class="back-link">← Explore this node on the interactive map</a>
+  </main>
+  <footer class="mt-16 py-8 border-t border-[#d4c4a8] text-center text-sm text-[#8b6f5c]">
+    <p>&copy; Cigar Nexus — Interactive map of the premium cigar industry.</p>
+  </footer>
+</body>
+</html>
