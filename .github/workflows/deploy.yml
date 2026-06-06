@@ -17,14 +17,21 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+          # IMPORTANT: Update the path below to match where your site is cloned/served on the VPS
           script: |
-            echo "Deploying cigarnexus.app..."
-            cd /var/www/cigarnexus || { echo "Directory not found"; exit 1; }
+            echo "=== Deploying cigarnexus.app at $(date) ==="
+            DEPLOY_DIR="/var/www/cigarnexus"
+            if [ ! -d "$DEPLOY_DIR" ]; then
+              echo "ERROR: $DEPLOY_DIR does not exist on server. Please clone the repo there first."
+              exit 1
+            fi
+            cd "$DEPLOY_DIR"
             git fetch origin
             git reset --hard origin/main
-            # Optional: fix permissions if needed
-            # sudo chown -R www-data:www-data .
-            # sudo chmod -R 755 .
-            echo "Deployment finished. Restarting web server if needed..."
-            # sudo systemctl reload nginx   # uncomment if using nginx
-            echo "Done."
+            # Fix permissions for nginx (uncomment and adjust user/group as needed)
+            # sudo chown -R www-data:www-data "$DEPLOY_DIR"
+            # sudo chmod -R 755 "$DEPLOY_DIR"
+            echo "Code updated."
+            # Restart/reload web server if your setup requires it (uncomment)
+            # sudo systemctl reload nginx
+            echo "=== Deployment complete ==="
