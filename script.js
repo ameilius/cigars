@@ -507,6 +507,20 @@ function initializeGraph() {
       zoomToFit(true);
     }, 650);
 
+    // Deep linking support: ?node=ID opens the drawer for that node (for SEO and shareable links)
+    // Keeps all existing graph/drag/filter functionality intact
+    setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
+      const nodeId = params.get('node');
+      if (nodeId) {
+        const node = graphData.nodes.find(n => n.id === nodeId);
+        if (node) {
+          showDrawer(node);
+          zoomToNode(node);
+        }
+      }
+    }, 800);
+
   } catch (err) {
     console.error('Failed to initialize graph (nodes may not appear):', err);
     // Try a minimal fallback render so the page isn't completely dead
@@ -939,6 +953,12 @@ function showDrawer(node) {
     descEl.textContent = desc;
     connEl.innerHTML = connHTML;
 
+    // Add link to dedicated SEO page (keeps current drawer UX intact)
+    const fullPageLink = document.createElement('p');
+    fullPageLink.className = 'mt-4 text-sm';
+    fullPageLink.innerHTML = `<a href="/node/${node.id}/" class="text-[#c5a26f] hover:underline font-medium">View full dedicated page with expanded info →</a>`;
+    descEl.parentNode.appendChild(fullPageLink);
+
     if (productLinesEl) productLinesEl.innerHTML = productLinesHTML;
     if (productLinesWrap) productLinesWrap.style.display = hasProductLines ? 'block' : 'none';
 
@@ -958,6 +978,12 @@ function showDrawer(node) {
     mMeta.innerHTML = metaHTML;
     mDesc.textContent = desc;
     mConn.innerHTML = connHTML;
+
+    // Add link to dedicated SEO page for mobile (keeps current drawer UX intact)
+    const mFullPageLink = document.createElement('p');
+    mFullPageLink.className = 'mt-4 text-sm';
+    mFullPageLink.innerHTML = `<a href="/node/${node.id}/" class="text-[#c5a26f] hover:underline font-medium">View full dedicated page with expanded info →</a>`;
+    mDesc.parentNode.appendChild(mFullPageLink);
 
     if (mProductLinesEl) mProductLinesEl.innerHTML = productLinesHTML;
     if (mProductLinesWrap) mProductLinesWrap.style.display = hasProductLines ? 'block' : 'none';
