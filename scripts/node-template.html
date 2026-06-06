@@ -34,6 +34,8 @@
       .node-connections, .product-lines { list-style: none; padding: 0; }
       .node-connections li { margin: 0.5rem 0; padding: 0.5rem; background: #f8f5f0; border-radius: 8px; }
       .back-link { display: inline-block; margin-top: 2rem; color: #c5a26f; text-decoration: underline; }
+      .node-logo-box { max-width: 240px; margin: 0 auto 1rem; background: #fff; border: 1px solid #d4c4a8; border-radius: 16px; padding: 1rem; display: flex; align-items: center; justify-content: center; }
+      .node-logo-box img { max-height: 110px; max-width: 100%; object-fit: contain; }
     </style>
 </head>
 <body class="bg-[#f8f5f0] text-[#3f2a2a]">
@@ -54,6 +56,7 @@
   </header>
   <main class="node-page">
     <div class="node-header">
+      {{LOGO_BOX}}
       <h1 class="text-4xl font-semibold tracking-tight">{{NAME}}</h1>
       <div class="node-meta">
         <span>{{TYPE}}</span>

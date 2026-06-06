@@ -2,3 +2,6 @@
 do-*.ps1  
 *.tmp  
 commitmsg.txt  
+
+# Generated SEO node pages (rebuilt on every deploy from data.js + generator)
+node/
