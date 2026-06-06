@@ -20,7 +20,7 @@ jobs:
           # IMPORTANT: Update the path below to match where your site is cloned/served on the VPS
           script: |
             echo "=== Deploying cigarnexus.app at $(date) ==="
-            DEPLOY_DIR="/var/www/cigarnexus"
+            DEPLOY_DIR="/home/cigarnexus/web/cigarnexus.app/public_html"
             if [ ! -d "$DEPLOY_DIR" ]; then
               echo "ERROR: $DEPLOY_DIR does not exist on server. Please clone the repo there first."
               exit 1
