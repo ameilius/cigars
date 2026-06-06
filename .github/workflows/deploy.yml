@@ -1,4 +1,4 @@
-name: Deploy to VPS
+name: Deploy to Server
 
 on:
   push:
@@ -8,30 +8,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to server via SSH
+      - name: Deploy to Contabo
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
-          # IMPORTANT: Update the path below to match where your site is cloned/served on the VPS
+          host: 13.140.140.201
+          username: cigarnexus
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo "=== Deploying cigarnexus.app at $(date) ==="
-            DEPLOY_DIR="/home/cigarnexus/web/cigarnexus.app/public_html"
-            if [ ! -d "$DEPLOY_DIR" ]; then
-              echo "ERROR: $DEPLOY_DIR does not exist on server. Please clone the repo there first."
-              exit 1
-            fi
-            cd "$DEPLOY_DIR"
-            git fetch origin
+            cd /home/cigarnexus/web/cigarnexus.app/public_html
+            git fetch --all
             git reset --hard origin/main
-            # Fix permissions for nginx (uncomment and adjust user/group as needed)
-            # sudo chown -R www-data:www-data "$DEPLOY_DIR"
-            # sudo chmod -R 755 "$DEPLOY_DIR"
-            echo "Code updated."
-            # Restart/reload web server if your setup requires it (uncomment)
-            # sudo systemctl reload nginx
-            echo "=== Deployment complete ==="
+            echo "Deployment completed at $(date)"
