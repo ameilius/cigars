@@ -1,4 +1,4 @@
-﻿const baseGraphData = {
+﻿var baseGraphData = {
             nodes: [
                 // === Existing core data (preserved & lightly verified) ===
                 { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"], logo: "logos/myfather.png" },

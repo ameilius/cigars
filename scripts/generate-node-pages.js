@@ -47,7 +47,7 @@ function buildProductLinesHtml(node) {
 }
 let template = fs.readFileSync(path.join(__dirname, 'node-template.html'), 'utf8');
 template = template.replace(/^\uFEFF/, '');
-const outputBase = 'node';
+const outputBase = path.join(__dirname, '../node');
 if (fs.existsSync(outputBase)) { fs.rmSync(outputBase, { recursive: true, force: true }); }
 baseGraphData.nodes.forEach(node => {
   const dir = path.join(outputBase, node.id);
