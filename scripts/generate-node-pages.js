@@ -24,25 +24,36 @@ function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').repla
 function getNodeUrl(node) { return '/node/' + node.id + '/'; }
 function buildConnectionsHtml(node, allNodes, allLinks) {
   const connections = allLinks.filter(l => { const s = (l.source.id || l.source); const t = (l.target.id || l.target); return s === node.id || t === node.id; });
-  if (!connections.length) return '<p>No direct connections listed.</p>';
-  let html = '<ul class=\"node-connections\">';
+  if (!connections.length) return '<p class="text-sm text-[#8b6f5c] italic">No direct connections listed.</p>';
+  let html = '<div class="space-y-2">';
   connections.slice(0, 15).forEach(l => {
     const isSource = (l.source.id || l.source) === node.id;
     const otherId = isSource ? (l.target.id || l.target) : (l.source.id || l.source);
     const other = allNodes.find(n => n.id === otherId);
     const otherName = other ? other.name : otherId;
-    const rel = l.type || 'related';
-    const dir = isSource ? '->' : '<-';
-    html += '<li><strong>' + escapeHtml(rel) + '</strong> ' + dir + ' <a href=\"' + getNodeUrl({id: otherId}) + '\">' + escapeHtml(otherName) + '</a></li>';
+    const rel = escapeHtml(l.type || 'related');
+    const dir = isSource ? '→' : '←';
+    const url = getNodeUrl({id: otherId});
+    // Attractive card matching the live drawer's connection style (Tailwind works via CDN on node pages)
+    html += `
+      <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#d4c4a8] text-xs">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-medium text-[10px] px-1.5 py-0.5 rounded bg-[#f4e9d8] text-[#8b6f5c]">${rel}</span>
+          <span class="text-[#c5a26f]">${dir}</span>
+        </div>
+        <a href="${url}" class="font-medium text-[#3f2a2a] hover:text-[#5c2e2e] leading-snug">${escapeHtml(otherName)}</a>
+      </div>`;
   });
-  html += '</ul>';
+  html += '</div>';
   return html;
 }
 function buildProductLinesHtml(node) {
   if (!node.productLines || !node.productLines.length) return '';
-  let html = '<h3>Notable Product Lines</h3><ul class=\"product-lines\">';
-  node.productLines.forEach(line => { html += '<li>' + escapeHtml(line) + '</li>'; });
-  html += '</ul>';
+  let html = '<div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase mt-8">Notable Product Lines</div><div class="flex flex-wrap gap-1.5">';
+  node.productLines.forEach(line => {
+    html += '<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#d4c4a8] text-[#5c2e2e]">' + escapeHtml(line) + '</span>';
+  });
+  html += '</div>';
   return html;
 }
 function buildLogoBoxHtml(node) {

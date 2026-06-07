@@ -953,11 +953,11 @@ function showDrawer(node) {
     descEl.textContent = desc;
     connEl.innerHTML = connHTML;
 
-    // Add link to dedicated SEO page (keeps current drawer UX intact)
-    const fullPageLink = document.createElement('p');
-    fullPageLink.className = 'mt-4 text-sm';
-    fullPageLink.innerHTML = `<a href="/node/${node.id}/" class="text-[#c5a26f] hover:underline font-medium">View full dedicated page with expanded info →</a>`;
-    descEl.parentNode.appendChild(fullPageLink);
+    // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
+    const deskLinkSlot = document.getElementById('drawer-dedicated-link');
+    if (deskLinkSlot) {
+      deskLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#c5a26f]/50 text-[#c5a26f] hover:bg-[#c5a26f]/10 hover:border-[#c5a26f] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
+    }
 
     if (productLinesEl) productLinesEl.innerHTML = productLinesHTML;
     if (productLinesWrap) productLinesWrap.style.display = hasProductLines ? 'block' : 'none';
@@ -979,11 +979,11 @@ function showDrawer(node) {
     mDesc.textContent = desc;
     mConn.innerHTML = connHTML;
 
-    // Add link to dedicated SEO page for mobile (keeps current drawer UX intact)
-    const mFullPageLink = document.createElement('p');
-    mFullPageLink.className = 'mt-4 text-sm';
-    mFullPageLink.innerHTML = `<a href="/node/${node.id}/" class="text-[#c5a26f] hover:underline font-medium">View full dedicated page with expanded info →</a>`;
-    mDesc.parentNode.appendChild(mFullPageLink);
+    // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
+    const mobLinkSlot = document.getElementById('drawer-dedicated-link-mobile');
+    if (mobLinkSlot) {
+      mobLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#c5a26f]/50 text-[#c5a26f] hover:bg-[#c5a26f]/10 hover:border-[#c5a26f] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
+    }
 
     if (mProductLinesEl) mProductLinesEl.innerHTML = productLinesHTML;
     if (mProductLinesWrap) mProductLinesWrap.style.display = hasProductLines ? 'block' : 'none';
@@ -1016,6 +1016,12 @@ function closeDrawer() {
   const drawer = document.getElementById('drawer');
   const mDrawer = document.getElementById('drawer-mobile');
   clearSelectedNode();
+
+  // Clear dedicated page CTAs (prevents stale links on next open)
+  const dLink = document.getElementById('drawer-dedicated-link');
+  if (dLink) dLink.innerHTML = '';
+  const mLink = document.getElementById('drawer-dedicated-link-mobile');
+  if (mLink) mLink.innerHTML = '';
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -96,6 +96,15 @@ h1, h2, .font-display,
     border-color: #e8c4a0;
 }
 
+/* Attractive connection cards (used in drawer + generated node pages) */
+.connection-item {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.connection-item:hover {
+  border-color: #c5a26f;
+  box-shadow: 0 1px 3px rgba(197, 162, 111, 0.12);
+}
+
 /* Mobile refinements */
 @media (max-width: 1023px) {
     #drawer {
