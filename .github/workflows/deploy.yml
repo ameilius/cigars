@@ -35,6 +35,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           command_timeout: 5m
           script: |
+            set -e
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
@@ -44,7 +45,9 @@ jobs:
             $NODE_BIN scripts/generate-node-pages.js
             SIZE=$(wc -c < node/padron/index.html | tr -d ' ')
             COUNT=$(find node -name index.html | wc -l | tr -d ' ')
-            echo "Generated $COUNT pages, padron=$SIZE bytes"
+            echo "Generated $COUNT pages, padron=$SIZE bytes at $(stat -c %y node/padron/index.html 2>/dev/null || stat -f %Sm node/padron/index.html)"
+            test "$SIZE" -gt 12000
+            grep -q "Industry Connections" node/padron/index.html
             date -u +%Y-%m-%dT%H:%M:%SZ > deploy-stamp.txt
 
       - name: Verify live site
