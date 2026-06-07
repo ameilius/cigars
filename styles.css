@@ -609,31 +609,38 @@ h1, h2, .font-display,
     min-height: 85px;
 }
 
-/* Person portraits in drawer — same card treatment, circular photo */
+/* Person portraits in drawer — same card treatment, circular crop (any source size/aspect) */
 #drawer-logo-container.drawer-image-container--person,
 #drawer-logo-container-mobile.drawer-image-container--person {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.75rem;
+    min-height: 0;
+}
+
+#drawer-logo-container.drawer-image-container--person #drawer-logo,
+#drawer-logo-container-mobile.drawer-image-container--person #drawer-logo-mobile {
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    border-radius: 9999px;
+    object-fit: cover;
+    /* Upper-third bias works for headshots and wider full-body portraits */
+    object-position: center 25%;
 }
 
 #drawer-logo-container.drawer-image-container--person #drawer-logo {
     width: 120px;
     height: 120px;
+    max-width: 120px;
     max-height: 120px;
-    border-radius: 9999px;
-    object-fit: cover;
-    object-position: center top;
 }
 
 #drawer-logo-container-mobile.drawer-image-container--person #drawer-logo-mobile {
     width: 96px;
     height: 96px;
+    max-width: 96px;
     max-height: 96px;
-    border-radius: 9999px;
-    object-fit: cover;
-    object-position: center top;
 }
 
 /* ============================================

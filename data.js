@@ -182,7 +182,7 @@
 
                 // Karen Berger Cigars (continues Don Kiki legacy, vertically integrated in Estelí)
                 { id: "karenberger", name: "Karen Berger Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Don Kiki Platinum", "K by Karen Berger Habano", "K by Karen Berger Maduro", "Ixtelli", "Halftime"], logo: "logos/karenberger.jpeg" },
-                { id: "karenbergerperson", name: "Karen Berger", type: "person", group: "family", country: "nicaragua" },
+                { id: "karenbergerperson", name: "Karen Berger", type: "person", group: "family", country: "nicaragua", photo: "logos/karenbergerprofile.png" },
                 { id: "tabacaleraesteli", name: "Tabacalera Estelí", type: "factory", group: "family", country: "nicaragua" },
 
                 // La Palina (revived by Bill Paley, negociant model)
