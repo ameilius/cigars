@@ -88,12 +88,16 @@ function buildMetaPills(node) {
   return pills.join('');
 }
 
+let selectedNodeId = null;
+
 function setSelectedNode(nodeId) {
+  selectedNodeId = nodeId || null;
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', d => d.id === nodeId);
 }
 
 function clearSelectedNode() {
+  selectedNodeId = null;
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', false);
 }
@@ -312,8 +316,10 @@ function initializeGraph() {
       if (nodeId) {
         const node = graphData.nodes.find(n => n.id === nodeId);
         if (node) {
+          currentDrawerNode = node;
+          setSelectedNode(node.id);
+          zoomToNode(node, { raiseForDrawer: window.innerWidth < 1024 });
           showDrawer(node);
-          zoomToNode(node);
         }
       }
     }, 800);
@@ -424,6 +430,8 @@ function updateGraph() {
       .attr('x', d => d.x)
       .attr('y', d => d.y);
   });
+
+  if (selectedNodeId) setSelectedNode(selectedNodeId);
 
   updateLabelVisibility();
 }
@@ -669,10 +677,14 @@ function selectSearchResult(nodeId) {
 
   clearSearch();
   closeSearchOverlay();
-  closeDrawer();
+  closeDrawer({ keepMapFocus: false });
 
+  currentDrawerNode = node;
+  setSelectedNode(node.id);
+
+  const raiseForDrawer = window.innerWidth < 1024;
   setTimeout(() => {
-    zoomToNode(node);
+    zoomToNode(node, { raiseForDrawer });
     setTimeout(() => showDrawer(node), 580);
   }, 90);
 }
@@ -768,8 +780,8 @@ function resetZoom() {
   svg.transition().duration(550).call(zoomBehavior.transform, d3.zoomIdentity);
 }
 
-// Smoothly zoom + center on a specific node (used by the "Start Here" examples)
-function zoomToNode(targetNode) {
+// Smoothly zoom + center on a specific node (used by search, examples, deep links)
+function zoomToNode(targetNode, options = {}) {
   if (!svg || !viewport || !targetNode || !simulation) {
     zoomToFit();
     return;
@@ -791,8 +803,9 @@ function zoomToNode(targetNode) {
   }
 
   const scale = 1.9;
+  const focusY = options.raiseForDrawer ? graphHeight * 0.3 : graphHeight / 2;
   const tx = graphWidth / 2 - scale * d.x;
-  const ty = graphHeight / 2 - scale * d.y;
+  const ty = focusY - scale * d.y;
 
   svg.transition()
     .duration(620)
@@ -996,15 +1009,25 @@ function showDrawer(node) {
 function showDrawerFromId(id) {
   const node = graphData.nodes.find(n => n.id === id);
   if (node) {
-    closeDrawer();
-    setTimeout(() => showDrawer(node), 60);
+    closeDrawer({ keepMapFocus: false });
+    const raiseForDrawer = window.innerWidth < 1024;
+    setTimeout(() => {
+      zoomToNode(node, { raiseForDrawer });
+      showDrawer(node);
+    }, 60);
   }
 }
 
-function closeDrawer() {
+function closeDrawer({ keepMapFocus = true } = {}) {
   const drawer = document.getElementById('drawer');
   const mDrawer = document.getElementById('drawer-mobile');
-  clearSelectedNode();
+
+  if (keepMapFocus && currentDrawerNode) {
+    setSelectedNode(currentDrawerNode.id);
+  } else {
+    clearSelectedNode();
+    currentDrawerNode = null;
+  }
 
   // Clear dedicated page CTAs (prevents stale links on next open)
   const dLink = document.getElementById('drawer-dedicated-link');
@@ -1065,10 +1088,13 @@ function selectExample(nodeId) {
   const node = graphData.nodes.find(n => n.id === nodeId);
   if (!node) return;
 
-  closeDrawer();
+  closeDrawer({ keepMapFocus: false });
+  currentDrawerNode = node;
+  setSelectedNode(node.id);
 
+  const raiseForDrawer = window.innerWidth < 1024;
   setTimeout(() => {
-    zoomToNode(node);
+    zoomToNode(node, { raiseForDrawer });
     setTimeout(() => {
       showDrawer(node);
       try { sessionStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
