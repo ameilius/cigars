@@ -62,6 +62,18 @@ function escapeMetaLabel(text) {
     .replace(/>/g, '&gt;');
 }
 
+/** Brand/company logo or person portrait (people use `photo`, not `logo`). */
+function getNodeVisual(node) {
+  if (!node) return null;
+  if (node.type === 'person' && node.photo && String(node.photo).trim()) {
+    return { src: node.photo.trim(), kind: 'photo', altSuffix: 'portrait' };
+  }
+  if (node.logo && String(node.logo).trim()) {
+    return { src: node.logo.trim(), kind: 'logo', altSuffix: 'logo' };
+  }
+  return null;
+}
+
 /** Legend-aligned meta pills for the drawer (visual only). */
 function buildMetaPills(node) {
   const pills = [];
@@ -1004,32 +1016,28 @@ function showDrawer(node) {
 
   const name = node.name || node.id;
 
-  // Logo handling for drawer (desktop + mobile) - mimic example layout
+  // Logo or person portrait in drawer (desktop + mobile)
   const logoContainerDesktop = document.getElementById('drawer-logo-container');
   const logoImgDesktop = document.getElementById('drawer-logo');
   const logoContainerMobile = document.getElementById('drawer-logo-container-mobile');
   const logoImgMobile = document.getElementById('drawer-logo-mobile');
-  const hasLogo = node.logo && node.logo.trim() !== '';
+  const visual = getNodeVisual(node);
 
-  if (logoContainerDesktop && logoImgDesktop) {
-    if (hasLogo) {
-      logoImgDesktop.src = node.logo;
-      logoImgDesktop.alt = name + ' logo';
-      logoContainerDesktop.classList.remove('hidden');
+  const applyDrawerVisual = (container, img) => {
+    if (!container || !img) return;
+    container.classList.remove('drawer-image-container--person');
+    if (visual) {
+      img.src = visual.src;
+      img.alt = `${name} ${visual.altSuffix}`;
+      if (visual.kind === 'photo') container.classList.add('drawer-image-container--person');
+      container.classList.remove('hidden');
     } else {
-      logoContainerDesktop.classList.add('hidden');
+      container.classList.add('hidden');
     }
-  }
+  };
 
-  if (logoContainerMobile && logoImgMobile) {
-    if (hasLogo) {
-      logoImgMobile.src = node.logo;
-      logoImgMobile.alt = name + ' logo';
-      logoContainerMobile.classList.remove('hidden');
-    } else {
-      logoContainerMobile.classList.add('hidden');
-    }
-  }
+  applyDrawerVisual(logoContainerDesktop, logoImgDesktop);
+  applyDrawerVisual(logoContainerMobile, logoImgMobile);
 
   const metaHTML = buildMetaPills(node);
   setSelectedNode(node.id);

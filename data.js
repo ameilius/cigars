@@ -129,7 +129,7 @@
 
                 // HVC (Reinier Lorenzo - now with own factory)
                 { id: "hvc", name: "HVC Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Hot Cake", "Black Friday", "Edición Limitada", "Pan Caliente"], logo: "logos/hvc.webp" },
-                { id: "reinierlorenzo", name: "Reinier Lorenzo", type: "person", group: "family", country: "nicaragua" },
+                { id: "reinierlorenzo", name: "Reinier Lorenzo", type: "person", group: "family", country: "nicaragua", photo: "logos/reinierlorenzo.jpg" },
                 { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // West Tampa Tobacco Co. (Rick Rodriguez)

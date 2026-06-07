@@ -231,10 +231,16 @@ function buildProductLinesHtml(node) {
 }
 
 function buildLogoBoxHtml(node) {
+  const name = escapeHtml(node.name || node.id);
+
+  if (node.type === 'person' && node.photo && String(node.photo).trim()) {
+    const src = '../../' + node.photo.trim();
+    return `<div class="node-photo-box"><img src="${src}" alt="${name} portrait" loading="lazy"></div>`;
+  }
+
   if (!node.logo || !node.logo.trim()) return '';
-  const src = '../../' + node.logo;
-  const alt = escapeHtml(node.name || node.id) + ' logo';
-  return `<div class="node-logo-box"><img src="${src}" alt="${alt}" loading="lazy"></div>`;
+  const src = '../../' + node.logo.trim();
+  return `<div class="node-logo-box"><img src="${src}" alt="${name} logo" loading="lazy"></div>`;
 }
 
 function buildBreadcrumbs(node) {
