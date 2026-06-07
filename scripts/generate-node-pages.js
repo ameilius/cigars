@@ -8,6 +8,7 @@ vm.createContext(dataSandbox);
 vm.runInContext(dataCode, dataSandbox);
 const baseGraphData = dataSandbox.baseGraphData || {nodes: [], links: []};
 let descriptions = {};
+let expandedDescriptions = {};
 try {
   let scriptCode = fs.readFileSync(path.join(__dirname, '../script.js'), 'utf8');
   scriptCode = scriptCode.replace(/^\uFEFF/, '');
@@ -18,6 +19,14 @@ try {
     vm.createContext(descSandbox);
     vm.runInContext(descCode, descSandbox);
     descriptions = descSandbox.descriptions || {};
+  }
+  const expMatch = scriptCode.match(/const expandedDescriptions = \{[\s\S]*?\n\};/);
+  if (expMatch) {
+    const expCode = expMatch[0];
+    const expSandbox = {};
+    vm.createContext(expSandbox);
+    vm.runInContext(expCode, expSandbox);
+    expandedDescriptions = expSandbox.expandedDescriptions || {};
   }
 } catch(e) { console.warn('Descriptions load skipped, using fallbacks'); }
 function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -72,7 +81,7 @@ baseGraphData.nodes.forEach(node => {
   const connectionsHtml = buildConnectionsHtml(node, baseGraphData.nodes, baseGraphData.links);
   const productHtml = buildProductLinesHtml(node);
   const logoBoxHtml = buildLogoBoxHtml(node);
-  const desc = descriptions[node.id] || 'Detailed profile for ' + node.name + ' in the premium cigar industry.';
+  const desc = expandedDescriptions[node.id] || descriptions[node.id] || 'Detailed profile for ' + node.name + ' in the premium cigar industry.';
   let page = template
     .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
     .replace(/\{\{ID\}\}/g, node.id)
