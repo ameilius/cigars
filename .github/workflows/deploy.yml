@@ -17,7 +17,11 @@ jobs:
           node-version: '20'
 
       - name: Build SEO node pages (115 pages + sitemap)
-        run: node scripts/generate-node-pages.js
+        run: |
+          node scripts/generate-node-pages.js
+          test -f node/padron/index.html
+          grep -q "Industry Connections" node/padron/index.html
+          echo "Build OK: $(find node -name index.html | wc -l) pages"
 
       - name: Package generated pages
         run: tar czf generated-pages.tgz node sitemap.xml
@@ -53,6 +57,7 @@ jobs:
           script: |
             set -euo pipefail
             cd /home/cigarnexus/web/cigarnexus.app/public_html
+            rm -rf node
             tar xzf /tmp/generated-pages.tgz
             rm -f /tmp/generated-pages.tgz
             COUNT=$(find node -name index.html | wc -l)
