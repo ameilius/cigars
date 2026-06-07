@@ -8,18 +8,51 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Contabo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build SEO node pages (115 pages + sitemap)
+        run: node scripts/generate-node-pages.js
+
+      - name: Sync source code on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 13.140.140.201
           username: cigarnexus
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -euo pipefail
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
-            echo "Building SEO node pages from data.js + descriptions.js + expanded-descriptions.js..."
-            NODE_BIN=$(command -v node || echo /usr/bin/node)
-            $NODE_BIN scripts/generate-node-pages.js
-            echo "Done. $(find node -name index.html 2>/dev/null | wc -l) node pages + sitemap.xml"
-            echo "Deployment completed at $(date)"
+            echo "Git sync complete at $(date)"
+
+      - name: Upload generated node pages + sitemap
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 13.140.140.201
+          username: cigarnexus
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "node,sitemap.xml"
+          target: "/home/cigarnexus/web/cigarnexus.app/public_html"
+          overwrite: true
+
+      - name: Verify deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 13.140.140.201
+          username: cigarnexus
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -euo pipefail
+            cd /home/cigarnexus/web/cigarnexus.app/public_html
+            COUNT=$(find node -name index.html 2>/dev/null | wc -l)
+            echo "Node pages on server: $COUNT"
+            test "$COUNT" -ge 100
+            grep -q "Industry Connections" node/padron/index.html
+            echo "Deploy verified at $(date)"
