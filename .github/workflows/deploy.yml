@@ -37,10 +37,17 @@ jobs:
           script: |
             set -e
             cd /home/cigarnexus/web/cigarnexus.app/public_html
+            echo "Deploy user: $(whoami)"
             git fetch --all
             git reset --hard origin/main
             echo "Synced: $(git log -1 --oneline)"
-            NODE_BIN=$(command -v node 2>/dev/null || echo /usr/bin/node)
+            if [ -d node ] && [ ! -w node ]; then
+              echo "ERROR: node/ is not writable by $(whoami) (likely root-owned from a manual run)."
+              echo "Fix once as root: chown -R cigarnexus:cigarnexus $(pwd)/node $(pwd)/sitemap.xml"
+              exit 1
+            fi
+            NODE_BIN=/usr/bin/node
+            if ! [ -x "$NODE_BIN" ]; then NODE_BIN=$(command -v node); fi
             echo "Node: $NODE_BIN ($($NODE_BIN --version 2>&1 || echo MISSING))"
             $NODE_BIN scripts/generate-node-pages.js
             SIZE=$(wc -c < node/padron/index.html | tr -d ' ')
