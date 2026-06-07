@@ -121,6 +121,7 @@ function mergeData() {
 // -----------------------------
 let activeFilters = new Set(['all']);
 let searchTerm = '';
+let searchOverlayOpen = false;
 
 // -----------------------------
 // D3 Graph Variables
@@ -150,36 +151,7 @@ function initializeApp() {
   const allChip = document.querySelector('.filter-chip[data-key="all"]') || document.querySelector('.filter-chip');
   if (allChip) allChip.classList.add('filter-active');
 
-  // Setup search + clear button
-  const searchInput = document.getElementById('search');
-  const clearBtn = document.getElementById('search-clear');
-
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchTerm = e.target.value.trim().toLowerCase();
-      applyFiltersAndSearch();
-
-      // Show/hide clear button
-      if (clearBtn) {
-        if (searchInput.value.length > 0) {
-          clearBtn.classList.remove('hidden');
-        } else {
-          clearBtn.classList.add('hidden');
-        }
-      }
-    });
-
-    // Clear button functionality
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        searchTerm = '';
-        clearBtn.classList.add('hidden');
-        applyFiltersAndSearch();
-        searchInput.focus();
-      });
-    }
-  }
+  setupSearch();
 
   // Initialize the graph (wrapped so one error doesn't kill filters or drawer)
   try {
@@ -188,10 +160,11 @@ function initializeApp() {
     console.error('initializeGraph threw:', e);
   }
 
-  // Keyboard escape closes drawer
+  // Keyboard escape closes search overlay first, then drawer
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeDrawer();
+      if (searchOverlayOpen) closeSearchOverlay();
+      else closeDrawer();
     }
   });
 
@@ -542,8 +515,177 @@ function getFilteredData() {
 }
 
 function applyFiltersAndSearch() {
-  if (!simulation) return;
-  updateGraph();
+  if (simulation) updateGraph();
+  if (searchOverlayOpen) renderSearchResults();
+  updateSearchMobileBadge();
+}
+
+// -----------------------------
+// Search (desktop inline + mobile overlay)
+// -----------------------------
+function updateSearchClearButton(input, clearBtn) {
+  if (!clearBtn || !input) return;
+  if (input.value.length > 0) clearBtn.classList.remove('hidden');
+  else clearBtn.classList.add('hidden');
+}
+
+function syncSearchInputs(sourceInput) {
+  const desktop = document.getElementById('search');
+  const mobile = document.getElementById('search-mobile');
+  [desktop, mobile].forEach(el => {
+    if (el && el !== sourceInput) el.value = searchTerm;
+  });
+  updateSearchClearButton(desktop, document.getElementById('search-clear'));
+  updateSearchClearButton(mobile, document.getElementById('search-mobile-clear'));
+}
+
+function updateSearchMobileBadge() {
+  const badge = document.getElementById('search-mobile-badge');
+  if (!badge) return;
+  if (searchTerm && !searchOverlayOpen) badge.classList.remove('hidden');
+  else badge.classList.add('hidden');
+}
+
+function onSearchInput(value, sourceInput) {
+  searchTerm = value.trim().toLowerCase();
+  syncSearchInputs(sourceInput);
+  applyFiltersAndSearch();
+}
+
+function bindSearchInput(input, clearBtn) {
+  if (!input) return;
+  input.addEventListener('input', (e) => onSearchInput(e.target.value, input));
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      onSearchInput('', input);
+      input.focus();
+    });
+  }
+}
+
+function clearSearch() {
+  searchTerm = '';
+  const desktop = document.getElementById('search');
+  const mobile = document.getElementById('search-mobile');
+  if (desktop) desktop.value = '';
+  if (mobile) mobile.value = '';
+  updateSearchClearButton(desktop, document.getElementById('search-clear'));
+  updateSearchClearButton(mobile, document.getElementById('search-mobile-clear'));
+  applyFiltersAndSearch();
+  if (searchOverlayOpen) renderSearchResults();
+}
+
+function getSearchMatches() {
+  if (!searchTerm) return [];
+  const { nodes } = getFilteredData();
+  return [...nodes].sort((a, b) => {
+    const aName = (a.name || '').toLowerCase();
+    const bName = (b.name || '').toLowerCase();
+    const aStarts = aName.startsWith(searchTerm);
+    const bStarts = bName.startsWith(searchTerm);
+    if (aStarts !== bStarts) return aStarts ? -1 : 1;
+    return aName.localeCompare(bName);
+  });
+}
+
+function renderSearchResults() {
+  const list = document.getElementById('search-results');
+  const empty = document.getElementById('search-empty');
+  const hint = document.getElementById('search-hint');
+  if (!list) return;
+
+  if (!searchTerm) {
+    list.innerHTML = '';
+    if (empty) empty.classList.add('hidden');
+    if (hint) hint.classList.remove('hidden');
+    return;
+  }
+
+  const matches = getSearchMatches();
+  if (hint) hint.classList.add('hidden');
+
+  if (matches.length === 0) {
+    list.innerHTML = '';
+    if (empty) empty.classList.remove('hidden');
+    return;
+  }
+
+  if (empty) empty.classList.add('hidden');
+  list.innerHTML = matches.map(node => `
+    <button type="button"
+            class="search-result-item"
+            data-node-id="${escapeMetaLabel(node.id)}"
+            role="option"
+            aria-label="Open ${escapeMetaLabel(node.name)}">
+      <span class="search-result-item__name">${escapeMetaLabel(node.name)}</span>
+      <span class="search-result-item__meta">${buildMetaPills(node)}</span>
+    </button>
+  `).join('');
+
+  list.querySelectorAll('.search-result-item').forEach(btn => {
+    btn.addEventListener('click', () => selectSearchResult(btn.getAttribute('data-node-id')));
+  });
+}
+
+function openSearchOverlay() {
+  const overlay = document.getElementById('search-overlay');
+  if (!overlay || window.innerWidth >= 1024) return;
+
+  closeDrawer();
+  overlay.classList.remove('hidden');
+  overlay.setAttribute('aria-hidden', 'false');
+  searchOverlayOpen = true;
+  document.body.style.overflow = 'hidden';
+
+  const mobileInput = document.getElementById('search-mobile');
+  if (mobileInput) {
+    mobileInput.value = searchTerm;
+    updateSearchClearButton(mobileInput, document.getElementById('search-mobile-clear'));
+    requestAnimationFrame(() => mobileInput.focus());
+  }
+  renderSearchResults();
+  updateSearchMobileBadge();
+}
+
+function closeSearchOverlay() {
+  const overlay = document.getElementById('search-overlay');
+  if (!overlay || overlay.classList.contains('hidden')) return;
+
+  overlay.classList.add('hidden');
+  overlay.setAttribute('aria-hidden', 'true');
+  searchOverlayOpen = false;
+
+  const ageGate = document.getElementById('age-gate');
+  const gateVisible = ageGate && getComputedStyle(ageGate).display !== 'none';
+  if (!gateVisible) document.body.style.overflow = '';
+
+  updateSearchMobileBadge();
+}
+
+function selectSearchResult(nodeId) {
+  const node = graphData.nodes.find(n => n.id === nodeId);
+  if (!node) return;
+
+  clearSearch();
+  closeSearchOverlay();
+  closeDrawer();
+
+  setTimeout(() => {
+    zoomToNode(node);
+    setTimeout(() => showDrawer(node), 580);
+  }, 90);
+}
+
+function setupSearch() {
+  bindSearchInput(document.getElementById('search'), document.getElementById('search-clear'));
+  bindSearchInput(document.getElementById('search-mobile'), document.getElementById('search-mobile-clear'));
+
+  const openBtn = document.getElementById('search-mobile-open');
+  if (openBtn) openBtn.addEventListener('click', openSearchOverlay);
+
+  const cancelBtn = document.getElementById('search-overlay-cancel');
+  if (cancelBtn) cancelBtn.addEventListener('click', closeSearchOverlay);
 }
 
 // Update the counts shown inside each filter chip (full dataset totals)
@@ -1058,6 +1200,9 @@ window.showDrawerFromId = showDrawerFromId;
 window.zoomToNode = zoomToNode;
 window.showHowTo = showHowTo;
 window.selectExample = selectExample;
+window.openSearchOverlay = openSearchOverlay;
+window.closeSearchOverlay = closeSearchOverlay;
+window.selectSearchResult = selectSearchResult;
 
 // -----------------------------
 // Age Verification Gate

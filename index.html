@@ -104,9 +104,21 @@
                 </button>
             </div>
             
-            <div class="flex items-center gap-x-1 text-xs sm:text-sm">
-                <a href="index.html" class="nav-link nav-link--active px-3 py-1.5 rounded-2xl text-[#c5a26f] font-medium transition-colors">Map</a>
-                <a href="about.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">About</a>
+            <div class="flex items-center gap-x-0.5 sm:gap-x-1">
+                <button id="search-mobile-open"
+                        type="button"
+                        class="sm:hidden relative flex items-center justify-center w-11 h-11 rounded-2xl text-[#e8d9c3] hover:bg-white/10 active:bg-white/15 transition-colors"
+                        aria-label="Search the map">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="M20 20l-3.5-3.5"></path>
+                    </svg>
+                    <span id="search-mobile-badge" class="hidden absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-[#c5a26f] ring-2 ring-[#5c2e2e]" aria-hidden="true"></span>
+                </button>
+                <div class="flex items-center gap-x-1 text-xs sm:text-sm">
+                    <a href="index.html" class="nav-link nav-link--active px-3 py-1.5 rounded-2xl text-[#c5a26f] font-medium transition-colors">Map</a>
+                    <a href="about.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">About</a>
+                </div>
             </div>
         </div>
     </header>
@@ -268,6 +280,53 @@
     </div>
 
 
+
+    <!-- Mobile search overlay -->
+    <div id="search-overlay"
+         class="search-overlay hidden lg:hidden fixed inset-0 z-[60] bg-[#f8f5f0] flex flex-col"
+         aria-hidden="true"
+         role="dialog"
+         aria-modal="true"
+         aria-label="Search the map">
+        <div class="search-overlay__header flex items-center justify-between gap-3 px-4 py-3 border-b border-[#d4c4a8] bg-[#f4e9d8]/90">
+            <button id="search-overlay-cancel"
+                    type="button"
+                    class="text-sm font-semibold text-[#5c2e2e] px-2 py-1.5 rounded-xl hover:bg-white/60 active:scale-[0.98] transition-all">
+                Cancel
+            </button>
+            <span class="text-sm font-semibold text-[#3f2a2a] tracking-tight">Search</span>
+            <span class="w-16" aria-hidden="true"></span>
+        </div>
+
+        <div class="px-4 pt-4 pb-3">
+            <div class="relative">
+                <input id="search-mobile"
+                       type="search"
+                       inputmode="search"
+                       autocomplete="off"
+                       autocorrect="off"
+                       spellcheck="false"
+                       placeholder="Search brands, people, factories…"
+                       class="w-full px-4 py-3.5 pr-11 rounded-2xl bg-white border border-[#d4c4a8] text-[#3f2a2a] placeholder-[#8b6f5c] focus:outline-none focus:ring-2 focus:ring-[#c5a26f] shadow-sm text-base">
+                <button id="search-mobile-clear"
+                        type="button"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-[#5c2e2e] hover:text-[#3f2a2a] text-2xl font-light leading-none rounded-full hover:bg-[#f4e9d8] transition-all hidden"
+                        aria-label="Clear search">
+                    ×
+                </button>
+            </div>
+        </div>
+
+        <div id="search-hint" class="px-6 text-sm text-[#8b6f5c] leading-relaxed">
+            Type to find brands, people, factories, and companies on the map.
+        </div>
+
+        <div id="search-empty" class="hidden px-6 py-8 text-center text-sm text-[#8b6f5c]">
+            No matches found. Try a different name or clear your filters.
+        </div>
+
+        <div id="search-results" class="search-overlay__results flex-1 overflow-y-auto px-4 pb-6 space-y-2" role="listbox" aria-label="Search results"></div>
+    </div>
 
     <!-- Age Verification Gate -->
     <div id="age-gate" class="fixed inset-0 bg-[#5c2e2e]/95 z-[9999] hidden items-center justify-center p-4">
