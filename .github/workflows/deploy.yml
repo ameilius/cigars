@@ -18,7 +18,11 @@ jobs:
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
-            echo "Generating SEO node pages..."
-            node scripts/generate-node-pages.js
-            echo "SEO pages generated."
+            echo "Running generator to build /node/ pages (long content) + update sitemap..."
+            if command -v node >/dev/null 2>&1; then
+              node scripts/generate-node-pages.js
+            else
+              /usr/bin/node scripts/generate-node-pages.js
+            fi
+            echo "SEO node pages generated successfully."
             echo "Deployment completed at $(date)"
