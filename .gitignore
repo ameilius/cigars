@@ -3,5 +3,6 @@ do-*.ps1
 *.tmp  
 commitmsg.txt  
 
-# Generated SEO node pages (rebuilt on every deploy — do not commit)
+# Generated SEO artifacts (rebuilt on every deploy — do not commit)
 node/
+sitemap.xml

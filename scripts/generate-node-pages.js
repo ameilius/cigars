@@ -350,13 +350,50 @@ baseGraphData.nodes.forEach(node => {
 
 console.log(`Generated ${baseGraphData.nodes.length} node pages (${overrideCount} manual overrides, ${autoCount} auto-expanded).`);
 
-const today = new Date().toISOString().split('T')[0];
-let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-sitemap += `  <url>\n    <loc>${SITE}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
-sitemap += `  <url>\n    <loc>${SITE}/about.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
-baseGraphData.nodes.forEach(node => {
-  sitemap += `  <url>\n    <loc>${SITE}/node/${node.id}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
-});
-sitemap += '</urlset>\n';
-fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
-console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs).`);
+function buildSitemap(nodes) {
+  const today = new Date().toISOString().split('T')[0];
+  const sorted = [...nodes].sort((a, b) => a.id.localeCompare(b.id));
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  xml += `  <url>\n    <loc>${SITE}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+  xml += `  <url>\n    <loc>${SITE}/about.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+  sorted.forEach(node => {
+    xml += `  <url>\n    <loc>${SITE}/node/${node.id}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
+  });
+  xml += '</urlset>\n';
+  return xml;
+}
+
+function validateSitemap(xml, nodes) {
+  const nodeIds = new Set(nodes.map(n => n.id));
+  const found = [...xml.matchAll(/<loc>https:\/\/cigarnexus\.app\/node\/([^/]+)\//g)].map(m => m[1]);
+
+  if (found.length !== nodeIds.size) {
+    throw new Error(`Sitemap has ${found.length} node URLs, expected ${nodeIds.size}`);
+  }
+  if (new Set(found).size !== found.length) {
+    throw new Error('Sitemap contains duplicate node URLs');
+  }
+
+  const extras = found.filter(id => !nodeIds.has(id));
+  if (extras.length) {
+    throw new Error(`Sitemap has stale node URLs: ${extras.join(', ')}`);
+  }
+
+  const foundSet = new Set(found);
+  const missing = [...nodeIds].filter(id => !foundSet.has(id));
+  if (missing.length) {
+    throw new Error(`Sitemap missing node URLs: ${missing.join(', ')}`);
+  }
+
+  const totalUrls = (xml.match(/<loc>/g) || []).length;
+  if (totalUrls !== nodeIds.size + 2) {
+    throw new Error(`Sitemap has ${totalUrls} total URLs, expected ${nodeIds.size + 2}`);
+  }
+}
+
+const sitemapPath = path.join(ROOT, 'sitemap.xml');
+const sitemap = buildSitemap(baseGraphData.nodes);
+validateSitemap(sitemap, baseGraphData.nodes);
+fs.writeFileSync(sitemapPath, sitemap, 'utf8');
+console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs, synced with data.js).`);

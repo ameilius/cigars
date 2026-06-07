@@ -25,7 +25,12 @@ jobs:
           test -f node/padron/index.html
           test "$(wc -c < node/padron/index.html)" -gt 12000
           grep -q "Industry Connections" node/padron/index.html
-          echo "CI build OK: $(find node -name index.html | wc -l) pages"
+          test -f sitemap.xml
+          NODE_COUNT=$(node -e "const vm=require('vm');const fs=require('fs');const s={};vm.createContext(s);vm.runInContext(fs.readFileSync('data.js','utf8'),s);console.log(s.baseGraphData.nodes.length)")
+          SITEMAP_NODES=$(grep -c 'cigarnexus.app/node/' sitemap.xml)
+          test "$SITEMAP_NODES" -eq "$NODE_COUNT"
+          grep -q '<loc>https://cigarnexus.app/node/padron/</loc>' sitemap.xml
+          echo "CI build OK: $(find node -name index.html | wc -l) pages, sitemap $SITEMAP_NODES node URLs"
 
       - name: Deploy on VPS (git pull + generate)
         uses: appleboy/ssh-action@v1.0.3
@@ -46,6 +51,11 @@ jobs:
               echo "Fix once as root: chown -R cigarnexus:cigarnexus $(pwd)/node $(pwd)/sitemap.xml"
               exit 1
             fi
+            if [ -f sitemap.xml ] && [ ! -w sitemap.xml ]; then
+              echo "ERROR: sitemap.xml is not writable by $(whoami)."
+              echo "Fix once as root: chown cigarnexus:cigarnexus $(pwd)/sitemap.xml"
+              exit 1
+            fi
             NODE_BIN=/usr/bin/node
             if ! [ -x "$NODE_BIN" ]; then NODE_BIN=$(command -v node); fi
             echo "Node: $NODE_BIN ($($NODE_BIN --version 2>&1 || echo MISSING))"
@@ -55,6 +65,12 @@ jobs:
             echo "Generated $COUNT pages, padron=$SIZE bytes at $(stat -c %y node/padron/index.html 2>/dev/null || stat -f %Sm node/padron/index.html)"
             test "$SIZE" -gt 12000
             grep -q "Industry Connections" node/padron/index.html
+            test -f sitemap.xml
+            NODE_COUNT=$($NODE_BIN -e "const vm=require('vm');const fs=require('fs');const s={};vm.createContext(s);vm.runInContext(fs.readFileSync('data.js','utf8'),s);console.log(s.baseGraphData.nodes.length)")
+            SITEMAP_NODES=$(grep -c 'cigarnexus.app/node/' sitemap.xml)
+            test "$SITEMAP_NODES" -eq "$NODE_COUNT"
+            grep -q '<loc>https://cigarnexus.app/node/padron/</loc>' sitemap.xml
+            echo "Sitemap OK: $SITEMAP_NODES node URLs"
             date -u +%Y-%m-%dT%H:%M:%SZ > deploy-stamp.txt
 
       - name: Verify live site
@@ -64,4 +80,47 @@ jobs:
           BODY=$(curl -fsS "https://cigarnexus.app/node/padron/")
           echo "$BODY" | grep -q "Industry Connections"
           echo "$BODY" | grep -q 'rel="canonical"'
+          node -e "
+            const https = require('https');
+            const vm = require('vm');
+            const get = (url) => new Promise((resolve, reject) => {
+              https.get(url, (res) => {
+                let data = '';
+                res.on('data', (chunk) => { data += chunk; });
+                res.on('end', () => resolve(data));
+              }).on('error', reject);
+            });
+            (async () => {
+              const [dataJs, sitemap] = await Promise.all([
+                get('https://cigarnexus.app/data.js'),
+                get('https://cigarnexus.app/sitemap.xml')
+              ]);
+              const sandbox = {};
+              vm.createContext(sandbox);
+              vm.runInContext(dataJs, sandbox);
+              const expected = sandbox.baseGraphData.nodes.length;
+              const ids = new Set(sandbox.baseGraphData.nodes.map((n) => n.id));
+              const found = [...sitemap.matchAll(/<loc>https:\\/\\/cigarnexus\\.app\\/node\\/([^/]+)\\//g)].map((m) => m[1]);
+              if (found.length !== expected) {
+                console.error('Live sitemap node count', found.length, '!= data.js', expected);
+                process.exit(1);
+              }
+              for (const id of found) {
+                if (!ids.has(id)) {
+                  console.error('Live sitemap has stale URL:', id);
+                  process.exit(1);
+                }
+              }
+              for (const id of ids) {
+                if (!found.includes(id)) {
+                  console.error('Live sitemap missing URL:', id);
+                  process.exit(1);
+                }
+              }
+              console.log('Live sitemap OK:', expected, 'node URLs');
+            })().catch((err) => {
+              console.error(err);
+              process.exit(1);
+            });
+          "
           echo "Live site OK"
