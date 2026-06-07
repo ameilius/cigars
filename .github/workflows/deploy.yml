@@ -16,42 +16,48 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build SEO node pages (CI gate)
+      - name: Verify SEO page build (CI gate)
         run: |
           node scripts/generate-node-pages.js
           test -f node/padron/index.html
           grep -q "Industry Connections" node/padron/index.html
           echo "Build OK: $(find node -name index.html | wc -l) pages"
 
-      - name: Sync source code on VPS
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 13.140.140.201
           username: cigarnexus
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          command_timeout: 5m
           script: |
-            set -eo pipefail
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
-            echo "Git sync complete"
-
-      - name: Stream generated pages to VPS
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          install -m 600 -D /dev/null ~/.ssh/deploy_key
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-          tar czf - node sitemap.xml | ssh -i ~/.ssh/deploy_key \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            cigarnexus@13.140.140.201 \
-            'set -eo pipefail
-             cd /home/cigarnexus/web/cigarnexus.app/public_html
-             rm -rf node
-             tar xzf -
-             COUNT=$(find node -name index.html | wc -l | tr -d " ")
-             echo "Streamed $COUNT node pages"
-             test "$COUNT" -ge 100
-             grep -q "Industry Connections" node/padron/index.html
-             echo "Deploy verified successfully at $(date)"'
+            echo "Git at $(git log -1 --oneline)"
+            NODE_BIN=$(command -v node 2>/dev/null || echo "")
+            if [ -z "$NODE_BIN" ] && [ -x /usr/bin/node ]; then NODE_BIN=/usr/bin/node; fi
+            if [ -z "$NODE_BIN" ]; then
+              echo "ERROR: node not found on VPS"
+              exit 1
+            fi
+            echo "Using $NODE_BIN ($($NODE_BIN --version))"
+            ls -la descriptions.js expanded-descriptions.js scripts/generate-node-pages.js
+            $NODE_BIN scripts/generate-node-pages.js
+            if [ ! -f node/padron/index.html ]; then
+              echo "ERROR: generator did not create node/padron/index.html"
+              ls -la node 2>&1 || true
+              exit 1
+            fi
+            if ! grep -q "Industry Connections" node/padron/index.html; then
+              echo "ERROR: padron page missing new SEO template"
+              grep -i connection node/padron/index.html | head -3 || true
+              exit 1
+            fi
+            COUNT=$(find node -name index.html 2>/dev/null | wc -l | tr -d ' ')
+            echo "Deployed $COUNT node pages at $(date)"
+            if [ "$COUNT" -lt 100 ]; then
+              echo "ERROR: expected at least 100 pages, got $COUNT"
+              exit 1
+            fi
+            echo "Deploy verified successfully"
