@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { execSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const SITE = 'https://cigarnexus.app';
@@ -303,7 +304,13 @@ const allLinks = normalizeLinks(baseGraphData.links || []);
 
 let template = readUtf8(path.join(__dirname, 'node-template.html'));
 const outputBase = path.join(ROOT, 'node');
-if (fs.existsSync(outputBase)) fs.rmSync(outputBase, { recursive: true, force: true });
+if (fs.existsSync(outputBase)) {
+  if (typeof fs.rmSync === 'function') {
+    fs.rmSync(outputBase, { recursive: true, force: true });
+  } else {
+    execSync(`rm -rf ${JSON.stringify(outputBase)}`);
+  }
+}
 
 let overrideCount = 0;
 let autoCount = 0;
