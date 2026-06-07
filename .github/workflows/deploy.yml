@@ -18,11 +18,8 @@ jobs:
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
-            echo "Running generator to build /node/ pages (long content) + update sitemap..."
-            if command -v node >/dev/null 2>&1; then
-              node scripts/generate-node-pages.js
-            else
-              /usr/bin/node scripts/generate-node-pages.js
-            fi
-            echo "SEO node pages generated successfully."
+            echo "Building SEO node pages from data.js + descriptions.js + expanded-descriptions.js..."
+            NODE_BIN=$(command -v node || echo /usr/bin/node)
+            $NODE_BIN scripts/generate-node-pages.js
+            echo "Done. $(find node -name index.html 2>/dev/null | wc -l) node pages + sitemap.xml"
             echo "Deployment completed at $(date)"

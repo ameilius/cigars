@@ -1,49 +1,67 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{CANONICAL}}">
 
-    <!-- Primary Meta Tags -->
-    <title>{{NAME}} | Cigar Nexus</title>
+    <title>{{NAME}} | Cigar Nexus — Premium Cigar Industry Map</title>
     <meta name="title" content="{{NAME}} | Cigar Nexus">
-    <meta name="description" content="{{DESCRIPTION}} | Explore the connections of {{NAME}} in the premium cigar industry.">
+    <meta name="description" content="{{META_DESCRIPTION}}">
     <meta name="theme-color" content="#5c2e2e">
     <meta name="author" content="Cigar Nexus">
 
-    <!-- Favicons & Icons -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{CANONICAL}}">
+    <meta property="og:title" content="{{NAME}} | Cigar Nexus">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:image" content="https://cigarnexus.app/social-preview.jpg">
+    <meta property="og:site_name" content="Cigar Nexus">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{NAME}} | Cigar Nexus">
+    <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+    <meta name="twitter:image" content="https://cigarnexus.app/social-preview.jpg">
+
     <link rel="icon" type="image/png" href="../../favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
     <link rel="shortcut icon" href="../../favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
     <link rel="manifest" href="../../site.webmanifest" />
 
-    <!-- Scripts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../styles.css">
 
+    <script type="application/ld+json">
+{{JSON_LD}}
+    </script>
+
     <style>
-      .node-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
-      .node-header { margin-bottom: 2rem; }
-      .node-meta { display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap; }
-      .node-meta span { background: #f4e9d8; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; }
-      .node-logo-box { max-width: 240px; margin: 0 auto 1rem; background: #fff; border: 1px solid #d4c4a8; border-radius: 16px; padding: 1rem; display: flex; align-items: center; justify-content: center; }
+      .node-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+      .node-header { margin-bottom: 1.5rem; }
+      .node-logo-box { max-width: 240px; margin: 0 auto 1rem; background: #fff; border: 1px solid #d4c4a8; border-radius: 16px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(92,46,46,0.08); }
       .node-logo-box img { max-height: 110px; max-width: 100%; object-fit: contain; }
+      .node-body { line-height: 1.65; }
+      .node-body p { margin-bottom: 1rem; }
+      .node-body ul { margin: 0.75rem 0 1rem 1.25rem; list-style: disc; }
+      .node-body li { margin-bottom: 0.35rem; }
+      .node-body a { color: #5c2e2e; text-decoration: underline; text-underline-offset: 2px; }
+      .node-body a:hover { color: #c5a26f; }
+      .node-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
     </style>
 </head>
 <body class="bg-[#f8f5f0] text-[#3f2a2a]">
   <header class="site-header bg-[#5c2e2e] text-white shadow-lg">
     <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-x-3.5">
-        <!-- Premium logo -->
         <div class="w-8 h-8 bg-gradient-to-br from-[#c5a26f] to-[#d4b17e] rounded-full flex items-center justify-center shadow-inner ring-1 ring-white/30">
           <span class="text-[#5c2e2e] text-lg font-bold tracking-[-1px]">CN</span>
         </div>
-        <a href="/" class="font-semibold text-2xl tracking-[-0.5px] flex items-baseline gap-1">Cigar Nexus</a>
+        <a href="/" class="font-semibold text-2xl tracking-[-0.5px]">Cigar Nexus</a>
       </div>
       <div class="flex items-center gap-x-1 text-xs sm:text-sm">
         <a href="/" class="nav-link px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">Map</a>
@@ -51,28 +69,40 @@
       </div>
     </div>
   </header>
+
   <main class="node-page">
-    <div class="node-header">
-      {{LOGO_BOX}}
-      <h1 class="text-4xl font-semibold tracking-tight">{{NAME}}</h1>
-      <div class="node-meta">
-        <span>{{TYPE}}</span>
-        <span>{{COUNTRY}}</span>
+    {{BREADCRUMBS}}
+
+    <article itemscope itemtype="https://schema.org/Article">
+      <header class="node-header">
+        {{LOGO_BOX}}
+        <h1 class="text-4xl font-semibold tracking-tight text-[#3f2a2a]" itemprop="headline">{{NAME}}</h1>
+        <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
+      </header>
+
+      <div class="node-body prose max-w-none text-[#5c4638]" itemprop="articleBody">
+        {{DESCRIPTION_HTML}}
       </div>
-    </div>
-    <div class="prose max-w-none text-[#5c4638]">
-      <p>{{DESCRIPTION}}</p>
-    </div>
-    <div class="mt-8">
-      <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
-      {{CONNECTIONS}}
-    </div>
-    {{PRODUCT_LINES}}
-    <a href="{{BACK_TO_MAP}}" class="mt-6 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#c5a26f] border border-[#c5a26f]/40 rounded-2xl hover:bg-[#c5a26f]/10 transition-colors">← Explore this node on the interactive map</a>
+
+      <section class="mt-8" aria-labelledby="connections-heading">
+        <h2 id="connections-heading" class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Industry Connections</h2>
+        {{CONNECTIONS}}
+      </section>
+
+      {{PRODUCT_LINES}}
+      {{RELATED}}
+
+      <div class="node-cta-row">
+        <a href="{{BACK_TO_MAP}}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#c5a26f] border border-[#c5a26f]/40 rounded-2xl hover:bg-[#c5a26f]/10 transition-colors">← View on interactive map</a>
+        <a href="/" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#5c2e2e] border border-[#d4c4a8] rounded-2xl hover:bg-white transition-colors">Explore full industry map</a>
+        <a href="/about.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b6f5c] hover:text-[#5c2e2e] transition-colors">About Cigar Nexus</a>
+      </div>
+    </article>
   </main>
-  <footer class="mt-16 py-8 border-t border-[#d4c4a8] text-center text-sm text-[#8b6f5c]">
+
+  <footer class="mt-12 py-8 border-t border-[#d4c4a8] text-center text-sm text-[#8b6f5c]">
     <p>&copy; Cigar Nexus — Interactive map of the premium cigar industry.</p>
+    <p class="mt-1"><a href="/" class="hover:text-[#5c2e2e] underline">Return to map</a> · <a href="/about.html" class="hover:text-[#5c2e2e] underline">About</a></p>
   </footer>
 </body>
 </html>
-
