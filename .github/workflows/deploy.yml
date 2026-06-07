@@ -56,19 +56,38 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/cigarnexus/web/cigarnexus.app/public_html
-            if [ ! -d node-pages ]; then
-              echo "ERROR: node-pages not uploaded"
+            rm -rf node
+            if [ -d node-pages/node-pages ]; then
+              mv node-pages/node-pages node
+              rm -rf node-pages
+            elif [ -d node-pages ]; then
+              mv node-pages node
+            elif [ -f padron/index.html ]; then
+              mkdir node
+              for dir in */; do
+                case "$dir" in
+                  node-pages/|node/|logos/|scripts/) continue ;;
+                esac
+                [ -f "${dir}index.html" ] && mv "$dir" "node/${dir}"
+              done
+            else
+              echo "ERROR: uploaded pages not found"
               ls -la
+              find . -maxdepth 2 -path '*/padron/index.html' 2>/dev/null || true
               exit 1
             fi
-            mv node-pages node
+            PADRON_PAGE=$(find . -path '*/padron/index.html' 2>/dev/null | head -1)
+            if [ -z "$PADRON_PAGE" ]; then
+              echo "ERROR: padron/index.html not found after upload"
+              exit 1
+            fi
             COUNT=$(find node -name index.html 2>/dev/null | wc -l | tr -d ' ')
-            echo "Deployed $COUNT node pages"
+            echo "Deployed $COUNT node pages (padron at $PADRON_PAGE)"
             if [ "$COUNT" -lt 100 ]; then
               echo "ERROR: expected at least 100 pages"
               exit 1
             fi
-            if ! grep -q "Industry Connections" node/padron/index.html; then
+            if ! grep -q "Industry Connections" "$PADRON_PAGE"; then
               echo "ERROR: padron page missing new SEO template"
               exit 1
             fi
