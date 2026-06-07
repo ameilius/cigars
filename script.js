@@ -486,16 +486,39 @@ function getFilteredData() {
   const hasAll = activeFilters.has('all') || activeFilters.size === 0;
 
   if (!hasAll) {
+    const ownershipActive = ['family', 'corporate'].filter(k => activeFilters.has(k));
+    const countryActive = ['nicaragua', 'dominican', 'honduras'].filter(k => activeFilters.has(k));
+    const typeActive = ['boutique', 'factory'].filter(k => activeFilters.has(k));
+
     filteredNodes = filteredNodes.filter(n => {
-      let pass = true;
-      if (activeFilters.has('family')) pass = pass && n.group === 'family';
-      if (activeFilters.has('corporate')) pass = pass && n.group === 'corporate';
-      if (activeFilters.has('nicaragua')) pass = pass && (n.country || '').toLowerCase().includes('nicaragua');
-      if (activeFilters.has('dominican')) pass = pass && (n.country || '').toLowerCase().includes('dominican');
-      if (activeFilters.has('honduras')) pass = pass && (n.country || '').toLowerCase().includes('honduras');
-      if (activeFilters.has('boutique')) pass = pass && n.type === 'brand' && n.group === 'family';
-      if (activeFilters.has('factory')) pass = pass && (n.type === 'factory' || isFactoryNode(n));
-      return pass;
+      const country = (n.country || '').toLowerCase();
+
+      if (ownershipActive.length > 0) {
+        const matchesOwnership = ownershipActive.some(k =>
+          (k === 'family' && n.group === 'family') ||
+          (k === 'corporate' && n.group === 'corporate')
+        );
+        if (!matchesOwnership) return false;
+      }
+
+      if (countryActive.length > 0) {
+        const matchesCountry = countryActive.some(k =>
+          (k === 'nicaragua' && country.includes('nicaragua')) ||
+          (k === 'dominican' && country.includes('dominican')) ||
+          (k === 'honduras' && country.includes('honduras'))
+        );
+        if (!matchesCountry) return false;
+      }
+
+      if (typeActive.length > 0) {
+        const matchesType = typeActive.some(k =>
+          (k === 'boutique' && n.type === 'brand' && n.group === 'family') ||
+          (k === 'factory' && (n.type === 'factory' || isFactoryNode(n)))
+        );
+        if (!matchesType) return false;
+      }
+
+      return true;
     });
   }
 
