@@ -316,9 +316,7 @@ function initializeGraph() {
       if (nodeId) {
         const node = graphData.nodes.find(n => n.id === nodeId);
         if (node) {
-          currentDrawerNode = node;
-          setSelectedNode(node.id);
-          zoomToNode(node, { raiseForDrawer: window.innerWidth < 1024 });
+          focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
           showDrawer(node);
         }
       }
@@ -675,18 +673,19 @@ function selectSearchResult(nodeId) {
   const node = graphData.nodes.find(n => n.id === nodeId);
   if (!node) return;
 
-  clearSearch();
   closeSearchOverlay();
   closeDrawer({ keepMapFocus: false });
 
-  currentDrawerNode = node;
-  setSelectedNode(node.id);
+  const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
 
-  const raiseForDrawer = window.innerWidth < 1024;
+  // Zoom while the search filter is still active — layout matches the result list
+  focusNodeOnMap(node, zoomOpts);
+
   setTimeout(() => {
-    zoomToNode(node, { raiseForDrawer });
-    setTimeout(() => showDrawer(node), 580);
-  }, 90);
+    showDrawer(node);
+    clearSearch();
+    scheduleFocusAfterLayout(node, zoomOpts);
+  }, 420);
 }
 
 function setupSearch() {
@@ -780,36 +779,77 @@ function resetZoom() {
   svg.transition().duration(550).call(zoomBehavior.transform, d3.zoomIdentity);
 }
 
-// Smoothly zoom + center on a specific node (used by search, examples, deep links)
-function zoomToNode(targetNode, options = {}) {
-  if (!svg || !viewport || !targetNode || !simulation) {
-    zoomToFit();
-    return;
-  }
-
-  // Find the live datum (has current x/y after forces)
+function getLiveNode(nodeId) {
+  if (!viewport) return null;
   let live = null;
   viewport.selectAll('.node-group').each(function(d) {
-    if (d.id === targetNode.id) live = d;
+    if (d.id === nodeId) live = d;
   });
+  return live;
+}
 
-  // Fallback to the node object itself if simulation hasn't attached coords yet
+function hasNodeCoords(node) {
+  return node && typeof node.x === 'number' && typeof node.y === 'number' && !isNaN(node.x) && !isNaN(node.y);
+}
+
+// Smoothly zoom + center on a specific node (used by search, examples, deep links)
+function zoomToNode(targetNode, options = {}) {
+  if (!svg || !viewport || !targetNode || !simulation) return false;
+
+  const nodeId = targetNode.id || targetNode;
+  const live = getLiveNode(nodeId);
   const d = live || targetNode;
 
-  if (typeof d.x !== 'number' || typeof d.y !== 'number') {
-    // Not positioned yet — just zoom to fit and open
-    zoomToFit();
-    return;
-  }
+  if (!hasNodeCoords(d)) return false;
 
-  const scale = 1.9;
+  const scale = options.scale ?? 1.9;
   const focusY = options.raiseForDrawer ? graphHeight * 0.3 : graphHeight / 2;
   const tx = graphWidth / 2 - scale * d.x;
   const ty = focusY - scale * d.y;
+  const duration = options.duration ?? 620;
 
-  svg.transition()
-    .duration(620)
-    .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+  const transform = d3.zoomIdentity.translate(tx, ty).scale(scale);
+  if (duration <= 0) {
+    svg.call(zoomBehavior.transform, transform);
+  } else {
+    svg.transition().duration(duration).call(zoomBehavior.transform, transform);
+  }
+  return true;
+}
+
+function focusNodeOnMap(node, options = {}, attempt = 0) {
+  if (!node) return;
+
+  const live = getLiveNode(node.id);
+  if (hasNodeCoords(live)) {
+    currentDrawerNode = node;
+    setSelectedNode(node.id);
+    zoomToNode(live, options);
+    return;
+  }
+
+  if (attempt < 30) {
+    setTimeout(() => focusNodeOnMap(node, options, attempt + 1), 80);
+  }
+}
+
+function scheduleFocusAfterLayout(node, options = {}) {
+  if (!node) return;
+
+  const refocus = () => focusNodeOnMap(node, { ...options, duration: 500 });
+
+  if (!simulation) {
+    refocus();
+    return;
+  }
+
+  const onEnd = () => {
+    simulation.on('end.mapFocus', null);
+    refocus();
+  };
+
+  simulation.on('end.mapFocus', onEnd);
+  setTimeout(refocus, 1100);
 }
 
 // -----------------------------
@@ -1010,11 +1050,9 @@ function showDrawerFromId(id) {
   const node = graphData.nodes.find(n => n.id === id);
   if (node) {
     closeDrawer({ keepMapFocus: false });
-    const raiseForDrawer = window.innerWidth < 1024;
-    setTimeout(() => {
-      zoomToNode(node, { raiseForDrawer });
-      showDrawer(node);
-    }, 60);
+    const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
+    focusNodeOnMap(node, zoomOpts);
+    setTimeout(() => showDrawer(node), 420);
   }
 }
 
@@ -1024,6 +1062,7 @@ function closeDrawer({ keepMapFocus = true } = {}) {
 
   if (keepMapFocus && currentDrawerNode) {
     setSelectedNode(currentDrawerNode.id);
+    focusNodeOnMap(currentDrawerNode, { raiseForDrawer: window.innerWidth < 1024, duration: 0 });
   } else {
     clearSelectedNode();
     currentDrawerNode = null;
@@ -1089,17 +1128,14 @@ function selectExample(nodeId) {
   if (!node) return;
 
   closeDrawer({ keepMapFocus: false });
-  currentDrawerNode = node;
-  setSelectedNode(node.id);
 
-  const raiseForDrawer = window.innerWidth < 1024;
+  const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
+  focusNodeOnMap(node, zoomOpts);
+
   setTimeout(() => {
-    zoomToNode(node, { raiseForDrawer });
-    setTimeout(() => {
-      showDrawer(node);
-      try { sessionStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
-    }, 580);
-  }, 90);
+    showDrawer(node);
+    try { sessionStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
+  }, 420);
 }
 
 function showDesktopHowTo() {
