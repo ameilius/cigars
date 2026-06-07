@@ -5,3 +5,4 @@ commitmsg.txt
 
 # Generated SEO node pages (rebuilt on every deploy from data.js + generator)
 node/
+expanded-descriptions.js
