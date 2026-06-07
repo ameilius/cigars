@@ -3,7 +3,7 @@
  * Run on deploy: builds /node/[id]/ static pages + sitemap.xml
  *
  * Content priority per node:
- *   1. expanded-descriptions.js (manual researched overrides)
+ *   1. content/expanded/*.js (manual researched overrides by type)
  *   2. Auto-generated rich HTML from drawer text + graph connections
  */
 const fs = require('fs');
@@ -32,9 +32,11 @@ function loadDrawerDescriptions() {
 
 function loadExpandedOverrides() {
   try {
-    return require(path.join(ROOT, 'expanded-descriptions.js')) || {};
+    const loader = path.join(ROOT, 'content', 'expanded', 'index.js');
+    delete require.cache[require.resolve(loader)];
+    return require(loader) || {};
   } catch (err) {
-    console.warn('expanded-descriptions.js not found, using auto-generated copy only:', err.message);
+    console.warn('content/expanded not found, using auto-generated copy only:', err.message);
     return {};
   }
 }
