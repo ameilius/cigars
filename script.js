@@ -194,30 +194,34 @@ function initializeApp() {
   // Initial render of any saved state
   console.log('Cigar Nexus initialized. Nodes:', graphData.nodes.length, 'Links:', graphData.links.length);
 
-  // Show the "How to" guide reliably (independent of graph render success)
-  // Desktop: fills the sidebar
-  // Mobile: only on very first visit
-  setTimeout(() => {
-    try {
-      const drawerEl = document.getElementById('drawer');
-      const drawerInLayout = drawerEl && (drawerEl.offsetParent !== null || getComputedStyle(drawerEl).display !== 'none');
+  // First-visit guide (after age gate if shown)
+  setTimeout(() => maybeShowFirstVisitGuide(), 500);
+}
 
-      if (drawerInLayout) {
-        showDesktopHowTo();
-        console.log('[Cigar Nexus] Desktop how-to intro shown');
-      } else {
-        const seen = localStorage.getItem('cigarNexus_seenIntro') === 'true' ||
-                     sessionStorage.getItem('cigarNexus_seenIntro') === 'true';
-        if (!seen) {
-          setTimeout(() => {
-            if (window.innerWidth < 1024) showMobileWelcome();
-          }, 600);
-        }
-      }
-    } catch (e) {
-      console.warn('How-to intro scheduling error:', e);
-    }
-  }, 800);
+let introGuideShown = false;
+
+function maybeShowFirstVisitGuide() {
+  if (introGuideShown) return;
+
+  const seen = localStorage.getItem('cigarNexus_seenIntro') === 'true' ||
+               sessionStorage.getItem('cigarNexus_seenIntro') === 'true';
+  if (seen) {
+    introGuideShown = true;
+    return;
+  }
+
+  const ageGate = document.getElementById('age-gate');
+  if (ageGate && getComputedStyle(ageGate).display !== 'none') {
+    return;
+  }
+
+  introGuideShown = true;
+
+  if (window.innerWidth >= 1024) {
+    showDesktopHowTo();
+  } else {
+    showMobileWelcome();
+  }
 }
 
 // -----------------------------
@@ -1233,10 +1237,14 @@ function selectExample(nodeId) {
 }
 
 function showDesktopHowTo() {
+  if (window.innerWidth < 1024) {
+    showMobileHowTo();
+    return;
+  }
+
   const drawer = document.getElementById('drawer');
   if (!drawer) return;
 
-  // Make sure the sidebar container is visible even on borderline widths
   const parent = drawer.parentElement;
   if (parent && parent.classList.contains('hidden')) {
     parent.classList.remove('hidden');
@@ -1374,6 +1382,7 @@ window.zoomToNode = zoomToNode;
 window.showHowTo = showHowTo;
 window.showMobileWelcome = showMobileWelcome;
 window.dismissMobileWelcome = dismissMobileWelcome;
+window.maybeShowFirstVisitGuide = maybeShowFirstVisitGuide;
 window.selectExample = selectExample;
 window.openSearchOverlay = openSearchOverlay;
 window.closeSearchOverlay = closeSearchOverlay;
@@ -1404,6 +1413,7 @@ function initAgeGate() {
       localStorage.setItem('cigarNexus_ageVerified', 'true');
       gate.style.display = 'none';
       document.body.style.overflow = '';
+      setTimeout(() => maybeShowFirstVisitGuide(), 350);
     });
   }
 
