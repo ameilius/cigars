@@ -16,17 +16,14 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build SEO node pages (115 pages + sitemap)
+      - name: Verify SEO page build (CI gate)
         run: |
           node scripts/generate-node-pages.js
           test -f node/padron/index.html
           grep -q "Industry Connections" node/padron/index.html
           echo "Build OK: $(find node -name index.html | wc -l) pages"
 
-      - name: Package generated pages
-        run: tar czf generated-pages.tgz node sitemap.xml
-
-      - name: Sync source code on VPS
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 13.140.140.201
@@ -37,31 +34,11 @@ jobs:
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
-            echo "Git sync complete"
-
-      - name: Upload generated pages archive
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: 13.140.140.201
-          username: cigarnexus
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: generated-pages.tgz
-          target: /tmp/
-
-      - name: Extract generated pages on VPS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: 13.140.140.201
-          username: cigarnexus
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            set -euo pipefail
-            cd /home/cigarnexus/web/cigarnexus.app/public_html
-            rm -rf node
-            tar xzf /tmp/generated-pages.tgz
-            rm -f /tmp/generated-pages.tgz
+            echo "Building SEO node pages from tracked source files..."
+            NODE_BIN=$(command -v node || echo /usr/bin/node)
+            $NODE_BIN scripts/generate-node-pages.js
             COUNT=$(find node -name index.html | wc -l)
             echo "Deployed $COUNT node pages"
             test "$COUNT" -ge 100
             grep -q "Industry Connections" node/padron/index.html
-            echo "Deploy verified successfully"
+            echo "Deploy verified successfully at $(date)"
