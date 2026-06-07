@@ -210,7 +210,7 @@ function initializeApp() {
                      sessionStorage.getItem('cigarNexus_seenIntro') === 'true';
         if (!seen) {
           setTimeout(() => {
-            if (window.innerWidth < 1024) showMobileHowTo();
+            if (window.innerWidth < 1024) showMobileWelcome();
           }, 600);
         }
       }
@@ -1099,6 +1099,7 @@ function showDrawer(node) {
   }
 
   if (isMobile && mDrawer) {
+    mDrawer.classList.remove('drawer-panel--howto');
     if (mobileDrawerHideTimer) {
       clearTimeout(mobileDrawerHideTimer);
       mobileDrawerHideTimer = null;
@@ -1174,7 +1175,7 @@ function closeDrawer({ keepMapFocus = true } = {}) {
     drawer.style.display = 'none';
   }
   if (mDrawer) {
-    mDrawer.classList.remove('drawer-open');
+    mDrawer.classList.remove('drawer-open', 'drawer-panel--howto');
     if (mobileDrawerHideTimer) {
       clearTimeout(mobileDrawerHideTimer);
       mobileDrawerHideTimer = null;
@@ -1286,9 +1287,28 @@ function showDesktopHowTo() {
   pulseDrawerOpen(drawer);
 }
 
+function showMobileWelcome() {
+  const el = document.getElementById('mobile-welcome');
+  if (!el) return;
+  el.classList.remove('hidden');
+  el.setAttribute('aria-hidden', 'false');
+}
+
+function dismissMobileWelcome(openGuide = false) {
+  const el = document.getElementById('mobile-welcome');
+  if (el) {
+    el.classList.add('hidden');
+    el.setAttribute('aria-hidden', 'true');
+  }
+  try { localStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
+  if (openGuide) showMobileHowTo();
+}
+
 function showMobileHowTo() {
   const mDrawer = document.getElementById('drawer-mobile');
   if (!mDrawer) return;
+
+  dismissMobileWelcome(false);
 
   const mTitle = document.getElementById('drawer-title-mobile');
   const mMeta = document.getElementById('drawer-meta-mobile');
@@ -1322,13 +1342,11 @@ function showMobileHowTo() {
   if (mProductWrap) mProductWrap.style.display = 'none';
   if (mBuyWrap) mBuyWrap.style.display = 'none';
 
+  mDrawer.classList.add('drawer-panel--howto');
   mDrawer.style.display = 'flex';
   mDrawer.classList.remove('hidden');
   pulseDrawerOpen(mDrawer);
   createOrShowBackdrop();
-
-  // Remember so we don't auto-show the intro sheet on every mobile visit (but manual "How to" button can still trigger it)
-  try { localStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
 }
 
 // Public/manual trigger for the How To guide (used by the new "How to explore" button + reliable fallback)
@@ -1354,6 +1372,8 @@ window.closeDrawer = closeDrawer;
 window.showDrawerFromId = showDrawerFromId;
 window.zoomToNode = zoomToNode;
 window.showHowTo = showHowTo;
+window.showMobileWelcome = showMobileWelcome;
+window.dismissMobileWelcome = dismissMobileWelcome;
 window.selectExample = selectExample;
 window.openSearchOverlay = openSearchOverlay;
 window.closeSearchOverlay = closeSearchOverlay;

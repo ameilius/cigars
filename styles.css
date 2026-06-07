@@ -286,9 +286,68 @@ h1, h2, .font-display,
     padding-left: 10px;
     padding-right: 10px;
 }
+
+/* Mobile welcome card — sits between filters and map */
+.mobile-welcome {
+    animation: welcomeIn 0.45s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+@keyframes welcomeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile map section spacing + graph control breathing room */
+@media (max-width: 1023px) {
+    .map-section {
+        margin-top: 2px;
+    }
+    #graph-container > .absolute.top-4.left-4 {
+        top: 0.65rem;
+        left: 0.65rem;
+        flex-wrap: wrap;
+        max-width: 58%;
+        gap: 0.35rem;
+    }
+    #graph-container > .absolute.top-4.right-4 {
+        top: 0.65rem;
+        right: 0.65rem;
+    }
+}
+
+/* How-to sheet: floated card with gap from screen edge (not flush with map) */
+.drawer-panel--mobile.drawer-panel--howto {
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+    max-height: min(68vh, calc(100dvh - 7rem));
+    border-radius: 1.5rem;
+    box-shadow: 0 -10px 40px -8px rgba(92, 46, 46, 0.28),
+                0 4px 24px rgba(92, 46, 46, 0.12);
+}
+.drawer-panel--mobile.drawer-panel--howto.drawer-open {
+    animation: howtoSheetUp 0.42s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+@keyframes howtoSheetUp {
+    from {
+        transform: translateY(calc(100% + 1rem));
+        opacity: 0.5;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 @media (max-width: 480px) {
     #graph-container button[onclick*="showHowTo"] {
-        display: none; /* keep the area clean on tiny phones; users can still tap nodes */
+        display: none; /* welcome card + node taps cover onboarding on small phones */
     }
 }
 
@@ -764,6 +823,8 @@ h1, h2, .font-display,
     #drawer-connections-mobile .connection-item,
     .search-overlay,
     .search-result-item,
+    .mobile-welcome,
+    .drawer-panel--mobile.drawer-panel--howto.drawer-open,
     #age-gate,
     #age-gate > div {
         animation: none !important;
