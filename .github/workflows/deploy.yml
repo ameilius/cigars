@@ -19,6 +19,9 @@ jobs:
       - name: Build SEO node pages (115 pages + sitemap)
         run: node scripts/generate-node-pages.js
 
+      - name: Package generated pages
+        run: tar czf generated-pages.tgz node sitemap.xml
+
       - name: Sync source code on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -30,19 +33,18 @@ jobs:
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
-            echo "Git sync complete at $(date)"
+            echo "Git sync complete"
 
-      - name: Upload generated node pages + sitemap
+      - name: Upload generated pages archive
         uses: appleboy/scp-action@v0.1.7
         with:
           host: 13.140.140.201
           username: cigarnexus
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "node,sitemap.xml"
-          target: "/home/cigarnexus/web/cigarnexus.app/public_html"
-          overwrite: true
+          source: generated-pages.tgz
+          target: /tmp/
 
-      - name: Verify deploy
+      - name: Extract generated pages on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 13.140.140.201
@@ -51,8 +53,10 @@ jobs:
           script: |
             set -euo pipefail
             cd /home/cigarnexus/web/cigarnexus.app/public_html
-            COUNT=$(find node -name index.html 2>/dev/null | wc -l)
-            echo "Node pages on server: $COUNT"
+            tar xzf /tmp/generated-pages.tgz
+            rm -f /tmp/generated-pages.tgz
+            COUNT=$(find node -name index.html | wc -l)
+            echo "Deployed $COUNT node pages"
             test "$COUNT" -ge 100
             grep -q "Industry Connections" node/padron/index.html
-            echo "Deploy verified at $(date)"
+            echo "Deploy verified successfully"
