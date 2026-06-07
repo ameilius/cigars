@@ -79,7 +79,10 @@ baseGraphData.nodes.forEach(node => {
   let desc = expandedDescriptions[node.id] || descriptions[node.id];
   if (!desc) {
     const type = node.type || 'entity';
-    const country = node.country ? node.country.charAt(0).toUpperCase() + node.country.slice(1) : 'the premium cigar industry';
+    let country = node.country || '';
+    if (country.toLowerCase() === 'usa') country = 'the USA';
+    else if (country) country = country.charAt(0).toUpperCase() + country.slice(1);
+    else country = 'the premium cigar industry';
     desc = `${node.name} is a ${type} based in ${country}.`;
   }
   let page = template
