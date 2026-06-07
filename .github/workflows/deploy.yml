@@ -23,9 +23,6 @@ jobs:
           grep -q "Industry Connections" node/padron/index.html
           echo "Build OK: $(find node -name index.html | wc -l) pages"
 
-      - name: Package generated pages
-        run: tar czf generated-pages.tgz node sitemap.xml
-
       - name: Sync source code on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -39,61 +36,22 @@ jobs:
             git reset --hard origin/main
             echo "Git sync complete"
 
-      - name: Upload generated pages archive
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: 13.140.140.201
-          username: cigarnexus
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: generated-pages.tgz
-          target: /tmp/
-          overwrite: true
-
-      - name: Install generated pages on VPS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: 13.140.140.201
-          username: cigarnexus
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            set -eo pipefail
-            cd /home/cigarnexus/web/cigarnexus.app/public_html
-            rm -rf node
-
-            ARCHIVE=""
-            for candidate in /tmp/generated-pages.tgz /tmp/generated-pages.tgz/generated-pages.tgz; do
-              if [ -f "$candidate" ]; then
-                ARCHIVE="$candidate"
-                break
-              fi
-            done
-            if [ -z "$ARCHIVE" ]; then
-              ARCHIVE=$(find /tmp -maxdepth 3 -name 'generated-pages.tgz' -type f 2>/dev/null | head -1 || true)
-            fi
-
-            if [ -n "$ARCHIVE" ] && [ -f "$ARCHIVE" ]; then
-              echo "Extracting archive: $ARCHIVE"
-              tar xzf "$ARCHIVE" -C .
-              rm -rf /tmp/generated-pages.tgz 2>/dev/null || true
-            else
-              echo "Archive not found — building on VPS"
-              NODE_BIN=$(command -v node 2>/dev/null || true)
-              if [ -z "$NODE_BIN" ] && [ -x /usr/bin/node ]; then NODE_BIN=/usr/bin/node; fi
-              if [ -z "$NODE_BIN" ] && [ -x /usr/local/bin/node ]; then NODE_BIN=/usr/local/bin/node; fi
-              if [ -z "$NODE_BIN" ]; then
-                echo "ERROR: node not found on VPS"
-                exit 1
-              fi
-              echo "Using $NODE_BIN ($($NODE_BIN --version))"
-              $NODE_BIN scripts/generate-node-pages.js
-            fi
-
-            if [ ! -d node ]; then
-              echo "ERROR: node/ directory missing after deploy"
-              exit 1
-            fi
-            COUNT=$(find node -name index.html | wc -l | tr -d ' ')
-            echo "Deployed $COUNT node pages"
-            test "$COUNT" -ge 100
-            grep -q "Industry Connections" node/padron/index.html
-            echo "Deploy verified successfully at $(date)"
+      - name: Stream generated pages to VPS
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/deploy_key
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          tar czf - node sitemap.xml | ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            cigarnexus@13.140.140.201 \
+            'set -eo pipefail
+             cd /home/cigarnexus/web/cigarnexus.app/public_html
+             rm -rf node
+             tar xzf -
+             COUNT=$(find node -name index.html | wc -l | tr -d " ")
+             echo "Streamed $COUNT node pages"
+             test "$COUNT" -ge 100
+             grep -q "Industry Connections" node/padron/index.html
+             echo "Deploy verified successfully at $(date)"'
