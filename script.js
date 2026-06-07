@@ -94,12 +94,31 @@ function setSelectedNode(nodeId) {
   selectedNodeId = nodeId || null;
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', d => d.id === nodeId);
+  updateLinkHighlight(nodeId);
 }
 
 function clearSelectedNode() {
   selectedNodeId = null;
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', false);
+  updateLinkHighlight(null);
+}
+
+function updateLinkHighlight(nodeId) {
+  if (!viewport) return;
+  viewport.selectAll('.links line')
+    .attr('stroke-opacity', d => {
+      if (!nodeId) return 0.9;
+      const s = d.source.id || d.source;
+      const t = d.target.id || d.target;
+      return (s === nodeId || t === nodeId) ? 1 : 0.1;
+    })
+    .attr('stroke-width', d => {
+      if (!nodeId) return 1.6;
+      const s = d.source.id || d.source;
+      const t = d.target.id || d.target;
+      return (s === nodeId || t === nodeId) ? 2.5 : 1.2;
+    });
 }
 
 function pulseDrawerOpen(el) {
@@ -385,6 +404,8 @@ function updateGraph() {
     .attr('stroke-width', 2.5)
     .attr('stroke-opacity', 0.9);
 
+  nodes = nodeEnter.merge(nodeSel);
+
   // Labels (created separately for zoom control)
   const labelSel = viewport.select('.labels').selectAll('text.node-label')
     .data(filteredData.nodes, d => d.id);
@@ -430,6 +451,7 @@ function updateGraph() {
   });
 
   if (selectedNodeId) setSelectedNode(selectedNodeId);
+  else updateLinkHighlight(null);
 
   updateLabelVisibility();
 }
@@ -667,6 +689,9 @@ function closeSearchOverlay() {
   if (!gateVisible) document.body.style.overflow = '';
 
   updateSearchMobileBadge();
+
+  // Overlay close restores body scroll — graph size may change on mobile
+  requestAnimationFrame(refreshGraphDimensions);
 }
 
 function selectSearchResult(nodeId) {
@@ -678,14 +703,19 @@ function selectSearchResult(nodeId) {
 
   const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
 
-  // Zoom while the search filter is still active — layout matches the result list
-  focusNodeOnMap(node, zoomOpts);
-
-  setTimeout(() => {
-    showDrawer(node);
-    clearSearch();
-    scheduleFocusAfterLayout(node, zoomOpts);
-  }, 420);
+  // Keep search filter active so the graph layout still matches the tapped result
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      refreshGraphDimensions();
+      if (simulation) simulation.alpha(0.25).restart();
+      waitForLiveNode(node.id, (live) => {
+        currentDrawerNode = node;
+        setSelectedNode(node.id);
+        zoomToNode(live, zoomOpts);
+        showDrawer(node);
+      });
+    });
+  });
 }
 
 function setupSearch() {
@@ -776,7 +806,26 @@ function zoomToFit(silent = false) {
 
 function resetZoom() {
   if (!svg) return;
+  clearSelectedNode();
+  currentDrawerNode = null;
   svg.transition().duration(550).call(zoomBehavior.transform, d3.zoomIdentity);
+}
+
+function refreshGraphDimensions() {
+  const container = document.getElementById('graph');
+  if (!container || !svg) return;
+  const rect = container.getBoundingClientRect();
+  if (rect.width < 50 || rect.height < 50) return;
+
+  graphWidth = rect.width;
+  graphHeight = rect.height;
+  svg.attr('viewBox', `0 0 ${graphWidth} ${graphHeight}`);
+
+  if (simulation) {
+    simulation.force('x', d3.forceX(graphWidth / 2).strength(0.06));
+    simulation.force('y', d3.forceY(graphHeight / 2).strength(0.06));
+    simulation.force('center', d3.forceCenter(graphWidth / 2, graphHeight / 2));
+  }
 }
 
 function getLiveNode(nodeId) {
@@ -795,6 +844,8 @@ function hasNodeCoords(node) {
 // Smoothly zoom + center on a specific node (used by search, examples, deep links)
 function zoomToNode(targetNode, options = {}) {
   if (!svg || !viewport || !targetNode || !simulation) return false;
+
+  refreshGraphDimensions();
 
   const nodeId = targetNode.id || targetNode;
   const live = getLiveNode(nodeId);
@@ -817,39 +868,75 @@ function zoomToNode(targetNode, options = {}) {
   return true;
 }
 
-function focusNodeOnMap(node, options = {}, attempt = 0) {
-  if (!node) return;
-
-  const live = getLiveNode(node.id);
+function waitForLiveNode(nodeId, callback, attempt = 0) {
+  const live = getLiveNode(nodeId);
   if (hasNodeCoords(live)) {
-    currentDrawerNode = node;
-    setSelectedNode(node.id);
-    zoomToNode(live, options);
+    callback(live);
     return;
   }
-
-  if (attempt < 30) {
-    setTimeout(() => focusNodeOnMap(node, options, attempt + 1), 80);
+  if (attempt < 60) {
+    requestAnimationFrame(() => waitForLiveNode(nodeId, callback, attempt + 1));
   }
 }
 
-function scheduleFocusAfterLayout(node, options = {}) {
+function focusNodeOnMap(node, options = {}) {
+  if (!node) return;
+  waitForLiveNode(node.id, (live) => {
+    currentDrawerNode = node;
+    setSelectedNode(node.id);
+    refreshGraphDimensions();
+    zoomToNode(live, options);
+  });
+}
+
+function expandGraphWithFocus(node) {
   if (!node) return;
 
-  const refocus = () => focusNodeOnMap(node, { ...options, duration: 500 });
+  const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
+  const live = getLiveNode(node.id);
+  const pinX = live?.x;
+  const pinY = live?.y;
 
-  if (!simulation) {
-    refocus();
-    return;
+  if (live && hasNodeCoords(live)) {
+    live.fx = pinX;
+    live.fy = pinY;
   }
 
-  const onEnd = () => {
-    simulation.on('end.mapFocus', null);
-    refocus();
+  searchTerm = '';
+  const desktop = document.getElementById('search');
+  const mobile = document.getElementById('search-mobile');
+  if (desktop) desktop.value = '';
+  if (mobile) mobile.value = '';
+  updateSearchClearButton(desktop, document.getElementById('search-clear'));
+  updateSearchClearButton(mobile, document.getElementById('search-mobile-clear'));
+  applyFiltersAndSearch();
+  updateSearchMobileBadge();
+
+  const refocus = () => {
+    refreshGraphDimensions();
+    const target = getLiveNode(node.id);
+    if (!target || !hasNodeCoords(target)) return;
+    currentDrawerNode = node;
+    setSelectedNode(node.id);
+    zoomToNode(target, zoomOpts);
   };
 
-  simulation.on('end.mapFocus', onEnd);
-  setTimeout(refocus, 1100);
+  requestAnimationFrame(refocus);
+
+  const releasePin = () => {
+    if (simulation) simulation.on('end.expandFocus', null);
+    const target = getLiveNode(node.id);
+    if (target) {
+      target.fx = null;
+      target.fy = null;
+    }
+    setTimeout(refocus, 120);
+  };
+
+  if (simulation) {
+    simulation.on('end.expandFocus', releasePin);
+    setTimeout(releasePin, 1600);
+  }
 }
 
 // -----------------------------
@@ -1059,10 +1146,16 @@ function showDrawerFromId(id) {
 function closeDrawer({ keepMapFocus = true } = {}) {
   const drawer = document.getElementById('drawer');
   const mDrawer = document.getElementById('drawer-mobile');
+  const node = currentDrawerNode;
+  const shouldExpandGraph = keepMapFocus && searchTerm && node;
 
-  if (keepMapFocus && currentDrawerNode) {
-    setSelectedNode(currentDrawerNode.id);
-    focusNodeOnMap(currentDrawerNode, { raiseForDrawer: window.innerWidth < 1024, duration: 0 });
+  if (shouldExpandGraph) {
+    // Restore full graph but keep the selected node pinned and in view
+    expandGraphWithFocus(node);
+  } else if (keepMapFocus && node) {
+    setSelectedNode(node.id);
+    refreshGraphDimensions();
+    focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024, duration: 0 });
   } else {
     clearSelectedNode();
     currentDrawerNode = null;
