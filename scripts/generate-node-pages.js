@@ -20,6 +20,10 @@ try {
     descriptions = descSandbox.descriptions || {};
   }
 } catch(e) { console.warn('Descriptions load skipped, using fallbacks'); }
+
+// Long node page content lives in a dedicated clean data module (easy to edit,
+// no more stuffing huge objects into browser script.js or fragile VM extraction).
+const expandedDescriptions = require('../expanded-descriptions.js') || {};
 function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function getNodeUrl(node) { return '/node/' + node.id + '/'; }
 function buildConnectionsHtml(node, allNodes, allLinks) {
@@ -72,7 +76,7 @@ baseGraphData.nodes.forEach(node => {
   const connectionsHtml = buildConnectionsHtml(node, baseGraphData.nodes, baseGraphData.links);
   const productHtml = buildProductLinesHtml(node);
   const logoBoxHtml = buildLogoBoxHtml(node);
-  const desc = descriptions[node.id] || 'Detailed profile for ' + node.name + ' in the premium cigar industry.';
+  const desc = expandedDescriptions[node.id] || descriptions[node.id] || 'Detailed profile for ' + node.name + ' in the premium cigar industry.';
   let page = template
     .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
     .replace(/\{\{ID\}\}/g, node.id)
