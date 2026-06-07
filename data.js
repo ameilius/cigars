@@ -106,7 +106,7 @@
 
                 // Perdomo (fully family-owned major with huge vertical operation)
                 { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Reserve 10th Anniversary", "Lot 23", "Champagne", "Patrón", "20th Anniversary"], logo: "logos/perdomo.webp" },
-                { id: "nickperdomo", name: "Nick Perdomo Jr.", type: "person", group: "family", country: "usa" },
+                { id: "nickperdomo", name: "Nick Perdomo Jr.", type: "person", group: "family", country: "usa", photo: "logos/nickperdomojr.jpg" },
                 { id: "perdomofactory", name: "Tabacalera Perdomo (El Monstro, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Joya de Nicaragua (oldest premium factory in Nicaragua, contract manufacturer)
