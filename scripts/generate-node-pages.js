@@ -29,7 +29,7 @@ function getNodeUrl(node) { return '/node/' + node.id + '/'; }
 function buildConnectionsHtml(node, allNodes, allLinks) {
   const connections = allLinks.filter(l => { const s = (l.source.id || l.source); const t = (l.target.id || l.target); return s === node.id || t === node.id; });
   if (!connections.length) return '<p class="text-sm text-[#8b6f5c] italic">No direct connections listed.</p>';
-  let html = '<div class="space-y-2">';
+  let html = '<div class="space-y-2 max-w-md">';
   connections.slice(0, 15).forEach(l => {
     const isSource = (l.source.id || l.source) === node.id;
     const otherId = isSource ? (l.target.id || l.target) : (l.source.id || l.source);
@@ -76,7 +76,12 @@ baseGraphData.nodes.forEach(node => {
   const connectionsHtml = buildConnectionsHtml(node, baseGraphData.nodes, baseGraphData.links);
   const productHtml = buildProductLinesHtml(node);
   const logoBoxHtml = buildLogoBoxHtml(node);
-  const desc = expandedDescriptions[node.id] || descriptions[node.id] || 'Detailed profile for ' + node.name + ' in the premium cigar industry.';
+  let desc = expandedDescriptions[node.id] || descriptions[node.id];
+  if (!desc) {
+    const type = node.type || 'entity';
+    const country = node.country ? node.country.charAt(0).toUpperCase() + node.country.slice(1) : 'the premium cigar industry';
+    desc = `${node.name} is a ${type} based in ${country}.`;
+  }
   let page = template
     .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
     .replace(/\{\{ID\}\}/g, node.id)
