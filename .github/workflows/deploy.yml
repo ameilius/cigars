@@ -16,43 +16,83 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Verify SEO page build (CI gate)
+      - name: Build SEO node pages (CI gate)
         run: |
           node scripts/generate-node-pages.js
           test -f node/padron/index.html
           test "$(wc -c < node/padron/index.html)" -gt 12000
           grep -q "Industry Connections" node/padron/index.html
+          cp -a node node-pages
           echo "Build OK: $(find node -name index.html | wc -l) pages"
 
-      - name: Deploy to VPS
+      - name: Sync source on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 13.140.140.201
           username: cigarnexus
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          command_timeout: 5m
           script: |
             set -eo pipefail
             cd /home/cigarnexus/web/cigarnexus.app/public_html
             git fetch --all
             git reset --hard origin/main
-            echo "Synced: $(git log -1 --oneline)"
-            NODE_BIN=""
-            if command -v node >/dev/null 2>&1; then NODE_BIN=$(command -v node); fi
-            if [ -z "$NODE_BIN" ] && [ -x /usr/bin/node ]; then NODE_BIN=/usr/bin/node; fi
-            if [ -z "$NODE_BIN" ]; then
-              echo "ERROR: node not found on VPS"
+            rm -rf node node-pages
+            echo "Git sync: $(git log -1 --oneline)"
+
+      - name: Upload generated pages
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: 13.140.140.201
+          username: cigarnexus
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "node-pages,sitemap.xml"
+          target: /home/cigarnexus/web/cigarnexus.app/public_html
+          overwrite: true
+          command_timeout: 10m
+
+      - name: Install and verify on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 13.140.140.201
+          username: cigarnexus
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -eo pipefail
+            cd /home/cigarnexus/web/cigarnexus.app/public_html
+            echo "PWD=$(pwd)"
+            ls -la node-pages 2>/dev/null | head -5 || true
+            rm -rf node
+            if [ -d node-pages/node-pages ]; then
+              cp -a node-pages/node-pages node
+            elif [ -d node-pages ]; then
+              cp -a node-pages node
+            else
+              echo "ERROR: node-pages missing after upload"
+              ls -la
               exit 1
             fi
-            echo "Using $NODE_BIN ($($NODE_BIN --version))"
-            $NODE_BIN scripts/generate-node-pages.js
+            rm -rf node-pages
             test -f node/padron/index.html
             SIZE=$(wc -c < node/padron/index.html | tr -d ' ')
-            echo "padron page: $SIZE bytes at $(readlink -f node/padron/index.html)"
+            echo "node/padron/index.html = $SIZE bytes ($(readlink -f node/padron/index.html))"
             test "$SIZE" -gt 12000
             grep -q "Industry Connections" node/padron/index.html
             grep -q 'rel="canonical"' node/padron/index.html
             COUNT=$(find node -name index.html | wc -l | tr -d ' ')
-            echo "Deployed $COUNT node pages at $(date)"
+            echo "Installed $COUNT node pages"
             test "$COUNT" -ge 100
-            echo "Deploy verified successfully"
+            date -u +%Y-%m-%dT%H:%M:%SZ > deploy-stamp.txt
+            echo "Deploy stamp written to $(readlink -f deploy-stamp.txt)"
+
+      - name: Verify live site updated
+        run: |
+          sleep 8
+          curl -fsS "https://cigarnexus.app/deploy-stamp.txt" | tee /tmp/stamp.txt
+          curl -fsSI "https://cigarnexus.app/node/padron/" | tee /tmp/padron-headers.txt
+          SIZE=$(grep -i content-length /tmp/padron-headers.txt | awk '{print $2}' | tr -d '\r')
+          echo "Live padron Content-Length: $SIZE"
+          test -n "$SIZE"
+          test "$SIZE" -gt 12000
+          curl -fsS "https://cigarnexus.app/node/padron/" | grep -q "Industry Connections"
+          curl -fsS "https://cigarnexus.app/node/padron/" | grep -q 'rel="canonical"'
+          echo "Live site verified"
