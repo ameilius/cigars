@@ -27,9 +27,9 @@ function isFactoryNode(node) {
 function getNodeColor(node) {
   if (!node) return '#6b5b4f';
   if (node.type === 'factory' || isFactoryNode(node)) return '#b45309'; // amber for factories/growers
-  if (node.type === 'brand' && node.group === 'family') return '#1d4ed8'; // blue for boutique/independent brands
   if (node.group === 'corporate') return '#5c2e2e';
-  return '#166534'; // green default for family/independent
+  if (node.group === 'family') return '#166534'; // green for family/independent (brands, companies, people)
+  return '#6b5b4f';
 }
 
 function getNodeRadius(node) {
