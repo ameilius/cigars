@@ -101,7 +101,7 @@
 
                 // Oliva (Vandermarliere family - major vertically integrated player)
                 { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "V Melanio", "Serie G"], logo: "logos/oliva.webp" },
-                { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium" },
+                { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium", photo: "logos/fredvandermarliere.jpg" },
                 { id: "tabolisa", name: "Tabolisa (Oliva Estelí)", type: "factory", group: "corporate", country: "nicaragua" },
 
                 // Perdomo (fully family-owned major with huge vertical operation)
