@@ -115,14 +115,28 @@
       .node-body a { color: #5c2e2e; text-decoration: underline; text-underline-offset: 2px; }
       .node-body a:hover { color: #c5a26f; }
       .node-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
-      .node-section-heading {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: #3f2a2a;
-        letter-spacing: -0.02em;
-        margin-bottom: 1rem;
-        padding-bottom: 0.625rem;
-        border-bottom: 1px solid rgba(212, 196, 168, 0.65);
+      .node-section-heading,
+      .node-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #5c4638;
+        position: relative;
+        padding-left: 12px;
+        margin-bottom: 0.85rem;
+        margin-top: 2rem;
+      }
+      .node-section-heading::before,
+      .node-section-label::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 1px;
+        bottom: 1px;
+        width: 3px;
+        background: linear-gradient(to bottom, #c5a26f, #d4b17e);
+        border-radius: 2px;
       }
     </style>
 </head>
