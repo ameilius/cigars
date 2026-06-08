@@ -69,7 +69,7 @@
 
                 // Drew Estate (owned by Swisher International — important correction)
                 { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Herrera Estelí", "Acid", "MUWAT"], logo: "logos/drewestate.jpg" },
-                { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa" },
+                { id: "jonathandrew", name: "Jonathan Drew (Sann)", type: "person", group: "family", country: "usa", photo: "logos/jonathandrewsann.jpg" },
                 { id: "swisher", name: "Swisher International", type: "company", group: "corporate", country: "usa", logo: "logos/swisher.svg" },
                 { id: "lagranfabrica", name: "La Gran Fábrica Drew Estate (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
@@ -112,7 +112,7 @@
                 // Joya de Nicaragua (oldest premium factory in Nicaragua, contract manufacturer)
                 { id: "joya", name: "Joya de Nicaragua", type: "brand", group: "family", country: "nicaragua", productLines: ["Antaño 1970", "Clásico", "Cinco Décadas", "Joya Red", "Joya Silver"], logo: "logos/joya.png" },
                 { id: "joyafactory", name: "Joya de Nicaragua Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
-                { id: "alejandromartinez", name: "Alejandro Martínez Cuenca", type: "person", group: "family", country: "nicaragua" },
+                { id: "alejandromartinez", name: "Alejandro Martínez Cuenca", type: "person", group: "family", country: "nicaragua", photo: "logos/alejandromartinezcuenca.png" },
 
                 // Dunbarton Tobacco & Trust (Steve Saka)
                 { id: "dunbarton", name: "Dunbarton Tobacco & Trust", type: "company", group: "family", country: "usa", productLines: ["Sobremesa", "Mi Querida", "Muestra de Saka", "Sin Compromiso", "Todos Los Días"], logo: "logos/dunbarton.webp" },
@@ -133,7 +133,7 @@
                 { id: "hvcfactory", name: "HVC Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // West Tampa Tobacco Co. (Rick Rodriguez)
-                { id: "rickrodriguez", name: "Rick Rodriguez", type: "person", group: "family", country: "usa" },
+                { id: "rickrodriguez", name: "Rick Rodriguez", type: "person", group: "family", country: "usa", photo: "logos/rickrodriguez.png" },
                 { id: "westtampa", name: "West Tampa Tobacco Co.", type: "brand", group: "family", country: "usa", productLines: ["White", "Black", "Red", "Attic Series", "Circle of Life", "Dark Time"], logo: "logos/westtampa.jpg" },
                 { id: "garmendia", name: "Garmendia Cigars (Estelí)", type: "factory", group: "family", country: "nicaragua", logo: "logos/garmendia.png" },
 
