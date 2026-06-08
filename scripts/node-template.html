@@ -42,6 +42,17 @@
 
     <style>
       .node-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+      .node-page article {
+        background: #fff;
+        border: 1px solid #d4c4a8;
+        border-radius: 1.5rem;
+        padding: 2rem 2rem 2.5rem;
+        box-shadow: 0 8px 32px -8px rgba(92, 46, 46, 0.12),
+                    inset 0 1px 0 rgba(255,255,255,0.8);
+      }
+      @media (max-width: 640px) {
+        .node-page article { padding: 1.25rem 1.25rem 2rem; border-radius: 1.25rem; }
+      }
       .node-hero {
         display: flex;
         align-items: center;
