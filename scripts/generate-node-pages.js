@@ -183,6 +183,12 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
   return html;
 }
 
+function nodeTypeDot(n) {
+  if (n.type === 'factory') return '#b45309';
+  if (n.group === 'corporate') return '#5c2e2e';
+  return '#166534';
+}
+
 function buildRelatedHtml(node, allNodes, allLinks) {
   const connections = getConnections(node.id, allNodes, allLinks);
   const relatedIds = new Set(connections.map(c => c.otherId));
@@ -214,7 +220,10 @@ function buildRelatedHtml(node, allNodes, allLinks) {
   let html = '<h2 id="related-nodes-heading" class="node-section-label">Explore Related Nodes</h2>';
   html += '<div class="flex flex-wrap gap-2">';
   final.forEach(n => {
-    html += `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#d4c4a8] text-[#3f2a2a] hover:border-[#c5a26f] hover:text-[#5c2e2e] transition-colors">${escapeHtml(n.name)}</a>`;
+    html += `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#d4c4a8] text-[#3f2a2a] hover:border-[#c5a26f] hover:text-[#5c2e2e] transition-colors">
+  <span style="width:7px;height:7px;border-radius:50%;background:${nodeTypeDot(n)};flex-shrink:0;display:inline-block"></span>
+  ${escapeHtml(n.name)}
+</a>`;
   });
   html += '</div>';
   return html;
