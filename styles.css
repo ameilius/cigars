@@ -111,6 +111,12 @@ h1, h2, .font-display,
     border-color: #7a3d3d;
     box-shadow: 0 2px 6px rgba(92, 46, 46, 0.35), inset 0 1px 0 rgba(255,255,255,0.1);
 }
+.filter-chip.filter-active::before {
+    content: '✓';
+    font-size: 10px;
+    margin-right: 4px;
+    opacity: 0.85;
+}
 .filter-chip.filter-active .chip-count {
     background-color: rgba(244, 233, 216, 0.25);
     color: #f4e9d8;
