@@ -257,9 +257,9 @@ function buildBreadcrumbs(node) {
   return `<nav aria-label="Breadcrumb" class="text-sm text-[#8b6f5c] mb-6">
     <ol class="flex flex-wrap items-center gap-1.5">
       <li><a href="/" class="hover:text-[#5c2e2e] transition-colors">Map</a></li>
-      <li aria-hidden="true" class="text-[#c5a26f]">/</li>
+      <li aria-hidden="true" class="text-[#c5a26f] text-xs select-none">›</li>
       <li><a href="/about.html" class="hover:text-[#5c2e2e] transition-colors">About</a></li>
-      <li aria-hidden="true" class="text-[#c5a26f]">/</li>
+      <li aria-hidden="true" class="text-[#c5a26f] text-xs select-none">›</li>
       <li class="text-[#3f2a2a] font-medium" aria-current="page">${name}</li>
     </ol>
   </nav>`;
