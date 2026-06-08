@@ -42,11 +42,55 @@
 
     <style>
       .node-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 3rem; }
-      .node-header { margin-bottom: 1.5rem; }
-      .node-logo-box { max-width: 240px; margin: 0 auto 1rem; background: #fff; border: 1px solid #d4c4a8; border-radius: 16px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(92,46,46,0.08); }
-      .node-logo-box img { max-height: 110px; max-width: 100%; object-fit: contain; }
-      .node-photo-box { width: fit-content; max-width: 200px; margin: 0 auto 1rem; background: #fff; border: 1px solid #d4c4a8; border-radius: 16px; padding: 0.75rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(92,46,46,0.08); }
-      .node-photo-box img { width: 140px; height: 140px; max-width: 140px; max-height: 140px; flex-shrink: 0; aspect-ratio: 1; border-radius: 9999px; object-fit: cover; object-position: center 25%; }
+      .node-hero {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #fdfaf6 0%, #f4e9d8 100%);
+        border: 1px solid #d4c4a8;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 20px -6px rgba(92, 46, 46, 0.12), inset 0 1px 0 rgba(255,255,255,0.7);
+      }
+      .node-hero__logo { flex-shrink: 0; }
+      .node-hero__identity { flex: 1; min-width: 0; }
+      @media (max-width: 600px) {
+        .node-hero { flex-direction: column; text-align: center; align-items: center; }
+        .node-hero__identity .flex { justify-content: center; }
+      }
+      .node-hero:not(:has(.node-logo-box)):not(:has(.node-photo-box)) {
+        padding: 1.25rem 1.5rem;
+      }
+      .node-logo-box {
+        max-width: 160px;
+        margin: 0;
+        background: #fff;
+        border: 1px solid #d4c4a8;
+        border-radius: 12px;
+        padding: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(92,46,46,0.08);
+      }
+      .node-logo-box img { max-height: 90px; max-width: 130px; object-fit: contain; }
+      .node-photo-box {
+        width: fit-content;
+        margin: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+      .node-photo-box img {
+        width: 100px; height: 100px;
+        border-radius: 9999px;
+        object-fit: cover;
+        object-position: center 25%;
+        border: 3px solid #d4c4a8;
+        box-shadow: 0 2px 8px rgba(92,46,46,0.15);
+      }
       .node-body { line-height: 1.65; }
       .node-body p { margin-bottom: 1rem; }
       .node-body ul { margin: 0.75rem 0 1rem 1.25rem; list-style: disc; }
@@ -85,9 +129,13 @@
 
     <article itemscope itemtype="https://schema.org/Article">
       <header class="node-header">
-        {{LOGO_BOX}}
-        <h1 class="text-4xl font-semibold tracking-tight text-[#3f2a2a]" itemprop="headline">{{NAME}}</h1>
-        <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
+        <div class="node-hero">
+          <div class="node-hero__logo" id="node-logo-slot">{{LOGO_BOX}}</div>
+          <div class="node-hero__identity">
+            <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#3f2a2a]" itemprop="headline">{{NAME}}</h1>
+            <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
+          </div>
+        </div>
       </header>
 
       <div class="node-body prose max-w-none text-[#5c4638]" itemprop="articleBody">
