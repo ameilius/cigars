@@ -75,8 +75,8 @@
 
                 // CLE Cigar / Eiroa family (Honduras vertical integration)
                 { id: "cle", name: "CLE Cigar Company", type: "company", group: "family", country: "usa", productLines: ["Corojo", "Connecticut", "Cuarenta", "Plus", "Eiroa"], logo: "logos/cle.webp" },
-                { id: "christianeiroa", name: "Christian Eiroa", type: "person", group: "family", country: "honduras" },
-                { id: "eiroafamily", name: "Eiroa Family (Aladino)", type: "company", group: "family", country: "honduras" },
+{ id: "christianeiroa", name: "Christian Eiroa", type: "person", group: "family", country: "honduras", photo: "logos/christianeiroa.jpg" },
+                { id: "eiroafamily", name: "Eiroa Family (Aladino)", type: "company", group: "family", country: "honduras", logo: "logos/aladinocigars.png" },
                 { id: "eiroadanli", name: "CLE Factory (Danlí, Honduras)", type: "factory", group: "family", country: "honduras" },
 
                 // Aganorsa Leaf (major independent grower + TABSA factory)
@@ -94,7 +94,7 @@
 
                 // Warped / Kyle Gellis (boutique, multiple contract factories)
                 { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"], logo: "logos/warped.svg" },
-                { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa" },
+                { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa", photo: "logos/kylegellis.png" },
                 { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua", logo: "logos/nacsa.jpg" },
 
                 // === New major additions this round ===
