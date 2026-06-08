@@ -217,7 +217,8 @@ function buildRelatedHtml(node, allNodes, allLinks) {
   const final = picks.slice(0, 8);
   if (!final.length) return '';
 
-  let html = '<h2 id="related-nodes-heading" class="node-section-label">Explore Related Nodes</h2>';
+  let html = '<section class="mt-8" aria-labelledby="related-nodes-heading">';
+  html += '<h2 id="related-nodes-heading" class="node-section-label">Explore Related Nodes</h2>';
   html += '<div class="flex flex-wrap gap-2">';
   final.forEach(n => {
     html += `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#d4c4a8] text-[#3f2a2a] hover:border-[#c5a26f] hover:text-[#5c2e2e] transition-colors">
@@ -225,17 +226,19 @@ function buildRelatedHtml(node, allNodes, allLinks) {
   ${escapeHtml(n.name)}
 </a>`;
   });
-  html += '</div>';
+  html += '</div></section>';
   return html;
 }
 
 function buildProductLinesHtml(node) {
   if (!node.productLines || !node.productLines.length) return '';
-  let html = '<h2 id="product-lines-heading" class="node-section-label">Notable Cigars &amp; Product Lines</h2><div class="flex flex-wrap gap-1.5">';
+  let html = '<section class="mt-8" aria-labelledby="product-lines-heading">';
+  html += '<h2 id="product-lines-heading" class="node-section-label">Notable Cigars &amp; Product Lines</h2>';
+  html += '<div class="flex flex-wrap gap-1.5">';
   node.productLines.forEach(line => {
     html += `<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#d4c4a8] text-[#5c2e2e]">${escapeHtml(line)}</span>`;
   });
-  html += '</div>';
+  html += '</div></section>';
   return html;
 }
 
