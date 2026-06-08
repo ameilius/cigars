@@ -118,15 +118,18 @@ function clearSelectedNode() {
 
 function updateLinkHighlight(nodeId) {
   if (!viewport) return;
-  viewport.selectAll('.links line')
+  const lines = viewport.selectAll('.links line');
+  if (!nodeId) {
+    lines.attr('stroke-opacity', null).attr('stroke-width', null);
+    return;
+  }
+  lines
     .attr('stroke-opacity', d => {
-      if (!nodeId) return 0.9;
       const s = d.source.id || d.source;
       const t = d.target.id || d.target;
       return (s === nodeId || t === nodeId) ? 1 : 0.1;
     })
     .attr('stroke-width', d => {
-      if (!nodeId) return 1.6;
       const s = d.source.id || d.source;
       const t = d.target.id || d.target;
       return (s === nodeId || t === nodeId) ? 2.5 : 1.2;
@@ -389,10 +392,12 @@ function updateGraph() {
 
   const linkEnter = linkSel.enter().append('line')
     .attr('class', 'link')
-    .attr('stroke-width', 1.6)
-    .attr('stroke', d => getLinkColor(d));
+    .attr('stroke', d => getLinkColor(d))
+    .attr('data-type', d => d.type || '');
 
-  links = linkEnter.merge(linkSel);
+  links = linkEnter.merge(linkSel)
+    .attr('stroke', d => getLinkColor(d))
+    .attr('data-type', d => d.type || '');
 
   // Nodes
   const nodeSel = viewport.select('.nodes').selectAll('g.node-group')
