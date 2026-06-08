@@ -431,11 +431,22 @@ h1, h2, .font-display,
    Same warm cigar-lounge feel, just more attractive
    ============================================ */
 
+/* Clip drawer children to rounded outline (header bg was breaking corner borders) */
+#drawer,
+#drawer-mobile {
+    overflow: hidden;
+}
+
 /* Drawer header shelf — distinct from scrollable content */
 #drawer > div.p-5.border-b,
 #drawer-mobile > div.p-5.border-b {
     background: linear-gradient(to bottom, #fdf8f0 0%, #f4e9d8 100%);
     border-bottom-color: #c8b594;
+}
+
+#drawer > div.p-5.border-b {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
 }
 
 /* Drawer content area - subtle depth */
