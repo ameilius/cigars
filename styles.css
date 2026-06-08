@@ -232,6 +232,19 @@ h1, h2, .font-display,
         0 20px 60px -15px rgba(92, 46, 46, 0.2);
 }
 
+/* Graph view controls — glassy pills over the map */
+#graph-container .absolute.top-4.left-4 button {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(244, 233, 216, 0.88);
+    border-color: rgba(212, 196, 168, 0.7);
+    box-shadow: 0 1px 3px rgba(92, 46, 46, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+#graph-container .absolute.top-4.left-4 button:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
 /* Selected graph node — gold ring */
 .node-group.node-selected .node {
     stroke: #c5a26f !important;
