@@ -48,9 +48,11 @@ h1, h2, .font-display,
     outline-offset: 2px;
 }
 
-.node { 
-    cursor: pointer; 
-    transition: filter 0.15s ease;
+.node {
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.15s ease;
+    transform-box: fill-box;
+    transform-origin: center;
 }
 
 .link { 
@@ -197,7 +199,6 @@ h1, h2, .font-display,
 .node-group:hover .node {
     filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 5px rgba(197, 162, 111, 0.5));
     transform: scale(1.08);
-    transition: filter 0.15s ease, transform 0.15s ease;
 }
 
 /* Subtle gold accents */
