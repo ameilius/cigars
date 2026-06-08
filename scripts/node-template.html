@@ -75,6 +75,8 @@
       }
       .node-logo-box {
         max-width: 160px;
+        min-width: 100px;
+        min-height: 72px;
         margin: 0;
         background: #fff;
         border: 1px solid #d4c4a8;
@@ -85,7 +87,15 @@
         justify-content: center;
         box-shadow: 0 2px 6px rgba(92,46,46,0.08);
       }
-      .node-logo-box img { max-height: 90px; max-width: 130px; object-fit: contain; }
+      .node-logo-box img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-height: 90px;
+        max-width: 130px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
       .node-photo-box {
         width: fit-content;
         margin: 0;
