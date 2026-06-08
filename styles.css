@@ -193,9 +193,11 @@ h1, h2, .font-display,
     fill: #5c2e2e;
 }
 
-/* Nicer node hover */
-.node:hover circle {
-    filter: brightness(1.08) saturate(1.1);
+/* Nicer node hover — circle is .node inside g.node-group */
+.node-group:hover .node {
+    filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 5px rgba(197, 162, 111, 0.5));
+    transform: scale(1.08);
+    transition: filter 0.15s ease, transform 0.15s ease;
 }
 
 /* Subtle gold accents */
