@@ -393,11 +393,11 @@ function updateGraph() {
   const linkEnter = linkSel.enter().append('line')
     .attr('class', 'link')
     .attr('stroke', d => getLinkColor(d))
-    .attr('data-type', d => d.type || '');
+    .attr('data-type', d => (d.type || '').toLowerCase());
 
   links = linkEnter.merge(linkSel)
     .attr('stroke', d => getLinkColor(d))
-    .attr('data-type', d => d.type || '');
+    .attr('data-type', d => (d.type || '').toLowerCase());
 
   // Nodes
   const nodeSel = viewport.select('.nodes').selectAll('g.node-group')
