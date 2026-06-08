@@ -23,9 +23,9 @@
                 { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua", productLines: ["1964 Anniversary", "1926 Serie", "3000", "4000", "5000", "6000"], logo: "logos/padron.png" },
-                { id: "joseopadron", name: "José Orlando Padrón", type: "person", group: "family", country: "usa" },
-                { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa" },
-                { id: "orlandopadron", name: "Orlando Padrón", type: "person", group: "family", country: "usa" },
+{ id: "joseopadron", name: "José Orlando Padrón", type: "person", group: "family", country: "usa", photo: "logos/joseorlandopadron.png" },
+                { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa", photo: "logos/jorgepadron.png" },
+                { id: "orlandopadron", name: "Orlando Padrón", type: "person", group: "family", country: "usa", photo: "logos/orlandopadron.png" },
                 { id: "tabacoscubanica", name: "Tabacos Cubanica (Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua", logo: "logos/padron1964.jpg" },
                 { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua", logo: "logos/padron1926.jpg" },
