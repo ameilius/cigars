@@ -118,6 +118,13 @@ h1, h2, .font-display,
     margin-right: 4px;
     opacity: 0.85;
 }
+
+@media (max-width: 480px) {
+    .filter-chip.filter-active::before {
+        display: none;
+    }
+}
+
 .filter-chip.filter-active .chip-count {
     background-color: rgba(244, 233, 216, 0.25);
     color: #f4e9d8;
