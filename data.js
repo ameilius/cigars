@@ -58,13 +58,13 @@
 
                 // Plasencia family (major grower + manufacturer, family-controlled with STG minority stake)
                 { id: "plasencia", name: "Plasencia Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Alma Fuerte", "Alma del Campo", "Alma del Fuego", "Cosecha 146", "1865"], logo: "logos/plasencia.svg" },
-                { id: "nestorplasencia", name: "Nestor Plasencia Sr.", type: "person", group: "family", country: "nicaragua" },
-                { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua" },
+{ id: "nestorplasencia", name: "Nestor Plasencia Sr.", type: "person", group: "family", country: "nicaragua", photo: "logos/nestorplasenciasr.png" },
+                { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua", photo: "logos/nestorandresplasencia.png" },
                 { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Rocky Patel (vertically integrated, owns Tavicusa, strong Plasencia partnership)
                 { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["Decade", "Olde World", "Vintage 1990", "The Edge", "Sun Grown"], logo: "logos/rockypatel.webp" },
-                { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa" },
+                { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa", photo: "logos/nishpatel.png" },
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
 
                 // Drew Estate (owned by Swisher International — important correction)
