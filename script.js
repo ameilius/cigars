@@ -1069,7 +1069,7 @@ function showDrawer(node) {
       connHTML += `
         <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#d4c4a8] text-xs">
           <div class="flex items-center gap-2 flex-wrap">
-            <span class="connection-type font-medium text-[10px] px-1.5 py-0.5 rounded bg-[#f4e9d8] text-[#8b6f5c]">${relType}</span>
+            <span class="connection-type font-medium text-[10px] px-1.5 py-0.5 rounded bg-[#f4e9d8] text-[#8b6f5c]" data-rel="${relType}">${relType}</span>
             <span class="text-[#c5a26f] text-xs">→</span>
           </div>
           <span class="connection-name font-medium text-[#3f2a2a] hover:text-[#5c2e2e] cursor-pointer leading-snug" 

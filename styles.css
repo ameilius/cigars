@@ -523,6 +523,32 @@ h1, h2, .font-display,
     max-width: 100%;
 }
 
+/* Match graph link palette — ownership */
+.connection-type[data-rel*="owned"],
+.connection-type[data-rel*="subsidiary"] {
+    background-color: #faf0f0;
+    color: #7a2020;
+    border-color: #d4a8a8;
+}
+
+/* Manufacturing / contract */
+.connection-type[data-rel*="manufactur"],
+.connection-type[data-rel*="contract"],
+.connection-type[data-rel*="produced"] {
+    background-color: #faf4ec;
+    color: #7a4a20;
+    border-color: #d4b890;
+}
+
+/* Partnership / blending / founded */
+.connection-type[data-rel*="partner"],
+.connection-type[data-rel*="blended"],
+.connection-type[data-rel*="founded"] {
+    background-color: #fdf8ec;
+    color: #8b6a1a;
+    border-color: #d4b84a;
+}
+
 /* The clickable name - full width on its own line, can wrap nicely */
 .connection-name {
     font-size: 13px;
