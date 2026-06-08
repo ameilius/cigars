@@ -173,7 +173,7 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
     html += `
       <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#d4c4a8] text-xs">
         <div class="flex items-center gap-2 flex-wrap">
-          <span class="font-medium text-[10px] px-1.5 py-0.5 rounded bg-[#f4e9d8] text-[#8b6f5c]">${escapeHtml(c.rel)}</span>
+          <span class="connection-type" data-rel="${escapeHtml(c.rel)}">${escapeHtml(c.rel)}</span>
           <span class="text-[#c5a26f]">${dir}</span>
         </div>
         <a href="${url}" class="font-medium text-[#3f2a2a] hover:text-[#5c2e2e] leading-snug">${escapeHtml(c.otherName)}</a>
