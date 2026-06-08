@@ -145,6 +145,16 @@
         background: linear-gradient(to bottom, #c5a26f, #d4b17e);
         border-radius: 2px;
       }
+      .node-website-link a {
+        text-decoration: none;
+      }
+      .node-website-link a:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .node-hero__identity .node-website-link {
+        margin-top: 0.625rem;
+      }
       .node-body + section,
       section + section,
       section ~ div[class*="text-xs"] {
@@ -195,6 +205,7 @@
           <div class="node-hero__identity">
             <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#3f2a2a]" itemprop="headline">{{NAME}}</h1>
             <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
+            {{WEBSITE_LINK}}
           </div>
         </div>
       </header>

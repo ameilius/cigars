@@ -41,6 +41,47 @@ function loadExpandedOverrides() {
   }
 }
 
+function loadNodeWebsites() {
+  try {
+    const code = readUtf8(path.join(ROOT, 'websites.js'));
+    const sandbox = {};
+    vm.createContext(sandbox);
+    vm.runInContext(code, sandbox);
+    return sandbox.nodeWebsites || {};
+  } catch (err) {
+    console.warn('websites.js not found, node pages will omit external website links:', err.message);
+    return {};
+  }
+}
+
+function resolveNodeWebsite(node, nodeWebsites) {
+  if (node.website && String(node.website).trim()) {
+    return { website: String(node.website).trim(), websiteLabel: node.websiteLabel };
+  }
+  const entry = nodeWebsites[node.id];
+  if (!entry || !entry.website) return null;
+  return entry;
+}
+
+function buildWebsiteLinkHtml(node, nodeWebsites) {
+  const entry = resolveNodeWebsite(node, nodeWebsites);
+  if (!entry) return '';
+
+  const rawUrl = String(entry.website).trim();
+  if (!/^https?:\/\//i.test(rawUrl)) return '';
+
+  const label = entry.websiteLabel || 'Official website';
+  const host = rawUrl.replace(/^https?:\/\/(www\.)?/i, '').replace(/\/.*$/, '');
+
+  return `<p class="node-website-link mt-2.5 mb-0">
+    <a href="${escapeHtml(rawUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-[#5c2e2e] hover:text-[#c5a26f] transition-colors" title="${escapeHtml(rawUrl)}">
+      <span aria-hidden="true" class="text-[#c5a26f]">↗</span>
+      <span>${escapeHtml(label)}</span>
+      <span class="text-[#8b6f5c] font-normal hidden sm:inline">· ${escapeHtml(host)}</span>
+    </a>
+  </p>`;
+}
+
 function escapeHtml(str) {
   return String(str || '')
     .replace(/&/g, '&amp;')
@@ -289,12 +330,14 @@ function buildMetaPills(node) {
   return pills.join('');
 }
 
-function buildJsonLd(node, plainDesc, connections) {
+function buildJsonLd(node, plainDesc, connections, nodeWebsites) {
   const related = connections.slice(0, 5).map(c => ({
     '@type': 'Organization',
     name: c.otherName,
     url: `${SITE}/node/${c.otherId}/`
   }));
+
+  const websiteEntry = resolveNodeWebsite(node, nodeWebsites);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -312,6 +355,11 @@ function buildJsonLd(node, plainDesc, connections) {
     }
   };
 
+  if (websiteEntry) {
+    schema.about.url = websiteEntry.website;
+    schema.about.sameAs = [websiteEntry.website];
+  }
+
   if (related.length) schema.mentions = related;
   return JSON.stringify(schema, null, 2);
 }
@@ -320,6 +368,7 @@ function buildJsonLd(node, plainDesc, connections) {
 const baseGraphData = loadGraphData();
 const drawerDescriptions = loadDrawerDescriptions();
 const expandedOverrides = loadExpandedOverrides();
+const nodeWebsites = loadNodeWebsites();
 const allLinks = normalizeLinks(baseGraphData.links || []);
 
 let template = readUtf8(path.join(__dirname, 'node-template.html'));
@@ -355,18 +404,24 @@ baseGraphData.nodes.forEach(node => {
     .replace(/\{\{META_DESCRIPTION\}\}/g, escapeHtml(plainDesc))
     .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
     .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
+    .replace(/\{\{WEBSITE_LINK\}\}/g, buildWebsiteLinkHtml(node, nodeWebsites))
     .replace(/\{\{BREADCRUMBS\}\}/g, buildBreadcrumbs(node))
     .replace(/\{\{CONNECTIONS\}\}/g, buildConnectionsHtml(node, baseGraphData.nodes, allLinks))
     .replace(/\{\{RELATED\}\}/g, buildRelatedHtml(node, baseGraphData.nodes, allLinks))
     .replace(/\{\{PRODUCT_LINES\}\}/g, buildProductLinesHtml(node))
     .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
     .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
-    .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections));
+    .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites));
 
   fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');
 });
 
+const websiteIds = new Set(Object.keys(nodeWebsites));
+const missingWebsites = baseGraphData.nodes
+  .map(n => n.id)
+  .filter(id => !websiteIds.has(id) && !baseGraphData.nodes.find(n => n.id === id && n.website));
 console.log(`Generated ${baseGraphData.nodes.length} node pages (${overrideCount} manual overrides, ${autoCount} auto-expanded).`);
+console.log(`Website links: ${baseGraphData.nodes.length - missingWebsites.length}/${baseGraphData.nodes.length} nodes${missingWebsites.length ? ` (no URL: ${missingWebsites.join(', ')})` : ''}.`);
 
 function buildSitemap(nodes) {
   const today = new Date().toISOString().split('T')[0];
