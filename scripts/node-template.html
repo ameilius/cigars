@@ -114,7 +114,14 @@
       .node-body li { margin-bottom: 0.35rem; }
       .node-body a { color: #5c2e2e; text-decoration: underline; text-underline-offset: 2px; }
       .node-body a:hover { color: #c5a26f; }
-      .node-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+      .node-cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e8d9c3;
+      }
       .node-section-heading,
       .node-section-label {
         font-size: 0.7rem;
@@ -191,9 +198,15 @@
       {{RELATED}}
 
       <div class="node-cta-row">
-        <a href="{{BACK_TO_MAP}}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#c5a26f] border border-[#c5a26f]/40 rounded-2xl hover:bg-[#c5a26f]/10 transition-colors">← View on interactive map</a>
-        <a href="/" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#5c2e2e] border border-[#d4c4a8] rounded-2xl hover:bg-white transition-colors">Explore full industry map</a>
-        <a href="/about.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#8b6f5c] hover:text-[#5c2e2e] transition-colors">About Cigar Nexus</a>
+        <a href="{{BACK_TO_MAP}}" class="node-cta-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-[#f4e9d8] bg-[#5c2e2e] rounded-2xl hover:bg-[#4a2424] transition-colors shadow-sm">
+          ← View on interactive map
+        </a>
+        <a href="/" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-[#5c2e2e] border border-[#d4c4a8] rounded-2xl bg-white hover:border-[#c5a26f] hover:bg-[#fdfaf3] transition-colors">
+          Explore full map
+        </a>
+        <a href="/about.html" class="inline-flex items-center gap-2 px-3 py-2.5 text-sm text-[#8b6f5c] hover:text-[#5c2e2e] transition-colors">
+          About Cigar Nexus →
+        </a>
       </div>
     </article>
   </main>
