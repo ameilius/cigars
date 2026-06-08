@@ -431,6 +431,13 @@ h1, h2, .font-display,
    Same warm cigar-lounge feel, just more attractive
    ============================================ */
 
+/* Drawer header shelf — distinct from scrollable content */
+#drawer > div.p-5.border-b,
+#drawer-mobile > div.p-5.border-b {
+    background: linear-gradient(to bottom, #fdf8f0 0%, #f4e9d8 100%);
+    border-bottom-color: #c8b594;
+}
+
 /* Drawer content area - subtle depth */
 #drawer .p-5.flex-1,
 #drawer-mobile .p-5.flex-1 {
