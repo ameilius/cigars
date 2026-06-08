@@ -106,10 +106,10 @@ h1, h2, .font-display,
     transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-chip.filter-active {
-    background-color: #5c2e2e;
+    background: linear-gradient(135deg, #6b3535 0%, #5c2e2e 100%);
     color: #f4e9d8;
-    border-color: #5c2e2e;
-    box-shadow: 0 1px 3px rgba(92, 46, 46, 0.3);
+    border-color: #7a3d3d;
+    box-shadow: 0 2px 6px rgba(92, 46, 46, 0.35), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 .filter-chip.filter-active .chip-count {
     background-color: rgba(244, 233, 216, 0.25);
