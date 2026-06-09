@@ -398,14 +398,26 @@ h1, h2, .font-display,
     padding-right: 10px;
 }
 
-/* Mobile welcome card — sits between filters and map */
-.mobile-welcome {
-    animation: welcomeIn 0.45s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+/* Mobile welcome — floats over map bottom (no document-flow shift / CLS) */
+.mobile-welcome--overlay {
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 20;
+    pointer-events: none;
 }
-@keyframes welcomeIn {
+.mobile-welcome--overlay:not(.hidden) {
+    pointer-events: auto;
+    animation: welcomeOverlayIn 0.45s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+.mobile-welcome__card {
+    pointer-events: auto;
+}
+@keyframes welcomeOverlayIn {
     from {
         opacity: 0;
-        transform: translateY(-6px);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
