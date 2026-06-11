@@ -302,11 +302,30 @@ function buildBreadcrumbs(node) {
     <ol class="flex flex-wrap items-center gap-1.5">
       <li><a href="/" class="hover:text-[#5c2e2e] transition-colors">Map</a></li>
       <li aria-hidden="true" class="text-[#c5a26f] text-xs select-none">›</li>
-      <li><a href="/about.html" class="hover:text-[#5c2e2e] transition-colors">About</a></li>
-      <li aria-hidden="true" class="text-[#c5a26f] text-xs select-none">›</li>
       <li class="text-[#3f2a2a] font-medium" aria-current="page">${name}</li>
     </ol>
   </nav>`;
+}
+
+function buildBreadcrumbListJsonLd(node) {
+  const name = node.name || node.id;
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Map',
+        item: `${SITE}/`
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name,
+        item: `${SITE}/node/${node.id}/`
+      }
+    ]
+  };
 }
 
 function countryPillClass(country) {
@@ -340,7 +359,6 @@ function buildJsonLd(node, plainDesc, connections, nodeWebsites) {
   const websiteEntry = resolveNodeWebsite(node, nodeWebsites);
 
   const schema = {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: `${node.name} | Premium Cigar Industry Profile`,
     description: plainDesc,
@@ -361,7 +379,14 @@ function buildJsonLd(node, plainDesc, connections, nodeWebsites) {
   }
 
   if (related.length) schema.mentions = related;
-  return JSON.stringify(schema, null, 2);
+
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      schema,
+      buildBreadcrumbListJsonLd(node)
+    ]
+  }, null, 2);
 }
 
 // --- Main ---
