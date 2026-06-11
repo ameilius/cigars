@@ -283,6 +283,29 @@ function buildProductLinesHtml(node) {
   return html;
 }
 
+function resolveSocialImage(node) {
+  const fallback = `${SITE}/social-preview.jpg`;
+
+  if (node.type === 'person' && node.photo && String(node.photo).trim()) {
+    const path = node.photo.trim().replace(/^\//, '');
+    return { url: `${SITE}/${path}`, kind: 'photo' };
+  }
+  if (node.logo && String(node.logo).trim()) {
+    const path = node.logo.trim().replace(/^\//, '');
+    return { url: `${SITE}/${path}`, kind: 'logo' };
+  }
+  if (node.photo && String(node.photo).trim()) {
+    const path = node.photo.trim().replace(/^\//, '');
+    return { url: `${SITE}/${path}`, kind: 'photo' };
+  }
+  return { url: fallback, kind: 'default' };
+}
+
+function twitterCardForSocialImage(kind) {
+  // Logos and portraits are rarely 1200×630; summary avoids awkward cropping in shares.
+  return kind === 'default' ? 'summary_large_image' : 'summary';
+}
+
 function buildLogoBoxHtml(node) {
   const name = escapeHtml(node.name || node.id);
 
@@ -380,6 +403,11 @@ function buildJsonLd(node, plainDesc, connections, nodeWebsites) {
 
   if (related.length) schema.mentions = related;
 
+  const socialImage = resolveSocialImage(node);
+  if (socialImage.kind !== 'default') {
+    schema.image = socialImage.url;
+  }
+
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
@@ -421,12 +449,17 @@ baseGraphData.nodes.forEach(node => {
   const plainDesc = truncate(stripHtml(descHtml), 155);
   const canonical = `${SITE}/node/${node.id}/`;
   const mapUrl = `/?node=${node.id}`;
+  const socialImage = resolveSocialImage(node);
+  const ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
 
   const page = template
     .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
     .replace(/\{\{ID\}\}/g, node.id)
     .replace(/\{\{CANONICAL\}\}/g, canonical)
     .replace(/\{\{META_DESCRIPTION\}\}/g, escapeHtml(plainDesc))
+    .replace(/\{\{OG_IMAGE\}\}/g, escapeHtml(socialImage.url))
+    .replace(/\{\{OG_IMAGE_ALT\}\}/g, escapeHtml(ogImageAlt))
+    .replace(/\{\{TWITTER_CARD\}\}/g, twitterCardForSocialImage(socialImage.kind))
     .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
     .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
     .replace(/\{\{WEBSITE_LINK\}\}/g, buildWebsiteLinkHtml(node, nodeWebsites))
