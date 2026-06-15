@@ -153,7 +153,7 @@ var baseGraphData = {
                 { id: "leafbyoscar", name: "Leaf by Oscar", type: "brand", group: "family", country: "honduras", productLines: ["Corojo", "Maduro", "Connecticut", "Sumatra"], logo: "logos/leafbyoscar.webp" },
                 { id: "oscarvalladares", name: "Oscar Valladares", type: "brand", group: "family", country: "honduras", productLines: ["Super Fly", "2012", "The Oscar", "Ciserón"], logo: "logos/oscarvalladares.png" },
                 { id: "islandjim", name: "Island Jim", type: "brand", group: "family", country: "honduras", productLines: ["No. 2", "Connecticut No. 2", "Barber Pole"], logo: "logos/islandjim.webp" },
-                { id: "jimrobinson", name: "\"Island Jim\" Robinson", type: "person", group: "family", country: "usa" },
+                { id: "jimrobinson", name: "\"Island Jim\" Robinson", type: "person", group: "family", country: "usa", photo: "logos/jimrobinson.png" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
