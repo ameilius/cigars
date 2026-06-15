@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data — 150 nodes, 259 links
+ * Cigar Nexus graph data — 153 nodes, 270 links
  * Updated: P0–P3 Privada factory map cross-check (May 2026)
  */
 var baseGraphData = {
@@ -154,6 +154,9 @@ var baseGraphData = {
                 { id: "oscarvalladares", name: "Oscar Valladares", type: "brand", group: "family", country: "honduras", productLines: ["Super Fly", "2012", "The Oscar", "Ciserón"], logo: "logos/oscarvalladares.png" },
                 { id: "islandjim", name: "Island Jim", type: "brand", group: "family", country: "honduras", productLines: ["No. 2", "Connecticut No. 2", "Barber Pole"], logo: "logos/islandjim.webp" },
                 { id: "jimrobinson", name: "\"Island Jim\" Robinson", type: "person", group: "family", country: "usa", photo: "logos/jimrobinson.png" },
+                { id: "nicholassyris", name: "Nicholas Syris", type: "person", group: "family", country: "usa" },
+                { id: "lhpremium", name: "LH Premium Cigars", type: "brand", group: "family", country: "costa rica", productLines: ["Claro", "Colorado", "Maduro", "Nick", "Nikos"] },
+                { id: "nickandjim", name: "Nick & Jim", type: "brand", group: "family", country: "costa rica", productLines: ["P.B.E.", "Toro"] },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -415,5 +418,16 @@ var baseGraphData = {
                 { source: "laflordecopan", target: "islandjim", type: "manufactures" },
                 { source: "jimrobinson", target: "oscarvalladares", type: "factory partnership" },
                 { source: "jimrobinson", target: "eddieortega", type: "Wild Bunch collaborator" },
+                { source: "lhpremium", target: "nicholassyris", type: "founded by" },
+                { source: "nicholassyris", target: "lhpremium", type: "founded" },
+                { source: "lhpremium", target: "costaricatabacos", type: "manufactured at" },
+                { source: "costaricatabacos", target: "lhpremium", type: "manufactures" },
+                { source: "nickandjim", target: "nicholassyris", type: "collaboration with" },
+                { source: "nickandjim", target: "jimrobinson", type: "co-branded with" },
+                { source: "nickandjim", target: "costaricatabacos", type: "manufactured at" },
+                { source: "costaricatabacos", target: "nickandjim", type: "manufactures" },
+                { source: "nickandjim", target: "lhpremium", type: "Nick line of" },
+                { source: "nicholassyris", target: "jimrobinson", type: "collaboration with" },
+                { source: "jimrobinson", target: "nicholassyris", type: "collaboration with" },
             ]
         };

@@ -159,5 +159,8 @@ var nodeWebsites = {
   leafbyoscar: { website: "https://oscarcigars.com", websiteLabel: "Oscar Valladares" },
   oscarvalladares: { website: "https://oscarcigars.com" },
   islandjim: { website: "https://oscartobacco.com", websiteLabel: "Oscar Valladares Tobacco & Co." },
-  jimrobinson: { website: "https://www.leafandbean.com/stripdistrict", websiteLabel: "Leaf & Bean Strip District" }
+  jimrobinson: { website: "https://www.leafandbean.com/stripdistrict", websiteLabel: "Leaf & Bean Strip District" },
+  nicholassyris: { website: "https://lhcigars.com", websiteLabel: "LH Premium Cigars" },
+  lhpremium: { website: "https://lhcigars.com" },
+  nickandjim: { website: "https://lhcigars.com", websiteLabel: "LH Premium Cigars" }
 };
