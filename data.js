@@ -155,7 +155,7 @@ var baseGraphData = {
                 { id: "islandjim", name: "Island Jim", type: "brand", group: "family", country: "honduras", productLines: ["No. 2", "Connecticut No. 2", "Barber Pole"], logo: "logos/islandjim.webp" },
                 { id: "jimrobinson", name: "\"Island Jim\" Robinson", type: "person", group: "family", country: "usa", photo: "logos/jimrobinson.png" },
                 { id: "nicholassyris", name: "Nicholas Syris", type: "person", group: "family", country: "usa", photo: "logos/nicholassyris.jpg" },
-                { id: "lhpremium", name: "LH Premium Cigars", type: "brand", group: "family", country: "costa rica", productLines: ["Claro", "Colorado", "Maduro", "Nick", "Nikos"], logo: "logos/lhpremium.png" },
+                { id: "lhpremium", name: "LH Premium Cigars", type: "brand", group: "family", country: "costa rica", productLines: ["Claro", "Colorado", "Maduro", "Nick", "Nikos", "Nicolas"], logo: "logos/lhpremium.png" },
                 { id: "nickandjim", name: "Nick & Jim", type: "brand", group: "family", country: "costa rica", productLines: ["P.B.E.", "Toro"] },
             ],
             links: [
