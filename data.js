@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data — 148 nodes, 248 links
+ * Cigar Nexus graph data — 150 nodes, 259 links
  * Updated: P0–P3 Privada factory map cross-check (May 2026)
  */
 var baseGraphData = {
@@ -151,7 +151,9 @@ var baseGraphData = {
                 { id: "stolenthrone", name: "Stolen Throne", type: "brand", group: "family", country: "nicaragua" },
                 { id: "deadwood", name: "Deadwood", type: "brand", group: "family", country: "nicaragua", productLines: ["Fat Bottom Betty", "Sweet Jane", "Yummy Bitches"] },
                 { id: "leafbyoscar", name: "Leaf by Oscar", type: "brand", group: "family", country: "honduras", productLines: ["Corojo", "Maduro", "Connecticut", "Sumatra"], logo: "logos/leafbyoscar.webp" },
-                { id: "oscarvalladares", name: "Oscar Valladares", type: "brand", group: "family", country: "honduras", productLines: ["Super Fly", "2012", "Island Jim", "The Oscar"], logo: "logos/oscarvalladares.png" },
+                { id: "oscarvalladares", name: "Oscar Valladares", type: "brand", group: "family", country: "honduras", productLines: ["Super Fly", "2012", "The Oscar", "Ciserón"], logo: "logos/oscarvalladares.png" },
+                { id: "islandjim", name: "Island Jim", type: "brand", group: "family", country: "honduras", productLines: ["No. 2", "Connecticut No. 2", "Barber Pole"] },
+                { id: "jimrobinson", name: "\"Island Jim\" Robinson", type: "person", group: "family", country: "usa" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -402,5 +404,16 @@ var baseGraphData = {
                 { source: "stgdanli", target: "leafbyoscar", type: "manufactures" },
                 { source: "stgdanli", target: "zino", type: "manufactures" },
                 { source: "laflordecopan", target: "leafbyoscar", type: "manufactures" },
+                { source: "islandjim", target: "jimrobinson", type: "founded by" },
+                { source: "jimrobinson", target: "islandjim", type: "created" },
+                { source: "jimrobinson", target: "leafbyoscar", type: "created" },
+                { source: "leafbyoscar", target: "jimrobinson", type: "created by" },
+                { source: "islandjim", target: "laflordecopan", type: "manufactured at" },
+                { source: "islandjim", target: "oscarvalladares", type: "rolled by" },
+                { source: "islandjim", target: "leafbyoscar", type: "shared factory roots" },
+                { source: "oscarvalladares", target: "islandjim", type: "manufactures for" },
+                { source: "laflordecopan", target: "islandjim", type: "manufactures" },
+                { source: "jimrobinson", target: "oscarvalladares", type: "factory partnership" },
+                { source: "jimrobinson", target: "eddieortega", type: "Wild Bunch collaborator" },
             ]
         };

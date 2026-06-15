@@ -213,7 +213,9 @@ var drawerDescriptions = {
   "stolenthrone": "Stolen Throne is a boutique brand associated with the Rojas / New Order factory cluster in Estelí.",
   "deadwood": "Deadwood is Drew Estate's infused-adjacent boutique line (Fat Bottom Betty, Sweet Jane) produced at Raíces Cubanas in Nicaragua.",
   "leafbyoscar": "Leaf by Oscar is Oscar Valladares' candela-wrapped line produced at La Flor de Copán in Honduras.",
-  "oscarvalladares": "Oscar Valladares is a Honduran boutique brand (Super Fly, 2012, Island Jim) with production at La Flor de Copán and related facilities.",
+  "oscarvalladares": "Oscar Valladares is a Honduran boutique brand (Super Fly, 2012, The Oscar) with production at La Flor de Copán and related facilities.",
+  "islandjim": "Island Jim is a Honduran brand created by Pittsburgh retailer Jim Robinson, rolled at Oscar Valladares' La Flor de Copán factory. Known for Island Jim No. 2 and Connecticut No. 2.",
+  "jimrobinson": "\"Island Jim\" Robinson is a Pittsburgh cigar retailer (Leaf & Bean Strip) who created Leaf by Oscar and the Island Jim line in partnership with Oscar Valladares in Danlí, Honduras.",
 
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."

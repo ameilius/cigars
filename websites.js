@@ -157,5 +157,7 @@ var nodeWebsites = {
   stolenthrone: { website: "https://stolenthronecigars.com" },
   deadwood: { website: "https://drewestate.com", websiteLabel: "Drew Estate (Deadwood)" },
   leafbyoscar: { website: "https://oscarcigars.com", websiteLabel: "Oscar Valladares" },
-  oscarvalladares: { website: "https://oscarcigars.com" }
+  oscarvalladares: { website: "https://oscarcigars.com" },
+  islandjim: { website: "https://oscartobacco.com", websiteLabel: "Oscar Valladares Tobacco & Co." },
+  jimrobinson: { website: "https://www.leafandbean.com/stripdistrict", websiteLabel: "Leaf & Bean Strip District" }
 };
