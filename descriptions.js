@@ -216,8 +216,8 @@ var drawerDescriptions = {
   "oscarvalladares": "Oscar Valladares is a Honduran boutique brand (Super Fly, 2012, The Oscar) with production at La Flor de Copán and related facilities.",
   "islandjim": "Island Jim is a Honduran brand created by Pittsburgh retailer Jim Robinson, rolled at Oscar Valladares' La Flor de Copán factory. Known for Island Jim No. 2 and Connecticut No. 2.",
   "jimrobinson": "\"Island Jim\" Robinson is a Pittsburgh cigar retailer (Leaf & Bean Strip) who created Leaf by Oscar and the Island Jim line with Oscar Valladares, and co-branded Nick & Jim cigars with Nicholas Syris.",
-  "nicholassyris": "Nicholas Syris is a Greek-American master blender and founder of LH Premium Cigars (Lavida Habana). Non-Cuban LH blends have been rolled at Tabacos de Costa Rica from inception; he blended Nick & Jim with Jim Robinson.",
-  "lhpremium": "LH Premium Cigars (Lavida Habana) is Nicholas Syris's international boutique brand—Claro, Colorado, Maduro, and Nick lines (including Nikos and the full-bodied San Andrés-wrapped Nicolas)—rolled at Tabacos de Costa Rica from inception.",
+  "nicholassyris": "Nicholas Syris is a Greek-American master blender and founder of LH Premium Cigars (Lavida Habana). Non-Cuban LH blends are rolled at Tabacos de Costa Rica; he blended Nick & Jim with Jim Robinson.",
+  "lhpremium": "LH Premium Cigars (Lavida Habana) is Nicholas Syris's international boutique brand—Claro, Colorado, Maduro, and Nick lines (including Nikos and the full-bodied San Andrés-wrapped Nicolas)—rolled at Tabacos de Costa Rica.",
   "nickandjim": "Nick & Jim is a collaboration between Nicholas Syris (LH Premium) and \"Island Jim\" Robinson—originally Lavida Isla, released as P.B.E.—rolled at Tabacos de Costa Rica.",
 
   // Fallback for anything added later
