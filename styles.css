@@ -13,6 +13,9 @@
     --cn-text: #1A3330;
     --cn-text-body: #3D5A55;
     --cn-text-muted: #5A726D;
+    --cn-node-family: #9A3412;
+    --cn-node-corporate: #1E40AF;
+    --cn-node-factory: #b45309;
 }
 
 .site-logo {
@@ -271,12 +274,12 @@ h1, h2, .font-display,
 
 /* Filter chip idle tints (legend-aligned) */
 .filter-chip[data-key="family"]:not(.filter-active) {
-    background-color: #f0f7f2;
-    border-color: #a7d4b0;
+    background-color: #FFF7ED;
+    border-color: #FDBA74;
 }
 .filter-chip[data-key="corporate"]:not(.filter-active) {
-    background-color: #F0F7F6;
-    border-color: #A8D4CF;
+    background-color: #EFF6FF;
+    border-color: #93C5FD;
 }
 .filter-chip[data-key="nicaragua"]:not(.filter-active) {
     background-color: #f0f6f0;
@@ -984,14 +987,14 @@ h1, h2, .font-display,
     text-transform: capitalize;
 }
 .meta-pill--family {
-    color: #14532d;
-    background: #ecfdf3;
-    border-color: #86efac;
+    color: var(--cn-node-family);
+    background: #FFF7ED;
+    border-color: #FDBA74;
 }
 .meta-pill--corporate {
-    color: #14817A;
-    background: #F0F7F6;
-    border-color: #A8D4CF;
+    color: var(--cn-node-corporate);
+    background: #EFF6FF;
+    border-color: #93C5FD;
 }
 .meta-pill--boutique {
     color: #1e3a8a;

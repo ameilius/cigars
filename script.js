@@ -24,11 +24,17 @@ function isFactoryNode(node) {
   return name.includes('factory') || name.includes('estelí') || name.includes('esteli') || name.includes('tabolisa') || name.includes('tavicusa') || name.includes('nacsa') || name.includes('la gran');
 }
 
+const NODE_COLORS = {
+  family: '#9A3412',    // warm copper — family / independent
+  corporate: '#1E40AF', // rich blue — corporate / group
+  factory: '#b45309',   // amber — factories / growers
+};
+
 function getNodeColor(node) {
   if (!node) return '#6b5b4f';
-  if (node.type === 'factory' || isFactoryNode(node)) return '#b45309'; // amber for factories/growers
-  if (node.group === 'corporate') return '#14817A';
-  if (node.group === 'family') return '#166534'; // green for family/independent (brands, companies, people)
+  if (node.type === 'factory' || isFactoryNode(node)) return NODE_COLORS.factory;
+  if (node.group === 'corporate') return NODE_COLORS.corporate;
+  if (node.group === 'family') return NODE_COLORS.family;
   return '#6b5b4f';
 }
 
