@@ -97,14 +97,7 @@ async function writeSocialPreview() {
     .toBuffer();
 
   const bgSvg = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="${BRAND.bg}"/>
-        <stop offset="45%" stop-color="${BRAND.surface}"/>
-        <stop offset="100%" stop-color="#E2EEEB"/>
-      </linearGradient>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#g)"/>
+    <rect width="100%" height="100%" fill="#0a0a0a"/>
     <rect x="0" y="${H - 6}" width="100%" height="6" fill="${BRAND.teal}" opacity="0.85"/>
     <rect x="0" y="0" width="100%" height="3" fill="${BRAND.gold}" opacity="0.55"/>
   </svg>`);
