@@ -497,17 +497,41 @@ h1, h2, .font-display,
     color: #DBB978 !important;
 }
 
-#age-no {
+#age-gate #age-no {
     background: #fff !important;
     border: 1px solid #A8D4CF !important;
     color: #13817b !important;
+    -webkit-text-fill-color: #13817b;
     box-shadow: 0 1px 3px rgba(20, 129, 122, 0.08);
+    -webkit-tap-highlight-color: transparent;
 }
 
-#age-no:hover {
-    background: #F0F7F6 !important;
+#age-gate #age-no:focus,
+#age-gate #age-no:focus-visible {
+    background: #fff !important;
     border-color: #13817b !important;
-    color: #0B5651 !important;
+    color: #13817b !important;
+    -webkit-text-fill-color: #13817b;
+    outline: 2px solid rgba(19, 129, 123, 0.35);
+    outline-offset: 2px;
+}
+
+@media (hover: hover) {
+    #age-gate #age-no:hover {
+        background: #F0F7F6 !important;
+        border-color: #13817b !important;
+        color: #0B5651 !important;
+        -webkit-text-fill-color: #0B5651;
+    }
+}
+
+@media (hover: none) {
+    #age-gate #age-no:active {
+        background: #F0F7F6 !important;
+        border-color: #13817b !important;
+        color: #0B5651 !important;
+        -webkit-text-fill-color: #0B5651;
+    }
 }
 
 @keyframes fadeIn {
