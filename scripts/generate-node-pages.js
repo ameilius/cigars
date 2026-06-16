@@ -227,7 +227,7 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
 function nodeTypeDot(n) {
   if (n.type === 'factory') return '#b45309';
   if (n.group === 'corporate') return '#1E40AF';
-  return '#9A3412';
+  return '#7C3AED';
 }
 
 function buildRelatedHtml(node, allNodes, allLinks) {

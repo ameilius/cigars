@@ -13,7 +13,7 @@
     --cn-text: #1A3330;
     --cn-text-body: #3D5A55;
     --cn-text-muted: #5A726D;
-    --cn-node-family: #9A3412;
+    --cn-node-family: #7C3AED;
     --cn-node-corporate: #1E40AF;
     --cn-node-factory: #b45309;
 }
@@ -274,8 +274,8 @@ h1, h2, .font-display,
 
 /* Filter chip idle tints (legend-aligned) */
 .filter-chip[data-key="family"]:not(.filter-active) {
-    background-color: #FFF7ED;
-    border-color: #FDBA74;
+    background-color: #F5F3FF;
+    border-color: #C4B5FD;
 }
 .filter-chip[data-key="corporate"]:not(.filter-active) {
     background-color: #EFF6FF;
@@ -988,8 +988,8 @@ h1, h2, .font-display,
 }
 .meta-pill--family {
     color: var(--cn-node-family);
-    background: #FFF7ED;
-    border-color: #FDBA74;
+    background: #F5F3FF;
+    border-color: #C4B5FD;
 }
 .meta-pill--corporate {
     color: var(--cn-node-corporate);
