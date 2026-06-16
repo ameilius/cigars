@@ -43,7 +43,12 @@
     }
 }
 .site-logo--age-gate {
-    height: 3.5rem;
+    height: 4.75rem;
+}
+@media (min-width: 640px) {
+    .site-logo--age-gate {
+        height: 5.5rem;
+    }
 }
 .site-tagline {
     border-left: 1px solid rgba(206, 166, 97, 0.35);
@@ -477,7 +482,7 @@ h1, h2, .font-display,
 }
 
 #age-gate .site-logo--age-gate {
-    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.55));
+    filter: drop-shadow(0 2px 8px rgba(20, 129, 122, 0.12));
 }
 
 #age-yes {
@@ -493,14 +498,16 @@ h1, h2, .font-display,
 }
 
 #age-no {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border-color: rgba(206, 166, 97, 0.28) !important;
-    color: rgba(220, 220, 220, 0.9) !important;
+    background: #fff !important;
+    border: 1px solid #A8D4CF !important;
+    color: #13817b !important;
+    box-shadow: 0 1px 3px rgba(20, 129, 122, 0.08);
 }
 
 #age-no:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    color: #CEA661 !important;
+    background: #F0F7F6 !important;
+    border-color: #13817b !important;
+    color: #0B5651 !important;
 }
 
 @keyframes fadeIn {
