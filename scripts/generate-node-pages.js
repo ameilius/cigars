@@ -283,100 +283,27 @@ function buildProductLinesHtml(node) {
   return html;
 }
 
-const SOCIAL_W = 1200;
-const SOCIAL_H = 630;
-const SOCIAL_BG = { r: 10, g: 10, b: 10 };
+function resolveSocialImage(node) {
+  const fallback = `${SITE}/social-preview.jpg`;
 
-function getNodeVisualAsset(node) {
-  if (!node) return null;
   if (node.type === 'person' && node.photo && String(node.photo).trim()) {
-    return { relPath: node.photo.trim().replace(/^\//, ''), kind: 'photo' };
+    const path = node.photo.trim().replace(/^\//, '');
+    return { url: `${SITE}/${path}`, kind: 'photo' };
   }
   if (node.logo && String(node.logo).trim()) {
-    return { relPath: node.logo.trim().replace(/^\//, ''), kind: 'logo' };
+    const path = node.logo.trim().replace(/^\//, '');
+    return { url: `${SITE}/${path}`, kind: 'logo' };
   }
   if (node.photo && String(node.photo).trim()) {
-    return { relPath: node.photo.trim().replace(/^\//, ''), kind: 'photo' };
-  }
-  return null;
-}
-
-function resolveSocialImage(node, socialUrls) {
-  const fallback = `${SITE}/social-preview.jpg`;
-  if (socialUrls && socialUrls[node.id]) {
-    return { url: socialUrls[node.id], kind: 'card' };
-  }
-
-  const asset = getNodeVisualAsset(node);
-  if (asset) {
-    return { url: `${SITE}/${asset.relPath}`, kind: asset.kind };
+    const path = node.photo.trim().replace(/^\//, '');
+    return { url: `${SITE}/${path}`, kind: 'photo' };
   }
   return { url: fallback, kind: 'default' };
 }
 
 function twitterCardForSocialImage(kind) {
-  if (kind === 'card' || kind === 'default') return 'summary_large_image';
-  return 'summary';
-}
-
-async function generateNodeSocialImages(nodes) {
-  let sharp;
-  try {
-    sharp = require('sharp');
-  } catch (err) {
-    console.warn('sharp not available — node social cards will use raw logo/photo URLs:', err.message);
-    return {};
-  }
-
-  const socialDir = path.join(ROOT, 'social', 'node');
-  if (fs.existsSync(socialDir)) {
-    if (typeof fs.rmSync === 'function') {
-      fs.rmSync(socialDir, { recursive: true, force: true });
-    } else {
-      execSync(`rm -rf ${JSON.stringify(socialDir)}`);
-    }
-  }
-  fs.mkdirSync(socialDir, { recursive: true });
-
-  const socialUrls = {};
-  const maxW = Math.round(SOCIAL_W * 0.72);
-  const maxH = Math.round(SOCIAL_H * 0.72);
-  let generated = 0;
-
-  for (const node of nodes) {
-    const asset = getNodeVisualAsset(node);
-    if (!asset) continue;
-
-    const srcPath = path.join(ROOT, asset.relPath);
-    if (!fs.existsSync(srcPath)) {
-      console.warn(`Social image skipped (missing asset): ${node.id} -> ${asset.relPath}`);
-      continue;
-    }
-
-    const outPath = path.join(socialDir, `${node.id}.jpg`);
-    const resized = await sharp(srcPath)
-      .resize(maxW, maxH, { fit: 'inside', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-      .png()
-      .toBuffer();
-
-    await sharp({
-      create: {
-        width: SOCIAL_W,
-        height: SOCIAL_H,
-        channels: 3,
-        background: SOCIAL_BG,
-      },
-    })
-      .composite([{ input: resized, gravity: 'centre' }])
-      .jpeg({ quality: 88, mozjpeg: true })
-      .toFile(outPath);
-
-    socialUrls[node.id] = `${SITE}/social/node/${node.id}.jpg`;
-    generated += 1;
-  }
-
-  console.log(`Generated ${generated} social preview cards (${SOCIAL_W}x${SOCIAL_H}, black background).`);
-  return socialUrls;
+  // Logos and portraits are rarely 1200×630; summary avoids awkward cropping in shares.
+  return kind === 'default' ? 'summary_large_image' : 'summary';
 }
 
 function buildLogoBoxHtml(node) {
@@ -445,7 +372,7 @@ function buildMetaPills(node) {
   return pills.join('');
 }
 
-function buildJsonLd(node, plainDesc, connections, nodeWebsites, socialUrls) {
+function buildJsonLd(node, plainDesc, connections, nodeWebsites) {
   const related = connections.slice(0, 5).map(c => ({
     '@type': 'Organization',
     name: c.otherName,
@@ -476,7 +403,7 @@ function buildJsonLd(node, plainDesc, connections, nodeWebsites, socialUrls) {
 
   if (related.length) schema.mentions = related;
 
-  const socialImage = resolveSocialImage(node, socialUrls);
+  const socialImage = resolveSocialImage(node);
   if (socialImage.kind !== 'default') {
     schema.image = socialImage.url;
   }
@@ -488,80 +415,6 @@ function buildJsonLd(node, plainDesc, connections, nodeWebsites, socialUrls) {
       buildBreadcrumbListJsonLd(node)
     ]
   }, null, 2);
-}
-
-// --- Main ---
-async function main() {
-  const baseGraphData = loadGraphData();
-  const drawerDescriptions = loadDrawerDescriptions();
-  const expandedOverrides = loadExpandedOverrides();
-  const nodeWebsites = loadNodeWebsites();
-  const allLinks = normalizeLinks(baseGraphData.links || []);
-
-  const template = readUtf8(path.join(__dirname, 'node-template.html'));
-  const outputBase = path.join(ROOT, 'node');
-  if (fs.existsSync(outputBase)) {
-    if (typeof fs.rmSync === 'function') {
-      fs.rmSync(outputBase, { recursive: true, force: true });
-    } else {
-      execSync(`rm -rf ${JSON.stringify(outputBase)}`);
-    }
-  }
-
-  const socialUrls = await generateNodeSocialImages(baseGraphData.nodes);
-
-  let overrideCount = 0;
-  let autoCount = 0;
-
-  baseGraphData.nodes.forEach(node => {
-    const dir = path.join(outputBase, node.id);
-    fs.mkdirSync(dir, { recursive: true });
-
-    const connections = getConnections(node.id, baseGraphData.nodes, allLinks);
-    const descHtml = resolveDescription(node, connections, drawerDescriptions, expandedOverrides);
-    if (expandedOverrides[node.id] && node.id !== 'default') overrideCount++;
-    else autoCount++;
-
-    const plainDesc = truncate(stripHtml(descHtml), 155);
-    const canonical = `${SITE}/node/${node.id}/`;
-    const mapUrl = `/?node=${node.id}`;
-    const socialImage = resolveSocialImage(node, socialUrls);
-    const ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
-
-    const page = template
-      .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
-      .replace(/\{\{ID\}\}/g, node.id)
-      .replace(/\{\{CANONICAL\}\}/g, canonical)
-      .replace(/\{\{META_DESCRIPTION\}\}/g, escapeHtml(plainDesc))
-      .replace(/\{\{OG_IMAGE\}\}/g, escapeHtml(socialImage.url))
-      .replace(/\{\{OG_IMAGE_ALT\}\}/g, escapeHtml(ogImageAlt))
-      .replace(/\{\{TWITTER_CARD\}\}/g, twitterCardForSocialImage(socialImage.kind))
-      .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
-      .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
-      .replace(/\{\{WEBSITE_LINK\}\}/g, buildWebsiteLinkHtml(node, nodeWebsites))
-      .replace(/\{\{BREADCRUMBS\}\}/g, buildBreadcrumbs(node))
-      .replace(/\{\{CONNECTIONS\}\}/g, buildConnectionsHtml(node, baseGraphData.nodes, allLinks))
-      .replace(/\{\{RELATED\}\}/g, buildRelatedHtml(node, baseGraphData.nodes, allLinks))
-      .replace(/\{\{PRODUCT_LINES\}\}/g, buildProductLinesHtml(node))
-      .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
-      .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
-      .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites, socialUrls));
-
-    fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');
-  });
-
-  const websiteIds = new Set(Object.keys(nodeWebsites));
-  const missingWebsites = baseGraphData.nodes
-    .map(n => n.id)
-    .filter(id => !websiteIds.has(id) && !baseGraphData.nodes.find(n => n.id === id && n.website));
-  console.log(`Generated ${baseGraphData.nodes.length} node pages (${overrideCount} manual overrides, ${autoCount} auto-expanded).`);
-  console.log(`Website links: ${baseGraphData.nodes.length - missingWebsites.length}/${baseGraphData.nodes.length} nodes${missingWebsites.length ? ` (no URL: ${missingWebsites.join(', ')})` : ''}.`);
-
-  const sitemapPath = path.join(ROOT, 'sitemap.xml');
-  const sitemap = buildSitemap(baseGraphData.nodes);
-  validateSitemap(sitemap, baseGraphData.nodes);
-  fs.writeFileSync(sitemapPath, sitemap, 'utf8');
-  console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs, synced with data.js).`);
 }
 
 function buildSitemap(nodes) {
@@ -606,7 +459,72 @@ function validateSitemap(xml, nodes) {
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
+// --- Main ---
+const baseGraphData = loadGraphData();
+const drawerDescriptions = loadDrawerDescriptions();
+const expandedOverrides = loadExpandedOverrides();
+const nodeWebsites = loadNodeWebsites();
+const allLinks = normalizeLinks(baseGraphData.links || []);
+
+let template = readUtf8(path.join(__dirname, 'node-template.html'));
+const outputBase = path.join(ROOT, 'node');
+if (fs.existsSync(outputBase)) {
+  if (typeof fs.rmSync === 'function') {
+    fs.rmSync(outputBase, { recursive: true, force: true });
+  } else {
+    execSync(`rm -rf ${JSON.stringify(outputBase)}`);
+  }
+}
+
+let overrideCount = 0;
+let autoCount = 0;
+
+baseGraphData.nodes.forEach(node => {
+  const dir = path.join(outputBase, node.id);
+  fs.mkdirSync(dir, { recursive: true });
+
+  const connections = getConnections(node.id, baseGraphData.nodes, allLinks);
+  const descHtml = resolveDescription(node, connections, drawerDescriptions, expandedOverrides);
+  if (expandedOverrides[node.id] && node.id !== 'default') overrideCount++;
+  else autoCount++;
+
+  const plainDesc = truncate(stripHtml(descHtml), 155);
+  const canonical = `${SITE}/node/${node.id}/`;
+  const mapUrl = `/?node=${node.id}`;
+  const socialImage = resolveSocialImage(node);
+  const ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
+
+  const page = template
+    .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
+    .replace(/\{\{ID\}\}/g, node.id)
+    .replace(/\{\{CANONICAL\}\}/g, canonical)
+    .replace(/\{\{META_DESCRIPTION\}\}/g, escapeHtml(plainDesc))
+    .replace(/\{\{OG_IMAGE\}\}/g, escapeHtml(socialImage.url))
+    .replace(/\{\{OG_IMAGE_ALT\}\}/g, escapeHtml(ogImageAlt))
+    .replace(/\{\{TWITTER_CARD\}\}/g, twitterCardForSocialImage(socialImage.kind))
+    .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
+    .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
+    .replace(/\{\{WEBSITE_LINK\}\}/g, buildWebsiteLinkHtml(node, nodeWebsites))
+    .replace(/\{\{BREADCRUMBS\}\}/g, buildBreadcrumbs(node))
+    .replace(/\{\{CONNECTIONS\}\}/g, buildConnectionsHtml(node, baseGraphData.nodes, allLinks))
+    .replace(/\{\{RELATED\}\}/g, buildRelatedHtml(node, baseGraphData.nodes, allLinks))
+    .replace(/\{\{PRODUCT_LINES\}\}/g, buildProductLinesHtml(node))
+    .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
+    .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
+    .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites));
+
+  fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');
 });
+
+const websiteIds = new Set(Object.keys(nodeWebsites));
+const missingWebsites = baseGraphData.nodes
+  .map(n => n.id)
+  .filter(id => !websiteIds.has(id) && !baseGraphData.nodes.find(n => n.id === id && n.website));
+console.log(`Generated ${baseGraphData.nodes.length} node pages (${overrideCount} manual overrides, ${autoCount} auto-expanded).`);
+console.log(`Website links: ${baseGraphData.nodes.length - missingWebsites.length}/${baseGraphData.nodes.length} nodes${missingWebsites.length ? ` (no URL: ${missingWebsites.join(', ')})` : ''}.`);
+
+const sitemapPath = path.join(ROOT, 'sitemap.xml');
+const sitemap = buildSitemap(baseGraphData.nodes);
+validateSitemap(sitemap, baseGraphData.nodes);
+fs.writeFileSync(sitemapPath, sitemap, 'utf8');
+console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs, synced with data.js).`);

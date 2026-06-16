@@ -21,7 +21,6 @@ jobs:
 
       - name: Verify SEO page build (CI gate)
         run: |
-          npm ci
           node scripts/generate-node-pages.js
           test -f node/padron/index.html
           test "$(wc -c < node/padron/index.html)" -gt 12000
@@ -60,7 +59,6 @@ jobs:
             NODE_BIN=/usr/bin/node
             if ! [ -x "$NODE_BIN" ]; then NODE_BIN=$(command -v node); fi
             echo "Node: $NODE_BIN ($($NODE_BIN --version 2>&1 || echo MISSING))"
-            if [ -f package-lock.json ]; then npm ci; fi
             $NODE_BIN scripts/generate-node-pages.js
             SIZE=$(wc -c < node/padron/index.html | tr -d ' ')
             COUNT=$(find node -name index.html | wc -l | tr -d ' ')
