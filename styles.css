@@ -594,6 +594,14 @@ h1, h2, .font-display,
     }
 }
 
+/* Desktop map + drawer breathing room */
+@media (min-width: 1024px) {
+    .map-section {
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+}
+
 /* Mobile map section spacing + graph control breathing room */
 @media (max-width: 1023px) {
     .map-section {
