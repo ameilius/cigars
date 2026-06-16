@@ -55,6 +55,9 @@
 
 body { 
     font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: var(--cn-bg);
     background-image:
         radial-gradient(ellipse 120% 80% at 50% -20%, rgba(10, 10, 10, 0.06), transparent 55%),
@@ -164,9 +167,12 @@ h1, h2, .font-display,
     opacity: 0.85;
 }
 
-/* Footer — deep black, mirrors site header */
+/* Footer — deep black, mirrors site header; grows to fill page bottom */
 .site-footer {
     position: relative;
+    flex-grow: 1;
+    width: 100%;
+    padding-top: 3rem;
     background: linear-gradient(180deg, #1c1c1c 0%, #111111 52%, #0a0a0a 100%);
     box-shadow: 0 -4px 28px rgba(0, 0, 0, 0.42);
     color: rgba(220, 220, 220, 0.78);
