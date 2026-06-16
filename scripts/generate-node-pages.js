@@ -74,10 +74,10 @@ function buildWebsiteLinkHtml(node, nodeWebsites) {
   const host = rawUrl.replace(/^https?:\/\/(www\.)?/i, '').replace(/\/.*$/, '');
 
   return `<p class="node-website-link mt-2.5 mb-0">
-    <a href="${escapeHtml(rawUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-[#5c2e2e] hover:text-[#c5a26f] transition-colors" title="${escapeHtml(rawUrl)}">
-      <span aria-hidden="true" class="text-[#c5a26f]">↗</span>
+    <a href="${escapeHtml(rawUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-[#14817A] hover:text-[#CEA661] transition-colors" title="${escapeHtml(rawUrl)}">
+      <span aria-hidden="true" class="text-[#CEA661]">↗</span>
       <span>${escapeHtml(label)}</span>
-      <span class="text-[#8b6f5c] font-normal hidden sm:inline">· ${escapeHtml(host)}</span>
+      <span class="text-[#6B8A84] font-normal hidden sm:inline">· ${escapeHtml(host)}</span>
     </a>
   </p>`;
 }
@@ -204,7 +204,7 @@ function getNodeUrl(nodeId) {
 function buildConnectionsHtml(node, allNodes, allLinks) {
   const connections = getConnections(node.id, allNodes, allLinks);
   if (!connections.length) {
-    return '<p class="text-sm text-[#8b6f5c] italic">No direct connections listed.</p>';
+    return '<p class="text-sm text-[#6B8A84] italic">No direct connections listed.</p>';
   }
 
   let html = '<div class="space-y-2">';
@@ -212,12 +212,12 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
     const dir = c.direction === 'out' ? '→' : '←';
     const url = getNodeUrl(c.otherId);
     html += `
-      <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#d4c4a8] text-xs">
+      <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#CFE0DC] text-xs">
         <div class="flex items-center gap-2 flex-wrap">
           <span class="connection-type" data-rel="${escapeHtml(c.rel)}">${escapeHtml(c.rel)}</span>
-          <span class="text-[#c5a26f]">${dir}</span>
+          <span class="text-[#CEA661]">${dir}</span>
         </div>
-        <a href="${url}" class="font-medium text-[#3f2a2a] hover:text-[#5c2e2e] leading-snug">${escapeHtml(c.otherName)}</a>
+        <a href="${url}" class="font-medium text-[#1A3330] hover:text-[#14817A] leading-snug">${escapeHtml(c.otherName)}</a>
       </div>`;
   });
   html += '</div>';
@@ -226,7 +226,7 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
 
 function nodeTypeDot(n) {
   if (n.type === 'factory') return '#b45309';
-  if (n.group === 'corporate') return '#5c2e2e';
+  if (n.group === 'corporate') return '#14817A';
   return '#166534';
 }
 
@@ -262,7 +262,7 @@ function buildRelatedHtml(node, allNodes, allLinks) {
   html += '<h2 id="related-nodes-heading" class="node-section-label">Explore Related Nodes</h2>';
   html += '<div class="flex flex-wrap gap-2">';
   final.forEach(n => {
-    html += `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#d4c4a8] text-[#3f2a2a] hover:border-[#c5a26f] hover:text-[#5c2e2e] transition-colors">
+    html += `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#CFE0DC] text-[#1A3330] hover:border-[#CEA661] hover:text-[#14817A] transition-colors">
   <span style="width:7px;height:7px;border-radius:50%;background:${nodeTypeDot(n)};flex-shrink:0;display:inline-block"></span>
   ${escapeHtml(n.name)}
 </a>`;
@@ -277,7 +277,7 @@ function buildProductLinesHtml(node) {
   html += '<h2 id="product-lines-heading" class="node-section-label">Notable Cigars &amp; Product Lines</h2>';
   html += '<div class="flex flex-wrap gap-1.5">';
   node.productLines.forEach(line => {
-    html += `<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#d4c4a8] text-[#5c2e2e]">${escapeHtml(line)}</span>`;
+    html += `<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#CFE0DC] text-[#14817A]">${escapeHtml(line)}</span>`;
   });
   html += '</div></section>';
   return html;
@@ -321,11 +321,11 @@ function buildLogoBoxHtml(node) {
 
 function buildBreadcrumbs(node) {
   const name = escapeHtml(node.name || node.id);
-  return `<nav aria-label="Breadcrumb" class="text-sm text-[#8b6f5c] mb-6">
+  return `<nav aria-label="Breadcrumb" class="text-sm text-[#6B8A84] mb-6">
     <ol class="flex flex-wrap items-center gap-1.5">
-      <li><a href="/" class="hover:text-[#5c2e2e] transition-colors">Map</a></li>
-      <li aria-hidden="true" class="text-[#c5a26f] text-xs select-none">›</li>
-      <li class="text-[#3f2a2a] font-medium" aria-current="page">${name}</li>
+      <li><a href="/" class="hover:text-[#14817A] transition-colors">Map</a></li>
+      <li aria-hidden="true" class="text-[#CEA661] text-xs select-none">›</li>
+      <li class="text-[#1A3330] font-medium" aria-current="page">${name}</li>
     </ol>
   </nav>`;
 }

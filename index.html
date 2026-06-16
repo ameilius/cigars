@@ -10,7 +10,7 @@
     <title>Cigar Nexus • Interactive Map of the Cigar Industry</title>
     <meta name="title" content="Cigar Nexus • Interactive Map of the Cigar Industry">
     <meta name="description" content="Interactive map of the premium cigar industry. Explore ownership, factories, and relationships between major brands in Nicaragua and the Dominican Republic.">
-    <meta name="theme-color" content="#5c2e2e">
+    <meta name="theme-color" content="#14817A">
     <meta name="author" content="Cigar Nexus">
 
     <!-- Favicons & Icons (from realfavicongenerator) -->
@@ -72,35 +72,26 @@
     }
     </script>
 </head>
-<body class="bg-[#f8f5f0] text-gray-800">
+<body class="bg-[#F6F8F7] text-gray-800">
     <!-- Header -->
-    <header class="site-header bg-[#5c2e2e] text-white shadow-lg">
+    <header class="site-header bg-[#14817A] text-white shadow-lg">
         <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html"
-               class="site-brand flex items-center gap-x-3.5 rounded-2xl -ml-1 pl-1 pr-3 py-1 hover:bg-white/5 active:bg-white/10 transition-colors"
+               class="site-brand flex items-center gap-x-3 rounded-2xl -ml-1 pl-1 pr-3 py-1 hover:bg-white/5 active:bg-white/10 transition-colors"
                aria-label="Cigar Nexus home">
-                <!-- Premium logo -->
-                <div class="w-10 h-10 bg-gradient-to-br from-[#c5a26f] to-[#d4b17e] rounded-full flex items-center justify-center shadow-inner ring-1 ring-white/30">
-                    <span class="text-[#5c2e2e] text-[21px] font-semibold tracking-[-1px]">CN</span>
-                </div>
-                <div>
-                    <div class="font-semibold text-2xl tracking-[-0.5px] flex items-baseline gap-1 text-white">
-                        Cigar Nexus
-                        <span class="text-[10px] font-normal tracking-[1px] text-[#c5a26f]/70 align-super ml-0.5">EST 2026</span>
-                    </div>
-                    <div class="text-[11px] text-[#e8d9c3] -mt-0.5 tracking-[0.3px]">A Visual Map of the Cigar World</div>
-                </div>
+                <img src="logos/cigarnexus.svg" alt="Cigar Nexus" class="site-logo" width="200" height="56" />
+                <span class="site-tagline text-[11px] text-[#DCEBE8] tracking-[0.3px] hidden md:inline">A Visual Map of the Cigar World</span>
             </a>
             
             <div class="hidden sm:flex flex-1 max-w-md mx-8 search-container relative">
                 <input id="search" 
                        type="text" 
                        placeholder="Search..." 
-                       class="w-full px-4 py-2 pr-10 rounded-2xl bg-[#f4e9d8] text-[#3f2a2a] placeholder-[#8b6f5c] focus:outline-none focus:ring-2 focus:ring-[#c5a26f] shadow-inner text-sm transition-all">
+                       class="w-full px-4 py-2 pr-10 rounded-2xl bg-[#ECF4F2] text-[#1A3330] placeholder-[#6B8A84] focus:outline-none focus:ring-2 focus:ring-[#CEA661] shadow-inner text-sm transition-all">
                 
                 <!-- Clear search button -->
                 <button id="search-clear"
-                        class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center text-[#5c2e2e] hover:text-[#3f2a2a] text-2xl font-light leading-none rounded-full hover:bg-[#d4c4a8]/60 transition-all hidden"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center text-[#14817A] hover:text-[#1A3330] text-2xl font-light leading-none rounded-full hover:bg-[#CFE0DC]/60 transition-all hidden"
                         aria-label="Clear search">
                     ×
                 </button>
@@ -109,17 +100,17 @@
             <div class="flex items-center gap-x-0.5 sm:gap-x-1">
                 <button id="search-mobile-open"
                         type="button"
-                        class="sm:hidden relative flex items-center justify-center w-11 h-11 rounded-2xl text-[#e8d9c3] hover:bg-white/10 active:bg-white/15 transition-colors"
+                        class="sm:hidden relative flex items-center justify-center w-11 h-11 rounded-2xl text-[#DCEBE8] hover:bg-white/10 active:bg-white/15 transition-colors"
                         aria-label="Search the map">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="7"></circle>
                         <path d="M20 20l-3.5-3.5"></path>
                     </svg>
-                    <span id="search-mobile-badge" class="hidden absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-[#c5a26f] ring-2 ring-[#5c2e2e]" aria-hidden="true"></span>
+                    <span id="search-mobile-badge" class="hidden absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-[#CEA661] ring-2 ring-[#14817A]" aria-hidden="true"></span>
                 </button>
                 <div class="flex items-center gap-x-1 text-xs sm:text-sm">
-                    <a href="index.html" class="nav-link nav-link--active px-3 py-1.5 rounded-2xl text-[#c5a26f] font-medium transition-colors">Map</a>
-                    <a href="about.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#e8d9c3] transition-colors">About</a>
+                    <a href="index.html" class="nav-link nav-link--active px-3 py-1.5 rounded-2xl text-[#CEA661] font-medium transition-colors">Map</a>
+                    <a href="about.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#DCEBE8] transition-colors">About</a>
                 </div>
             </div>
         </div>
@@ -129,16 +120,16 @@
         
         <!-- Filters (moved above graph for prominence + mobile friendly) -->
         <div class="mb-3 sm:mb-4">
-            <div class="text-[10px] font-semibold tracking-[0.6px] text-[#8b6f5c] mb-1.5 px-0.5">FILTER THE MAP</div>
+            <div class="text-[10px] font-semibold tracking-[0.6px] text-[#6B8A84] mb-1.5 px-0.5">FILTER THE MAP</div>
             <div class="flex flex-wrap gap-2" id="filter-chips">
-                <div data-key="all" onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">All <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
-                <div data-key="family" onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Family / Independent <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
-                <div data-key="corporate" onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Corporate / Group <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
-                <div data-key="nicaragua" onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Nicaragua <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
-                <div data-key="dominican" onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Dominican Republic <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
-                <div data-key="honduras" onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Honduras <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
-                <div data-key="boutique" onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Boutique <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
-                <div data-key="factory" onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#6b2d2d] rounded-full text-sm font-medium flex items-center gap-1.5">Factory / Grower <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#e8d9c3] text-[#5c2e2e]"></span></div>
+                <div data-key="all" onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">All <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div data-key="family" onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Family / Independent <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div data-key="corporate" onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Corporate / Group <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div data-key="nicaragua" onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Nicaragua <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div data-key="dominican" onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Dominican Republic <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div data-key="honduras" onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Honduras <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div data-key="boutique" onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Boutique <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div data-key="factory" onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Factory / Grower <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
             </div>
         </div>
 
@@ -147,29 +138,29 @@
             
             <!-- Graph -->
             <div class="flex-1">
-                <div id="graph-container" class="relative rounded-3xl border border-[#d4c4a8] overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px] shadow-[0_20px_60px_-15px_rgb(92,46,46,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
+                <div id="graph-container" class="relative rounded-3xl border border-[#CFE0DC] overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px] shadow-[0_20px_60px_-15px_rgb(20,129,122,0.18),inset_0_1px_0_0_rgb(255,255,255,0.6)]">
                     <!-- View controls -->
                     <div class="absolute top-4 left-4 z-10 flex gap-2">
                         <button onclick="zoomToFit()"
-                                class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
+                                class="px-3.5 py-2 rounded-2xl bg-[#ECF4F2] border border-[#CFE0DC] shadow-sm text-xs font-semibold text-[#14817A] hover:bg-white active:scale-[0.985] transition-all">
                             Zoom to fit
                         </button>
                         <button onclick="resetZoom()"
-                                class="px-3.5 py-2 rounded-2xl bg-[#f4e9d8] border border-[#d4c4a8] shadow-sm text-xs font-semibold text-[#5c2e2e] hover:bg-white active:scale-[0.985] transition-all">
+                                class="px-3.5 py-2 rounded-2xl bg-[#ECF4F2] border border-[#CFE0DC] shadow-sm text-xs font-semibold text-[#14817A] hover:bg-white active:scale-[0.985] transition-all">
                             Reset
                         </button>
                         <button onclick="showHowTo()"
-                                class="px-3 py-2 rounded-2xl bg-[#c5a26f] text-[#5c2e2e] border border-[#b38c4f] shadow-sm text-xs font-semibold hover:bg-[#d4b17e] active:scale-[0.985] transition-all"
+                                class="px-3 py-2 rounded-2xl bg-[#CEA661] text-[#14817A] border border-[#b38c4f] shadow-sm text-xs font-semibold hover:bg-[#DBB978] active:scale-[0.985] transition-all"
                                 title="Show guide &amp; example nodes">
                             How to explore
                         </button>
                     </div>
                     <!-- Legend -->
-                    <div class="absolute top-4 right-4 z-10 bg-[#f4e9d8]/95 border border-[#d4c4a8] shadow-sm rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 max-w-[58vw] sm:max-w-[42vw]">
-                        <div class="text-[10px] font-semibold text-[#8b6f5c] mb-1 tracking-[0.5px]">LEGEND</div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 text-[9.5px] sm:text-xs text-[#5c2e2e]">
+                    <div class="absolute top-4 right-4 z-10 bg-[#ECF4F2]/95 border border-[#CFE0DC] shadow-sm rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 max-w-[58vw] sm:max-w-[42vw]">
+                        <div class="text-[10px] font-semibold text-[#6B8A84] mb-1 tracking-[0.5px]">LEGEND</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 text-[9.5px] sm:text-xs text-[#14817A]">
                             <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#166534"></span> Family / Independent</div>
-                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#5c2e2e"></span> Corporate / Group</div>
+                            <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#14817A"></span> Corporate / Group</div>
                             <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
                         </div>
                     </div>
@@ -181,9 +172,9 @@
                          role="region"
                          aria-label="Welcome guide"
                          aria-hidden="true">
-                        <div class="mobile-welcome__card rounded-2xl border border-[#d4c4a8] bg-gradient-to-br from-[#f4e9d8]/98 via-[#f2e6d4]/98 to-[#ebe0cc]/98 shadow-[0_8px_32px_-8px_rgba(92,46,46,0.35)] overflow-hidden backdrop-blur-sm">
+                        <div class="mobile-welcome__card rounded-2xl border border-[#CFE0DC] bg-gradient-to-br from-[#ECF4F2]/98 via-[#f2e6d4]/98 to-[#ebe0cc]/98 shadow-[0_8px_32px_-8px_rgba(92,46,46,0.35)] overflow-hidden backdrop-blur-sm">
                             <div class="flex items-start gap-3.5 p-4">
-                                <div class="shrink-0 w-11 h-11 rounded-2xl bg-[#5c2e2e] text-[#c5a26f] flex items-center justify-center shadow-inner ring-1 ring-white/20" aria-hidden="true">
+                                <div class="shrink-0 w-11 h-11 rounded-2xl bg-[#14817A] text-[#CEA661] flex items-center justify-center shadow-inner ring-1 ring-white/20" aria-hidden="true">
                                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
                                         <circle cx="12" cy="12" r="9"></circle>
                                         <path d="M12 11v5"></path>
@@ -191,19 +182,19 @@
                                     </svg>
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <div class="text-[10px] font-semibold tracking-[0.7px] text-[#8b6f5c] uppercase">First time here?</div>
-                                    <div class="font-semibold text-[#3f2a2a] text-[15px] mt-0.5 tracking-tight">Explore the cigar world visually</div>
-                                    <p class="mt-1.5 text-[13px] text-[#5c4638] leading-relaxed">Each bubble is a brand, factory, or person. Tap to see who owns what and where it's made — or try a curated example below.</p>
+                                    <div class="text-[10px] font-semibold tracking-[0.7px] text-[#6B8A84] uppercase">First time here?</div>
+                                    <div class="font-semibold text-[#1A3330] text-[15px] mt-0.5 tracking-tight">Explore the cigar world visually</div>
+                                    <p class="mt-1.5 text-[13px] text-[#3D5A55] leading-relaxed">Each bubble is a brand, factory, or person. Tap to see who owns what and where it's made — or try a curated example below.</p>
                                     <button type="button"
                                             onclick="dismissMobileWelcome(true)"
-                                            class="mt-3 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-[#c5a26f] text-[#5c2e2e] border border-[#b38c4f] text-sm font-semibold shadow-sm active:scale-[0.98] transition-all">
+                                            class="mt-3 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-[#CEA661] text-[#14817A] border border-[#b38c4f] text-sm font-semibold shadow-sm active:scale-[0.98] transition-all">
                                         How to explore
                                         <span aria-hidden="true">→</span>
                                     </button>
                                 </div>
                                 <button type="button"
                                         onclick="dismissMobileWelcome(false)"
-                                        class="shrink-0 -mt-0.5 -mr-1 w-9 h-9 flex items-center justify-center text-[#8b6f5c] hover:text-[#5c2e2e] text-2xl leading-none rounded-xl hover:bg-white/50 transition-colors"
+                                        class="shrink-0 -mt-0.5 -mr-1 w-9 h-9 flex items-center justify-center text-[#6B8A84] hover:text-[#14817A] text-2xl leading-none rounded-xl hover:bg-white/50 transition-colors"
                                         aria-label="Dismiss welcome">
                                     ×
                                 </button>
@@ -215,47 +206,47 @@
 
             <!-- Desktop Sidebar Drawer -->
             <div class="hidden lg:block lg:w-80 lg:shrink-0">
-                <div id="drawer" class="drawer-panel bg-[#f4e9d8] rounded-3xl shadow-lg border border-[#d4c4a8] flex flex-col h-[620px] lg:sticky lg:top-4">
-                    <div class="p-5 border-b border-[#d4c4a8]">
+                <div id="drawer" class="drawer-panel bg-[#ECF4F2] rounded-3xl shadow-lg border border-[#CFE0DC] flex flex-col h-[620px] lg:sticky lg:top-4">
+                    <div class="p-5 border-b border-[#CFE0DC]">
                         <!-- Logo in its own prominent box (mimicking example) -->
-                        <div id="drawer-logo-container" class="hidden mb-4 bg-white rounded-2xl border border-[#d4c4a8] p-4 flex items-center justify-center">
+                        <div id="drawer-logo-container" class="hidden mb-4 bg-white rounded-2xl border border-[#CFE0DC] p-4 flex items-center justify-center">
                             <img id="drawer-logo" class="max-h-[120px] max-w-full object-contain" alt="Brand logo">
                         </div>
 
                         <div class="flex justify-between items-start gap-3">
                             <div class="min-w-0 flex-1">
-                                <div id="drawer-title" class="font-semibold text-2xl leading-tight tracking-tight text-[#3f2a2a]"></div>
+                                <div id="drawer-title" class="font-semibold text-2xl leading-tight tracking-tight text-[#1A3330]"></div>
                                 <div id="drawer-meta" class="mt-1.5 flex flex-wrap gap-1.5"></div>
                             </div>
 
-                            <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
+                            <button onclick="closeDrawer()" class="text-[#6B8A84] hover:text-[#14817A] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
                         </div>
                     </div>
                     
-                    <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
-                        <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
+                    <div class="p-5 flex-1 overflow-auto text-[#1A3330]">
+                        <div id="drawer-description" class="text-[13.5px] leading-relaxed text-[#3D5A55]"></div>
                         <div id="drawer-dedicated-link" class="mt-2 mb-1"></div>
-                        <div class="my-6 h-px bg-[#d4c4a8]"></div>
+                        <div class="my-6 h-px bg-[#CFE0DC]"></div>
                         
                         <div class="mb-4">
-                            <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
+                            <div class="text-xs font-semibold text-[#6B8A84] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
                             <div id="drawer-connections" class="space-y-2"></div>
                         </div>
 
                         <div id="drawer-product-lines-wrap">
-                            <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                            <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Notable Cigars</div>
+                            <div class="my-6 h-px bg-[#CFE0DC]"></div>
+                            <div class="text-xs font-semibold text-[#6B8A84] mb-2.5 tracking-[0.8px] uppercase">Notable Cigars</div>
                             <div id="drawer-product-lines" class="flex flex-wrap gap-1.5"></div>
                         </div>
                         
                         <div id="drawer-buy-wrap">
-                            <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                            <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
+                            <div class="my-6 h-px bg-[#CFE0DC]"></div>
+                            <div class="text-xs font-semibold text-[#6B8A84] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
                             <div class="space-y-2" id="drawer-buy"></div>
                         </div>
                     </div>
                     
-                    <div id="drawer-affiliate" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
+                    <div id="drawer-affiliate" class="p-4 border-t border-[#CFE0DC] text-[10px] text-[#6B8A84] bg-[#DCEBE8]/60 rounded-b-3xl">
                         As an affiliate I may earn a commission from qualifying purchases.
                     </div>
                 </div>
@@ -264,78 +255,78 @@
 
         <!-- Mobile Bottom Sheet Drawer -->
         <div id="drawer-mobile" 
-             class="drawer-panel drawer-panel--mobile lg:hidden w-full bg-[#f4e9d8] shadow-2xl border border-[#d4c4a8] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl max-h-[75vh]">
+             class="drawer-panel drawer-panel--mobile lg:hidden w-full bg-[#ECF4F2] shadow-2xl border border-[#CFE0DC] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl max-h-[75vh]">
             
             <div class="flex justify-center pt-2 pb-1" aria-hidden="true">
                 <div></div>
             </div>
 
-            <div class="p-5 border-b border-[#d4c4a8]">
+            <div class="p-5 border-b border-[#CFE0DC]">
                 <!-- Logo in its own prominent box (mimicking example) -->
-                <div id="drawer-logo-container-mobile" class="hidden mb-3 bg-white rounded-2xl border border-[#d4c4a8] p-3 flex items-center justify-center">
+                <div id="drawer-logo-container-mobile" class="hidden mb-3 bg-white rounded-2xl border border-[#CFE0DC] p-3 flex items-center justify-center">
                     <img id="drawer-logo-mobile" class="max-h-[90px] max-w-full object-contain" alt="Brand logo">
                 </div>
 
                 <div class="flex justify-between items-start gap-3">
                     <div class="min-w-0 flex-1">
-                        <div id="drawer-title-mobile" class="font-semibold text-xl leading-tight tracking-tight text-[#3f2a2a]"></div>
+                        <div id="drawer-title-mobile" class="font-semibold text-xl leading-tight tracking-tight text-[#1A3330]"></div>
                         <div id="drawer-meta-mobile" class="mt-1 flex flex-wrap gap-1.5"></div>
                     </div>
 
-                    <button onclick="closeDrawer()" class="text-[#8b6f5c] hover:text-[#5c2e2e] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
+                    <button onclick="closeDrawer()" class="text-[#6B8A84] hover:text-[#14817A] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
                 </div>
             </div>
             
-            <div class="p-5 flex-1 overflow-auto text-[#3f2a2a]">
-                <div id="drawer-description-mobile" class="text-[13.5px] leading-relaxed text-[#5c4638]"></div>
+            <div class="p-5 flex-1 overflow-auto text-[#1A3330]">
+                <div id="drawer-description-mobile" class="text-[13.5px] leading-relaxed text-[#3D5A55]"></div>
                 <div id="drawer-dedicated-link-mobile" class="mt-2 mb-1"></div>
                 
-                <div class="my-6 h-px bg-[#d4c4a8]"></div>
+                <div class="my-6 h-px bg-[#CFE0DC]"></div>
                 
                 <div class="mb-4">
-                    <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
+                    <div class="text-xs font-semibold text-[#6B8A84] mb-2.5 tracking-[0.8px] uppercase">Connections</div>
                     <div id="drawer-connections-mobile" class="space-y-2"></div>
                 </div>
 
                 <div id="drawer-product-lines-wrap-mobile">
-                    <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                    <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Notable Cigars</div>
+                    <div class="my-6 h-px bg-[#CFE0DC]"></div>
+                    <div class="text-xs font-semibold text-[#6B8A84] mb-2.5 tracking-[0.8px] uppercase">Notable Cigars</div>
                     <div id="drawer-product-lines-mobile" class="flex flex-wrap gap-1.5"></div>
                 </div>
                 
                 <div id="drawer-buy-wrap-mobile">
-                    <div class="my-6 h-px bg-[#d4c4a8]"></div>
-                    <div class="text-xs font-semibold text-[#8b6f5c] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
+                    <div class="my-6 h-px bg-[#CFE0DC]"></div>
+                    <div class="text-xs font-semibold text-[#6B8A84] mb-2.5 tracking-[0.8px] uppercase">Find These Cigars</div>
                     <div class="space-y-2" id="drawer-buy-mobile"></div>
                 </div>
             </div>
             
-            <div id="drawer-affiliate-mobile" class="p-4 border-t border-[#d4c4a8] text-[10px] text-[#8b6f5c] bg-[#e8d9c3]/60 rounded-b-3xl">
+            <div id="drawer-affiliate-mobile" class="p-4 border-t border-[#CFE0DC] text-[10px] text-[#6B8A84] bg-[#DCEBE8]/60 rounded-b-3xl">
                 As an affiliate I may earn a commission from qualifying purchases.
             </div>
         </div>
 
     </div>
 
-    <footer class="max-w-screen-xl mx-auto px-6 py-6 mt-6 border-t border-[#d4c4a8] flex items-center justify-between text-xs text-[#8b6f5c]">
+    <footer class="max-w-screen-xl mx-auto px-6 py-6 mt-6 border-t border-[#CFE0DC] flex items-center justify-between text-xs text-[#6B8A84]">
         <span>© 2026 Cigar Nexus</span>
-        <a href="about.html" class="hover:text-[#5c2e2e] transition-colors">About</a>
+        <a href="about.html" class="hover:text-[#14817A] transition-colors">About</a>
     </footer>
 
     <!-- Mobile search overlay -->
     <div id="search-overlay"
-         class="search-overlay hidden lg:hidden fixed inset-0 z-[60] bg-[#f8f5f0] flex flex-col"
+         class="search-overlay hidden lg:hidden fixed inset-0 z-[60] bg-[#F6F8F7] flex flex-col"
          aria-hidden="true"
          role="dialog"
          aria-modal="true"
          aria-label="Search the map">
-        <div class="search-overlay__header flex items-center justify-between gap-3 px-4 py-3 border-b border-[#d4c4a8] bg-[#f4e9d8]/90">
+        <div class="search-overlay__header flex items-center justify-between gap-3 px-4 py-3 border-b border-[#CFE0DC] bg-[#ECF4F2]/90">
             <button id="search-overlay-cancel"
                     type="button"
-                    class="text-sm font-semibold text-[#5c2e2e] px-2 py-1.5 rounded-xl hover:bg-white/60 active:scale-[0.98] transition-all">
+                    class="text-sm font-semibold text-[#14817A] px-2 py-1.5 rounded-xl hover:bg-white/60 active:scale-[0.98] transition-all">
                 Cancel
             </button>
-            <span class="text-sm font-semibold text-[#3f2a2a] tracking-tight">Search</span>
+            <span class="text-sm font-semibold text-[#1A3330] tracking-tight">Search</span>
             <span class="w-16" aria-hidden="true"></span>
         </div>
 
@@ -348,21 +339,21 @@
                        autocorrect="off"
                        spellcheck="false"
                        placeholder="Search brands, people, factories…"
-                       class="w-full px-4 py-3.5 pr-11 rounded-2xl bg-white border border-[#d4c4a8] text-[#3f2a2a] placeholder-[#8b6f5c] focus:outline-none focus:ring-2 focus:ring-[#c5a26f] shadow-sm text-base">
+                       class="w-full px-4 py-3.5 pr-11 rounded-2xl bg-white border border-[#CFE0DC] text-[#1A3330] placeholder-[#6B8A84] focus:outline-none focus:ring-2 focus:ring-[#CEA661] shadow-sm text-base">
                 <button id="search-mobile-clear"
                         type="button"
-                        class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-[#5c2e2e] hover:text-[#3f2a2a] text-2xl font-light leading-none rounded-full hover:bg-[#f4e9d8] transition-all hidden"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-[#14817A] hover:text-[#1A3330] text-2xl font-light leading-none rounded-full hover:bg-[#ECF4F2] transition-all hidden"
                         aria-label="Clear search">
                     ×
                 </button>
             </div>
         </div>
 
-        <div id="search-hint" class="px-6 text-sm text-[#8b6f5c] leading-relaxed">
+        <div id="search-hint" class="px-6 text-sm text-[#6B8A84] leading-relaxed">
             Type to find brands, people, factories, and companies on the map.
         </div>
 
-        <div id="search-empty" class="hidden px-6 py-8 text-center text-sm text-[#8b6f5c]">
+        <div id="search-empty" class="hidden px-6 py-8 text-center text-sm text-[#6B8A84]">
             No matches found. Try a different name or clear your filters.
         </div>
 
@@ -370,30 +361,28 @@
     </div>
 
     <!-- Age Verification Gate -->
-    <div id="age-gate" class="fixed inset-0 bg-[#5c2e2e]/95 z-[9999] hidden items-center justify-center p-4">
-        <div class="bg-[#f4e9d8] rounded-3xl shadow-2xl border border-[#d4c4a8] max-w-md w-full p-8 text-center">
-            <div class="mx-auto mb-4 w-14 h-14 bg-gradient-to-br from-[#c5a26f] to-[#d4b17e] rounded-full flex items-center justify-center shadow-inner ring-1 ring-white/30">
-                <span class="text-[#5c2e2e] text-2xl font-semibold tracking-[-1px]">CN</span>
-            </div>
+    <div id="age-gate" class="fixed inset-0 bg-[#14817A]/95 z-[9999] hidden items-center justify-center p-4">
+        <div class="bg-[#ECF4F2] rounded-3xl shadow-2xl border border-[#CFE0DC] max-w-md w-full p-8 text-center">
+            <img src="logos/cigarnexus.svg" alt="" class="site-logo site-logo--age-gate mx-auto mb-4" width="200" height="56" />
 
-            <h2 class="text-2xl font-semibold text-[#3f2a2a] tracking-tight">Age Verification</h2>
-            <p class="mt-3 text-[#5c4638] text-[15px] leading-relaxed">
+            <h2 class="text-2xl font-semibold text-[#1A3330] tracking-tight">Age Verification</h2>
+            <p class="mt-3 text-[#3D5A55] text-[15px] leading-relaxed">
                 This site contains age-restricted material related to tobacco products.<br>
                 Are you at least 21 years old?
             </p>
 
             <div class="mt-8 flex flex-col sm:flex-row gap-3">
                 <button id="age-yes"
-                        class="flex-1 px-6 py-3 bg-[#5c2e2e] hover:bg-[#4a2424] text-[#f4e9d8] font-semibold rounded-2xl transition-all active:scale-[0.985]">
+                        class="flex-1 px-6 py-3 bg-[#14817A] hover:bg-[#0D5A55] text-[#ECF4F2] font-semibold rounded-2xl transition-all active:scale-[0.985]">
                     Yes, I am 21+
                 </button>
                 <button id="age-no"
-                        class="flex-1 px-6 py-3 border border-[#d4c4a8] text-[#5c2e2e] hover:bg-white font-semibold rounded-2xl transition-all active:scale-[0.985]">
+                        class="flex-1 px-6 py-3 border border-[#CFE0DC] text-[#14817A] hover:bg-white font-semibold rounded-2xl transition-all active:scale-[0.985]">
                     No
                 </button>
             </div>
 
-            <p class="mt-6 text-[11px] text-[#8b6f5c] leading-tight">
+            <p class="mt-6 text-[11px] text-[#6B8A84] leading-tight">
                 By entering this site, you confirm you are of legal age to view tobacco-related content in your jurisdiction.
             </p>
         </div>

@@ -27,7 +27,7 @@ function isFactoryNode(node) {
 function getNodeColor(node) {
   if (!node) return '#6b5b4f';
   if (node.type === 'factory' || isFactoryNode(node)) return '#b45309'; // amber for factories/growers
-  if (node.group === 'corporate') return '#5c2e2e';
+  if (node.group === 'corporate') return '#14817A';
   if (node.group === 'family') return '#166534'; // green for family/independent (brands, companies, people)
   return '#6b5b4f';
 }
@@ -49,10 +49,10 @@ function getNodeRadius(node) {
 
 function getLinkColor(link) {
   const t = (link.type || '').toLowerCase();
-  if (t.includes('owned') || t.includes('subsidiary')) return '#5c2e2e';
-  if (t.includes('contract') || t.includes('manufactur') || t.includes('produced')) return '#8b5e3c';
-  if (t.includes('partnership') || t.includes('blended')) return '#c5a26f';
-  return '#8b7a6f';
+  if (t.includes('owned') || t.includes('subsidiary')) return '#14817A';
+  if (t.includes('contract') || t.includes('manufactur') || t.includes('produced')) return '#A67C3D';
+  if (t.includes('partnership') || t.includes('blended')) return '#CEA661';
+  return '#7A9A94';
 }
 
 function escapeMetaLabel(text) {
@@ -365,7 +365,7 @@ function initializeGraph() {
     // Try a minimal fallback render so the page isn't completely dead
     try {
       const fallback = document.getElementById('graph');
-      if (fallback) fallback.innerHTML = '<div style="padding:20px;color:#8b6f5c;font-size:13px;">Graph failed to load. Try refreshing the page (Ctrl+Shift+R).</div>';
+      if (fallback) fallback.innerHTML = '<div style="padding:20px;color:#6B8A84;font-size:13px;">Graph failed to load. Try refreshing the page (Ctrl+Shift+R).</div>';
     } catch (_) {}
   }
 }
@@ -421,7 +421,7 @@ function updateGraph() {
     .attr('class', 'node')
     .attr('r', d => getNodeRadius(d))
     .attr('fill', d => getNodeColor(d))
-    .attr('stroke', '#f4e9d8')
+    .attr('stroke', '#ECF4F2')
     .attr('stroke-width', 2.5)
     .attr('stroke-opacity', 0.9);
 
@@ -438,9 +438,9 @@ function updateGraph() {
     .attr('text-anchor', 'middle')
     .attr('dy', d => getNodeRadius(d) + 12)
     .attr('font-size', '9.5px')
-    .attr('fill', '#3f2a2a')
+    .attr('fill', '#1A3330')
     .attr('paint-order', 'stroke')
-    .attr('stroke', '#f8f5f0')
+    .attr('stroke', '#F6F8F7')
     .attr('stroke-width', 3)
     .attr('stroke-linejoin', 'round')
     .text(d => d.name)
@@ -1058,7 +1058,7 @@ function showDrawer(node) {
 
   let connHTML = '';
   if (connections.length === 0) {
-    connHTML = '<div class="text-xs text-[#8b6f5c] italic">No direct connections shown with current filters.</div>';
+    connHTML = '<div class="text-xs text-[#6B8A84] italic">No direct connections shown with current filters.</div>';
   } else {
     connections.slice(0, 12).forEach(l => {
       const otherId = (l.source.id || l.source) === node.id ? (l.target.id || l.target) : (l.source.id || l.source);
@@ -1067,12 +1067,12 @@ function showDrawer(node) {
       const relType = l.type || 'related';
 
       connHTML += `
-        <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#d4c4a8] text-xs">
+        <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#CFE0DC] text-xs">
           <div class="flex items-center gap-2 flex-wrap">
-            <span class="connection-type font-medium text-[10px] px-1.5 py-0.5 rounded bg-[#f4e9d8] text-[#8b6f5c]" data-rel="${relType}">${relType}</span>
-            <span class="text-[#c5a26f] text-xs">→</span>
+            <span class="connection-type font-medium text-[10px] px-1.5 py-0.5 rounded bg-[#ECF4F2] text-[#6B8A84]" data-rel="${relType}">${relType}</span>
+            <span class="text-[#CEA661] text-xs">→</span>
           </div>
-          <span class="connection-name font-medium text-[#3f2a2a] hover:text-[#5c2e2e] cursor-pointer leading-snug" 
+          <span class="connection-name font-medium text-[#1A3330] hover:text-[#14817A] cursor-pointer leading-snug" 
                 title="${otherName}" onclick="showDrawerFromId('${otherId}')">${otherName}</span>
         </div>`;
     });
@@ -1084,14 +1084,14 @@ function showDrawer(node) {
 
   if (hasProductLines) {
     productLinesHTML = node.productLines.map(line => 
-      `<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#d4c4a8] text-[#5c2e2e]">${line}</span>`
+      `<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#CFE0DC] text-[#14817A]">${line}</span>`
     ).join('');
   }
 
   // Buy links (placeholder - extend with real affiliate data if available)
   const buyHTML = (node.buyLinks && node.buyLinks.length)
-    ? node.buyLinks.map(b => `<a href="${b.url}" target="_blank" class="block text-xs px-3 py-1.5 rounded-xl bg-[#5c2e2e] text-[#f4e9d8] hover:bg-[#4a2424]">${b.label || 'Shop now'}</a>`).join('')
-    : '<div class="text-xs text-[#8b6f5c]">No purchase links added yet for this node.</div>';
+    ? node.buyLinks.map(b => `<a href="${b.url}" target="_blank" class="block text-xs px-3 py-1.5 rounded-xl bg-[#14817A] text-[#ECF4F2] hover:bg-[#0D5A55]">${b.label || 'Shop now'}</a>`).join('')
+    : '<div class="text-xs text-[#6B8A84]">No purchase links added yet for this node.</div>';
 
   if (!isMobile && drawer) {
     titleEl.textContent = name;
@@ -1102,7 +1102,7 @@ function showDrawer(node) {
     // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
     const deskLinkSlot = document.getElementById('drawer-dedicated-link');
     if (deskLinkSlot) {
-      deskLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#c5a26f]/50 text-[#c5a26f] hover:bg-[#c5a26f]/10 hover:border-[#c5a26f] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
+      deskLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
     }
 
     if (productLinesEl) productLinesEl.innerHTML = productLinesHTML;
@@ -1129,7 +1129,7 @@ function showDrawer(node) {
     // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
     const mobLinkSlot = document.getElementById('drawer-dedicated-link-mobile');
     if (mobLinkSlot) {
-      mobLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#c5a26f]/50 text-[#c5a26f] hover:bg-[#c5a26f]/10 hover:border-[#c5a26f] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
+      mobLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
     }
 
     if (mProductLinesEl) mProductLinesEl.innerHTML = productLinesHTML;
@@ -1291,12 +1291,12 @@ function showDesktopHowTo() {
   if (connEl) {
     connEl.innerHTML = `
       <div class="grid grid-cols-2 gap-2">
-        <button onclick="selectExample('padron')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">Padrón<br><span class="text-[10px] text-[#8b6f5c] font-normal">Nicaragua family icon</span></button>
-        <button onclick="selectExample('warped')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">Warped<br><span class="text-[10px] text-[#8b6f5c] font-normal">Modern boutique</span></button>
-        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">Davidoff<br><span class="text-[10px] text-[#8b6f5c] font-normal">Luxury corporate</span></button>
-        <button onclick="selectExample('myfather')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#d4c4a8] hover:border-[#c5a26f] active:scale-[0.985] transition-all text-sm font-medium text-[#3f2a2a]">My Father<br><span class="text-[10px] text-[#8b6f5c] font-normal">Nicaragua powerhouse</span></button>
+        <button onclick="selectExample('padron')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">Padrón<br><span class="text-[10px] text-[#6B8A84] font-normal">Nicaragua family icon</span></button>
+        <button onclick="selectExample('warped')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">Warped<br><span class="text-[10px] text-[#6B8A84] font-normal">Modern boutique</span></button>
+        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">Davidoff<br><span class="text-[10px] text-[#6B8A84] font-normal">Luxury corporate</span></button>
+        <button onclick="selectExample('myfather')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">My Father<br><span class="text-[10px] text-[#6B8A84] font-normal">Nicaragua powerhouse</span></button>
       </div>
-      <div class="mt-3 text-[11px] text-[#8b6f5c]">Drag nodes • Scroll/pinch to zoom • Tap anything for details</div>
+      <div class="mt-3 text-[11px] text-[#6B8A84]">Drag nodes • Scroll/pinch to zoom • Tap anything for details</div>
     `;
   }
 
@@ -1351,12 +1351,12 @@ function showMobileHowTo() {
   if (mConn) {
     mConn.innerHTML = `
       <div class="grid grid-cols-2 gap-2.5">
-        <button onclick="selectExample('padron')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">Padrón <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Nicaragua legend</span></button>
-        <button onclick="selectExample('warped')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">Warped <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Boutique favorite</span></button>
-        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">Davidoff <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Premium classic</span></button>
-        <button onclick="selectExample('myfather')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#d4c4a8] active:bg-[#f4e9d8] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#3f2a2a]">My Father <span class="block text-xs font-normal text-[#8b6f5c] mt-0.5">Nicaragua star</span></button>
+        <button onclick="selectExample('padron')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">Padrón <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Nicaragua legend</span></button>
+        <button onclick="selectExample('warped')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">Warped <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Boutique favorite</span></button>
+        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">Davidoff <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Premium classic</span></button>
+        <button onclick="selectExample('myfather')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">My Father <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Nicaragua star</span></button>
       </div>
-      <div class="mt-3 text-xs text-[#8b6f5c]">Pinch to zoom • Drag to pan • Tap nodes for full info</div>
+      <div class="mt-3 text-xs text-[#6B8A84]">Pinch to zoom • Drag to pan • Tap nodes for full info</div>
     `;
   }
 

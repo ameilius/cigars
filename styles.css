@@ -1,8 +1,42 @@
+:root {
+    --cn-teal: #14817A;
+    --cn-teal-mid: #1A7570;
+    --cn-teal-dark: #0B5651;
+    --cn-gold: #CEA661;
+    --cn-gold-light: #DBB978;
+    --cn-bg: #F6F8F7;
+    --cn-surface: #ECF4F2;
+    --cn-border: #CFE0DC;
+    --cn-text: #1A3330;
+    --cn-text-body: #3D5A55;
+    --cn-text-muted: #6B8A84;
+}
+
+.site-logo {
+    height: 2.5rem;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+}
+@media (min-width: 640px) {
+    .site-logo { height: 2.875rem; }
+}
+.site-logo--age-gate {
+    height: 3.25rem;
+}
+.site-tagline {
+    border-left: 1px solid rgba(255, 255, 255, 0.22);
+    padding-left: 0.75rem;
+    line-height: 1.25;
+    max-width: 11rem;
+}
+
 body { 
     font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f8f5f0;
+    background-color: var(--cn-bg);
     background-image:
-        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(197, 162, 111, 0.12), transparent 55%),
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(20, 129, 122, 0.08), transparent 55%),
+        radial-gradient(ellipse 80% 50% at 80% 0%, rgba(206, 166, 97, 0.07), transparent 50%),
         url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     background-attachment: fixed;
 }
@@ -17,7 +51,7 @@ h1, h2, .font-display,
 /* Header gold accent + nav */
 .site-header {
     position: relative;
-    background: linear-gradient(180deg, #6b3535 0%, #5c2e2e 60%, #521a1a 100%);
+    background: linear-gradient(180deg, #1A7570 0%, #14817A 60%, #0B5651 100%);
 }
 
 /* Gloss highlight just inside the top edge */
@@ -39,14 +73,14 @@ h1, h2, .font-display,
     right: 0;
     bottom: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #c5a26f 20%, #d4b17e 50%, #c5a26f 80%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #CEA661 20%, #DBB978 50%, #CEA661 80%, transparent 100%);
     opacity: 0.85;
 }
 
 /* Node page footer — matches site header gold accent treatment */
 .node-page ~ footer {
-    background: linear-gradient(to bottom, #f4e9d8, #ede4d0);
-    border-top: 1px solid #c8b594;
+    background: linear-gradient(to bottom, #ECF4F2, #E5EBE9);
+    border-top: 1px solid #D9CDB0;
     text-align: center;
 }
 
@@ -54,7 +88,7 @@ h1, h2, .font-display,
     content: '';
     display: block;
     height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #c5a26f 20%, #d4b17e 50%, #c5a26f 80%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #CEA661 20%, #DBB978 50%, #CEA661 80%, transparent 100%);
     opacity: 0.7;
     margin-bottom: 8px;
 }
@@ -70,12 +104,12 @@ h1, h2, .font-display,
     color: inherit;
     text-decoration: none;
 }
-.site-brand:hover .font-semibold.text-2xl,
-.site-brand:focus-visible .font-semibold.text-2xl {
-    color: #f4e9d8;
+.site-brand:hover .site-logo,
+.site-brand:focus-visible .site-logo {
+    opacity: 0.92;
 }
 .site-brand:focus-visible {
-    outline: 2px solid #c5a26f;
+    outline: 2px solid #CEA661;
     outline-offset: 2px;
 }
 
@@ -87,7 +121,7 @@ h1, h2, .font-display,
 }
 
 .link { 
-    stroke: #8b7a6f; 
+    stroke: #7A9A94; 
     stroke-width: 1.6px;
     stroke-opacity: 0.45; 
     transition: stroke 0.2s ease, stroke-opacity 0.2s ease, stroke-width 0.2s ease;
@@ -124,10 +158,10 @@ h1, h2, .font-display,
     transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-chip.filter-active {
-    background: linear-gradient(135deg, #6b3535 0%, #5c2e2e 100%);
-    color: #f4e9d8;
-    border-color: #7a3d3d;
-    box-shadow: 0 2px 6px rgba(92, 46, 46, 0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+    background: linear-gradient(135deg, #1A7570 0%, #14817A 100%);
+    color: #ECF4F2;
+    border-color: #1A7570;
+    box-shadow: 0 2px 6px rgba(20, 129, 122, 0.35), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 .filter-chip.filter-active::before {
     content: '✓';
@@ -144,11 +178,11 @@ h1, h2, .font-display,
 
 .filter-chip.filter-active .chip-count {
     background-color: rgba(244, 233, 216, 0.25);
-    color: #f4e9d8;
+    color: #ECF4F2;
 }
 .filter-chip:hover:not(.filter-active) {
-    border-color: #8b5e5e;
-    background-color: #f4e9d8;
+    border-color: #5A9A92;
+    background-color: #ECF4F2;
 }
 
 /* Filter chip idle tints (legend-aligned) */
@@ -157,8 +191,8 @@ h1, h2, .font-display,
     border-color: #a7d4b0;
 }
 .filter-chip[data-key="corporate"]:not(.filter-active) {
-    background-color: #faf4f4;
-    border-color: #d4a8a8;
+    background-color: #F0F7F6;
+    border-color: #A8D4CF;
 }
 .filter-chip[data-key="nicaragua"]:not(.filter-active) {
     background-color: #f0f6f0;
@@ -186,8 +220,8 @@ h1, h2, .font-display,
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .connection-item:hover {
-  border-color: #c5a26f;
-  box-shadow: 0 1px 3px rgba(197, 162, 111, 0.12);
+  border-color: #CEA661;
+  box-shadow: 0 1px 3px rgba(206, 166, 97, 0.12);
 }
 
 /* Mobile refinements */
@@ -197,7 +231,7 @@ h1, h2, .font-display,
         max-height: 75vh;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        box-shadow: 0 -10px 30px -10px rgba(92, 46, 46, 0.25);
+        box-shadow: 0 -10px 30px -10px rgba(20, 129, 122, 0.25);
     }
     
     .filter-chip {
@@ -243,18 +277,18 @@ h1, h2, .font-display,
 
 /* Premium graph container + dot grid */
 #graph-container {
-    background-color: #f5f0e8;
+    background-color: #EEF4F2;
     background-image:
         radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 255, 255, 0.5), transparent 70%),
-        radial-gradient(circle, rgba(139, 111, 92, 0.22) 1px, transparent 1px),
-        linear-gradient(145deg, #f8f5f0 0%, #f0e9df 100%);
+        radial-gradient(circle, rgba(107, 138, 132, 0.22) 1px, transparent 1px),
+        linear-gradient(145deg, #F6F8F7 0%, #E8EFED 100%);
     background-size: 100% 100%, 22px 22px, 100% 100%;
     background-position: center, 0 0, center;
     box-shadow:
-        inset 0 0 60px 10px rgba(92, 46, 46, 0.07),
-        inset 0 2px 12px rgba(139, 122, 111, 0.14),
-        inset 0 -2px 8px rgba(92, 46, 46, 0.06),
-        0 20px 60px -15px rgba(92, 46, 46, 0.2);
+        inset 0 0 60px 10px rgba(20, 129, 122, 0.07),
+        inset 0 2px 12px rgba(122, 154, 148, 0.14),
+        inset 0 -2px 8px rgba(20, 129, 122, 0.06),
+        0 20px 60px -15px rgba(20, 129, 122, 0.2);
 }
 
 /* Graph view controls — glassy pills over the map */
@@ -263,7 +297,7 @@ h1, h2, .font-display,
     -webkit-backdrop-filter: blur(8px);
     background-color: rgba(244, 233, 216, 0.88);
     border-color: rgba(212, 196, 168, 0.7);
-    box-shadow: 0 1px 3px rgba(92, 46, 46, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+    box-shadow: 0 1px 3px rgba(20, 129, 122, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
 #graph-container .absolute.top-4.left-4 button:hover {
@@ -281,24 +315,24 @@ h1, h2, .font-display,
 
 /* Selected graph node — gold ring */
 .node-group.node-selected .node {
-    stroke: #c5a26f !important;
+    stroke: #CEA661 !important;
     stroke-width: 3.5px !important;
-    filter: drop-shadow(0 0 6px rgba(197, 162, 111, 0.65)) brightness(1.06) saturate(1.08);
+    filter: drop-shadow(0 0 6px rgba(206, 166, 97, 0.65)) brightness(1.06) saturate(1.08);
 }
 .node-group.node-selected .node-label {
     font-weight: 600;
-    fill: #5c2e2e;
+    fill: #14817A;
 }
 
 /* Nicer node hover — circle is .node inside g.node-group */
 .node-group:hover .node {
-    filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 5px rgba(197, 162, 111, 0.5));
+    filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 5px rgba(206, 166, 97, 0.5));
     transform: scale(1.08);
 }
 
 /* Subtle gold accents */
 .gold-accent {
-    color: #c5a26f;
+    color: #CEA661;
 }
 
 /* Mobile fixes */
@@ -355,14 +389,14 @@ h1, h2, .font-display,
 /* Onboarding "Start Here" example pills (sidebar + mobile sheet) */
 .example-pill {
     transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 2px rgba(92, 46, 46, 0.06);
+    box-shadow: 0 1px 2px rgba(20, 129, 122, 0.06);
 }
 .example-pill:active {
     transform: translateY(1px);
 }
 .example-pill:hover {
-    border-color: #c5a26f;
-    background-color: #fdfaf3;
+    border-color: #CEA661;
+    background-color: #F8FBFA;
 }
 
 /* Mobile refinements for the prominent filters + larger example targets */
@@ -451,8 +485,8 @@ h1, h2, .font-display,
     bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
     max-height: min(68vh, calc(100dvh - 7rem));
     border-radius: 1.5rem;
-    box-shadow: 0 -10px 40px -8px rgba(92, 46, 46, 0.28),
-                0 4px 24px rgba(92, 46, 46, 0.12);
+    box-shadow: 0 -10px 40px -8px rgba(20, 129, 122, 0.28),
+                0 4px 24px rgba(20, 129, 122, 0.12);
 }
 .drawer-panel--mobile.drawer-panel--howto.drawer-open {
     animation: howtoSheetUp 0.42s cubic-bezier(0.32, 0.72, 0, 1) forwards;
@@ -492,7 +526,7 @@ h1, h2, .font-display,
 
 /* Mobile bottom sheet drag handle */
 #drawer-mobile > div:first-child > div {
-    background: linear-gradient(90deg, transparent, #b8a080 20%, #c5a26f 50%, #b8a080 80%, transparent);
+    background: linear-gradient(90deg, transparent, #C4B896 20%, #CEA661 50%, #C4B896 80%, transparent);
     width: 44px;
     height: 4px;
     border-radius: 9999px;
@@ -514,8 +548,8 @@ h1, h2, .font-display,
 /* Drawer header shelf — distinct from scrollable content */
 #drawer > div.p-5.border-b,
 #drawer-mobile > div.p-5.border-b {
-    background: linear-gradient(to bottom, #fdf8f0 0%, #f4e9d8 100%);
-    border-bottom-color: #c8b594;
+    background: linear-gradient(to bottom, #F8FBFA 0%, #ECF4F2 100%);
+    border-bottom-color: #D9CDB0;
 }
 
 #drawer > div.p-5.border-b {
@@ -526,7 +560,7 @@ h1, h2, .font-display,
 /* Drawer content area - subtle depth */
 #drawer .p-5.flex-1,
 #drawer-mobile .p-5.flex-1 {
-    background: linear-gradient(to bottom, #f4e9d8 0%, #f0e4cd 100%);
+    background: linear-gradient(to bottom, #ECF4F2 0%, #E6EFEC 100%);
     overflow-x: hidden; /* prevent horizontal overflow from long text */
 }
 
@@ -534,16 +568,16 @@ h1, h2, .font-display,
 #drawer-affiliate,
 #drawer-affiliate-mobile {
     background: linear-gradient(to bottom, rgba(232, 217, 195, 0.6), rgba(226, 208, 184, 0.8));
-    border-top: 1px solid #c8b594;
+    border-top: 1px solid #D9CDB0;
     font-style: italic;
     letter-spacing: 0.2px;
     text-align: center;
 }
 
 /* Section headers inside drawer (Connections, Notable Cigars, Find These Cigars) */
-#drawer .text-xs.font-semibold.text-\[\#8b6f5c\],
-#drawer-mobile .text-xs.font-semibold.text-\[\#8b6f5c\] {
-    color: #5c4638;
+#drawer .text-xs.font-semibold.text-\[\#6B8A84\],
+#drawer-mobile .text-xs.font-semibold.text-\[\#6B8A84\] {
+    color: #3D5A55;
     font-weight: 700;
     letter-spacing: 1.5px;
     position: relative;
@@ -551,15 +585,15 @@ h1, h2, .font-display,
     margin-bottom: 6px;
 }
 
-#drawer .text-xs.font-semibold.text-\[\#8b6f5c\]::before,
-#drawer-mobile .text-xs.font-semibold.text-\[\#8b6f5c\]::before {
+#drawer .text-xs.font-semibold.text-\[\#6B8A84\]::before,
+#drawer-mobile .text-xs.font-semibold.text-\[\#6B8A84\]::before {
     content: '';
     position: absolute;
     left: 0;
     top: 2px;
     bottom: 2px;
     width: 3px;
-    background: linear-gradient(#c5a26f, #d4b17e);
+    background: linear-gradient(#CEA661, #DBB978);
     border-radius: 2px;
 }
 
@@ -577,16 +611,16 @@ h1, h2, .font-display,
 
 .connection-item {
     transition: all 0.12s ease;
-    box-shadow: 0 1px 2px rgba(92, 46, 46, 0.05);
+    box-shadow: 0 1px 2px rgba(20, 129, 122, 0.05);
     max-width: 100%;
     overflow: hidden;
     box-sizing: border-box;
 }
 
 .connection-item:hover {
-    background-color: #fdfaf3;
-    border-color: #c5a26f;
-    box-shadow: 0 2px 6px rgba(92, 46, 46, 0.1);
+    background-color: #F8FBFA;
+    border-color: #CEA661;
+    box-shadow: 0 2px 6px rgba(20, 129, 122, 0.1);
 }
 
 .connection-item:active {
@@ -597,9 +631,9 @@ h1, h2, .font-display,
 .connection-type {
     font-size: 9.5px;
     line-height: 1.25;
-    background-color: #f4e9d8;
-    color: #8b6f5c;
-    border: 1px solid #d4c4a8;
+    background-color: #ECF4F2;
+    color: #6B8A84;
+    border: 1px solid #CFE0DC;
     padding: 2px 6px;
     border-radius: 6px;
     overflow-wrap: break-word;
@@ -610,34 +644,34 @@ h1, h2, .font-display,
 /* Match graph link palette — ownership */
 .connection-type[data-rel*="owned"],
 .connection-type[data-rel*="subsidiary"] {
-    background-color: #faf0f0;
-    color: #7a2020;
-    border-color: #d4a8a8;
+    background-color: #F0F7F6;
+    color: #0F6A64;
+    border-color: #A8D4CF;
 }
 
 /* Manufacturing / contract */
 .connection-type[data-rel*="manufactur"],
 .connection-type[data-rel*="contract"],
 .connection-type[data-rel*="produced"] {
-    background-color: #faf4ec;
+    background-color: #F5F0E8;
     color: #7a4a20;
-    border-color: #d4b890;
+    border-color: #E0D0B0;
 }
 
 /* Partnership / blending / founded */
 .connection-type[data-rel*="partner"],
 .connection-type[data-rel*="blended"],
 .connection-type[data-rel*="founded"] {
-    background-color: #fdf8ec;
-    color: #8b6a1a;
-    border-color: #d4b84a;
+    background-color: #F8FBFA;
+    color: #8B7355;
+    border-color: #CEA661;
 }
 
 /* The clickable name - full width on its own line, can wrap nicely */
 .connection-name {
     font-size: 13px;
     line-height: 1.4;
-    color: #3f2a2a;
+    color: #1A3330;
     transition: color 0.1s ease;
     display: block;
     overflow-wrap: break-word;
@@ -645,13 +679,13 @@ h1, h2, .font-display,
 }
 
 .connection-name:hover {
-    color: #5c2e2e;
+    color: #14817A;
     text-decoration: underline;
     text-underline-offset: 1.5px;
 }
 
 /* Subtle arrow in the type row */
-.connection-item .flex > span.text-\[\#c5a26f\] {
+.connection-item .flex > span.text-\[\#CEA661\] {
     opacity: 0.65;
     flex-shrink: 0;
 }
@@ -667,30 +701,30 @@ h1, h2, .font-display,
 #drawer-product-lines span,
 #drawer-product-lines-mobile span {
     transition: all 0.15s ease;
-    border-color: #c5a26f;
-    box-shadow: 0 1px 2px rgba(92, 46, 46, 0.06);
+    border-color: #CEA661;
+    box-shadow: 0 1px 2px rgba(20, 129, 122, 0.06);
 }
 
 #drawer-product-lines span:hover,
 #drawer-product-lines-mobile span:hover {
-    background-color: #f4e9d8;
-    border-color: #5c2e2e;
-    color: #5c2e2e;
+    background-color: #ECF4F2;
+    border-color: #14817A;
+    color: #14817A;
 }
 
 /* Buy / "Find These Cigars" action buttons */
 #drawer-buy a,
 #drawer-buy-mobile a {
     transition: all 0.15s ease;
-    box-shadow: 0 2px 4px rgba(92, 46, 46, 0.25);
+    box-shadow: 0 2px 4px rgba(20, 129, 122, 0.25);
     position: relative;
     overflow: hidden;
 }
 
 #drawer-buy a:hover,
 #drawer-buy-mobile a:hover {
-    background-color: #4a2424;
-    box-shadow: 0 3px 8px rgba(92, 46, 46, 0.35);
+    background-color: #0D5A55;
+    box-shadow: 0 3px 8px rgba(20, 129, 122, 0.35);
     transform: translateY(-1px);
 }
 
@@ -705,20 +739,20 @@ h1, h2, .font-display,
 
 /* Richer example pills in the intro */
 .example-pill {
-    box-shadow: 0 2px 5px rgba(92, 46, 46, 0.1),
-                0 0 0 1px rgba(197, 162, 111, 0.15) inset;
-    border-color: #d4c4a8;
+    box-shadow: 0 2px 5px rgba(20, 129, 122, 0.1),
+                0 0 0 1px rgba(206, 166, 97, 0.15) inset;
+    border-color: #CFE0DC;
 }
 
 .example-pill:hover {
-    box-shadow: 0 4px 12px rgba(92, 46, 46, 0.15),
-                0 0 0 1px rgba(197, 162, 111, 0.35) inset;
-    border-color: #c5a26f;
-    background: linear-gradient(to bottom, #fdfaf3 0%, #f8f0df 100%);
+    box-shadow: 0 4px 12px rgba(20, 129, 122, 0.15),
+                0 0 0 1px rgba(206, 166, 97, 0.35) inset;
+    border-color: #CEA661;
+    background: linear-gradient(to bottom, #F8FBFA 0%, #F2EBE0 100%);
 }
 
 .example-pill:active {
-    box-shadow: 0 1px 3px rgba(92, 46, 46, 0.1);
+    box-shadow: 0 1px 3px rgba(20, 129, 122, 0.1);
     transform: translateY(1px);
 }
 
@@ -742,8 +776,8 @@ h1, h2, .font-display,
 }
 
 /* Subtle gold accent line under "START HERE" labels in intro */
-#drawer .text-xs.font-semibold.text-\[\#8b6f5c\],
-#drawer-mobile .text-xs.font-semibold.text-\[\#8b6f5c\] {
+#drawer .text-xs.font-semibold.text-\[\#6B8A84\],
+#drawer-mobile .text-xs.font-semibold.text-\[\#6B8A84\] {
     padding-bottom: 2px;
 }
 
@@ -759,14 +793,14 @@ h1, h2, .font-display,
 #drawer-logo-container,
 #drawer-logo-container-mobile {
     background: #fff;
-    border: 1px solid #d4c4a8;
-    box-shadow: 0 2px 6px rgba(92, 46, 46, 0.1);
+    border: 1px solid #CFE0DC;
+    box-shadow: 0 2px 6px rgba(20, 129, 122, 0.1);
     transition: all 0.2s ease;
 }
 
 #drawer-logo-container:hover,
 #drawer-logo-container-mobile:hover {
-    box-shadow: 0 4px 12px rgba(92, 46, 46, 0.15);
+    box-shadow: 0 4px 12px rgba(20, 129, 122, 0.15);
 }
 
 /* The actual logo image inside the box */
@@ -842,9 +876,9 @@ h1, h2, .font-display,
     border-color: #86efac;
 }
 .meta-pill--corporate {
-    color: #5c2e2e;
-    background: #faf4f4;
-    border-color: #d4a8a8;
+    color: #14817A;
+    background: #F0F7F6;
+    border-color: #A8D4CF;
 }
 .meta-pill--boutique {
     color: #1e3a8a;
@@ -873,9 +907,9 @@ h1, h2, .font-display,
 }
 .meta-pill--neutral,
 .meta-pill--guide {
-    color: #5c2e2e;
-    background: #f4e9d8;
-    border-color: #c5a26f;
+    color: #14817A;
+    background: #ECF4F2;
+    border-color: #CEA661;
 }
 
 /* Drawer open animations */
@@ -977,9 +1011,9 @@ h1, h2, .font-display,
     text-align: left;
     padding: 0.95rem 1rem;
     border-radius: 1rem;
-    border: 1px solid #d4c4a8;
+    border: 1px solid #CFE0DC;
     background: #fff;
-    box-shadow: 0 1px 2px rgba(92, 46, 46, 0.05);
+    box-shadow: 0 1px 2px rgba(20, 129, 122, 0.05);
     transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.12s ease;
 }
 
@@ -989,8 +1023,8 @@ h1, h2, .font-display,
 
 .search-result-item:hover,
 .search-result-item:focus-visible {
-    border-color: #c5a26f;
-    box-shadow: 0 2px 8px rgba(197, 162, 111, 0.18);
+    border-color: #CEA661;
+    box-shadow: 0 2px 8px rgba(206, 166, 97, 0.18);
     outline: none;
 }
 
@@ -998,7 +1032,7 @@ h1, h2, .font-display,
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.25;
-    color: #3f2a2a;
+    color: #1A3330;
 }
 
 .search-result-item__meta {
@@ -1019,20 +1053,20 @@ h1, h2, .font-display,
 }
 
 /* Section header gold rule */
-#drawer .text-xs.font-semibold.text-\[\#8b6f5c\],
-#drawer-mobile .text-xs.font-semibold.text-\[\#8b6f5c\] {
+#drawer .text-xs.font-semibold.text-\[\#6B8A84\],
+#drawer-mobile .text-xs.font-semibold.text-\[\#6B8A84\] {
     padding-bottom: 6px;
-    border-bottom: 1px solid rgba(197, 162, 111, 0.35);
+    border-bottom: 1px solid rgba(206, 166, 97, 0.35);
     margin-bottom: 2px;
 }
 
 /* About page content card */
 .about-card {
-    background: linear-gradient(to bottom, #fdfaf6 0%, #f4e9d8 100%);
-    border: 1px solid #d4c4a8;
+    background: linear-gradient(to bottom, #F8FBFA 0%, #ECF4F2 100%);
+    border: 1px solid #CFE0DC;
     border-radius: 1.5rem;
     padding: 2rem 2.25rem;
-    box-shadow: 0 12px 40px -12px rgba(92, 46, 46, 0.18),
+    box-shadow: 0 12px 40px -12px rgba(20, 129, 122, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 @media (max-width: 640px) {
