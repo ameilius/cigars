@@ -6,3 +6,6 @@ commitmsg.txt
 # Generated SEO artifacts (rebuilt on every deploy — do not commit)
 node/
 sitemap.xml
+
+# Dev dependencies (run scripts/generate-brand-assets.js locally)
+node_modules/

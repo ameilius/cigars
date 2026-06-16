@@ -13,16 +13,16 @@
 }
 
 .site-logo {
-    height: 2.5rem;
+    height: 2.35rem;
     width: auto;
     display: block;
     flex-shrink: 0;
 }
 @media (min-width: 640px) {
-    .site-logo { height: 2.875rem; }
+    .site-logo { height: 2.65rem; }
 }
 .site-logo--age-gate {
-    height: 3.25rem;
+    height: 3.5rem;
 }
 .site-tagline {
     border-left: 1px solid rgba(255, 255, 255, 0.22);
