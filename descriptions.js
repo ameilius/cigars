@@ -193,7 +193,7 @@ var drawerDescriptions = {
   "lacarrillo": "Tabacalera La Alianza (Casa Carrillo) in the Dominican Republic is a major contract hub rolling for Gurkha, Casdagli, and many outside brands.",
   "laisla": "Tabacalera La Isla in the Dominican Republic produces Fratello, Nestor Miranda, and other boutique lines with craft-oriented oversight.",
   "caoamerican": "CAO American Caribbean in Nicaragua handles select CAO and negociant production including some La Palina lines.",
-  "costaricatabacos": "Tabacos de Costa Rica is a Costa Rican manufacturing facility known for LH Premium, Nick & Jim, and other boutique projects.",
+  "costaricatabacos": "Tabacos de Costa Rica is a Costa Rican manufacturing facility rolling Lampert, Villa Casdagli, Vegas de Santiago, Selected Tobacco's Atabey and Byron lines, LH Premium, and Nick & Jim.",
   "ovejanegra": "Oveja Negra (Lanuza) is a boutique Estelí factory producing Lanuza lines and select contract work including Lure Cigars.",
   "lanuzafactory": "Lanuza Cigar Factory in Estelí is part of the Oveja Negra / Lanuza production cluster for boutique Nicaraguan cigars.",
   "laflordecopan": "La Flor de Copán in Honduras produces Leaf by Oscar and related Oscar Valladares projects with distinctive candela-style presentation.",
@@ -219,6 +219,13 @@ var drawerDescriptions = {
   "nicholassyris": "Nicholas Syris is a Greek-American master blender and founder of LH Premium Cigars (Lavida Habana). Non-Cuban LH blends are rolled at Tabacos de Costa Rica; he blended Nick & Jim with Jim Robinson.",
   "lhpremium": "LH Premium Cigars (Lavida Habana) is Nicholas Syris's international boutique brand—Claro, Colorado, Maduro, and Nick lines (including Nikos and the full-bodied San Andrés-wrapped Nicolas)—rolled at Tabacos de Costa Rica.",
   "nickandjim": "Nick & Jim is a collaboration between Nicholas Syris (LH Premium) and \"Island Jim\" Robinson—originally Lavida Isla, released as P.B.E.—rolled at Tabacos de Costa Rica.",
+  "lampert": "Lampert is a boutique brand founded by Dr. Stefan Lampert. Costa Rican lines including Oro and Ocean Breeze are rolled at Tabacos de Costa Rica.",
+  "casdagli": "Casdagli is a Swiss family cigar house. The Villa Casdagli line—including Pigasus and Edición Limitada—is produced at Tabacos de Costa Rica.",
+  "vegassantiago": "Vegas de Santiago is a heritage Costa Rican cigar brand rolled at Tabacos de Costa Rica in the Puriscal region.",
+  "selectedtobacco": "Selected Tobacco S.A. is the Costa Rican company behind ultra-luxury brands Atabey, Byron, Bandolero, and Alfonso—rolled at Tabacos de Costa Rica.",
+  "nelsonalfonso": "Nelson Alfonso is the master blender behind Selected Tobacco and Tabacos de Costa Rica's luxury portfolio, including Atabey and Byron.",
+  "attabey": "Atabey is an ultra-luxury, limited-production brand from Selected Tobacco—long-aged cigars rolled at Tabacos de Costa Rica.",
+  "byron": "Byron is Selected Tobacco's tribute to 19th-century Cuban cigar culture—limited, aged cigars produced at Tabacos de Costa Rica.",
 
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
