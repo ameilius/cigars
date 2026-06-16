@@ -136,7 +136,7 @@ var nodeWebsites = {
   lacarrillo: { website: "https://casacarrillo.com" },
   laisla: { website: "https://fratellobycrux.com", websiteLabel: "Fratello / La Isla" },
   caoamerican: { website: "https://caocigars.com", websiteLabel: "CAO" },
-  costaricatabacos: { website: "https://el-septimo.com", websiteLabel: "El Septimo (Costa Rica)" },
+
   ovejanegra: { website: "https://www.lanuza.com", websiteLabel: "Lanuza Cigars" },
   lanuzafactory: { website: "https://www.lanuza.com", websiteLabel: "Lanuza Cigars" },
   laflordecopan: { website: "https://oscarcigars.com", websiteLabel: "Oscar Valladares" },

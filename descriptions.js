@@ -193,7 +193,7 @@ var drawerDescriptions = {
   "lacarrillo": "Tabacalera La Alianza (Casa Carrillo) in the Dominican Republic is a major contract hub rolling for Gurkha, Casdagli, and many outside brands.",
   "laisla": "Tabacalera La Isla in the Dominican Republic produces Fratello, Nestor Miranda, and other boutique lines with craft-oriented oversight.",
   "caoamerican": "CAO American Caribbean in Nicaragua handles select CAO and negociant production including some La Palina lines.",
-  "costaricatabacos": "Tabacos de Costa Rica is the primary manufacturing facility for El Septimo and other Costa Rican premium projects.",
+  "costaricatabacos": "Tabacos de Costa Rica is a Costa Rican manufacturing facility known for LH Premium, Nick & Jim, and other boutique projects.",
   "ovejanegra": "Oveja Negra (Lanuza) is a boutique Estelí factory producing Lanuza lines and select contract work including Lure Cigars.",
   "lanuzafactory": "Lanuza Cigar Factory in Estelí is part of the Oveja Negra / Lanuza production cluster for boutique Nicaraguan cigars.",
   "laflordecopan": "La Flor de Copán in Honduras produces Leaf by Oscar and related Oscar Valladares projects with distinctive candela-style presentation.",
