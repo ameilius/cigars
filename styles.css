@@ -24,6 +24,21 @@
 @media (min-width: 640px) {
     .site-logo { height: 2.65rem; }
 }
+@media (min-width: 768px) {
+    .site-header .site-logo {
+        height: 3.125rem;
+    }
+}
+@media (min-width: 1024px) {
+    .site-header .site-logo {
+        height: 3.5rem;
+    }
+}
+@media (min-width: 1280px) {
+    .site-header .site-logo {
+        height: 3.75rem;
+    }
+}
 .site-logo--age-gate {
     height: 3.5rem;
 }
@@ -61,7 +76,29 @@ h1, h2, .font-display,
 }
 
 .site-header .site-logo {
-    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
+    filter:
+        drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45))
+        drop-shadow(0 0 12px rgba(206, 166, 97, 0.12));
+}
+
+/* Bigger logo on desktop without growing the header bar */
+@media (min-width: 768px) {
+    .site-header > div {
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+    }
+}
+@media (min-width: 1024px) {
+    .site-header > div {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+@media (min-width: 1280px) {
+    .site-header > div {
+        padding-top: 0.4375rem;
+        padding-bottom: 0.4375rem;
+    }
 }
 
 .site-header input[type="text"],
