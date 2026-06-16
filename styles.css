@@ -164,20 +164,33 @@ h1, h2, .font-display,
     opacity: 0.85;
 }
 
-/* Node page footer — matches site header gold accent treatment */
-.node-page ~ footer {
-    background: linear-gradient(to bottom, #C6D5D1, #B8C9C4);
-    border-top: 1px solid var(--cn-border);
-    text-align: center;
+/* Footer — deep black, mirrors site header */
+.site-footer {
+    position: relative;
+    background: linear-gradient(180deg, #1c1c1c 0%, #111111 52%, #0a0a0a 100%);
+    box-shadow: 0 -4px 28px rgba(0, 0, 0, 0.42);
+    color: rgba(220, 220, 220, 0.78);
 }
 
-.node-page ~ footer::before {
+.site-footer::before {
     content: '';
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent 0%, #CEA661 20%, #DBB978 50%, #CEA661 80%, transparent 100%);
-    opacity: 0.7;
-    margin-bottom: 8px;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.site-footer a {
+    color: rgba(220, 220, 220, 0.88);
+    transition: color 0.15s ease;
+}
+
+.site-footer a:hover {
+    color: #CEA661;
 }
 
 .nav-link--active {
