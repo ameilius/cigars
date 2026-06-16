@@ -4,12 +4,15 @@
     --cn-teal-dark: #0B5651;
     --cn-gold: #CEA661;
     --cn-gold-light: #DBB978;
-    --cn-bg: #F6F8F7;
-    --cn-surface: #ECF4F2;
-    --cn-border: #CFE0DC;
+    --cn-black: #0a0a0a;
+    --cn-black-mid: #121212;
+    --cn-black-soft: #1a1a1a;
+    --cn-bg: #D4DFDB;
+    --cn-surface: #C6D5D1;
+    --cn-border: #9AADA8;
     --cn-text: #1A3330;
     --cn-text-body: #3D5A55;
-    --cn-text-muted: #6B8A84;
+    --cn-text-muted: #5A726D;
 }
 
 .site-logo {
@@ -25,18 +28,19 @@
     height: 3.5rem;
 }
 .site-tagline {
-    border-left: 1px solid rgba(255, 255, 255, 0.22);
+    border-left: 1px solid rgba(206, 166, 97, 0.35);
     padding-left: 0.75rem;
     line-height: 1.25;
     max-width: 11rem;
+    color: rgba(220, 220, 220, 0.78);
 }
 
 body { 
     font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--cn-bg);
     background-image:
-        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(20, 129, 122, 0.08), transparent 55%),
-        radial-gradient(ellipse 80% 50% at 80% 0%, rgba(206, 166, 97, 0.07), transparent 50%),
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(10, 10, 10, 0.06), transparent 55%),
+        radial-gradient(ellipse 80% 50% at 80% 0%, rgba(206, 166, 97, 0.06), transparent 50%),
         url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     background-attachment: fixed;
 }
@@ -48,10 +52,53 @@ h1, h2, .font-display,
     font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Header gold accent + nav */
+/* Header — deep black so transparent logo reads clearly */
 .site-header {
     position: relative;
-    background: linear-gradient(180deg, #1A7570 0%, #14817A 60%, #0B5651 100%);
+    background: linear-gradient(180deg, #1c1c1c 0%, #111111 52%, #0a0a0a 100%);
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.42);
+    color: #f5f5f5;
+}
+
+.site-header .site-logo {
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
+}
+
+.site-header input[type="text"],
+.site-header #search {
+    background: rgba(255, 255, 255, 0.07) !important;
+    color: #ececec !important;
+    border: 1px solid rgba(206, 166, 97, 0.28) !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35) !important;
+}
+
+.site-header input[type="text"]::placeholder,
+.site-header #search::placeholder {
+    color: rgba(180, 180, 180, 0.62) !important;
+}
+
+.site-header input[type="text"]:focus,
+.site-header #search:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(206, 166, 97, 0.55) !important;
+}
+
+.site-header #search-clear {
+    color: #CEA661 !important;
+}
+
+.site-header #search-clear:hover {
+    color: #DBB978 !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.site-header .nav-link--active {
+    color: #CEA661 !important;
+}
+
+.site-header a.nav-link:not(.nav-link--active),
+.site-header button#search-mobile-open {
+    color: rgba(220, 220, 220, 0.88) !important;
 }
 
 /* Gloss highlight just inside the top edge */
@@ -79,8 +126,8 @@ h1, h2, .font-display,
 
 /* Node page footer — matches site header gold accent treatment */
 .node-page ~ footer {
-    background: linear-gradient(to bottom, #ECF4F2, #E5EBE9);
-    border-top: 1px solid #D9CDB0;
+    background: linear-gradient(to bottom, #C6D5D1, #B8C9C4);
+    border-top: 1px solid var(--cn-border);
     text-align: center;
 }
 
@@ -158,10 +205,10 @@ h1, h2, .font-display,
     transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-chip.filter-active {
-    background: linear-gradient(135deg, #1A7570 0%, #14817A 100%);
-    color: #ECF4F2;
-    border-color: #1A7570;
-    box-shadow: 0 2px 6px rgba(20, 129, 122, 0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: #E8E0D0;
+    border-color: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(206, 166, 97, 0.15);
 }
 .filter-chip.filter-active::before {
     content: '✓';
@@ -177,12 +224,12 @@ h1, h2, .font-display,
 }
 
 .filter-chip.filter-active .chip-count {
-    background-color: rgba(244, 233, 216, 0.25);
-    color: #ECF4F2;
+    background-color: rgba(206, 166, 97, 0.22);
+    color: #DBB978;
 }
 .filter-chip:hover:not(.filter-active) {
-    border-color: #5A9A92;
-    background-color: #ECF4F2;
+    border-color: #7A9490;
+    background-color: #D6E2DF;
 }
 
 /* Filter chip idle tints (legend-aligned) */
@@ -277,27 +324,28 @@ h1, h2, .font-display,
 
 /* Premium graph container + dot grid */
 #graph-container {
-    background-color: #EEF4F2;
+    border: 1px solid var(--cn-border);
+    background-color: #CCD8D4;
     background-image:
-        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 255, 255, 0.5), transparent 70%),
-        radial-gradient(circle, rgba(107, 138, 132, 0.22) 1px, transparent 1px),
-        linear-gradient(145deg, #F6F8F7 0%, #E8EFED 100%);
+        radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 255, 255, 0.22), transparent 70%),
+        radial-gradient(circle, rgba(70, 90, 86, 0.22) 1px, transparent 1px),
+        linear-gradient(145deg, #D4DFDB 0%, #C4D0CC 100%);
     background-size: 100% 100%, 22px 22px, 100% 100%;
     background-position: center, 0 0, center;
     box-shadow:
-        inset 0 0 60px 10px rgba(20, 129, 122, 0.07),
-        inset 0 2px 12px rgba(122, 154, 148, 0.14),
-        inset 0 -2px 8px rgba(20, 129, 122, 0.06),
-        0 20px 60px -15px rgba(20, 129, 122, 0.2);
+        inset 0 0 60px 10px rgba(10, 10, 10, 0.08),
+        inset 0 2px 12px rgba(70, 90, 86, 0.14),
+        inset 0 -2px 8px rgba(10, 10, 10, 0.06),
+        0 20px 60px -15px rgba(10, 10, 10, 0.22);
 }
 
 /* Graph view controls — glassy pills over the map */
 #graph-container .absolute.top-4.left-4 button {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    background-color: rgba(244, 233, 216, 0.88);
-    border-color: rgba(212, 196, 168, 0.7);
-    box-shadow: 0 1px 3px rgba(20, 129, 122, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+    background-color: rgba(214, 226, 223, 0.9);
+    border-color: rgba(168, 189, 184, 0.75);
+    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.12), inset 0 1px 0 rgba(255,255,255,0.5);
 }
 
 #graph-container .absolute.top-4.left-4 button:hover {
@@ -365,7 +413,35 @@ h1, h2, .font-display,
 
 /* Age Gate Styling */
 #age-gate {
+    background: rgba(10, 10, 10, 0.97) !important;
     animation: fadeIn 0.2s ease-out forwards;
+}
+
+#age-gate .site-logo--age-gate {
+    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.55));
+}
+
+#age-yes {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%) !important;
+    color: #CEA661 !important;
+    border: 1px solid rgba(206, 166, 97, 0.35) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(206, 166, 97, 0.12);
+}
+
+#age-yes:hover {
+    background: linear-gradient(135deg, #252525 0%, #141414 100%) !important;
+    color: #DBB978 !important;
+}
+
+#age-no {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(206, 166, 97, 0.28) !important;
+    color: rgba(220, 220, 220, 0.9) !important;
+}
+
+#age-no:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #CEA661 !important;
 }
 
 @keyframes fadeIn {
@@ -993,9 +1069,29 @@ h1, h2, .font-display,
 
 /* Mobile search overlay */
 .search-overlay {
+    background-color: var(--cn-bg) !important;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
     animation: searchOverlayIn 0.22s ease-out forwards;
+}
+
+.search-overlay__header {
+    background: linear-gradient(180deg, #1c1c1c 0%, #0a0a0a 100%) !important;
+    border-bottom-color: rgba(206, 166, 97, 0.25) !important;
+    color: #f5f5f5;
+}
+
+.search-overlay__header .text-sm.font-semibold.text-\[\#1A3330\] {
+    color: #ececec !important;
+}
+
+.search-overlay__header button {
+    color: #CEA661 !important;
+}
+
+.search-overlay__header button:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #DBB978 !important;
 }
 
 .search-overlay__results {
@@ -1062,12 +1158,12 @@ h1, h2, .font-display,
 
 /* About page content card */
 .about-card {
-    background: linear-gradient(to bottom, #F8FBFA 0%, #ECF4F2 100%);
-    border: 1px solid #CFE0DC;
+    background: linear-gradient(to bottom, #E8EFEC 0%, #DDE6E3 100%);
+    border: 1px solid var(--cn-border);
     border-radius: 1.5rem;
     padding: 2rem 2.25rem;
-    box-shadow: 0 12px 40px -12px rgba(20, 129, 122, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    box-shadow: 0 12px 40px -12px rgba(10, 10, 10, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 @media (max-width: 640px) {
     .about-card {
