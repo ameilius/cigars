@@ -25,8 +25,8 @@ function isFactoryNode(node) {
 }
 
 const NODE_COLORS = {
-  family: '#7C3AED',    // violet — family / independent
-  corporate: '#1E40AF', // rich blue — corporate / group
+  family: '#13817b',    // teal — family / independent
+  corporate: '#CEA661', // gold — corporate / group
   factory: '#b45309',   // amber — factories / growers
 };
 
