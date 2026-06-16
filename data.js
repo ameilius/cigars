@@ -162,7 +162,7 @@ var baseGraphData = {
                 { id: "vegassantiago", name: "Vegas de Santiago", type: "brand", group: "family", country: "costa rica", productLines: ["White Label", "Classic", "Reserva"], logo: "logos/vegasdesantiago.png" },
                 { id: "selectedtobacco", name: "Selected Tobacco S.A.", type: "company", group: "family", country: "costa rica" },
                 { id: "nelsonalfonso", name: "Nelson Alfonso", type: "person", group: "family", country: "costa rica" },
-                { id: "attabey", name: "Atabey", type: "brand", group: "boutique", country: "costa rica", productLines: ["Ritos", "Delirios", "Black", "Goddess"] },
+                { id: "attabey", name: "Atabey", type: "brand", group: "boutique", country: "costa rica", productLines: ["Ritos", "Delirios", "Black", "Goddess"], logo: "logos/atabey.png" },
                 { id: "byron", name: "Byron", type: "brand", group: "boutique", country: "costa rica", productLines: ["Poetry", "Epicure", "Mesoindic", "Humedor Selection"], logo: "logos/byron.png" },
             ],
             links: [
