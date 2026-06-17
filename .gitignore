@@ -9,3 +9,9 @@ sitemap.xml
 
 # Dev dependencies (run scripts/generate-brand-assets.js locally)
 node_modules/
+
+# Local scratch / one-off exports
+test-extract/
+generated-pages.tgz
+_pdf_extract.txt
+*.tgz

@@ -9,7 +9,6 @@ const toIco = require('to-ico');
 
 const ROOT = path.join(__dirname, '..');
 const SRC_SVG = path.join(ROOT, 'logos', 'cigarnexus-svg-crop.svg');
-const SRC_PNG = path.join(ROOT, 'logos', 'cigarnexus.png');
 
 const BRAND = {
   teal: '#14817A',
@@ -125,22 +124,9 @@ async function writeSocialPreview() {
   console.log('Wrote social-preview.jpg (1200x630, black background)');
 }
 
-async function writeHeaderMark() {
-  if (!fs.existsSync(SRC_PNG)) return;
-  const meta = await sharp(SRC_PNG).metadata();
-  const cropH = Math.round(meta.height * 0.68);
-  const mark = await sharp(SRC_PNG)
-    .extract({ left: 0, top: 0, width: meta.width, height: cropH })
-    .png()
-    .toBuffer();
-  fs.writeFileSync(path.join(ROOT, 'logos', 'cigarnexus-mark.png'), mark);
-  console.log('Wrote logos/cigarnexus-mark.png (transparent monogram crop)');
-}
-
 async function main() {
   if (!fs.existsSync(SRC_SVG)) throw new Error(`Missing source: ${SRC_SVG}`);
 
-  await writeHeaderMark();
   await writeSquare(96, 'favicon-96x96.png', { padding: 0.08 });
   await writeSquare(180, 'apple-touch-icon.png', { padding: 0.14 });
   await writeSquare(192, 'web-app-manifest-192x192.png', { padding: 0.18 });
