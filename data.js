@@ -112,7 +112,7 @@ var baseGraphData = {
                 { id: "karenbergerperson", name: "Karen Berger", type: "person", group: "family", country: "nicaragua", photo: "logos/karenbergerprofile.png" },
                 { id: "tabacaleraesteli", name: "Tabacalera Estelí", type: "factory", group: "family", country: "nicaragua" },
                 { id: "billpaley", name: "Bill Paley", type: "person", group: "family", country: "usa" },
-                { id: "lapalina", name: "La Palina", type: "brand", group: "family", country: "usa", productLines: ["Goldie", "El Diario", "Mr. Sam", "Classic", "125th Anniversary"], logo: "logos/lapalina.png" },
+                { id: "lapalina", name: "La Palina", type: "brand", group: "family", country: "usa", productLines: ["Goldie", "Mr. Sam", "Classic", "125 Anos", "White Label", "Black Label", "Silver Label", "Family Series Miami", "La Palina 1948"], logo: "logos/lapalina.png" },
                 { id: "eltitandebronze", name: "El Titan de Bronze (Miami)", type: "factory", group: "family", country: "usa", logo: "logos/eltitan.jpg" },
                 { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican", logo: "logos/pdrcigars.jpg" },
                 { id: "noelrojas", name: "Noel Rojas", type: "person", group: "family", country: "usa" },

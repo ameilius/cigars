@@ -167,8 +167,8 @@ var drawerDescriptions = {
   "tabacaleraesteli": "Tabacalera Estelí is the vertically integrated factory and tobacco operation of Karen Berger Cigars in Estelí, Nicaragua. They grow, ferment, and roll many of their own cigars on-site.",
 
   // La Palina
-  "lapalina": "La Palina is a revived historic brand led by Bill Paley. It operates as a negociant, producing ultra-premium lines like Goldie at El Titan de Bronze in Miami and other lines with AJ Fernandez and PDR.",
-  "billpaley": "Bill Paley revived the historic La Palina brand in 2010 as a personal, high-end project honoring his family’s cigar heritage.",
+  "lapalina": "La Palina dates to 1896, when Samuel Paley founded Congress Cigar Factory in Chicago and named the marca after his wife, Goldie Drell Paley. Revived in 2010 by great-grandson Bill Paley, the company is a negociant—it owns its tobacco, brands, and finished cigars, but not a factory—with Goldie rolled at El Titan de Bronze in Miami and other lines made in Honduras, Nicaragua, the Dominican Republic, and Miami.",
+  "billpaley": "William \"Bill\" Paley revived La Palina in 2010 on a New York City rooftop, honoring the Congress Cigar legacy his great-grandfather Samuel Paley began in 1896. He remains chairman and principal as industry veterans Sammy Phillips and Clay Roberts steer day-to-day operations.",
   "eltitandebronze": "El Titan de Bronze is a renowned small-batch factory in Miami’s Little Havana. It produces La Palina’s flagship Goldie line and other ultra-premium cigars.",
   "pdr": "PDR Cigars is a respected factory in the Dominican Republic that produces several La Palina lines.",
 
