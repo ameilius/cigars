@@ -257,10 +257,22 @@ h1, h2, .font-display,
 
 /* Partnership/blending — dotted, lighter */
 .link[data-type*="partner"],
-.link[data-type*="blended"] {
+.link[data-type*="blended"],
+.link[data-category="partnership"] {
     stroke-dasharray: 2 4;
     stroke-width: 1.4px;
     stroke-opacity: 0.45;
+}
+
+/* Category-aligned link strokes (matches legend swatches) */
+.link[data-category="ownership"] {
+    stroke-width: 2.2px;
+    stroke-opacity: 0.6;
+}
+.link[data-category="production"] {
+    stroke-dasharray: 5 3;
+    stroke-width: 1.4px;
+    stroke-opacity: 0.5;
 }
 
 .drawer { transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); }
@@ -354,13 +366,51 @@ h1, h2, .font-display,
     }
 }
 
+/* Graph legend — nodes + connection types */
+.graph-legend__links-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: 100%;
+    padding: 0.15rem 0;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #6B8A84;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+.graph-legend__links-toggle:hover {
+    color: #14817A;
+}
+.graph-legend__chevron {
+    font-size: 10px;
+    line-height: 1;
+}
+.legend-link-swatch {
+    flex-shrink: 0;
+    display: block;
+}
+@media (max-width: 1023px) {
+    .graph-legend__links-panel:not(.graph-legend__links-panel--open) {
+        display: none;
+    }
+}
+@media (min-width: 1024px) {
+    .graph-legend__links-panel {
+        display: block;
+    }
+}
+
 /* Very small screens: improve legend readability */
 @media (max-width: 480px) {
-    #graph-container > div.absolute.top-4.right-4 {
+    #graph-legend {
         max-width: 62vw;
         padding: 8px 10px;
     }
-    #graph-container > div.absolute.top-4.right-4 .grid {
+    #graph-legend .graph-legend__nodes {
         gap: 3px 8px;
         font-size: 9px;
     }
@@ -417,7 +467,7 @@ h1, h2, .font-display,
 }
 
 /* Legend dots — match graph node stroke ring */
-#graph-container .absolute.top-4.right-4 .rounded-full[style] {
+#graph-legend .rounded-full[style] {
     box-shadow: 0 0 0 2px rgba(248, 245, 240, 0.9), 0 1px 3px rgba(0,0,0,0.15);
     display: inline-block;
     width: 11px;
@@ -649,7 +699,7 @@ h1, h2, .font-display,
         max-width: 58%;
         gap: 0.35rem;
     }
-    #graph-container > .absolute.top-4.right-4 {
+    #graph-legend {
         top: 0.65rem;
         right: 0.65rem;
     }

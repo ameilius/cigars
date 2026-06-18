@@ -53,12 +53,53 @@ function getNodeRadius(node) {
   return base + bonus;
 }
 
-function getLinkColor(link) {
+const LINK_CATEGORIES = [
+  { key: 'ownership', label: 'Ownership', color: '#14817A', strokeWidth: 2.2, dash: null },
+  { key: 'production', label: 'Production', color: '#A67C3D', strokeWidth: 1.4, dash: '5 3' },
+  { key: 'partnership', label: 'Partnership', color: '#CEA661', strokeWidth: 1.4, dash: '2 4' },
+];
+
+function getLinkCategory(link) {
   const t = (link.type || '').toLowerCase();
-  if (t.includes('owned') || t.includes('subsidiary')) return '#14817A';
-  if (t.includes('contract') || t.includes('manufactur') || t.includes('produced')) return '#A67C3D';
-  if (t.includes('partnership') || t.includes('blended')) return '#CEA661';
-  return '#7A9A94';
+  if (t.includes('owned') || t.includes('subsidiary') || t.includes('owns')) return 'ownership';
+  if (t.includes('contract') || t.includes('manufactur') || t.includes('produced')) return 'production';
+  if (t.includes('partnership') || t.includes('blended') || t.includes('partner') || t.includes('collaborat')) {
+    return 'partnership';
+  }
+  return 'other';
+}
+
+function getLinkColor(link) {
+  const cat = LINK_CATEGORIES.find(c => c.key === getLinkCategory(link));
+  return cat ? cat.color : '#7A9A94';
+}
+
+function buildLinkLegendSwatch(category) {
+  const dashAttr = category.dash ? ` stroke-dasharray="${category.dash}"` : '';
+  return `<svg class="legend-link-swatch" width="22" height="8" aria-hidden="true"><line x1="1" y1="4" x2="21" y2="4" stroke="${category.color}" stroke-width="${category.strokeWidth}"${dashAttr} stroke-linecap="round"/></svg>`;
+}
+
+function setupGraphLegend() {
+  const rows = document.getElementById('legend-connections-rows');
+  if (rows) {
+    rows.innerHTML = LINK_CATEGORIES.map(cat => `
+      <div class="flex items-center gap-2">
+        ${buildLinkLegendSwatch(cat)}
+        <span>${cat.label}</span>
+      </div>
+    `).join('');
+  }
+
+  const toggle = document.getElementById('legend-connections-toggle');
+  const panel = document.getElementById('legend-connections-panel');
+  if (!toggle || !panel) return;
+
+  toggle.addEventListener('click', () => {
+    const open = panel.classList.toggle('graph-legend__links-panel--open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const chevron = toggle.querySelector('.graph-legend__chevron');
+    if (chevron) chevron.textContent = open ? '▾' : '▸';
+  });
 }
 
 function escapeMetaLabel(text) {
@@ -197,6 +238,7 @@ function initializeApp() {
 
   setupSearch();
   setupUrlHistory();
+  setupGraphLegend();
 
   // Initialize the graph (wrapped so one error doesn't kill filters or drawer)
   try {
@@ -403,7 +445,8 @@ function updateGraph() {
 
   links = linkEnter.merge(linkSel)
     .attr('stroke', d => getLinkColor(d))
-    .attr('data-type', d => (d.type || '').toLowerCase());
+    .attr('data-type', d => (d.type || '').toLowerCase())
+    .attr('data-category', d => getLinkCategory(d));
 
   // Nodes
   const nodeSel = viewport.select('.nodes').selectAll('g.node-group')

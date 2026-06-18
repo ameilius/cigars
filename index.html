@@ -156,13 +156,22 @@
                             How to explore
                         </button>
                     </div>
-                    <!-- Legend -->
-                    <div class="absolute top-4 right-4 z-10 bg-[#ECF4F2]/95 border border-[#CFE0DC] shadow-sm rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 max-w-[58vw] sm:max-w-[42vw]">
+                    <!-- Legend (nodes + collapsible connection types on mobile) -->
+                    <div id="graph-legend" class="graph-legend absolute top-4 right-4 z-10 bg-[#ECF4F2]/95 border border-[#CFE0DC] shadow-sm rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 max-w-[58vw] sm:max-w-[42vw]">
                         <div class="text-[10px] font-semibold text-[#6B8A84] mb-1 tracking-[0.5px]">LEGEND</div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 text-[9.5px] sm:text-xs text-[#14817A]">
+                        <div class="graph-legend__nodes grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-1 text-[9.5px] sm:text-xs text-[#14817A]">
                             <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#13817b"></span> Family / Independent</div>
                             <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#CEA661"></span> Corporate / Group</div>
                             <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full" style="background:#b45309"></span> Factory / Grower</div>
+                        </div>
+                        <div class="graph-legend__links mt-1.5 pt-1.5 border-t border-[#CFE0DC]/80">
+                            <button type="button" id="legend-connections-toggle" class="graph-legend__links-toggle lg:hidden" aria-expanded="false" aria-controls="legend-connections-panel">
+                                Connections <span class="graph-legend__chevron" aria-hidden="true">▸</span>
+                            </button>
+                            <div id="legend-connections-panel" class="graph-legend__links-panel" role="region" aria-label="Connection types">
+                                <div class="graph-legend__links-heading hidden lg:block text-[10px] font-semibold text-[#6B8A84] mb-1 tracking-[0.5px]">CONNECTIONS</div>
+                                <div id="legend-connections-rows" class="grid grid-cols-1 gap-y-1 text-[9.5px] sm:text-xs text-[#14817A]"></div>
+                            </div>
                         </div>
                     </div>
                     <div id="graph" class="w-full h-full"></div>
