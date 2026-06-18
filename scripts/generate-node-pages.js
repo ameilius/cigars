@@ -54,6 +54,22 @@ function loadNodeWebsites() {
   }
 }
 
+function loadAffiliateBuilder() {
+  try {
+    const code = readUtf8(path.join(ROOT, 'affiliates.js'));
+    const sandbox = {};
+    vm.createContext(sandbox);
+    vm.runInContext(code, sandbox);
+    if (typeof sandbox.buildFamousSmokeBuyHtml !== 'function') {
+      throw new Error('buildFamousSmokeBuyHtml missing from affiliates.js');
+    }
+    return sandbox.buildFamousSmokeBuyHtml;
+  } catch (err) {
+    console.warn('affiliates.js not found, node pages will omit shop links:', err.message);
+    return null;
+  }
+}
+
 function resolveNodeWebsite(node, nodeWebsites) {
   if (node.website && String(node.website).trim()) {
     return { website: String(node.website).trim(), websiteLabel: node.websiteLabel };
@@ -283,6 +299,17 @@ function buildProductLinesHtml(node) {
   return html;
 }
 
+function buildFindCigarsHtml(buildFamousSmokeBuyHtml) {
+  if (!buildFamousSmokeBuyHtml) return '';
+  return `<section class="mt-8" aria-labelledby="find-cigars-heading">
+    <h2 id="find-cigars-heading" class="node-section-label">Find These Cigars</h2>
+    <div class="node-affiliate-block space-y-2 max-w-sm">
+      ${buildFamousSmokeBuyHtml()}
+    </div>
+    <p class="text-[10px] text-[#6B8A84] mt-3">As an affiliate I may earn a commission from qualifying purchases.</p>
+  </section>`;
+}
+
 function resolveSocialImage(node) {
   const fallback = `${SITE}/social-preview.jpg`;
 
@@ -464,6 +491,7 @@ const baseGraphData = loadGraphData();
 const drawerDescriptions = loadDrawerDescriptions();
 const expandedOverrides = loadExpandedOverrides();
 const nodeWebsites = loadNodeWebsites();
+const buildFamousSmokeBuyHtml = loadAffiliateBuilder();
 const allLinks = normalizeLinks(baseGraphData.links || []);
 
 let template = readUtf8(path.join(__dirname, 'node-template.html'));
@@ -509,6 +537,7 @@ baseGraphData.nodes.forEach(node => {
     .replace(/\{\{CONNECTIONS\}\}/g, buildConnectionsHtml(node, baseGraphData.nodes, allLinks))
     .replace(/\{\{RELATED\}\}/g, buildRelatedHtml(node, baseGraphData.nodes, allLinks))
     .replace(/\{\{PRODUCT_LINES\}\}/g, buildProductLinesHtml(node))
+    .replace(/\{\{FIND_CIGARS\}\}/g, buildFindCigarsHtml(buildFamousSmokeBuyHtml))
     .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
     .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
     .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites));

@@ -743,6 +743,18 @@ h1, h2, .font-display,
 }
 
 /* Affiliate disclosure footer */
+.affiliate-tracking-pixel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.node-affiliate-block {
+    position: relative;
+}
+
 #drawer-affiliate,
 #drawer-affiliate-mobile {
     background: linear-gradient(to bottom, rgba(232, 217, 195, 0.6), rgba(226, 208, 184, 0.8));

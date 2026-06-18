@@ -1098,10 +1098,12 @@ function showDrawer(node) {
     ).join('');
   }
 
-  // Buy links (placeholder - extend with real affiliate data if available)
-  const buyHTML = (node.buyLinks && node.buyLinks.length)
-    ? node.buyLinks.map(b => `<a href="${b.url}" target="_blank" class="block text-xs px-3 py-1.5 rounded-xl bg-[#14817A] text-[#ECF4F2] hover:bg-[#0D5A55]">${b.label || 'Shop now'}</a>`).join('')
-    : '<div class="text-xs text-[#6B8A84]">No purchase links added yet for this node.</div>';
+  // Buy links — Famous Smoke Shop affiliate (plus any per-node overrides)
+  const famousSmokeHtml = typeof buildFamousSmokeBuyHtml === 'function' ? buildFamousSmokeBuyHtml() : '';
+  const extraBuyHtml = (node.buyLinks && node.buyLinks.length)
+    ? node.buyLinks.map(b => `<a href="${b.url}" target="_blank" rel="sponsored noopener" class="block text-xs px-3 py-1.5 rounded-xl bg-[#14817A] text-[#ECF4F2] hover:bg-[#0D5A55]">${b.label || 'Shop now'}</a>`).join('')
+    : '';
+  const buyHTML = famousSmokeHtml + extraBuyHtml;
 
   if (!isMobile && drawer) {
     titleEl.textContent = name;
