@@ -271,6 +271,7 @@ function initializeApp() {
   if (allChip) allChip.classList.add('filter-active');
 
   setupSearch();
+  setupFilterStatus();
   setupUrlHistory();
   setupGraphLegend();
 
@@ -650,6 +651,56 @@ function applyFiltersAndSearch() {
   if (simulation) updateGraph();
   if (searchOverlayOpen) renderSearchResults();
   updateSearchMobileBadge();
+  updateFilterStatus();
+}
+
+function isMapFiltered() {
+  const hasAll = activeFilters.has('all') || activeFilters.size === 0;
+  return !hasAll || !!searchTerm;
+}
+
+function resetMapViewFilters() {
+  activeFilters.clear();
+  activeFilters.add('all');
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('filter-active'));
+  const allChip = document.querySelector('.filter-chip[data-key="all"]');
+  if (allChip) allChip.classList.add('filter-active');
+  clearSearch();
+}
+
+function setupFilterStatus() {
+  const el = document.getElementById('filter-status');
+  if (!el) return;
+  el.addEventListener('click', (e) => {
+    if (e.target.closest('[data-filter-reset]')) {
+      e.preventDefault();
+      resetMapViewFilters();
+    }
+  });
+  updateFilterStatus();
+}
+
+function updateFilterStatus() {
+  const el = document.getElementById('filter-status');
+  if (!el) return;
+
+  const total = (graphData.nodes || []).length;
+  if (!total || !isMapFiltered()) {
+    el.hidden = true;
+    el.textContent = '';
+    return;
+  }
+
+  const visible = getFilteredData().nodes.length;
+  el.hidden = false;
+
+  if (visible === 0) {
+    el.innerHTML = 'No nodes match — <button type="button" class="filter-status__clear" data-filter-reset>clear filters</button>';
+    return;
+  }
+
+  const noun = visible === 1 ? 'node' : 'nodes';
+  el.textContent = `Showing ${visible} of ${total} ${noun}`;
 }
 
 // -----------------------------

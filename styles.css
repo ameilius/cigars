@@ -366,6 +366,30 @@ h1, h2, .font-display,
     }
 }
 
+/* Filter result feedback */
+.filter-status {
+    margin-top: 0.5rem;
+    padding: 0 0.125rem;
+    font-size: 11px;
+    font-weight: 500;
+    color: #6B8A84;
+    line-height: 1.4;
+}
+.filter-status__clear {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    color: #14817A;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.filter-status__clear:hover {
+    color: #0D5A55;
+}
+
 /* Graph canvas layer — keep SVG behind floating controls/legend */
 #graph {
     position: absolute;
