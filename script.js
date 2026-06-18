@@ -228,6 +228,10 @@ function maybeShowFirstVisitGuide() {
                sessionStorage.getItem('cigarNexus_seenIntro') === 'true';
   if (seen) {
     introGuideShown = true;
+    // Returning desktop users: show the guide in the sidebar instead of a blank panel
+    if (window.innerWidth >= 1024 && !new URLSearchParams(window.location.search).get('node')) {
+      showDesktopHowTo();
+    }
     return;
   }
 
@@ -726,7 +730,7 @@ function selectSearchResult(nodeId) {
   if (!node) return;
 
   closeSearchOverlay();
-  closeDrawer({ keepMapFocus: false });
+  closeDrawer({ keepMapFocus: false, suppressDefault: true });
 
   const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
 
@@ -1160,14 +1164,14 @@ function showDrawer(node) {
 function showDrawerFromId(id) {
   const node = graphData.nodes.find(n => n.id === id);
   if (node) {
-    closeDrawer({ keepMapFocus: false });
+    closeDrawer({ keepMapFocus: false, suppressDefault: true });
     const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
     focusNodeOnMap(node, zoomOpts);
     setTimeout(() => showDrawer(node), 420);
   }
 }
 
-function closeDrawer({ keepMapFocus = true } = {}) {
+function closeDrawer({ keepMapFocus = true, suppressDefault = false } = {}) {
   const drawer = document.getElementById('drawer');
   const mDrawer = document.getElementById('drawer-mobile');
   const node = currentDrawerNode;
@@ -1195,7 +1199,11 @@ function closeDrawer({ keepMapFocus = true } = {}) {
 
   if (drawer) {
     drawer.classList.remove('drawer-open');
-    drawer.style.display = 'none';
+    if (window.innerWidth >= 1024 && !suppressDefault) {
+      showDesktopHowTo();
+    } else {
+      drawer.style.display = 'none';
+    }
   }
   if (mDrawer) {
     mDrawer.classList.remove('drawer-open', 'drawer-panel--howto');
@@ -1244,7 +1252,7 @@ function selectExample(nodeId) {
   const node = graphData.nodes.find(n => n.id === nodeId);
   if (!node) return;
 
-  closeDrawer({ keepMapFocus: false });
+  closeDrawer({ keepMapFocus: false, suppressDefault: true });
 
   const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
   focusNodeOnMap(node, zoomOpts);
