@@ -137,8 +137,14 @@ jobs:
               process.exit(1);
             });
           "
-          curl -fsS "https://cigarnexus.app/tailwind.css" | head -c 200 | grep -q "tailwindcss"
-          BODY=$(curl -fsS "https://cigarnexus.app/")
-          echo "$BODY" | grep -q 'href="tailwind.css"'
-          echo "$BODY" | grep -qv "cdn.tailwindcss.com"
-          echo "Live site OK"
+          TW_SIZE=$(curl -fsS "https://cigarnexus.app/tailwind.css" | wc -c | tr -d ' ')
+          test "$TW_SIZE" -gt 8000
+          curl -fsS "https://cigarnexus.app/tailwind.css" | head -c 120 | grep -q -- "--tw-"
+          INDEX_BODY=$(curl -fsS "https://cigarnexus.app/")
+          echo "$INDEX_BODY" | grep -q 'href="tailwind.css"'
+          echo "$INDEX_BODY" | grep -q 'href="styles.css"'
+          if echo "$INDEX_BODY" | grep -q "cdn.tailwindcss.com"; then
+            echo "ERROR: index.html still references Tailwind CDN"
+            exit 1
+          fi
+          echo "Live site OK (tailwind.css ${TW_SIZE} bytes)"
