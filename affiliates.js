@@ -9,7 +9,7 @@ var famousSmokeAffiliate = {
 
 function buildFamousSmokeBuyHtml() {
   return (
-    '<a href="' + famousSmokeAffiliate.clickUrl + '" target="_top" rel="sponsored noopener" class="affiliate-shop-link block text-xs px-3 py-2 rounded-xl bg-[#14817A] text-[#ECF4F2] hover:bg-[#0D5A55] font-medium text-center transition-colors">' +
+    '<a href="' + famousSmokeAffiliate.clickUrl + '" target="_blank" rel="sponsored noopener noreferrer" class="affiliate-shop-link block text-xs px-3 py-2 rounded-xl bg-[#14817A] text-[#ECF4F2] hover:bg-[#0D5A55] font-medium text-center transition-colors">' +
       famousSmokeAffiliate.label +
     '</a>' +
     '<img src="' + famousSmokeAffiliate.pixelUrl + '" width="1" height="1" border="0" alt="" aria-hidden="true" class="affiliate-tracking-pixel">'
