@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { execSync } = require('child_process');
-const sharp = require('sharp');
+const { readImageDimensions } = require('./read-image-dimensions');
 
 const ROOT = path.join(__dirname, '..');
 const SITE = 'https://cigarnexus.app';
@@ -341,19 +341,14 @@ function localPathFromSiteUrl(url) {
   return path.join(ROOT, url.slice(SITE.length + 1).replace(/\//g, path.sep));
 }
 
-async function resolveOgImageDimensions(socialImage) {
+function resolveOgImageDimensions(socialImage) {
   const local = localPathFromSiteUrl(socialImage.url);
   if (!local || !fs.existsSync(local)) return OG_FALLBACK_SIZE;
 
-  try {
-    const meta = await sharp(local).metadata();
-    if (meta.width > 0 && meta.height > 0) {
-      return { width: meta.width, height: meta.height };
-    }
-  } catch (err) {
-    console.warn(`OG image dimensions failed for ${socialImage.url}:`, err.message);
-  }
+  const dims = readImageDimensions(local);
+  if (dims && dims.width > 0 && dims.height > 0) return dims;
 
+  console.warn(`OG image dimensions unavailable for ${socialImage.url}, using fallback`);
   return OG_FALLBACK_SIZE;
 }
 
@@ -528,7 +523,7 @@ if (fs.existsSync(outputBase)) {
   }
 }
 
-async function generateAllNodePages() {
+function generateAllNodePages() {
   let overrideCount = 0;
   let autoCount = 0;
 
@@ -545,7 +540,7 @@ async function generateAllNodePages() {
     const canonical = `${SITE}/node/${node.id}/`;
     const mapUrl = `/?node=${node.id}`;
     const socialImage = resolveSocialImage(node);
-    const ogDimensions = await resolveOgImageDimensions(socialImage);
+    const ogDimensions = resolveOgImageDimensions(socialImage);
     const ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
 
     const page = template
@@ -587,7 +582,9 @@ async function generateAllNodePages() {
   console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs, synced with data.js).`);
 }
 
-generateAllNodePages().catch((err) => {
+try {
+  generateAllNodePages();
+} catch (err) {
   console.error(err);
   process.exit(1);
-});
+}
