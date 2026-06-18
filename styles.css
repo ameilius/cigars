@@ -375,15 +375,64 @@ h1, h2, .font-display,
     height: 100%;
 }
 
+/* Floating map chrome (controls + legend) */
+.graph-overlays {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    pointer-events: none;
+}
+.graph-controls {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 58%;
+    pointer-events: auto;
+}
+.graph-control-btn {
+    padding: 0.5rem 0.875rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(168, 189, 184, 0.75);
+    background-color: rgba(214, 226, 223, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: 600;
+    color: #14817A;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.graph-control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+.graph-control-btn:active {
+    transform: scale(0.985);
+}
+.graph-control-btn--accent {
+    background: #CEA661;
+    border-color: #b38c4f;
+    color: #14817A;
+}
+.graph-control-btn--accent:hover {
+    background: #DBB978;
+}
+
 /* Graph legend — nodes + connection types (all styles here; no Tailwind responsive deps) */
 #graph-legend {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    z-index: 12;
+    left: auto;
+    bottom: auto;
+    z-index: 2;
     pointer-events: auto;
-    width: max-content;
-    max-width: min(58vw, 11.5rem);
+    width: auto;
+    min-width: 9.5rem;
+    max-width: calc(100% - 1.25rem);
     padding: 0.5rem 0.75rem;
     background: rgba(236, 244, 242, 0.97);
     border: 1px solid #CFE0DC;
@@ -404,8 +453,9 @@ h1, h2, .font-display,
 .graph-legend__nodes {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.25rem 0.75rem;
-    font-size: 9.5px;
+    gap: 0.3rem 0.75rem;
+    font-size: 11px;
+    line-height: 1.35;
     color: #14817A;
 }
 .graph-legend__item {
@@ -458,8 +508,9 @@ h1, h2, .font-display,
 .graph-legend__links-rows {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.25rem;
-    font-size: 9.5px;
+    gap: 0.3rem;
+    font-size: 11px;
+    line-height: 1.35;
     color: #14817A;
 }
 .graph-legend__links-rows .graph-legend__item {
@@ -473,7 +524,7 @@ h1, h2, .font-display,
 }
 @media (min-width: 640px) {
     #graph-legend {
-        max-width: min(42vw, 14rem);
+        max-width: min(42vw, 15rem);
         padding: 0.625rem 1rem;
     }
     .graph-legend__nodes {
@@ -510,16 +561,27 @@ h1, h2, .font-display,
 
 /* Very small screens: improve legend readability */
 @media (max-width: 480px) {
+    .graph-controls {
+        top: 0.65rem;
+        left: 0.65rem;
+        max-width: 56%;
+        gap: 0.35rem;
+    }
+    .graph-control-btn {
+        padding: 0.4rem 0.7rem;
+        font-size: 11px;
+    }
     #graph-legend {
         top: 0.65rem;
         right: 0.65rem;
-        max-width: 62vw;
+        left: auto;
+        max-width: calc(100% - 1.3rem);
         padding: 8px 10px;
     }
     .graph-legend__nodes,
     .graph-legend__links-rows {
-        gap: 3px 8px;
-        font-size: 9px;
+        gap: 4px 8px;
+        font-size: 10.5px;
     }
 }
 
@@ -560,24 +622,6 @@ h1, h2, .font-display,
         inset 0 2px 12px rgba(70, 90, 86, 0.14),
         inset 0 -2px 8px rgba(10, 10, 10, 0.06),
         0 20px 60px -15px rgba(10, 10, 10, 0.22);
-}
-
-/* Graph view controls — glassy pills over the map */
-#graph-container > .absolute.top-4.left-4 {
-    z-index: 12;
-    pointer-events: auto;
-}
-
-#graph-container .absolute.top-4.left-4 button {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background-color: rgba(214, 226, 223, 0.9);
-    border-color: rgba(168, 189, 184, 0.75);
-    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.12), inset 0 1px 0 rgba(255,255,255,0.5);
-}
-
-#graph-container .absolute.top-4.left-4 button:hover {
-    background-color: rgba(255, 255, 255, 0.95);
 }
 
 /* Selected graph node — gold ring */
@@ -757,7 +801,7 @@ h1, h2, .font-display,
 }
 
 /* The new "How to explore" trigger button (top-left of graph) */
-#graph-container button[onclick*="showHowTo"] {
+.graph-control-btn--accent {
     font-size: 11px;
     padding-left: 10px;
     padding-right: 10px;
@@ -807,16 +851,14 @@ h1, h2, .font-display,
     .map-section {
         margin-top: 2px;
     }
-    #graph-container > .absolute.top-4.left-4 {
+    .graph-controls {
         top: 0.65rem;
         left: 0.65rem;
-        flex-wrap: wrap;
-        max-width: 58%;
-        gap: 0.35rem;
     }
     #graph-legend {
         top: 0.65rem;
         right: 0.65rem;
+        left: auto;
     }
 }
 
@@ -846,7 +888,7 @@ h1, h2, .font-display,
 }
 
 @media (max-width: 480px) {
-    #graph-container button[onclick*="showHowTo"] {
+    .graph-control-btn--accent {
         display: none; /* welcome card + node taps cover onboarding on small phones */
     }
 }

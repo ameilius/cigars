@@ -140,43 +140,42 @@
             <!-- Graph -->
             <div class="flex-1">
                 <div id="graph-container" class="relative rounded-3xl overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px]">
-                    <!-- View controls -->
-                    <div class="absolute top-4 left-4 z-10 flex gap-2">
-                        <button onclick="zoomToFit()"
-                                class="px-3.5 py-2 rounded-2xl bg-[#ECF4F2] border border-[#CFE0DC] shadow-sm text-xs font-semibold text-[#14817A] hover:bg-white active:scale-[0.985] transition-all">
-                            Zoom to fit
-                        </button>
-                        <button onclick="resetZoom()"
-                                class="px-3.5 py-2 rounded-2xl bg-[#ECF4F2] border border-[#CFE0DC] shadow-sm text-xs font-semibold text-[#14817A] hover:bg-white active:scale-[0.985] transition-all">
-                            Reset
-                        </button>
-                        <button onclick="showHowTo()"
-                                class="px-3 py-2 rounded-2xl bg-[#CEA661] text-[#14817A] border border-[#b38c4f] shadow-sm text-xs font-semibold hover:bg-[#DBB978] active:scale-[0.985] transition-all"
-                                title="Show guide &amp; example nodes">
-                            How to explore
-                        </button>
-                    </div>
-                    <!-- Legend (nodes + collapsible connection types on mobile) -->
-                    <div id="graph-legend" class="graph-legend" aria-label="Map legend">
-                        <div class="graph-legend__title">LEGEND</div>
-                        <div class="graph-legend__nodes">
-                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#13817b"></span> Family / Independent</div>
-                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#CEA661"></span> Corporate / Group</div>
-                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#b45309"></span> Factory / Grower</div>
-                        </div>
-                        <div class="graph-legend__links">
-                            <button type="button" id="legend-connections-toggle" class="graph-legend__links-toggle" aria-expanded="false" aria-controls="legend-connections-panel">
-                                <span>CONNECTIONS</span>
-                                <span class="graph-legend__chevron" aria-hidden="true">▸</span>
+                    <div id="graph" class="w-full h-full"></div>
+
+                    <div class="graph-overlays" aria-hidden="false">
+                        <!-- View controls -->
+                        <div class="graph-controls">
+                            <button onclick="zoomToFit()" type="button" class="graph-control-btn">
+                                Zoom to fit
                             </button>
-                            <div id="legend-connections-panel" class="graph-legend__links-panel" role="region" aria-label="Connection types">
-                                <div class="graph-legend__links-heading">CONNECTIONS</div>
-                                <div id="legend-connections-rows" class="graph-legend__links-rows"></div>
+                            <button onclick="resetZoom()" type="button" class="graph-control-btn">
+                                Reset
+                            </button>
+                            <button onclick="showHowTo()" type="button" class="graph-control-btn graph-control-btn--accent" title="Show guide &amp; example nodes">
+                                How to explore
+                            </button>
+                        </div>
+
+                        <!-- Legend (nodes + collapsible connection types on mobile) -->
+                        <div id="graph-legend" class="graph-legend" aria-label="Map legend">
+                            <div class="graph-legend__title">LEGEND</div>
+                            <div class="graph-legend__nodes">
+                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#13817b"></span> Family / Independent</div>
+                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#CEA661"></span> Corporate / Group</div>
+                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#b45309"></span> Factory / Grower</div>
+                            </div>
+                            <div class="graph-legend__links">
+                                <button type="button" id="legend-connections-toggle" class="graph-legend__links-toggle" aria-expanded="false" aria-controls="legend-connections-panel">
+                                    <span>CONNECTIONS</span>
+                                    <span class="graph-legend__chevron" aria-hidden="true">▸</span>
+                                </button>
+                                <div id="legend-connections-panel" class="graph-legend__links-panel" role="region" aria-label="Connection types">
+                                    <div class="graph-legend__links-heading">CONNECTIONS</div>
+                                    <div id="legend-connections-rows" class="graph-legend__links-rows"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div id="graph" class="w-full h-full"></div>
 
                     <!-- Mobile first-visit welcome — overlay (no layout shift / CLS) -->
                     <div id="mobile-welcome"
