@@ -173,17 +173,22 @@
                         </button>
                     </div>
 
-                    <!-- Desktop legend: overlaid on graph -->
+                    <!-- Desktop legend: collapsible overlay on graph -->
                     <div class="graph-legend graph-legend--overlay" aria-label="Map legend">
-                        <div class="graph-legend__title">LEGEND</div>
-                        <div class="graph-legend__nodes">
-                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#13817b"></span> Family / Independent</div>
-                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#CEA661"></span> Corporate / Group</div>
-                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#b45309"></span> Factory / Grower</div>
-                        </div>
-                        <div class="graph-legend__links">
-                            <div class="graph-legend__links-heading">CONNECTIONS</div>
-                            <div data-legend-rows class="graph-legend__links-rows"></div>
+                        <button type="button" class="graph-legend__expand-toggle" data-legend-expand aria-expanded="false" aria-controls="graph-legend-overlay-body">
+                            <span>Legend</span>
+                            <span class="graph-legend__chevron" aria-hidden="true">▸</span>
+                        </button>
+                        <div id="graph-legend-overlay-body" class="graph-legend__body" data-legend-body>
+                            <div class="graph-legend__nodes">
+                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#13817b"></span> Family / Independent</div>
+                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#CEA661"></span> Corporate / Group</div>
+                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#b45309"></span> Factory / Grower</div>
+                            </div>
+                            <div class="graph-legend__links">
+                                <div class="graph-legend__links-heading">CONNECTIONS</div>
+                                <div data-legend-rows class="graph-legend__links-rows"></div>
+                            </div>
                         </div>
                     </div>
 

@@ -440,8 +440,72 @@ h1, h2, .font-display,
     left: auto;
     z-index: 12;
     pointer-events: auto;
-    min-width: 9.5rem;
+    min-width: 0;
     max-width: calc(100% - 1.25rem);
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.graph-legend__expand-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(168, 189, 184, 0.75);
+    background-color: rgba(214, 226, 223, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 1px 3px rgba(10, 10, 10, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: 600;
+    color: #14817A;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.graph-legend__expand-toggle:hover,
+.graph-legend__expand-toggle:focus-visible {
+    background-color: rgba(255, 255, 255, 0.95);
+    outline: none;
+}
+.graph-legend__expand-toggle:active {
+    transform: scale(0.985);
+}
+.graph-legend--overlay .graph-legend__body {
+    display: none;
+}
+.graph-legend--overlay.graph-legend--expanded {
+    min-width: 9.5rem;
+    padding: 0.625rem 1rem;
+    background: rgba(236, 244, 242, 0.97);
+    border: 1px solid #CFE0DC;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(20, 129, 122, 0.12);
+}
+.graph-legend--overlay.graph-legend--expanded .graph-legend__expand-toggle {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0;
+    margin-bottom: 0.25rem;
+    border: none;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #6B8A84;
+    border-radius: 0;
+}
+.graph-legend--overlay.graph-legend--expanded .graph-legend__expand-toggle:hover {
+    color: #14817A;
+    background: none;
+}
+.graph-legend--overlay.graph-legend--expanded .graph-legend__body {
+    display: block;
 }
 .graph-legend__title,
 .graph-legend__links-heading,
@@ -530,9 +594,8 @@ h1, h2, .font-display,
     display: block;
 }
 @media (min-width: 640px) {
-    .graph-legend--overlay {
+    .graph-legend--overlay.graph-legend--expanded {
         max-width: 15rem;
-        padding: 0.625rem 1rem;
     }
     .graph-legend__nodes {
         grid-template-columns: 1fr 1fr;
@@ -563,9 +626,6 @@ h1, h2, .font-display,
         display: none;
     }
     .graph-legend--overlay {
-        display: block;
-    }
-    .graph-legend--overlay .graph-legend__links-panel {
         display: block;
     }
 }

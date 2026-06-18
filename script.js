@@ -107,6 +107,33 @@ function setupGraphLegend() {
       if (chevron) chevron.textContent = open ? '▾' : '▸';
     });
   });
+
+  document.querySelectorAll('[data-legend-expand]').forEach((toggle) => {
+    const root = toggle.closest('.graph-legend--overlay');
+    if (!root) return;
+
+    const setExpanded = (expanded) => {
+      root.classList.toggle('graph-legend--expanded', expanded);
+      toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      const chevron = toggle.querySelector('.graph-legend__chevron');
+      if (chevron) chevron.textContent = expanded ? '▾' : '▸';
+      try {
+        sessionStorage.setItem('cigarNexus_legendExpanded', expanded ? 'true' : 'false');
+      } catch (_) {}
+    };
+
+    try {
+      if (sessionStorage.getItem('cigarNexus_legendExpanded') === 'true') {
+        setExpanded(true);
+      }
+    } catch (_) {}
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setExpanded(!root.classList.contains('graph-legend--expanded'));
+    });
+  });
 }
 
 function escapeMetaLabel(text) {
