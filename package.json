@@ -1,6 +1,12 @@
 {
+  "scripts": {
+    "build:css": "tailwindcss -i ./styles/tailwind-source.css -o ./tailwind.css --minify",
+    "build:site": "npm run build:css && node scripts/generate-node-pages.js"
+  },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "sharp": "^0.35.1",
+    "tailwindcss": "^3.4.17",
     "to-ico": "^1.1.5"
   }
 }

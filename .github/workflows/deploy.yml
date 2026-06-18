@@ -19,6 +19,14 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install dependencies and build CSS
+        run: |
+          npm ci
+          npm run build:css
+          test -f tailwind.css
+          test "$(wc -c < tailwind.css)" -gt 8000
+          ! grep -R "cdn.tailwindcss.com" index.html about.html scripts/node-template.html
+
       - name: Verify SEO page build (CI gate)
         run: |
           node scripts/generate-node-pages.js
@@ -59,6 +67,12 @@ jobs:
             NODE_BIN=/usr/bin/node
             if ! [ -x "$NODE_BIN" ]; then NODE_BIN=$(command -v node); fi
             echo "Node: $NODE_BIN ($($NODE_BIN --version 2>&1 || echo MISSING))"
+            NPM_BIN=$(command -v npm)
+            if [ -z "$NPM_BIN" ]; then echo "ERROR: npm not found on server"; exit 1; fi
+            echo "Npm: $NPM_BIN ($($NPM_BIN --version 2>&1))"
+            $NPM_BIN ci
+            $NPM_BIN run build:css
+            test -f tailwind.css
             $NODE_BIN scripts/generate-node-pages.js
             SIZE=$(wc -c < node/padron/index.html | tr -d ' ')
             COUNT=$(find node -name index.html | wc -l | tr -d ' ')
@@ -123,4 +137,8 @@ jobs:
               process.exit(1);
             });
           "
+          curl -fsS "https://cigarnexus.app/tailwind.css" | head -c 200 | grep -q "tailwindcss"
+          BODY=$(curl -fsS "https://cigarnexus.app/")
+          echo "$BODY" | grep -q 'href="tailwind.css"'
+          echo "$BODY" | grep -qv "cdn.tailwindcss.com"
           echo "Live site OK"
