@@ -74,9 +74,11 @@ function getLinkColor(link) {
   return cat ? cat.color : '#7A9A94';
 }
 
+const LEGEND_LINK_STROKE = '#7A9A94';
+
 function buildLinkLegendSwatch(category) {
   const dashAttr = category.dash ? ` stroke-dasharray="${category.dash}"` : '';
-  return `<svg class="legend-link-swatch" width="22" height="8" aria-hidden="true"><line x1="1" y1="4" x2="21" y2="4" stroke="${category.color}" stroke-width="${category.strokeWidth}"${dashAttr} stroke-linecap="round"/></svg>`;
+  return `<svg class="legend-link-swatch" width="22" height="8" aria-hidden="true"><line x1="1" y1="4" x2="21" y2="4" stroke="${LEGEND_LINK_STROKE}" stroke-width="${category.strokeWidth}"${dashAttr} stroke-linecap="round"/></svg>`;
 }
 
 function setupGraphLegend() {
