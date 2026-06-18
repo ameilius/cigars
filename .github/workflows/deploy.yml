@@ -33,6 +33,8 @@ jobs:
           test -f node/padron/index.html
           test "$(wc -c < node/padron/index.html)" -gt 12000
           grep -q "Industry Connections" node/padron/index.html
+          grep -q 'property="og:image:width"' node/lapalina/index.html
+          grep -q 'property="og:image:height"' node/lapalina/index.html
           test -f sitemap.xml
           NODE_COUNT=$(node -e "const vm=require('vm');const fs=require('fs');const s={};vm.createContext(s);vm.runInContext(fs.readFileSync('data.js','utf8'),s);console.log(s.baseGraphData.nodes.length)")
           SITEMAP_NODES=$(grep -c 'cigarnexus.app/node/' sitemap.xml)
