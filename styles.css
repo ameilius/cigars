@@ -366,51 +366,148 @@ h1, h2, .font-display,
     }
 }
 
-/* Graph legend — nodes + connection types */
+/* Graph legend — nodes + connection types (all styles here; no Tailwind responsive deps) */
+#graph-legend {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 20;
+    pointer-events: auto;
+    max-width: 58vw;
+    padding: 0.5rem 0.75rem;
+    background: rgba(236, 244, 242, 0.95);
+    border: 1px solid #CFE0DC;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(20, 129, 122, 0.08);
+}
+.graph-legend__title,
+.graph-legend__links-heading,
 .graph-legend__links-toggle {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #6B8A84;
+}
+.graph-legend__title {
+    margin-bottom: 0.25rem;
+}
+.graph-legend__nodes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25rem 0.75rem;
+    font-size: 9.5px;
+    color: #14817A;
+}
+.graph-legend__item {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.5rem;
+}
+.graph-legend__dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 2px rgba(248, 245, 240, 0.9), 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+.graph-legend__links {
+    margin-top: 0.375rem;
+    padding-top: 0.375rem;
+    border-top: 1px solid rgba(207, 224, 220, 0.8);
+}
+.graph-legend__links-toggle {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
     width: 100%;
-    padding: 0.15rem 0;
-    font-size: 9.5px;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    color: #6B8A84;
+    padding: 0;
+    margin: 0;
     background: none;
     border: none;
     cursor: pointer;
     text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
-.graph-legend__links-toggle:hover {
+.graph-legend__links-toggle:hover,
+.graph-legend__links-toggle:focus-visible {
     color: #14817A;
+    outline: none;
 }
 .graph-legend__chevron {
     font-size: 10px;
     line-height: 1;
+    flex-shrink: 0;
+}
+.graph-legend__links-heading {
+    display: none;
+    margin-bottom: 0.25rem;
+}
+.graph-legend__links-rows {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    font-size: 9.5px;
+    color: #14817A;
+}
+.graph-legend__links-rows .graph-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 .legend-link-swatch {
     flex-shrink: 0;
     display: block;
 }
-@media (max-width: 1023px) {
-    .graph-legend__links-panel:not(.graph-legend__links-panel--open) {
-        display: none;
+@media (min-width: 640px) {
+    #graph-legend {
+        max-width: 42vw;
+        padding: 0.625rem 1rem;
+    }
+    .graph-legend__nodes {
+        grid-template-columns: 1fr 1fr;
+        font-size: 12px;
+    }
+    .graph-legend__links-rows {
+        font-size: 12px;
     }
 }
 @media (min-width: 1024px) {
-    .graph-legend__links-panel {
+    .graph-legend__links-toggle {
+        display: none !important;
+    }
+    .graph-legend__links-heading {
         display: block;
+    }
+    .graph-legend__links-panel {
+        display: block !important;
+    }
+}
+@media (max-width: 1023px) {
+    .graph-legend__links-toggle {
+        display: flex;
+    }
+    .graph-legend__links-panel {
+        display: none;
+    }
+    .graph-legend__links-panel.graph-legend__links-panel--open {
+        display: block;
+        margin-top: 0.25rem;
     }
 }
 
 /* Very small screens: improve legend readability */
 @media (max-width: 480px) {
     #graph-legend {
+        top: 0.65rem;
+        right: 0.65rem;
         max-width: 62vw;
         padding: 8px 10px;
     }
-    #graph-legend .graph-legend__nodes {
+    .graph-legend__nodes,
+    .graph-legend__links-rows {
         gap: 3px 8px;
         font-size: 9px;
     }
@@ -464,15 +561,6 @@ h1, h2, .font-display,
 
 #graph-container .absolute.top-4.left-4 button:hover {
     background-color: rgba(255, 255, 255, 0.95);
-}
-
-/* Legend dots — match graph node stroke ring */
-#graph-legend .rounded-full[style] {
-    box-shadow: 0 0 0 2px rgba(248, 245, 240, 0.9), 0 1px 3px rgba(0,0,0,0.15);
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    flex-shrink: 0;
 }
 
 /* Selected graph node — gold ring */

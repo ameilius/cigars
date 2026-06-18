@@ -83,7 +83,7 @@ function setupGraphLegend() {
   const rows = document.getElementById('legend-connections-rows');
   if (rows) {
     rows.innerHTML = LINK_CATEGORIES.map(cat => `
-      <div class="flex items-center gap-2">
+      <div class="graph-legend__item">
         ${buildLinkLegendSwatch(cat)}
         <span>${cat.label}</span>
       </div>
@@ -94,12 +94,16 @@ function setupGraphLegend() {
   const panel = document.getElementById('legend-connections-panel');
   if (!toggle || !panel) return;
 
-  toggle.addEventListener('click', () => {
+  const handleToggle = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const open = panel.classList.toggle('graph-legend__links-panel--open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     const chevron = toggle.querySelector('.graph-legend__chevron');
     if (chevron) chevron.textContent = open ? '▾' : '▸';
-  });
+  };
+
+  toggle.addEventListener('click', handleToggle);
 }
 
 function escapeMetaLabel(text) {
