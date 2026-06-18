@@ -139,41 +139,51 @@
             
             <!-- Graph -->
             <div class="flex-1">
+                <!-- Mobile legend: in document flow (avoids real-device GPU overlay bugs) -->
+                <div class="graph-legend graph-legend--flow" aria-label="Map legend">
+                    <div class="graph-legend__title">LEGEND</div>
+                    <div class="graph-legend__nodes">
+                        <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#13817b"></span> Family / Independent</div>
+                        <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#CEA661"></span> Corporate / Group</div>
+                        <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#b45309"></span> Factory / Grower</div>
+                    </div>
+                    <div class="graph-legend__links">
+                        <button type="button" class="graph-legend__links-toggle" data-legend-toggle aria-expanded="false">
+                            <span>CONNECTIONS</span>
+                            <span class="graph-legend__chevron" aria-hidden="true">▸</span>
+                        </button>
+                        <div class="graph-legend__links-panel" data-legend-panel role="region" aria-label="Connection types">
+                            <div data-legend-rows class="graph-legend__links-rows"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="graph-container" class="relative rounded-3xl overflow-hidden h-[62vh] min-h-[420px] lg:h-[620px]">
                     <div id="graph" class="w-full h-full"></div>
 
-                    <div class="graph-overlays" aria-hidden="false">
-                        <!-- View controls -->
-                        <div class="graph-controls">
-                            <button onclick="zoomToFit()" type="button" class="graph-control-btn">
-                                Zoom to fit
-                            </button>
-                            <button onclick="resetZoom()" type="button" class="graph-control-btn">
-                                Reset
-                            </button>
-                            <button onclick="showHowTo()" type="button" class="graph-control-btn graph-control-btn--accent" title="Show guide &amp; example nodes">
-                                How to explore
-                            </button>
-                        </div>
+                    <div class="graph-controls">
+                        <button onclick="zoomToFit()" type="button" class="graph-control-btn">
+                            Zoom to fit
+                        </button>
+                        <button onclick="resetZoom()" type="button" class="graph-control-btn">
+                            Reset
+                        </button>
+                        <button onclick="showHowTo()" type="button" class="graph-control-btn graph-control-btn--accent" title="Show guide &amp; example nodes">
+                            How to explore
+                        </button>
+                    </div>
 
-                        <!-- Legend (nodes + collapsible connection types on mobile) -->
-                        <div id="graph-legend" class="graph-legend" aria-label="Map legend">
-                            <div class="graph-legend__title">LEGEND</div>
-                            <div class="graph-legend__nodes">
-                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#13817b"></span> Family / Independent</div>
-                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#CEA661"></span> Corporate / Group</div>
-                                <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#b45309"></span> Factory / Grower</div>
-                            </div>
-                            <div class="graph-legend__links">
-                                <button type="button" id="legend-connections-toggle" class="graph-legend__links-toggle" aria-expanded="false" aria-controls="legend-connections-panel">
-                                    <span>CONNECTIONS</span>
-                                    <span class="graph-legend__chevron" aria-hidden="true">▸</span>
-                                </button>
-                                <div id="legend-connections-panel" class="graph-legend__links-panel" role="region" aria-label="Connection types">
-                                    <div class="graph-legend__links-heading">CONNECTIONS</div>
-                                    <div id="legend-connections-rows" class="graph-legend__links-rows"></div>
-                                </div>
-                            </div>
+                    <!-- Desktop legend: overlaid on graph -->
+                    <div class="graph-legend graph-legend--overlay" aria-label="Map legend">
+                        <div class="graph-legend__title">LEGEND</div>
+                        <div class="graph-legend__nodes">
+                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#13817b"></span> Family / Independent</div>
+                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#CEA661"></span> Corporate / Group</div>
+                            <div class="graph-legend__item"><span class="graph-legend__dot" style="background:#b45309"></span> Factory / Grower</div>
+                        </div>
+                        <div class="graph-legend__links">
+                            <div class="graph-legend__links-heading">CONNECTIONS</div>
+                            <div data-legend-rows class="graph-legend__links-rows"></div>
                         </div>
                     </div>
 

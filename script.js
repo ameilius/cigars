@@ -80,30 +80,31 @@ function buildLinkLegendSwatch(category) {
 }
 
 function setupGraphLegend() {
-  const rows = document.getElementById('legend-connections-rows');
-  if (rows) {
-    rows.innerHTML = LINK_CATEGORIES.map(cat => `
-      <div class="graph-legend__item">
-        ${buildLinkLegendSwatch(cat)}
-        <span>${cat.label}</span>
-      </div>
-    `).join('');
-  }
+  const rowHTML = LINK_CATEGORIES.map(cat => `
+    <div class="graph-legend__item">
+      ${buildLinkLegendSwatch(cat)}
+      <span>${cat.label}</span>
+    </div>
+  `).join('');
 
-  const toggle = document.getElementById('legend-connections-toggle');
-  const panel = document.getElementById('legend-connections-panel');
-  if (!toggle || !panel) return;
+  document.querySelectorAll('[data-legend-rows]').forEach((rows) => {
+    rows.innerHTML = rowHTML;
+  });
 
-  const handleToggle = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const open = panel.classList.toggle('graph-legend__links-panel--open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    const chevron = toggle.querySelector('.graph-legend__chevron');
-    if (chevron) chevron.textContent = open ? '▾' : '▸';
-  };
+  document.querySelectorAll('[data-legend-toggle]').forEach((toggle) => {
+    const root = toggle.closest('.graph-legend');
+    const panel = root?.querySelector('[data-legend-panel]');
+    if (!panel) return;
 
-  toggle.addEventListener('click', handleToggle);
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const open = panel.classList.toggle('graph-legend__links-panel--open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      const chevron = toggle.querySelector('.graph-legend__chevron');
+      if (chevron) chevron.textContent = open ? '▾' : '▸';
+    });
+  });
 }
 
 function escapeMetaLabel(text) {

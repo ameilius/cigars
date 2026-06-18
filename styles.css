@@ -375,17 +375,12 @@ h1, h2, .font-display,
     height: 100%;
 }
 
-/* Floating map chrome (controls + legend) */
-.graph-overlays {
-    position: absolute;
-    inset: 0;
-    z-index: 12;
-    pointer-events: none;
-}
+/* Graph view controls */
 .graph-controls {
     position: absolute;
     top: 1rem;
     left: 1rem;
+    z-index: 12;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -421,23 +416,32 @@ h1, h2, .font-display,
     background: #DBB978;
 }
 
-/* Graph legend — nodes + connection types (all styles here; no Tailwind responsive deps) */
-#graph-legend {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    left: auto;
-    bottom: auto;
-    z-index: 2;
-    pointer-events: auto;
-    width: auto;
-    min-width: 9.5rem;
-    max-width: calc(100% - 1.25rem);
+/* Graph legend — shared */
+.graph-legend {
     padding: 0.5rem 0.75rem;
     background: rgba(236, 244, 242, 0.97);
     border: 1px solid #CFE0DC;
     border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(20, 129, 122, 0.12);
+}
+
+/* Mobile: in-flow strip above the map (reliable on real devices) */
+.graph-legend--flow {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Desktop: overlaid on graph */
+.graph-legend--overlay {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    left: auto;
+    z-index: 12;
+    pointer-events: auto;
+    min-width: 9.5rem;
+    max-width: calc(100% - 1.25rem);
 }
 .graph-legend__title,
 .graph-legend__links-heading,
@@ -477,7 +481,7 @@ h1, h2, .font-display,
     border-top: 1px solid rgba(207, 224, 220, 0.8);
 }
 .graph-legend__links-toggle {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
@@ -502,8 +506,11 @@ h1, h2, .font-display,
     flex-shrink: 0;
 }
 .graph-legend__links-heading {
-    display: none;
     margin-bottom: 0.25rem;
+}
+
+.graph-legend--flow .graph-legend__links-heading {
+    display: none;
 }
 .graph-legend__links-rows {
     display: grid;
@@ -523,8 +530,8 @@ h1, h2, .font-display,
     display: block;
 }
 @media (min-width: 640px) {
-    #graph-legend {
-        max-width: min(42vw, 15rem);
+    .graph-legend--overlay {
+        max-width: 15rem;
         padding: 0.625rem 1rem;
     }
     .graph-legend__nodes {
@@ -535,27 +542,31 @@ h1, h2, .font-display,
         font-size: 12px;
     }
 }
-@media (min-width: 1024px) {
-    .graph-legend__links-toggle {
-        display: none !important;
-    }
-    .graph-legend__links-heading {
-        display: block;
-    }
-    .graph-legend__links-panel {
-        display: block !important;
-    }
-}
+
+/* Mobile flow legend: compact 3-column node row */
 @media (max-width: 1023px) {
-    .graph-legend__links-toggle {
-        display: flex;
+    .graph-legend--flow .graph-legend__nodes {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
     }
-    .graph-legend__links-panel {
+    .graph-legend--flow .graph-legend__links-panel {
         display: none;
     }
-    .graph-legend__links-panel.graph-legend__links-panel--open {
+    .graph-legend--flow .graph-legend__links-panel.graph-legend__links-panel--open {
         display: block;
-        margin-top: 0.25rem;
+        margin-top: 0.35rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .graph-legend--flow {
+        display: none;
+    }
+    .graph-legend--overlay {
+        display: block;
+    }
+    .graph-legend--overlay .graph-legend__links-panel {
+        display: block;
     }
 }
 
@@ -571,15 +582,11 @@ h1, h2, .font-display,
         padding: 0.4rem 0.7rem;
         font-size: 11px;
     }
-    #graph-legend {
-        top: 0.65rem;
-        right: 0.65rem;
-        left: auto;
-        max-width: calc(100% - 1.3rem);
+    .graph-legend--flow {
         padding: 8px 10px;
     }
-    .graph-legend__nodes,
-    .graph-legend__links-rows {
+    .graph-legend--flow .graph-legend__nodes,
+    .graph-legend--flow .graph-legend__links-rows {
         gap: 4px 8px;
         font-size: 10.5px;
     }
@@ -664,7 +671,7 @@ h1, h2, .font-display,
         visibility: visible !important;
     }
 
-    #graph-legend {
+    .graph-legend--flow {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -855,7 +862,7 @@ h1, h2, .font-display,
         top: 0.65rem;
         left: 0.65rem;
     }
-    #graph-legend {
+    .graph-legend--overlay {
         top: 0.65rem;
         right: 0.65rem;
         left: auto;
