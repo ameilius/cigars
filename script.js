@@ -225,6 +225,12 @@ let introGuideShown = false;
 function maybeShowFirstVisitGuide() {
   if (introGuideShown) return;
 
+  // Shared ?node= links take priority over the first-visit intro
+  if (getNodeIdFromUrl()) {
+    introGuideShown = true;
+    return;
+  }
+
   const seen = localStorage.getItem('cigarNexus_seenIntro') === 'true' ||
                sessionStorage.getItem('cigarNexus_seenIntro') === 'true';
   if (seen) {
@@ -357,18 +363,8 @@ function initializeGraph() {
       zoomToFit(true);
     }, 650);
 
-    // Deep linking support: ?node=ID opens the drawer for that node (for SEO and shareable links)
-    setTimeout(() => {
-      const nodeId = getNodeIdFromUrl();
-      if (!nodeId) return;
-      const node = graphData.nodes.find(n => n.id === nodeId);
-      if (node) {
-        focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
-        showDrawer(node, { syncUrl: 'replace' });
-      } else {
-        clearNodeUrl({ replace: true });
-      }
-    }, 800);
+    // Deep linking support: ?node=ID opens the drawer (deferred if age gate is still visible)
+    setTimeout(() => tryApplyPendingNodeDeepLink(), 800);
 
   } catch (err) {
     console.error('Failed to initialize graph (nodes may not appear):', err);
@@ -981,6 +977,29 @@ function getNodeIdFromUrl() {
   return new URLSearchParams(window.location.search).get('node');
 }
 
+function isAgeGateVisible() {
+  const gate = document.getElementById('age-gate');
+  return !!(gate && getComputedStyle(gate).display !== 'none');
+}
+
+function applyNodeDeepLink({ syncUrl = 'replace' } = {}) {
+  const nodeId = getNodeIdFromUrl();
+  if (!nodeId) return false;
+  const node = graphData.nodes.find(n => n.id === nodeId);
+  if (!node) {
+    clearNodeUrl({ replace: true });
+    return false;
+  }
+  focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
+  showDrawer(node, { syncUrl });
+  return true;
+}
+
+function tryApplyPendingNodeDeepLink() {
+  if (!getNodeIdFromUrl() || isAgeGateVisible()) return false;
+  return applyNodeDeepLink({ syncUrl: 'replace' });
+}
+
 function pushNodeUrl(nodeId) {
   const url = new URL(window.location.href);
   if (url.searchParams.get('node') === nodeId) return;
@@ -1513,7 +1532,13 @@ function initAgeGate() {
       localStorage.setItem('cigarNexus_ageVerified', 'true');
       gate.style.display = 'none';
       document.body.style.overflow = '';
-      setTimeout(() => maybeShowFirstVisitGuide(), 350);
+      setTimeout(() => {
+        if (tryApplyPendingNodeDeepLink()) {
+          introGuideShown = true;
+        } else {
+          maybeShowFirstVisitGuide();
+        }
+      }, 350);
     });
   }
 
