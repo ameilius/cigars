@@ -196,6 +196,7 @@ function initializeApp() {
   if (allChip) allChip.classList.add('filter-active');
 
   setupSearch();
+  setupUrlHistory();
 
   // Initialize the graph (wrapped so one error doesn't kill filters or drawer)
   try {
@@ -357,16 +358,15 @@ function initializeGraph() {
     }, 650);
 
     // Deep linking support: ?node=ID opens the drawer for that node (for SEO and shareable links)
-    // Keeps all existing graph/drag/filter functionality intact
     setTimeout(() => {
-      const params = new URLSearchParams(window.location.search);
-      const nodeId = params.get('node');
-      if (nodeId) {
-        const node = graphData.nodes.find(n => n.id === nodeId);
-        if (node) {
-          focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
-          showDrawer(node);
-        }
+      const nodeId = getNodeIdFromUrl();
+      if (!nodeId) return;
+      const node = graphData.nodes.find(n => n.id === nodeId);
+      if (node) {
+        focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
+        showDrawer(node, { syncUrl: 'replace' });
+      } else {
+        clearNodeUrl({ replace: true });
       }
     }, 800);
 
@@ -730,7 +730,7 @@ function selectSearchResult(nodeId) {
   if (!node) return;
 
   closeSearchOverlay();
-  closeDrawer({ keepMapFocus: false, suppressDefault: true });
+  closeDrawer({ keepMapFocus: false, suppressDefault: true, skipUrlUpdate: true });
 
   const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
 
@@ -975,8 +975,73 @@ function expandGraphWithFocus(node) {
 // -----------------------------
 let currentDrawerNode = null;
 let mobileDrawerHideTimer = null;
+let suppressUrlSync = false;
 
-function showDrawer(node) {
+function getNodeIdFromUrl() {
+  return new URLSearchParams(window.location.search).get('node');
+}
+
+function pushNodeUrl(nodeId) {
+  const url = new URL(window.location.href);
+  if (url.searchParams.get('node') === nodeId) return;
+  url.searchParams.set('node', nodeId);
+  window.history.pushState({ nodeId }, '', url);
+}
+
+function clearNodeUrl({ replace = false } = {}) {
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has('node')) return;
+  url.searchParams.delete('node');
+  const next = url.pathname + url.search + url.hash;
+  if (replace) {
+    window.history.replaceState({}, '', next);
+  } else {
+    window.history.pushState({}, '', next);
+  }
+}
+
+function syncUrlForDrawer(node, mode) {
+  if (suppressUrlSync || mode === 'skip' || !node) return;
+  if (mode === 'replace') {
+    const url = new URL(window.location.href);
+    url.searchParams.set('node', node.id);
+    window.history.replaceState({ nodeId: node.id }, '', url);
+    return;
+  }
+  pushNodeUrl(node.id);
+}
+
+function openDrawerFromUrl(nodeId) {
+  const node = graphData.nodes.find(n => n.id === nodeId);
+  if (!node) {
+    clearNodeUrl({ replace: true });
+    return;
+  }
+  if (currentDrawerNode?.id !== nodeId) {
+    closeDrawer({ keepMapFocus: false, suppressDefault: true, skipUrlUpdate: true });
+  }
+  focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
+  showDrawer(node, { syncUrl: 'skip' });
+}
+
+function setupUrlHistory() {
+  window.addEventListener('popstate', () => {
+    suppressUrlSync = true;
+    const nodeId = getNodeIdFromUrl();
+    if (nodeId) {
+      openDrawerFromUrl(nodeId);
+    } else {
+      closeDrawer({
+        keepMapFocus: false,
+        suppressDefault: window.innerWidth >= 1024,
+        skipUrlUpdate: true
+      });
+    }
+    suppressUrlSync = false;
+  });
+}
+
+function showDrawer(node, options = {}) {
   currentDrawerNode = node;
 
   const isMobile = window.innerWidth < 1024;
@@ -1161,19 +1226,21 @@ function showDrawer(node) {
   if (isMobile && mDrawer) {
     mDrawer.scrollTop = 0;
   }
+
+  syncUrlForDrawer(node, options.syncUrl ?? 'push');
 }
 
 function showDrawerFromId(id) {
   const node = graphData.nodes.find(n => n.id === id);
   if (node) {
-    closeDrawer({ keepMapFocus: false, suppressDefault: true });
+    closeDrawer({ keepMapFocus: false, suppressDefault: true, skipUrlUpdate: true });
     const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
     focusNodeOnMap(node, zoomOpts);
     setTimeout(() => showDrawer(node), 420);
   }
 }
 
-function closeDrawer({ keepMapFocus = true, suppressDefault = false } = {}) {
+function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpdate = false } = {}) {
   const drawer = document.getElementById('drawer');
   const mDrawer = document.getElementById('drawer-mobile');
   const node = currentDrawerNode;
@@ -1225,6 +1292,10 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false } = {}) {
     }
   }
   removeBackdrop();
+
+  if (!skipUrlUpdate && !suppressUrlSync) {
+    clearNodeUrl();
+  }
 }
 
 function createOrShowBackdrop() {
@@ -1254,7 +1325,7 @@ function selectExample(nodeId) {
   const node = graphData.nodes.find(n => n.id === nodeId);
   if (!node) return;
 
-  closeDrawer({ keepMapFocus: false, suppressDefault: true });
+  closeDrawer({ keepMapFocus: false, suppressDefault: true, skipUrlUpdate: true });
 
   const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
   focusNodeOnMap(node, zoomOpts);
