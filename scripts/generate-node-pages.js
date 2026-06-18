@@ -10,6 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { execSync } = require('child_process');
+const sharp = require('sharp');
 
 const ROOT = path.join(__dirname, '..');
 const SITE = 'https://cigarnexus.app';
@@ -333,6 +334,29 @@ function twitterCardForSocialImage(kind) {
   return kind === 'default' ? 'summary_large_image' : 'summary';
 }
 
+const OG_FALLBACK_SIZE = { width: 1200, height: 630 };
+
+function localPathFromSiteUrl(url) {
+  if (!url || !url.startsWith(`${SITE}/`)) return null;
+  return path.join(ROOT, url.slice(SITE.length + 1).replace(/\//g, path.sep));
+}
+
+async function resolveOgImageDimensions(socialImage) {
+  const local = localPathFromSiteUrl(socialImage.url);
+  if (!local || !fs.existsSync(local)) return OG_FALLBACK_SIZE;
+
+  try {
+    const meta = await sharp(local).metadata();
+    if (meta.width > 0 && meta.height > 0) {
+      return { width: meta.width, height: meta.height };
+    }
+  } catch (err) {
+    console.warn(`OG image dimensions failed for ${socialImage.url}:`, err.message);
+  }
+
+  return OG_FALLBACK_SIZE;
+}
+
 function buildLogoBoxHtml(node) {
   const name = escapeHtml(node.name || node.id);
 
@@ -504,56 +528,66 @@ if (fs.existsSync(outputBase)) {
   }
 }
 
-let overrideCount = 0;
-let autoCount = 0;
+async function generateAllNodePages() {
+  let overrideCount = 0;
+  let autoCount = 0;
 
-baseGraphData.nodes.forEach(node => {
-  const dir = path.join(outputBase, node.id);
-  fs.mkdirSync(dir, { recursive: true });
+  for (const node of baseGraphData.nodes) {
+    const dir = path.join(outputBase, node.id);
+    fs.mkdirSync(dir, { recursive: true });
 
-  const connections = getConnections(node.id, baseGraphData.nodes, allLinks);
-  const descHtml = resolveDescription(node, connections, drawerDescriptions, expandedOverrides);
-  if (expandedOverrides[node.id] && node.id !== 'default') overrideCount++;
-  else autoCount++;
+    const connections = getConnections(node.id, baseGraphData.nodes, allLinks);
+    const descHtml = resolveDescription(node, connections, drawerDescriptions, expandedOverrides);
+    if (expandedOverrides[node.id] && node.id !== 'default') overrideCount++;
+    else autoCount++;
 
-  const plainDesc = truncate(stripHtml(descHtml), 155);
-  const canonical = `${SITE}/node/${node.id}/`;
-  const mapUrl = `/?node=${node.id}`;
-  const socialImage = resolveSocialImage(node);
-  const ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
+    const plainDesc = truncate(stripHtml(descHtml), 155);
+    const canonical = `${SITE}/node/${node.id}/`;
+    const mapUrl = `/?node=${node.id}`;
+    const socialImage = resolveSocialImage(node);
+    const ogDimensions = await resolveOgImageDimensions(socialImage);
+    const ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
 
-  const page = template
-    .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
-    .replace(/\{\{ID\}\}/g, node.id)
-    .replace(/\{\{CANONICAL\}\}/g, canonical)
-    .replace(/\{\{META_DESCRIPTION\}\}/g, escapeHtml(plainDesc))
-    .replace(/\{\{OG_IMAGE\}\}/g, escapeHtml(socialImage.url))
-    .replace(/\{\{OG_IMAGE_ALT\}\}/g, escapeHtml(ogImageAlt))
-    .replace(/\{\{TWITTER_CARD\}\}/g, twitterCardForSocialImage(socialImage.kind))
-    .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
-    .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
-    .replace(/\{\{WEBSITE_LINK\}\}/g, buildWebsiteLinkHtml(node, nodeWebsites))
-    .replace(/\{\{BREADCRUMBS\}\}/g, buildBreadcrumbs(node))
-    .replace(/\{\{CONNECTIONS\}\}/g, buildConnectionsHtml(node, baseGraphData.nodes, allLinks))
-    .replace(/\{\{RELATED\}\}/g, buildRelatedHtml(node, baseGraphData.nodes, allLinks))
-    .replace(/\{\{PRODUCT_LINES\}\}/g, buildProductLinesHtml(node))
-    .replace(/\{\{FIND_CIGARS\}\}/g, buildFindCigarsHtml(buildFamousSmokeBuyHtml))
-    .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
-    .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
-    .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites));
+    const page = template
+      .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
+      .replace(/\{\{ID\}\}/g, node.id)
+      .replace(/\{\{CANONICAL\}\}/g, canonical)
+      .replace(/\{\{META_DESCRIPTION\}\}/g, escapeHtml(plainDesc))
+      .replace(/\{\{OG_IMAGE\}\}/g, escapeHtml(socialImage.url))
+      .replace(/\{\{OG_IMAGE_WIDTH\}\}/g, String(ogDimensions.width))
+      .replace(/\{\{OG_IMAGE_HEIGHT\}\}/g, String(ogDimensions.height))
+      .replace(/\{\{OG_IMAGE_ALT\}\}/g, escapeHtml(ogImageAlt))
+      .replace(/\{\{TWITTER_CARD\}\}/g, twitterCardForSocialImage(socialImage.kind))
+      .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
+      .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
+      .replace(/\{\{WEBSITE_LINK\}\}/g, buildWebsiteLinkHtml(node, nodeWebsites))
+      .replace(/\{\{BREADCRUMBS\}\}/g, buildBreadcrumbs(node))
+      .replace(/\{\{CONNECTIONS\}\}/g, buildConnectionsHtml(node, baseGraphData.nodes, allLinks))
+      .replace(/\{\{RELATED\}\}/g, buildRelatedHtml(node, baseGraphData.nodes, allLinks))
+      .replace(/\{\{PRODUCT_LINES\}\}/g, buildProductLinesHtml(node))
+      .replace(/\{\{FIND_CIGARS\}\}/g, buildFindCigarsHtml(buildFamousSmokeBuyHtml))
+      .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
+      .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
+      .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites));
 
-  fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');
+    fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');
+  }
+
+  const websiteIds = new Set(Object.keys(nodeWebsites));
+  const missingWebsites = baseGraphData.nodes
+    .map(n => n.id)
+    .filter(id => !websiteIds.has(id) && !baseGraphData.nodes.find(n => n.id === id && n.website));
+  console.log(`Generated ${baseGraphData.nodes.length} node pages (${overrideCount} manual overrides, ${autoCount} auto-expanded).`);
+  console.log(`Website links: ${baseGraphData.nodes.length - missingWebsites.length}/${baseGraphData.nodes.length} nodes${missingWebsites.length ? ` (no URL: ${missingWebsites.join(', ')})` : ''}.`);
+
+  const sitemapPath = path.join(ROOT, 'sitemap.xml');
+  const sitemap = buildSitemap(baseGraphData.nodes);
+  validateSitemap(sitemap, baseGraphData.nodes);
+  fs.writeFileSync(sitemapPath, sitemap, 'utf8');
+  console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs, synced with data.js).`);
+}
+
+generateAllNodePages().catch((err) => {
+  console.error(err);
+  process.exit(1);
 });
-
-const websiteIds = new Set(Object.keys(nodeWebsites));
-const missingWebsites = baseGraphData.nodes
-  .map(n => n.id)
-  .filter(id => !websiteIds.has(id) && !baseGraphData.nodes.find(n => n.id === id && n.website));
-console.log(`Generated ${baseGraphData.nodes.length} node pages (${overrideCount} manual overrides, ${autoCount} auto-expanded).`);
-console.log(`Website links: ${baseGraphData.nodes.length - missingWebsites.length}/${baseGraphData.nodes.length} nodes${missingWebsites.length ? ` (no URL: ${missingWebsites.join(', ')})` : ''}.`);
-
-const sitemapPath = path.join(ROOT, 'sitemap.xml');
-const sitemap = buildSitemap(baseGraphData.nodes);
-validateSitemap(sitemap, baseGraphData.nodes);
-fs.writeFileSync(sitemapPath, sitemap, 'utf8');
-console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs, synced with data.js).`);
