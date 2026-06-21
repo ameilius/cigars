@@ -16,7 +16,7 @@ var baseGraphData = {
                 { id: "crema", name: "Crema", type: "brand", group: "family", country: "nicaragua" },
                 { id: "knucklesandwich", name: "Knuckle Sandwich", type: "brand", group: "family", country: "nicaragua", logo: "logos/knucklesandwich.jpg" },
                 { id: "eobrands", name: "EO Brands (legacy)", type: "company", group: "family", country: "usa" },
-                { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa" },
+                { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa", photo: "logos/eddieortega.webp" },
                 { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua", logo: "logos/601.webp" },
                 { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua", logo: "logos/murcielago.png" },
                 { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua", productLines: ["San Lotano", "New World", "Enclave", "Bellagio", "Last Call"] },
