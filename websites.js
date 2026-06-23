@@ -133,7 +133,9 @@ var nodeWebsites = {
   raicescubanas: { website: "https://drewestate.com", websiteLabel: "Drew Estate" },
   laaurorafactory: { website: "https://www.laaurora.com.do", websiteLabel: "La Aurora" },
   elreyhabanos: { website: "https://myfathercigars.com", websiteLabel: "My Father Cigars (historic Miami origin)" },
-  lacarrillo: { website: "https://casacarrillo.com" },
+  casacarrillo: { website: "https://casacarrillocigars.com" },
+  ernestoperezcarrillo: { website: "https://casacarrillocigars.com/about-us/", websiteLabel: "Casa Carrillo" },
+  lacarrillo: { website: "https://casacarrillocigars.com/about-us/our-factory/", websiteLabel: "Our Factory" },
   laisla: { website: "https://fratellobycrux.com", websiteLabel: "Fratello / La Isla" },
   caoamerican: { website: "https://caocigars.com", websiteLabel: "CAO" },
 
