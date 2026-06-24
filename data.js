@@ -158,7 +158,7 @@ var baseGraphData = {
                 { id: "jimrobinson", name: "\"Island Jim\" Robinson", type: "person", group: "family", country: "usa", photo: "logos/jimrobinson.png" },
                 { id: "nicholassyris", name: "Nicholas Syris", type: "person", group: "family", country: "usa", photo: "logos/nicholassyris.jpg" },
                 { id: "lhpremium", name: "LH Premium Cigars", type: "brand", group: "family", country: "costa rica", productLines: ["Claro", "Colorado", "Maduro", "Nick", "Nikos", "Nicolas"], logo: "logos/lhpremium.png" },
-                { id: "nickandjim", name: "Nick & Jim", type: "brand", group: "family", country: "costa rica", productLines: ["P.B.E.", "Toro"] },
+                { id: "nickandjim", name: "Nick & Jim", type: "brand", group: "family", country: "costa rica", productLines: ["P.B.E.", "Toro"], logo: "logos/nickandjim.png" },
                 { id: "lampert", name: "Lampert", type: "brand", group: "family", country: "costa rica", productLines: ["Oro Line", "Ocean Breeze", "Baba Yaga"], logo: "logos/lampert.png" },
                 { id: "casdagli", name: "Casdagli", type: "brand", group: "family", country: "costa rica", productLines: ["Villa Casdagli", "Pigasus", "Edición Limitada"], logo: "logos/casdagli.webp" },
                 { id: "vegassantiago", name: "Vegas de Santiago", type: "brand", group: "family", country: "costa rica", productLines: ["White Label", "Classic", "Reserva"], logo: "logos/vegasdesantiago.png" },
