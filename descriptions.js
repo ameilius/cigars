@@ -208,6 +208,7 @@ var drawerDescriptions = {
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities—sister brand to Casa Carrillo within the Perez-Carrillo family.",
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line—blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
   "cain": "Cain is Oliva's ligero-forward Nicaraguan sub-brand—launched in 2009 with Serie F and expanded into Black, Habano, Maduro, Connecticut CT, and Daytona. Rolled at Tabolisa in Estelí with triple-fermented Nicaraguan long-fillers.",
+  "nub": "NUB is Oliva's short, fat vitola sub-brand—created by Sam Leccia in 2008 to hit the cigar's sweet spot in a ~4-inch format. Rolled at Tabolisa with Nicaraguan core blends; lines include Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB.",
   "altadis": "Altadis U.S.A. (Tabacalera USA) is Imperial Brands' U.S. premium cigar arm, distributing legacy marques including Trinidad, Montecristo, and Romeo y Julieta non-Cuban lines.",
   "montecristonc": "Montecristo (Non-Cuban) is an STG/General Cigar portfolio brand with significant Nicaraguan production at STG Estelí.",
   "ryjnc": "Romeo y Julieta (Non-Cuban) is a heritage-name STG brand produced at STG Estelí and through Plasencia contract work.",

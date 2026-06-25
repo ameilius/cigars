@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data — 165 nodes, 306 links
+ * Cigar Nexus graph data — 166 nodes, 312 links
  * Updated: P0–P3 Privada factory map cross-check (May 2026)
  */
 var baseGraphData = {
@@ -148,6 +148,7 @@ var baseGraphData = {
                 { id: "ryjnc", name: "Romeo y Julieta (NC)", type: "brand", group: "corporate", country: "nicaragua" },
                 { id: "trinidadespiritu", name: "Trinidad Espiritu", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Series No. 1", "Series No. 2", "Series No. 3", "Miami Edition"], logo: "logos/trinidad.png" },
                 { id: "cain", name: "Cain", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Serie F", "550", "Black", "Habano", "Maduro", "Connecticut CT", "Daytona"], logo: "logos/cain.webp" },
+                { id: "nub", name: "NUB", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Connecticut", "Cameroon", "Habano", "Maduro", "Dub", "Nuance", "Cain NUB"] },
                 { id: "altadis", name: "Altadis U.S.A.", type: "company", group: "corporate", country: "usa", logo: "logos/altadis.png" },
                 { id: "fratello", name: "Fratello", type: "brand", group: "family", country: "nicaragua", productLines: ["Classico", "Navetta", "Bianco", "Arlequin"] },
                 { id: "padilla", name: "Padilla Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["La Perla Habana", "Miami", "Golden Age", "Cazadores"], logo: "logos/padilla.jpg" },
@@ -477,5 +478,11 @@ var baseGraphData = {
                 { source: "cain", target: "tabolisa", type: "manufactured at" },
                 { source: "oliva", target: "cain", type: "owns / portfolio" },
                 { source: "tabolisa", target: "cain", type: "manufactures" },
+                { source: "nub", target: "oliva", type: "brand of (Oliva Cigar Co.)" },
+                { source: "nub", target: "tabolisa", type: "manufactured at" },
+                { source: "nub", target: "cain", type: "sibling brand (Studio Tobac)" },
+                { source: "oliva", target: "nub", type: "owns / portfolio" },
+                { source: "tabolisa", target: "nub", type: "manufactures" },
+                { source: "cain", target: "nub", type: "sibling brand (Cain NUB crossover)" },
             ]
         };
