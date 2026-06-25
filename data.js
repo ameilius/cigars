@@ -148,7 +148,7 @@ var baseGraphData = {
                 { id: "ryjnc", name: "Romeo y Julieta (NC)", type: "brand", group: "corporate", country: "nicaragua" },
                 { id: "trinidadespiritu", name: "Trinidad Espiritu", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Series No. 1", "Series No. 2", "Series No. 3", "Miami Edition"], logo: "logos/trinidad.png" },
                 { id: "cain", name: "Cain", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Serie F", "550", "Black", "Habano", "Maduro", "Connecticut CT", "Daytona"], logo: "logos/cain.webp" },
-                { id: "nub", name: "NUB", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Connecticut", "Cameroon", "Habano", "Maduro", "Dub", "Nuance", "Cain NUB"] },
+                { id: "nub", name: "NUB", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Connecticut", "Cameroon", "Habano", "Maduro", "Dub", "Nuance", "Cain NUB"], logo: "logos/nub.png" },
                 { id: "altadis", name: "Altadis U.S.A.", type: "company", group: "corporate", country: "usa", logo: "logos/altadis.png" },
                 { id: "fratello", name: "Fratello", type: "brand", group: "family", country: "nicaragua", productLines: ["Classico", "Navetta", "Bianco", "Arlequin"] },
                 { id: "padilla", name: "Padilla Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["La Perla Habana", "Miami", "Golden Age", "Cazadores"], logo: "logos/padilla.jpg" },
