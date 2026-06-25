@@ -152,6 +152,8 @@ var nodeWebsites = {
   kristoff: { website: "https://kristoffcigars.com" },
   montecristonc: { website: "https://www.montecristo.com", websiteLabel: "Montecristo (US)" },
   ryjnc: { website: "https://www.romeoyjulieta.com", websiteLabel: "Romeo y Julieta (US)" },
+  trinidadespiritu: { website: "https://www.altadisusa.com/cigars/trinidad-santiago/trinidad-espiritu-no-2/", websiteLabel: "Trinidad Espiritu (Altadis USA)" },
+  altadis: { website: "https://www.altadisusa.com" },
   fratello: { website: "https://fratellobycrux.com" },
   padilla: { website: "https://padillacigars.com" },
   ozgener: { website: "https://ozgenerfamilycigars.com" },

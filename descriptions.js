@@ -206,6 +206,8 @@ var drawerDescriptions = {
   "crownedheads": "Crowned Heads (Jon Huber & friends) is a celebrated boutique brand produced at My Father in Nicaragua with historical ties to NACSA.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities—sister brand to Casa Carrillo within the Perez-Carrillo family.",
+  "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line—blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
+  "altadis": "Altadis U.S.A. (Tabacalera USA) is Imperial Brands' U.S. premium cigar arm, distributing legacy marques including Trinidad, Montecristo, and Romeo y Julieta non-Cuban lines.",
   "montecristonc": "Montecristo (Non-Cuban) is an STG/General Cigar portfolio brand with significant Nicaraguan production at STG Estelí.",
   "ryjnc": "Romeo y Julieta (Non-Cuban) is a heritage-name STG brand produced at STG Estelí and through Plasencia contract work.",
   "fratello": "Fratello (Omar de Frias) is a boutique brand rolled at La Zona in Estelí and Tabacalera La Isla in the Dominican Republic.",

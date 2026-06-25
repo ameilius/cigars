@@ -146,6 +146,8 @@ var baseGraphData = {
                 { id: "kristoff", name: "Kristoff", type: "brand", group: "family", country: "dominican", productLines: ["Original Maduro", "GC Signature", "Shiro", "Kristania"], logo: "logos/kristoff.webp" },
                 { id: "montecristonc", name: "Montecristo (NC)", type: "brand", group: "corporate", country: "nicaragua" },
                 { id: "ryjnc", name: "Romeo y Julieta (NC)", type: "brand", group: "corporate", country: "nicaragua" },
+                { id: "trinidadespiritu", name: "Trinidad Espiritu", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Series No. 1", "Series No. 2", "Series No. 3", "Miami Edition"] },
+                { id: "altadis", name: "Altadis U.S.A.", type: "company", group: "corporate", country: "usa" },
                 { id: "fratello", name: "Fratello", type: "brand", group: "family", country: "nicaragua", productLines: ["Classico", "Navetta", "Bianco", "Arlequin"] },
                 { id: "padilla", name: "Padilla Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["La Perla Habana", "Miami", "Golden Age", "Cazadores"], logo: "logos/padilla.jpg" },
                 { id: "ozgener", name: "Ozgener Family Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Bosphorus", "Aramas", "Cypher", "Pi"] },
@@ -464,5 +466,11 @@ var baseGraphData = {
                 { source: "selectedtobacco", target: "byron", type: "owns" },
                 { source: "selectedtobacco", target: "nelsonalfonso", type: "founded by" },
                 { source: "nelsonalfonso", target: "selectedtobacco", type: "founded" },
+                { source: "trinidadespiritu", target: "sanlotano", type: "manufactured at" },
+                { source: "trinidadespiritu", target: "ajfernandez", type: "collaboration with" },
+                { source: "trinidadespiritu", target: "altadis", type: "distributed by" },
+                { source: "altadis", target: "trinidadespiritu", type: "owns / distributes" },
+                { source: "sanlotano", target: "trinidadespiritu", type: "manufactures" },
+                { source: "ajfernandez", target: "trinidadespiritu", type: "collaboration blends" },
             ]
         };
