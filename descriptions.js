@@ -97,7 +97,7 @@ var drawerDescriptions = {
   "nacsa": "NACSA (Estelí) is a respected factory that has become a primary production partner for Warped and other boutique brands. Known for high-quality, attentive manufacturing.",
 
   // === Oliva ===
-  "oliva": "Oliva Cigar Co. is a major vertically integrated producer owned by the Vandermarliere family (Belgium). Famous for Serie V, Melanio, and Nub. Tabolisa is their primary Estelí factory.",
+  "oliva": "Oliva Cigar Co. is a major vertically integrated producer owned by the Vandermarliere family (Belgium). Famous for Serie V, Melanio, Nub, and Cain. Tabolisa is their primary Estelí factory.",
   "fredvandermarliere": "Fred Vandermarliere is part of the Belgian family that owns Oliva Cigar Co. The family has driven significant investment and growth in Nicaraguan production.",
   "tabolisa": "Tabolisa (Oliva Estelí) is the primary factory for Oliva Cigar Co. It produces the majority of the brand’s well-known lines including Serie V and Melanio.",
 
@@ -207,6 +207,7 @@ var drawerDescriptions = {
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities—sister brand to Casa Carrillo within the Perez-Carrillo family.",
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line—blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
+  "cain": "Cain is Oliva's ligero-forward Nicaraguan sub-brand—launched in 2009 with Serie F and expanded into Black, Habano, Maduro, Connecticut CT, and Daytona. Rolled at Tabolisa in Estelí with triple-fermented Nicaraguan long-fillers.",
   "altadis": "Altadis U.S.A. (Tabacalera USA) is Imperial Brands' U.S. premium cigar arm, distributing legacy marques including Trinidad, Montecristo, and Romeo y Julieta non-Cuban lines.",
   "montecristonc": "Montecristo (Non-Cuban) is an STG/General Cigar portfolio brand with significant Nicaraguan production at STG Estelí.",
   "ryjnc": "Romeo y Julieta (Non-Cuban) is a heritage-name STG brand produced at STG Estelí and through Plasencia contract work.",

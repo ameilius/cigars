@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data — 153 nodes, 270 links
+ * Cigar Nexus graph data — 165 nodes, 306 links
  * Updated: P0–P3 Privada factory map cross-check (May 2026)
  */
 var baseGraphData = {
@@ -71,7 +71,7 @@ var baseGraphData = {
                 { id: "warped", name: "Warped Cigars", type: "brand", group: "family", country: "usa", productLines: ["Corto", "Sarto", "Cloud Hopper", "Futuro", "Guardian", "El Oso"], logo: "logos/warped.svg" },
                 { id: "kylegellis", name: "Kyle Gellis", type: "person", group: "family", country: "usa", photo: "logos/kylegellis.png" },
                 { id: "nacsa", name: "NACSA (Estelí)", type: "factory", group: "family", country: "nicaragua", logo: "logos/nacsa.jpg" },
-                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "V Melanio", "Serie G"], logo: "logos/oliva.webp" },
+                { id: "oliva", name: "Oliva Cigar Co.", type: "company", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Melanio", "Nub", "Cain", "V Melanio", "Serie G"], logo: "logos/oliva.webp" },
                 { id: "fredvandermarliere", name: "Fred Vandermarliere", type: "person", group: "corporate", country: "belgium", photo: "logos/fredvandermarliere.jpg" },
                 { id: "tabolisa", name: "Tabolisa (Oliva Estelí)", type: "factory", group: "corporate", country: "nicaragua" },
                 { id: "perdomo", name: "Perdomo Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Reserve 10th Anniversary", "Lot 23", "Champagne", "Patrón", "20th Anniversary"], logo: "logos/perdomo.webp" },
@@ -147,6 +147,7 @@ var baseGraphData = {
                 { id: "montecristonc", name: "Montecristo (NC)", type: "brand", group: "corporate", country: "nicaragua" },
                 { id: "ryjnc", name: "Romeo y Julieta (NC)", type: "brand", group: "corporate", country: "nicaragua" },
                 { id: "trinidadespiritu", name: "Trinidad Espiritu", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Series No. 1", "Series No. 2", "Series No. 3", "Miami Edition"], logo: "logos/trinidad.png" },
+                { id: "cain", name: "Cain", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Serie F", "550", "Black", "Habano", "Maduro", "Connecticut CT", "Daytona"] },
                 { id: "altadis", name: "Altadis U.S.A.", type: "company", group: "corporate", country: "usa", logo: "logos/altadis.png" },
                 { id: "fratello", name: "Fratello", type: "brand", group: "family", country: "nicaragua", productLines: ["Classico", "Navetta", "Bianco", "Arlequin"] },
                 { id: "padilla", name: "Padilla Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["La Perla Habana", "Miami", "Golden Age", "Cazadores"], logo: "logos/padilla.jpg" },
@@ -472,5 +473,9 @@ var baseGraphData = {
                 { source: "altadis", target: "trinidadespiritu", type: "owns / distributes" },
                 { source: "sanlotano", target: "trinidadespiritu", type: "manufactures" },
                 { source: "ajfernandez", target: "trinidadespiritu", type: "collaboration blends" },
+                { source: "cain", target: "oliva", type: "brand of (Oliva Cigar Co.)" },
+                { source: "cain", target: "tabolisa", type: "manufactured at" },
+                { source: "oliva", target: "cain", type: "owns / portfolio" },
+                { source: "tabolisa", target: "cain", type: "manufactures" },
             ]
         };
