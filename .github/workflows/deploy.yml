@@ -29,6 +29,7 @@ jobs:
 
       - name: Verify SEO page build (CI gate)
         run: |
+          node -e "const m=require('./content/expanded/index.js'); if(!Object.keys(m).length) throw new Error('content/expanded loaded empty'); console.log('expanded overrides:', Object.keys(m).length);"
           node scripts/generate-node-pages.js
           test -f node/padron/index.html
           test "$(wc -c < node/padron/index.html)" -gt 12000
