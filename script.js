@@ -250,6 +250,13 @@ const SEARCH_ZOOM_SETTLE_MS = 900;
 let searchZoomTimer = null;
 let searchZoomGeneration = 0;
 
+function normalizeSearchText(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
 // -----------------------------
 // D3 Graph Variables
 // -----------------------------
@@ -639,9 +646,10 @@ function getFilteredData() {
   if (searchTerm) {
     const term = searchTerm;
     filteredNodes = filteredNodes.filter(n =>
-      (n.name || '').toLowerCase().includes(term) ||
-      (n.type || '').toLowerCase().includes(term) ||
-      (n.country || '').toLowerCase().includes(term)
+      normalizeSearchText(n.name).includes(term) ||
+      normalizeSearchText(n.type).includes(term) ||
+      normalizeSearchText(n.country).includes(term) ||
+      normalizeSearchText(n.id).includes(term)
     );
   }
 
@@ -738,7 +746,7 @@ function updateSearchMobileBadge() {
 }
 
 function onSearchInput(value, sourceInput) {
-  searchTerm = value.trim().toLowerCase();
+  searchTerm = normalizeSearchText(value.trim());
   syncSearchInputs(sourceInput);
   applyFiltersAndSearch();
   scheduleDesktopSearchZoom();
@@ -849,8 +857,8 @@ function getSearchMatches() {
   if (!searchTerm) return [];
   const { nodes } = getFilteredData();
   return [...nodes].sort((a, b) => {
-    const aName = (a.name || '').toLowerCase();
-    const bName = (b.name || '').toLowerCase();
+    const aName = normalizeSearchText(a.name);
+    const bName = normalizeSearchText(b.name);
     const aStarts = aName.startsWith(searchTerm);
     const bStarts = bName.startsWith(searchTerm);
     if (aStarts !== bStarts) return aStarts ? -1 : 1;
