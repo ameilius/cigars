@@ -242,6 +242,14 @@ let activeFilters = new Set(['all']);
 let searchTerm = '';
 let searchOverlayOpen = false;
 
+// Desktop search auto-zoom (debounced; does not affect mobile search overlay)
+const DESKTOP_SEARCH_ZOOM_MIN = 1024;
+const SEARCH_ZOOM_DEBOUNCE_MS = 350;
+const SEARCH_ZOOM_MAX_MATCHES = 12;
+const SEARCH_ZOOM_SETTLE_MS = 900;
+let searchZoomTimer = null;
+let searchZoomGeneration = 0;
+
 // -----------------------------
 // D3 Graph Variables
 // -----------------------------
@@ -733,6 +741,7 @@ function onSearchInput(value, sourceInput) {
   searchTerm = value.trim().toLowerCase();
   syncSearchInputs(sourceInput);
   applyFiltersAndSearch();
+  scheduleDesktopSearchZoom();
 }
 
 function bindSearchInput(input, clearBtn) {
@@ -757,6 +766,83 @@ function clearSearch() {
   updateSearchClearButton(mobile, document.getElementById('search-mobile-clear'));
   applyFiltersAndSearch();
   if (searchOverlayOpen) renderSearchResults();
+  scheduleDesktopSearchZoom();
+}
+
+function isDesktopSearchZoomEligible() {
+  return window.innerWidth >= DESKTOP_SEARCH_ZOOM_MIN && !searchOverlayOpen;
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function getFilteredNodeBounds(extraPadding = 48) {
+  const { nodes } = getFilteredData();
+  const positioned = nodes.filter(hasNodeCoords);
+  if (!positioned.length) return null;
+
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const n of positioned) {
+    const pad = getNodeRadius(n) + extraPadding;
+    minX = Math.min(minX, n.x - pad);
+    minY = Math.min(minY, n.y - pad);
+    maxX = Math.max(maxX, n.x + pad);
+    maxY = Math.max(maxY, n.y + pad);
+  }
+
+  if (!isFinite(minX) || !isFinite(maxX)) return null;
+  return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+}
+
+function waitForSearchLayoutSettle(callback, generation) {
+  if (!simulation) {
+    callback();
+    return;
+  }
+
+  let settled = false;
+  const finish = () => {
+    if (settled || generation !== searchZoomGeneration) return;
+    settled = true;
+    simulation.on('end.searchZoom', null);
+    callback();
+  };
+
+  simulation.on('end.searchZoom', finish);
+  setTimeout(finish, SEARCH_ZOOM_SETTLE_MS);
+}
+
+function scheduleDesktopSearchZoom() {
+  if (!isDesktopSearchZoomEligible()) return;
+  if (searchZoomTimer) clearTimeout(searchZoomTimer);
+  searchZoomTimer = setTimeout(runDesktopSearchZoom, SEARCH_ZOOM_DEBOUNCE_MS);
+}
+
+function runDesktopSearchZoom() {
+  searchZoomTimer = null;
+  if (!isDesktopSearchZoomEligible() || !svg || !viewport) return;
+
+  const generation = ++searchZoomGeneration;
+  const matchCount = getFilteredData().nodes.length;
+
+  const executeZoom = () => {
+    if (generation !== searchZoomGeneration) return;
+
+    const silent = prefersReducedMotion();
+    if (!searchTerm) {
+      zoomToFit(silent);
+      return;
+    }
+    if (matchCount === 0 || matchCount > SEARCH_ZOOM_MAX_MATCHES) return;
+    zoomToFit(silent, { searchMode: true });
+  };
+
+  waitForSearchLayoutSettle(executeZoom, generation);
 }
 
 function getSearchMatches() {
@@ -939,9 +1025,17 @@ function dragEnded(event, d) {
 // -----------------------------
 // Zoom Controls
 // -----------------------------
-function zoomToFit(silent = false) {
+function zoomToFit(silent = false, options = {}) {
   if (!svg || !viewport) return;
-  const bounds = viewport.node().getBBox();
+
+  const searchMode = !!options.searchMode;
+  const paddingFactor = searchMode ? 0.65 : 0.92;
+  const maxScale = searchMode ? 2.4 : 1.6;
+
+  let bounds = searchMode ? getFilteredNodeBounds(48) : null;
+  if (!bounds || !bounds.width || !bounds.height) {
+    bounds = viewport.node().getBBox();
+  }
   if (!bounds.width || !bounds.height) return;
 
   const fullWidth = graphWidth;
@@ -949,7 +1043,10 @@ function zoomToFit(silent = false) {
   const midX = bounds.x + bounds.width / 2;
   const midY = bounds.y + bounds.height / 2;
 
-  const scale = Math.min(1.6, 0.92 / Math.max(bounds.width / fullWidth, bounds.height / fullHeight));
+  const scale = Math.min(
+    maxScale,
+    paddingFactor / Math.max(bounds.width / fullWidth, bounds.height / fullHeight)
+  );
   const tx = fullWidth / 2 - scale * midX;
   const ty = fullHeight / 2 - scale * midY;
 
