@@ -1431,7 +1431,7 @@ function showDrawer(node, options = {}) {
     // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
     const deskLinkSlot = document.getElementById('drawer-dedicated-link');
     if (deskLinkSlot) {
-      deskLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
+      deskLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View Full Profile →</a>`;
     }
 
     if (productLinesEl) productLinesEl.innerHTML = productLinesHTML;
@@ -1458,7 +1458,7 @@ function showDrawer(node, options = {}) {
     // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
     const mobLinkSlot = document.getElementById('drawer-dedicated-link-mobile');
     if (mobLinkSlot) {
-      mobLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View full dedicated page →</a>`;
+      mobLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View Full Profile →</a>`;
     }
 
     if (mProductLinesEl) mProductLinesEl.innerHTML = productLinesHTML;
