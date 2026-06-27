@@ -183,18 +183,76 @@ function buildMetaPills(node) {
 
 let selectedNodeId = null;
 
-function setSelectedNode(nodeId) {
+// Link trace pulse on node select — set false to disable without reverting (rollback toggle)
+const LINK_TRACE_ENABLED = true;
+const LINK_TRACE_DURATION_MS = 680;
+const LINK_TRACE_STAGGER_MS = 35;
+let linkTraceTimer = null;
+
+function setSelectedNode(nodeId, options = {}) {
   selectedNodeId = nodeId || null;
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', d => d.id === nodeId);
   updateLinkHighlight(nodeId);
+  if (options.animate) animateLinkTrace(nodeId);
 }
 
 function clearSelectedNode() {
   selectedNodeId = null;
+  cancelLinkTrace();
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', false);
   updateLinkHighlight(null);
+}
+
+function cancelLinkTrace() {
+  if (linkTraceTimer) {
+    clearTimeout(linkTraceTimer);
+    linkTraceTimer = null;
+  }
+  if (!viewport) return;
+  viewport.selectAll('.links line')
+    .classed('link-trace', false)
+    .classed('link-trace--reverse', false)
+    .classed('link-trace--ownership', false)
+    .classed('link-trace--production', false)
+    .classed('link-trace--partnership', false)
+    .classed('link-trace--other', false)
+    .style('animation-delay', null)
+    .style('animation-duration', null);
+}
+
+function animateLinkTrace(nodeId) {
+  if (!LINK_TRACE_ENABLED || !viewport || !nodeId) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  cancelLinkTrace();
+
+  const connected = [];
+  viewport.selectAll('.links line').each(function(d) {
+    const s = d.source.id || d.source;
+    const t = d.target.id || d.target;
+    if (s === nodeId || t === nodeId) connected.push({ el: this, data: d });
+  });
+  if (!connected.length) return;
+
+  connected.forEach(({ el, data: d }, i) => {
+    const s = d.source.id || d.source;
+    const t = d.target.id || d.target;
+    const reverse = t === nodeId;
+    const cat = getLinkCategory(d);
+    d3.select(el)
+      .classed('link-trace', true)
+      .classed('link-trace--reverse', reverse)
+      .classed(`link-trace--${cat}`, true)
+      .style('animation-delay', `${i * LINK_TRACE_STAGGER_MS}ms`)
+      .style('animation-duration', `${LINK_TRACE_DURATION_MS}ms`);
+  });
+
+  linkTraceTimer = setTimeout(
+    cancelLinkTrace,
+    LINK_TRACE_DURATION_MS + connected.length * LINK_TRACE_STAGGER_MS + 50
+  );
 }
 
 function updateLinkHighlight(nodeId) {
@@ -473,6 +531,8 @@ function updateGraph() {
     console.warn('updateGraph called before graph was initialized');
     return;
   }
+
+  cancelLinkTrace();
 
   let filteredData;
   try {
@@ -1224,7 +1284,7 @@ function applyNodeDeepLink({ syncUrl = 'replace' } = {}) {
     return false;
   }
   focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
-  showDrawer(node, { syncUrl });
+  showDrawer(node, { syncUrl, animateTrace: false });
   return true;
 }
 
@@ -1273,7 +1333,7 @@ function openDrawerFromUrl(nodeId) {
     closeDrawer({ keepMapFocus: false, suppressDefault: true, skipUrlUpdate: true });
   }
   focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
-  showDrawer(node, { syncUrl: 'skip' });
+  showDrawer(node, { syncUrl: 'skip', animateTrace: false });
 }
 
 function setupUrlHistory() {
@@ -1372,7 +1432,7 @@ function showDrawer(node, options = {}) {
   applyDrawerVisual(logoContainerMobile, logoImgMobile);
 
   const metaHTML = buildMetaPills(node);
-  setSelectedNode(node.id);
+  setSelectedNode(node.id, { animate: options.animateTrace !== false });
 
   const desc = descriptions[node.id] || "A notable node in the cigar industry with connections to the brands and factories shown in the graph.";
 

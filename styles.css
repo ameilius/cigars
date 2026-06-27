@@ -275,6 +275,45 @@ h1, h2, .font-display,
     stroke-opacity: 0.5;
 }
 
+/* Link trace pulse — flows from clicked node toward connected node (rollback: delete this block) */
+@media (prefers-reduced-motion: no-preference) {
+    .link.link-trace {
+        transition: none;
+        stroke-linecap: round;
+        stroke-opacity: 1;
+        animation: link-trace-flow var(--link-trace-duration, 680ms) ease-out forwards;
+        filter: drop-shadow(0 0 4px rgba(206, 166, 97, 0.55));
+    }
+    .link.link-trace--reverse {
+        animation-name: link-trace-flow-reverse;
+    }
+    .link.link-trace--ownership { stroke: #CEA661; }
+    .link.link-trace--production { stroke: #DBB978; }
+    .link.link-trace--partnership { stroke: #E8D4A8; }
+    .link.link-trace--other { stroke: #9EC4BC; }
+
+    @keyframes link-trace-flow {
+        0% {
+            stroke-dasharray: 7 93;
+            stroke-dashoffset: 100;
+        }
+        100% {
+            stroke-dasharray: 7 93;
+            stroke-dashoffset: 0;
+        }
+    }
+    @keyframes link-trace-flow-reverse {
+        0% {
+            stroke-dasharray: 7 93;
+            stroke-dashoffset: -100;
+        }
+        100% {
+            stroke-dasharray: 7 93;
+            stroke-dashoffset: 0;
+        }
+    }
+}
+
 .drawer { transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); }
 
 .filter-chip {
