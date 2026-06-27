@@ -1007,6 +1007,79 @@ h1, h2, .font-display,
     padding-right: 10px;
 }
 
+/* Desktop drag hint — one-time micro-tooltip (rollback: delete this block) */
+.drag-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    z-index: 14;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.5rem 0.45rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(206, 166, 97, 0.45);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 18px -6px rgba(20, 129, 122, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    color: #14817A;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    pointer-events: auto;
+    animation: dragHintIn 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+.drag-hint.hidden {
+    display: none !important;
+}
+.drag-hint__icon {
+    flex-shrink: 0;
+    color: #CEA661;
+    opacity: 0.9;
+}
+.drag-hint__text {
+    line-height: 1;
+    white-space: nowrap;
+}
+.drag-hint__dismiss {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    margin-left: 0.1rem;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: #6B8A84;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+.drag-hint__dismiss:hover {
+    color: #14817A;
+    background: rgba(20, 129, 122, 0.08);
+}
+@keyframes dragHintIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+@media (max-width: 1023px) {
+    .drag-hint {
+        display: none !important;
+    }
+}
+
 /* Mobile welcome — floats over map bottom (no document-flow shift / CLS) */
 .mobile-welcome--overlay {
     position: absolute;
@@ -1701,6 +1774,7 @@ h1, h2, .font-display,
     .search-overlay,
     .search-result-item,
     .mobile-welcome,
+    .drag-hint,
     .drawer-panel--mobile.drawer-panel--howto.drawer-open,
     #age-gate,
     #age-gate > div {

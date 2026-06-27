@@ -347,6 +347,7 @@ function initializeApp() {
   setupFilterStatus();
   setupUrlHistory();
   setupGraphLegend();
+  setupDragHint();
 
   // Initialize the graph (wrapped so one error doesn't kill filters or drawer)
   try {
@@ -1071,12 +1072,76 @@ function updateFilterChipCounts() {
 }
 
 // -----------------------------
+// Desktop drag hint (one-time) — set false to disable / rollback
+// -----------------------------
+const DRAG_HINT_ENABLED = true;
+const DRAG_HINT_STORAGE_KEY = 'cigarNexus_seenDragHint';
+
+function isDesktopGraphView() {
+  return window.matchMedia('(min-width: 1024px)').matches;
+}
+
+function hasSeenDragHint() {
+  try {
+    return localStorage.getItem(DRAG_HINT_STORAGE_KEY) === 'true';
+  } catch (_) {
+    return false;
+  }
+}
+
+function dismissDragHint(persist = true) {
+  const el = document.getElementById('drag-hint');
+  if (!el) return;
+  el.classList.add('hidden');
+  el.setAttribute('aria-hidden', 'true');
+  if (persist) {
+    try { localStorage.setItem(DRAG_HINT_STORAGE_KEY, 'true'); } catch (_) {}
+  }
+}
+
+function maybeShowDragHint() {
+  if (!DRAG_HINT_ENABLED || !isDesktopGraphView() || hasSeenDragHint()) return;
+  if (isAgeGateVisible()) return;
+
+  const el = document.getElementById('drag-hint');
+  if (!el) return;
+
+  el.classList.remove('hidden');
+  el.setAttribute('aria-hidden', 'false');
+}
+
+function scheduleDragHint() {
+  if (!DRAG_HINT_ENABLED) return;
+  setTimeout(() => {
+    if (!isAgeGateVisible()) maybeShowDragHint();
+  }, 2400);
+}
+
+function setupDragHint() {
+  const el = document.getElementById('drag-hint');
+  if (!el) return;
+
+  const dismissBtn = el.querySelector('.drag-hint__dismiss');
+  if (dismissBtn) dismissBtn.addEventListener('click', () => dismissDragHint(true));
+
+  window.addEventListener('resize', () => {
+    if (!isDesktopGraphView()) dismissDragHint(false);
+    else if (!hasSeenDragHint()) maybeShowDragHint();
+  });
+
+  scheduleDragHint();
+}
+
+// -----------------------------
 // Drag handlers
 // -----------------------------
 function dragStarted(event, d) {
   if (!event.active) simulation.alphaTarget(0.2).restart();
   d.fx = d.x;
   d.fy = d.y;
+  if (DRAG_HINT_ENABLED && isDesktopGraphView() && !hasSeenDragHint()) {
+    dismissDragHint(true);
+  }
 }
 
 function dragged(event, d) {
@@ -1939,6 +2004,7 @@ function initAgeGate() {
         } else {
           maybeShowFirstVisitGuide();
         }
+        scheduleDragHint();
       }, 350);
     });
   }
