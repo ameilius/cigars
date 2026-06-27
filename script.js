@@ -1293,6 +1293,119 @@ function tryApplyPendingNodeDeepLink() {
   return applyNodeDeepLink({ syncUrl: 'replace' });
 }
 
+const SHARE_PRODUCTION_ORIGIN = 'https://cigarnexus.app';
+
+function isLocalDevHost() {
+  const host = window.location.hostname;
+  return !host
+    || host === 'localhost'
+    || host === '127.0.0.1'
+    || window.location.protocol === 'file:';
+}
+
+function buildNodeMapShareUrl(nodeId) {
+  const origin = isLocalDevHost() ? SHARE_PRODUCTION_ORIGIN : window.location.origin;
+  const path = isLocalDevHost() ? '/' : (window.location.pathname || '/');
+  const url = new URL(origin + path);
+  url.searchParams.set('node', nodeId);
+  return url.toString();
+}
+
+function canUseNativeShare(shareUrl) {
+  if (typeof navigator.share !== 'function' || !window.isSecureContext) return false;
+  if (isLocalDevHost()) return false;
+
+  try {
+    const parsed = new URL(shareUrl);
+    if (parsed.protocol !== 'https:') return false;
+  } catch (_) {
+    return false;
+  }
+
+  // Desktop Chrome's Web Share often throws RESULT_CODE_KILLED_BAD_MESSAGE — use clipboard instead
+  const isDesktopPointer = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches;
+  return !isDesktopPointer;
+}
+
+async function tryNativeShare({ title, text, url }) {
+  const payloads = [{ url }, { title, url }, { title, text, url }];
+  for (const payload of payloads) {
+    try {
+      await navigator.share(payload);
+      return 'shared';
+    } catch (err) {
+      if (err && err.name === 'AbortError') return 'aborted';
+    }
+  }
+  return 'failed';
+}
+
+const SHARE_ICON_SVG = '<svg class="drawer-share-btn__icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>';
+
+function buildDrawerProfileActionsHtml(node) {
+  const id = String(node.id || '');
+  const name = escapeMetaLabel(node.name || id);
+  return `<div class="drawer-profile-actions">
+    <a href="/node/${id}/" class="drawer-profile-link">View Full Profile →</a>
+    <button type="button" class="drawer-share-btn" data-node-id="${id}" onclick="shareNodeProfile(this.dataset.nodeId, this)" aria-label="Share ${name} on the map">${SHARE_ICON_SVG}<span class="drawer-share-btn__label">Share</span></button>
+  </div>`;
+}
+
+async function copyTextToClipboard(text) {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (_) {}
+
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (_) {
+    return false;
+  }
+}
+
+function showShareCopiedFeedback(button) {
+  const label = button.querySelector('.drawer-share-btn__label');
+  const original = label ? label.textContent : 'Share';
+  if (label) label.textContent = 'Copied!';
+  button.classList.add('drawer-share-btn--copied');
+  button.disabled = true;
+  setTimeout(() => {
+    if (label) label.textContent = original;
+    button.classList.remove('drawer-share-btn--copied');
+    button.disabled = false;
+  }, 2000);
+}
+
+async function shareNodeProfile(nodeId, buttonEl) {
+  const node = graphData.nodes.find(n => n.id === nodeId);
+  if (!node) return;
+
+  const url = buildNodeMapShareUrl(nodeId);
+  const displayName = node.name || node.id;
+  const title = `${displayName} | Cigar Nexus`;
+  const text = `See how ${displayName} connects across the cigar industry on Cigar Nexus`;
+
+  if (canUseNativeShare(url)) {
+    const result = await tryNativeShare({ title, text, url });
+    if (result === 'shared' || result === 'aborted') return;
+  }
+
+  const copied = await copyTextToClipboard(url);
+  if (copied && buttonEl) showShareCopiedFeedback(buttonEl);
+}
+
 function pushNodeUrl(nodeId) {
   const url = new URL(window.location.href);
   if (url.searchParams.get('node') === nodeId) return;
@@ -1488,11 +1601,8 @@ function showDrawer(node, options = {}) {
     descEl.textContent = desc;
     connEl.innerHTML = connHTML;
 
-    // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
     const deskLinkSlot = document.getElementById('drawer-dedicated-link');
-    if (deskLinkSlot) {
-      deskLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View Full Profile →</a>`;
-    }
+    if (deskLinkSlot) deskLinkSlot.innerHTML = buildDrawerProfileActionsHtml(node);
 
     if (productLinesEl) productLinesEl.innerHTML = productLinesHTML;
     if (productLinesWrap) productLinesWrap.style.display = hasProductLines ? 'block' : 'none';
@@ -1515,11 +1625,8 @@ function showDrawer(node, options = {}) {
     mDesc.textContent = desc;
     mConn.innerHTML = connHTML;
 
-    // Dedicated node page CTA - attractive pill, always in fixed slot (prevents duplicates & bad placement)
     const mobLinkSlot = document.getElementById('drawer-dedicated-link-mobile');
-    if (mobLinkSlot) {
-      mobLinkSlot.innerHTML = `<a href="/node/${node.id}/" class="inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-2xl border border-[#CEA661]/50 text-[#CEA661] hover:bg-[#CEA661]/10 hover:border-[#CEA661] active:scale-[0.985] font-medium transition-all">View Full Profile →</a>`;
-    }
+    if (mobLinkSlot) mobLinkSlot.innerHTML = buildDrawerProfileActionsHtml(node);
 
     if (mProductLinesEl) mProductLinesEl.innerHTML = productLinesHTML;
     if (mProductLinesWrap) mProductLinesWrap.style.display = hasProductLines ? 'block' : 'none';
@@ -1790,6 +1897,7 @@ window.resetZoom = resetZoom;
 window.toggleFilter = toggleFilter;
 window.closeDrawer = closeDrawer;
 window.showDrawerFromId = showDrawerFromId;
+window.shareNodeProfile = shareNodeProfile;
 window.zoomToNode = zoomToNode;
 window.showHowTo = showHowTo;
 window.showMobileWelcome = showMobileWelcome;
