@@ -158,7 +158,7 @@ var drawerDescriptions = {
   "lagloriacubana": "La Gloria Cubana (non-Cuban) is owned by General Cigar / STG. Famous for powerful Serie R and other full-flavored Dominican cigars.",
   "domain": "Domain Cigars is a vertically integrated boutique brand co-founded by Esteban Disla and Daniel Lance, with Neutron, Negentropy, and Entropy rolled at Tabacalera Familia Disla in Estelí.",
   "estebandisla": "Esteban Disla is a veteran Nicaraguan master blender and co-founder of Domain Cigars. He spent more than a decade at Nica Sueño (RoMa Craft) and earlier blended for dozens of brands at STG Estelí.",
-  "danielance": "Daniel Lance is co-founder of Domain Cigars and Lujo Concepts (BTX cutter). A former Arizona tobacconist, he partnered with Esteban Disla to build a fully vertical Estelí operation from soil to smoke.",
+  "daniellance": "Daniel Lance is co-founder of Domain Cigars and Lujo Concepts (BTX cutter). A former Arizona tobacconist, he partnered with Esteban Disla to build a fully vertical Estelí operation from soil to smoke.",
   "familiadisla": "Tabacalera Familia Disla S.A. is the Estelí factory and tobacco operation behind Domain Cigars, operated by co-founders Esteban Disla and Daniel Lance.",
   "elseptimo": "El Septimo is a luxury brand owned by Zaya Younan, known for long-aged, high-elevation Costa Rican tobacco and artistic collections.",
   "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic, still family-owned by the León family since 1903.",

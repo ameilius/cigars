@@ -28,7 +28,7 @@ var nodeWebsites = {
   diamondcrown: { website: "https://jcnewman.com", websiteLabel: "J.C. Newman / Diamond Crown" },
   diongiolito: { website: "https://illusionecigars.com", websiteLabel: "Illusione Cigars" },
   domain: { website: "https://domaincigars.com" },
-  danielance: { website: "https://domaincigars.com", websiteLabel: "Domain Cigars" },
+  daniellance: { website: "https://domaincigars.com", websiteLabel: "Domain Cigars" },
   estebandisla: { website: "https://domaincigars.com", websiteLabel: "Domain Cigars" },
   familiadisla: { website: "https://domaincigars.com", websiteLabel: "Domain Cigars" },
   drewestate: { website: "https://drewestate.com" },
