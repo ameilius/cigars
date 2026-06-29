@@ -94,7 +94,7 @@ jobs:
 
       - name: Verify live site
         run: |
-          sleep 5
+          sleep 8
           curl -fsS "https://cigarnexus.app/deploy-stamp.txt"
           BODY=$(curl -fsS "https://cigarnexus.app/node/padron/")
           echo "$BODY" | grep -q "Industry Connections"
@@ -109,10 +109,11 @@ jobs:
                 res.on('end', () => resolve(data));
               }).on('error', reject);
             });
-            (async () => {
+            const verifySitemap = async () => {
+              const bust = Date.now();
               const [dataJs, sitemap] = await Promise.all([
-                get('https://cigarnexus.app/data.js'),
-                get('https://cigarnexus.app/sitemap.xml')
+                get('https://cigarnexus.app/data.js?cb=' + bust),
+                get('https://cigarnexus.app/sitemap.xml?cb=' + bust)
               ]);
               const sandbox = {};
               vm.createContext(sandbox);
@@ -121,22 +122,35 @@ jobs:
               const ids = new Set(sandbox.baseGraphData.nodes.map((n) => n.id));
               const found = [...sitemap.matchAll(/<loc>https:\\/\\/cigarnexus\\.app\\/node\\/([^/]+)\\//g)].map((m) => m[1]);
               if (found.length !== expected) {
-                console.error('Live sitemap node count', found.length, '!= data.js', expected);
-                process.exit(1);
+                throw new Error('Live sitemap node count ' + found.length + ' != data.js ' + expected);
               }
               for (const id of found) {
                 if (!ids.has(id)) {
-                  console.error('Live sitemap has stale URL:', id);
-                  process.exit(1);
+                  throw new Error('Live sitemap has stale URL: ' + id);
                 }
               }
               for (const id of ids) {
                 if (!found.includes(id)) {
-                  console.error('Live sitemap missing URL:', id);
-                  process.exit(1);
+                  throw new Error('Live sitemap missing URL: ' + id);
                 }
               }
               console.log('Live sitemap OK:', expected, 'node URLs');
+            };
+            (async () => {
+              const delays = [0, 4000, 8000, 12000];
+              let lastErr = null;
+              for (let i = 0; i < delays.length; i++) {
+                if (delays[i]) await new Promise((r) => setTimeout(r, delays[i]));
+                try {
+                  await verifySitemap();
+                  return;
+                } catch (err) {
+                  lastErr = err;
+                  console.warn('Live sitemap verify attempt', i + 1, 'failed:', err.message);
+                }
+              }
+              console.error(lastErr);
+              process.exit(1);
             })().catch((err) => {
               console.error(err);
               process.exit(1);
