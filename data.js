@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data — 166 nodes, 312 links
+ * Cigar Nexus graph data — 169 nodes, 330 links
  * Updated: P0–P3 Privada factory map cross-check (May 2026)
  */
 var baseGraphData = {
@@ -105,6 +105,9 @@ var baseGraphData = {
                 { id: "definition", name: "Definition Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["GEN 413", "919 Series", "Noir", "Conception", "The Pig"], logo: "logos/definition.png" },
                 { id: "lagloriacubana", name: "La Gloria Cubana", type: "brand", group: "corporate", country: "dominican", productLines: ["Serie R", "Original", "Intención", "Los Gloriosos", "100 Años"], logo: "logos/lagloria.jpg" },
                 { id: "domain", name: "Domain Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Neutron", "Negentropy", "Entropy"], logo: "logos/domain.webp" },
+                { id: "estebandisla", name: "Esteban Disla", type: "person", group: "family", country: "nicaragua" },
+                { id: "danielance", name: "Daniel Lance", type: "person", group: "family", country: "usa" },
+                { id: "familiadisla", name: "Tabacalera Familia Disla S.A.", type: "factory", group: "family", country: "nicaragua" },
                 { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh"], logo: "logos/elseptimo.png" },
                 { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"], logo: "logos/laaurora.svg" },
                 { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"], logo: "logos/mayflower.png" },
@@ -484,5 +487,23 @@ var baseGraphData = {
                 { source: "oliva", target: "nub", type: "owns / portfolio" },
                 { source: "tabolisa", target: "nub", type: "manufactures" },
                 { source: "cain", target: "nub", type: "sibling brand (Cain NUB crossover)" },
+                { source: "domain", target: "danielance", type: "co-founded by" },
+                { source: "domain", target: "estebandisla", type: "co-founded by" },
+                { source: "danielance", target: "domain", type: "co-founded" },
+                { source: "estebandisla", target: "domain", type: "co-founded" },
+                { source: "danielance", target: "estebandisla", type: "co-founder with" },
+                { source: "estebandisla", target: "danielance", type: "co-founder with" },
+                { source: "domain", target: "familiadisla", type: "manufactured at" },
+                { source: "familiadisla", target: "domain", type: "manufactures" },
+                { source: "estebandisla", target: "familiadisla", type: "operates" },
+                { source: "familiadisla", target: "estebandisla", type: "operated by" },
+                { source: "danielance", target: "familiadisla", type: "operates" },
+                { source: "familiadisla", target: "danielance", type: "operated by" },
+                { source: "estebandisla", target: "nicasueno", type: "former production at (10+ years)" },
+                { source: "nicasueno", target: "estebandisla", type: "historical master blender at" },
+                { source: "estebandisla", target: "stgesteli", type: "historical blending at" },
+                { source: "stgesteli", target: "estebandisla", type: "historical master blender at" },
+                { source: "estebandisla", target: "cao", type: "historical blends for" },
+                { source: "estebandisla", target: "alecbradley", type: "historical blends for" },
             ]
         };
