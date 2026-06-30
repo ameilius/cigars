@@ -107,7 +107,7 @@ var baseGraphData = {
                 { id: "domain", name: "Domain Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Neutron", "Negentropy", "Entropy"], logo: "logos/domain.webp" },
                 { id: "estebandisla", name: "Esteban Disla", type: "person", group: "family", country: "nicaragua", photo: "logos/estebandisla.png" },
                 { id: "daniellance", name: "Daniel Lance", type: "person", group: "family", country: "usa", photo: "logos/daniellance.jpg" },
-                { id: "familiadisla", name: "Tabacalera Familia Disla S.A.", type: "factory", group: "family", country: "nicaragua" },
+                { id: "familiadisla", name: "Tabacalera Familia Disla S.A.", type: "factory", group: "family", country: "nicaragua", logo: "logos/tabacaleradisla.webp" },
                 { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh"], logo: "logos/elseptimo.png" },
                 { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"], logo: "logos/laaurora.svg" },
                 { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"], logo: "logos/mayflower.png" },
