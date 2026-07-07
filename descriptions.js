@@ -205,7 +205,7 @@ var drawerDescriptions = {
 
   // P2 brand nodes
   "gurkha": "Gurkha is a widely distributed premium brand with Dominican production across William Ventura, Casa Carrillo, and other contract facilities.",
-  "caldwell": "Caldwell Cigars (Robert Caldwell) is a negociant-style boutique brand rolled at PDR, Nica Sueño, William Ventura, and other partner factories.",
+  "caldwell": "Caldwell Cigar Co. was founded in 2013 by Robert Caldwell and friends to do everything differently—distinctive packaging, proprietary tobaccos, and blends such as Blind Man's Bluff, Long Live the King, Lost & Found, and Eastern Standard. Production spans partner factories including PDR, Nica Sueño, William Ventura, and La Alianza.",
   "crownedheads": "Crowned Heads (Jon Huber & friends) is a celebrated boutique brand produced at My Father in Nicaragua with historical ties to NACSA.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities—sister brand to Casa Carrillo within the Perez-Carrillo family.",
