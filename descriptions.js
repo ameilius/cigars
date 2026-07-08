@@ -21,6 +21,7 @@ var drawerDescriptions = {
   "avo": "AVO is a premium Dominican brand under the Davidoff umbrella, known for its classic Cameroon wrapper and elegant, balanced blends.",
   "griffins": "The Griffin’s is a historic Dominican brand under Oettinger Davidoff, originally created in the 1960s and known for its elegant, mild-to-medium profiles.",
   "oettinger": "Oettinger Davidoff is the Swiss-based corporate parent of Davidoff, AVO, and The Griffin’s. It oversees high-end production and global distribution of these luxury brands.",
+  "tabadom": "Tabadom is Oettinger Davidoff’s Dominican manufacturing facility in Villa González. It rolls Davidoff, AVO, The Griffin’s, and related portfolio lines under the Swiss group’s quality standards.",
 
   "arturo": "Arturo Fuente is one of the most respected family-owned Dominican cigar companies. Founded in 1912, it is famous for the Hemingway series and OpusX.",
   "tabafuente": "Tabacalera A. Fuente is the family’s historic factory in Santiago, Dominican Republic. It produces Arturo Fuente and the legendary OpusX line.",
@@ -61,6 +62,7 @@ var drawerDescriptions = {
   "padron1926": "Padrón Serie 1926 is the pinnacle of the Padrón range. These cigars are known for their extraordinary depth, balance, and long aging process.",
 
   // === Plasencia family ===
+  "plasencia": "Plasencia Cigars is a five-generation grower-manufacturer with roots in 1865 Cuba, now farming and rolling across Nicaragua and Honduras. Long a major contract partner, the family also produces its own Alma Fuerte, Alma del Campo, Alma del Fuego, and related lines; STG holds a minority stake via General Cigar.",
   "nestorplasencia": "Nestor Plasencia Sr. is a legendary fifth-generation tobacco grower and manufacturer. After multiple exiles from Cuba and Nicaragua, he built one of the largest and most respected operations in the industry.",
   "nestorandres": "Nestor Andrés Plasencia is the next-generation leader of the Plasencia family operation, heavily involved in farming, production, and the company’s modern direction.",
   "plasenciaesteli": "Plasencia Estelí (often called The Cathedral) is the family’s premium-oriented factory in Nicaragua. It produces many of their own high-end lines and select contract work.",
