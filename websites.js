@@ -152,6 +152,10 @@ var nodeWebsites = {
   // P2 brand nodes
   gurkha: { website: "https://gurkhacigars.com" },
   caldwell: { website: "https://caldwellcigars.com" },
+  lfd: { website: "https://www.laflordominicana.com" },
+  littogomez: { website: "https://www.laflordominicana.com", websiteLabel: "La Flor Dominicana" },
+  lfdfactory: { website: "https://www.laflordominicana.com", websiteLabel: "La Flor Dominicana" },
+  ligaprivada: { website: "https://drewestate.com/products/liga-privada/", websiteLabel: "Drew Estate" },
   crownedheads: { website: "https://crownedheads.com" },
   southerndraw: { website: "https://southerndrawcigars.com" },
   kristoff: { website: "https://kristoffcigars.com" },

@@ -206,6 +206,10 @@ var drawerDescriptions = {
   // P2 brand nodes
   "gurkha": "Gurkha is a widely distributed premium brand with Dominican production across William Ventura, Casa Carrillo, and other contract facilities.",
   "caldwell": "Caldwell Cigar Co. was founded in 2013 by Robert Caldwell and friends to do everything differently—distinctive packaging, proprietary tobaccos, and blends such as Blind Man's Bluff, Long Live the King, Lost & Found, and Eastern Standard. Production spans partner factories including PDR, Nica Sueño, William Ventura, and La Alianza.",
+  "lfd": "La Flor Dominicana (LFD) is Litto Gomez's vertically integrated Dominican boutique—famous for the patented Chisel vitola, Double Ligero power, and cigars rolled at Tabacalera La Flor in Tamboril from Gomez family tobacco farms.",
+  "littogomez": "Litto Gomez is the founder of La Flor Dominicana—a former jeweler who built a Tamboril factory, La Canela farm, and one of the Dominican Republic's most innovative boutique cigar houses with wife Ines Lorenzo-Gomez.",
+  "lfdfactory": "Tabacalera La Flor S.A. in Tamboril is Litto Gomez's vertically integrated Dominican factory behind La Flor Dominicana, rolling Chisel, Ligero, and Air Bender lines from estate-grown leaf.",
+  "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line—No. 9, T52, H99, and Unico—hand-rolled in a dedicated room at La Gran Fábrica Drew Estate using Connecticut River Valley broadleaf and long-aged proprietary tobacco.",
   "crownedheads": "Crowned Heads (Jon Huber & friends) is a celebrated boutique brand produced at My Father in Nicaragua with historical ties to NACSA.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities—sister brand to Casa Carrillo within the Perez-Carrillo family.",

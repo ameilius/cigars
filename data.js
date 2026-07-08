@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data — 169 nodes, 330 links
+ * Cigar Nexus graph data — 173 nodes, 346 links
  * Updated: P0–P3 Privada factory map cross-check (May 2026)
  */
 var baseGraphData = {
@@ -137,6 +137,7 @@ var baseGraphData = {
                 { id: "casacarrillo", name: "Casa Carrillo", type: "company", group: "family", country: "usa", productLines: ["Pledge", "Encore", "La Historia", "Allegiance", "Endure", "Deep Blue", "Essence", "INCH", "New Wave Connecticut"], logo: "logos/casacarillo.png" },
                 { id: "ernestoperezcarrillo", name: "Ernesto Perez-Carrillo", type: "person", group: "family", country: "usa", photo: "logos/ernestoperezcarillo.png" },
                 { id: "laisla", name: "Tabacalera La Isla", type: "factory", group: "family", country: "dominican" },
+                { id: "lfdfactory", name: "Tabacalera La Flor S.A. (Tamboril)", type: "factory", group: "family", country: "dominican" },
                 { id: "caoamerican", name: "CAO American Caribbean", type: "factory", group: "corporate", country: "nicaragua" },
                 { id: "costaricatabacos", name: "Tabacos de Costa Rica", type: "factory", group: "family", country: "costa rica", logo: "logos/tabacosdecostarica.png" },
                 { id: "ovejanegra", name: "Oveja Negra (Lanuza)", type: "factory", group: "family", country: "nicaragua" },
@@ -144,6 +145,7 @@ var baseGraphData = {
                 { id: "laflordecopan", name: "La Flor de Copán", type: "factory", group: "family", country: "honduras" },
                 { id: "gurkha", name: "Gurkha", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Ghost", "Royal Courtesan", "Heritage"] },
                 { id: "caldwell", name: "Caldwell Cigars", type: "brand", group: "family", country: "dominican", productLines: ["Blind Man's Bluff", "Long Live the King", "Lost & Found", "Eastern Standard"], logo: "logos/caldwell.png" },
+                { id: "lfd", name: "La Flor Dominicana", type: "brand", group: "family", country: "dominican", productLines: ["Chisel", "Double Ligero", "Ligero", "Cameroon Cabinet", "Air Bender", "1994", "Oro"] },
                 { id: "crownedheads", name: "Crowned Heads", type: "brand", group: "family", country: "dominican", productLines: ["Jericho Hill", "Four Kicks", "La Imperiosa", "Mule Kick"], logo: "logos/crownedheads.webp" },
                 { id: "southerndraw", name: "Southern Draw", type: "brand", group: "family", country: "dominican", productLines: ["Rose of Sharon", "Kudzu", "Jacob's Ladder", "Firethorn"], logo: "logos/southerndraw.webp" },
                 { id: "kristoff", name: "Kristoff", type: "brand", group: "family", country: "dominican", productLines: ["Original Maduro", "GC Signature", "Shiro", "Kristania"], logo: "logos/kristoff.webp" },
@@ -159,10 +161,12 @@ var baseGraphData = {
                 { id: "jassumkral", name: "Jas Sum Kral", type: "brand", group: "family", country: "nicaragua", productLines: ["Red Knight", "La Bomba", "Fenix", "Kral"], logo: "logos/jassumkral.png" },
                 { id: "stolenthrone", name: "Stolen Throne", type: "brand", group: "family", country: "nicaragua" },
                 { id: "deadwood", name: "Deadwood", type: "brand", group: "family", country: "nicaragua", productLines: ["Fat Bottom Betty", "Sweet Jane", "Yummy Bitches"] },
+                { id: "ligaprivada", name: "Liga Privada", type: "brand", group: "family", country: "nicaragua", productLines: ["No. 9", "T52", "H99", "10 Aniversario", "Unico Serie", "Papas Fritas"] },
                 { id: "leafbyoscar", name: "Leaf by Oscar", type: "brand", group: "family", country: "honduras", productLines: ["Corojo", "Maduro", "Connecticut", "Sumatra"], logo: "logos/leafbyoscar.webp" },
                 { id: "oscarvalladares", name: "Oscar Valladares", type: "brand", group: "family", country: "honduras", productLines: ["Super Fly", "2012", "The Oscar", "Ciserón"], logo: "logos/oscarvalladares.png" },
                 { id: "islandjim", name: "Island Jim", type: "brand", group: "family", country: "honduras", productLines: ["No. 2", "Connecticut No. 2", "Barber Pole"], logo: "logos/islandjim.webp" },
                 { id: "jimrobinson", name: "\"Island Jim\" Robinson", type: "person", group: "family", country: "usa", photo: "logos/jimrobinson.png" },
+                { id: "littogomez", name: "Litto Gomez", type: "person", group: "family", country: "dominican" },
                 { id: "nicholassyris", name: "Nicholas Syris", type: "person", group: "family", country: "usa", photo: "logos/nicholassyris.jpg" },
                 { id: "lhpremium", name: "LH Premium Cigars", type: "brand", group: "family", country: "costa rica", productLines: ["Claro", "Colorado", "Maduro", "Nick", "Nikos", "Nicolas"], logo: "logos/lhpremium.png" },
                 { id: "nickandjim", name: "Nick & Jim", type: "brand", group: "family", country: "costa rica", productLines: ["P.B.E.", "Toro"], logo: "logos/nickandjim.png" },
@@ -505,5 +509,21 @@ var baseGraphData = {
                 { source: "stgesteli", target: "estebandisla", type: "historical master blender at" },
                 { source: "estebandisla", target: "cao", type: "historical blends for" },
                 { source: "estebandisla", target: "alecbradley", type: "historical blends for" },
+                { source: "lfd", target: "littogomez", type: "founded by" },
+                { source: "littogomez", target: "lfd", type: "founded" },
+                { source: "lfd", target: "lfdfactory", type: "manufactured at" },
+                { source: "lfdfactory", target: "lfd", type: "manufactures" },
+                { source: "littogomez", target: "lfdfactory", type: "operates" },
+                { source: "lfdfactory", target: "littogomez", type: "operated by" },
+                { source: "ligaprivada", target: "drewestate", type: "brand of" },
+                { source: "drewestate", target: "ligaprivada", type: "owns line" },
+                { source: "ligaprivada", target: "lagranfabrica", type: "manufactured at" },
+                { source: "lagranfabrica", target: "ligaprivada", type: "manufactures" },
+                { source: "ligaprivada", target: "jonathandrew", type: "created by" },
+                { source: "jonathandrew", target: "ligaprivada", type: "created line" },
+                { source: "stevesaka", target: "ligaprivada", type: "historical blending at" },
+                { source: "ligaprivada", target: "stevesaka", type: "historical blender at" },
+                { source: "nickmelillo", target: "ligaprivada", type: "historical production at" },
+                { source: "ligaprivada", target: "nickmelillo", type: "historical production lead at" },
             ]
         };
