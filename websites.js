@@ -38,6 +38,7 @@ var nodeWebsites = {
   eiroafamily: { website: "https://www.jretobacco.com", websiteLabel: "JRE Tobacco / Aladino" },
   eobrands: { website: "https://www.eobrands.com" },
   elseptimo: { website: "https://el-septimo.com" },
+  zayayounan: { website: "https://el-septimo.com", websiteLabel: "El Septimo" },
   erikespinosa: { website: "https://espinosacigars.com", websiteLabel: "Espinosa Premium Cigars" },
   espinosa: { website: "https://espinosacigars.com" },
   espinosahabano: { website: "https://espinosacigars.com", websiteLabel: "Espinosa Premium Cigars" },

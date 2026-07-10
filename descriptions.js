@@ -163,6 +163,7 @@ var drawerDescriptions = {
   "daniellance": "Daniel Lance is Domain Cigars co-founder and Lujo Concepts (BTX cutter) co-founder. A former U.S. tobacconist, he was chosen by Esteban Disla—their partnership started with a phone call—to build Domain from Valle Regadío farms to Estelí.",
   "familiadisla": "Tabacalera Familia Disla S.A. is Domain Cigars' Estelí factory, rolling Neutron, Negentropy, and Entropy from Disla-family tobacco grown in Valle Regadío.",
   "elseptimo": "El Septimo (Spanish for “The Seventh”) is an ultra-premium brand founded in 2005 by French distributor Gilles Botquin and acquired in 2019 by Zaya Younan (Younan Collection / El Septimo Geneva). Handmade in Costa Rica with multi-origin leaf and artistic collections such as Sacred Arts, Emperor, Zaya, Culinary Art, and Gilgamesh—long a European and Middle Eastern staple before its U.S. expansion.",
+  "zayayounan": "Zaya Younan is CEO and owner of El Septimo (acquired 2019 via the Younan Collection / El Septimo Geneva). An Iranian-born, U.S.-based entrepreneur and private-equity principal (Younan Company), he brought the Costa Rican luxury brand from European and Middle Eastern markets into broad U.S. retail distribution.",
   "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic, still family-owned by the León family since 1903.",
   "mayflower": "Mayflower Cigars was launched by Michael Knowles and is produced at the Oliva factory in Estelí, Nicaragua.",
 

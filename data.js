@@ -1,6 +1,6 @@
 ﻿/**
- * Cigar Nexus graph data — 173 nodes, 346 links
- * Updated: P0–P3 Privada factory map cross-check (May 2026)
+ * Cigar Nexus graph data — 174 nodes, 348 links
+ * Updated: Zaya Younan person node + El Septimo ownership edges
  */
 var baseGraphData = {
             nodes: [
@@ -109,6 +109,7 @@ var baseGraphData = {
                 { id: "daniellance", name: "Daniel Lance", type: "person", group: "family", country: "usa", photo: "logos/daniellance.jpg" },
                 { id: "familiadisla", name: "Tabacalera Familia Disla S.A.", type: "factory", group: "family", country: "nicaragua", logo: "logos/tabacaleradisla.webp" },
                 { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh", "Alexandra"], logo: "logos/elseptimo.png" },
+                { id: "zayayounan", name: "Zaya Younan", type: "person", group: "corporate", country: "usa", photo: "logos/zayayounan.jpg" },
                 { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"], logo: "logos/laaurora.svg" },
                 { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"], logo: "logos/mayflower.png" },
                 { id: "karenberger", name: "Karen Berger Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Don Kiki Platinum", "K by Karen Berger Habano", "K by Karen Berger Maduro", "Ixtelli", "Halftime"], logo: "logos/karenberger.jpeg" },
@@ -525,5 +526,7 @@ var baseGraphData = {
                 { source: "ligaprivada", target: "stevesaka", type: "historical blender at" },
                 { source: "nickmelillo", target: "ligaprivada", type: "historical production at" },
                 { source: "ligaprivada", target: "nickmelillo", type: "historical production lead at" },
+                { source: "elseptimo", target: "zayayounan", type: "owned by (acquired 2019)" },
+                { source: "zayayounan", target: "elseptimo", type: "owns (acquired 2019)" },
             ]
         };
