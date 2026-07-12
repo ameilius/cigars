@@ -1,6 +1,6 @@
 ﻿/**
  * Cigar Nexus graph data — 174 nodes, 348 links
- * Updated: Zaya Younan person node + El Septimo ownership edges
+ * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
             nodes: [
@@ -373,13 +373,16 @@ var baseGraphData = {
                 { source: "crownedheads", target: "nacsa", type: "historical production at" },
                 { source: "southerndraw", target: "plasenciahonduras", type: "manufactured at" },
                 { source: "kristoff", target: "williamventura", type: "manufactured at" },
-                { source: "montecristonc", target: "stgesteli", type: "manufactured at" },
-                { source: "montecristonc", target: "stg", type: "owned by" },
-                { source: "montecristonc", target: "generalcigar", type: "sold by" },
-                { source: "ryjnc", target: "stgesteli", type: "manufactured at" },
+                // Montecristo / Romeo y Julieta (non-Cuban) = Altadis U.S.A. / Imperial Brands — not STG/General
+                { source: "montecristonc", target: "altadis", type: "owned by" },
+                { source: "altadis", target: "montecristonc", type: "owns / distributes" },
+                { source: "montecristonc", target: "sanlotano", type: "manufactured at" },
+                { source: "sanlotano", target: "montecristonc", type: "manufactures" },
+                { source: "montecristonc", target: "plasencia", type: "contract production" },
+                { source: "montecristonc", target: "ajfernandez", type: "blended with" },
+                { source: "ryjnc", target: "altadis", type: "owned by" },
+                { source: "altadis", target: "ryjnc", type: "owns / distributes" },
                 { source: "ryjnc", target: "plasencia", type: "contract production" },
-                { source: "ryjnc", target: "stg", type: "owned by" },
-                { source: "ryjnc", target: "generalcigar", type: "sold by" },
                 { source: "fratello", target: "lazona", type: "manufactured at" },
                 { source: "fratello", target: "laisla", type: "manufactured at" },
                 { source: "padilla", target: "tabsa", type: "manufactured at" },
@@ -405,8 +408,6 @@ var baseGraphData = {
                 { source: "hvc", target: "tabsa", type: "early production at" },
                 { source: "padilla", target: "tabsa", type: "contract production" },
                 { source: "jassumkral", target: "myfather", type: "contract production" },
-                { source: "stgesteli", target: "montecristonc", type: "manufactures" },
-                { source: "stgesteli", target: "ryjnc", type: "manufactures" },
                 { source: "stgesteli", target: "padilla", type: "manufactures" },
                 { source: "stgesteli", target: "room101", type: "manufactures" },
                 { source: "stgesteli", target: "southerndraw", type: "manufactures" },
