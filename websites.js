@@ -179,5 +179,7 @@ var nodeWebsites = {
   vegassantiago: { website: "https://www.cigars-vegasantiago.biz" },
   attabey: { website: "https://unitedcigargroup.com/atabey/", websiteLabel: "Atabey (United Cigar)" },
   byron: { website: "https://www.2guyscigars.com/selected-tobacco/", websiteLabel: "Byron (Selected Tobacco)" },
-  selectedtobacco: { website: "https://www.2guyscigars.com/selected-tobacco/" }
+  selectedtobacco: { website: "https://www.2guyscigars.com/selected-tobacco/" },
+  costaricatabacos: { website: "https://tabacosdecostarica.com/" },
+  nelsonalfonso: { website: "https://tabacosdecostarica.com/", websiteLabel: "Tabacos de Costa Rica" }
 };
