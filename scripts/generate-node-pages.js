@@ -207,9 +207,7 @@ function buildAutoExpandedDescription(node, connections, shortDesc) {
 
 function resolveDescription(node, connections, drawerDescriptions, expandedOverrides) {
   const override = expandedOverrides[node.id];
-  if (override && node.id !== 'default') {
-    return wrapPlainTextAsHtml(override);
-  }
+  if (override) return wrapPlainTextAsHtml(override);
   const short = drawerDescriptions[node.id] || drawerDescriptions.default;
   return buildAutoExpandedDescription(node, connections, short);
 }
@@ -533,7 +531,7 @@ function generateAllNodePages() {
 
     const connections = getConnections(node.id, baseGraphData.nodes, allLinks);
     const descHtml = resolveDescription(node, connections, drawerDescriptions, expandedOverrides);
-    if (expandedOverrides[node.id] && node.id !== 'default') overrideCount++;
+    if (expandedOverrides[node.id]) overrideCount++;
     else autoCount++;
 
     const plainDesc = truncate(stripHtml(descHtml), 155);

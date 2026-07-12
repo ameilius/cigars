@@ -1,2 +1,2 @@
-/** Fallback when no node-specific override exists */
-module.exports = "A key player in the modern cigar industry with connections across brands, factories, and families.";
+/** Fallback when no node-specific override exists (shared with descriptions.js). */
+module.exports = require('../../descriptions.js').default;

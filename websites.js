@@ -1,9 +1,6 @@
 /**
- * Official external URLs for Cigar Nexus nodes (SEO cross-links on node pages).
- * Loaded by scripts/generate-node-pages.js — not used on the interactive map drawer yet.
- *
- * Future: add per-node social profiles, e.g.
- *   social: { instagram: "https://...", x: "https://..." }
+ * Official external URLs for Cigar Nexus nodes (SEO node pages).
+ * Loaded by scripts/generate-node-pages.js.
  */
 var nodeWebsites = {
   ajfernandez: { website: "https://ajfcigars.com" },

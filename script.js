@@ -1,6 +1,5 @@
 // ============================================
 // Cigar Nexus - Main Application Script
-// Fully extracted and implemented for Option 1 split
 // D3.js v7 force-directed graph + warm cigar lounge UI
 // ============================================
 
@@ -9,19 +8,14 @@
 // -----------------------------
 let graphData = { nodes: [], links: [] };
 
-
-// Drawer descriptions loaded from descriptions.js (shared with SEO generator)
+// Drawer descriptions from descriptions.js (shared with SEO generator)
 const descriptions = typeof drawerDescriptions !== 'undefined' ? drawerDescriptions : {};
-
 
 // -----------------------------
 // Helpers
 // -----------------------------
 function isFactoryNode(node) {
-  if (!node) return false;
-  if (node.type === 'factory') return true;
-  const name = (node.name || '').toLowerCase();
-  return name.includes('factory') || name.includes('estelí') || name.includes('esteli') || name.includes('tabolisa') || name.includes('tavicusa') || name.includes('nacsa') || name.includes('la gran');
+  return !!(node && node.type === 'factory');
 }
 
 const NODE_COLORS = {
@@ -32,7 +26,7 @@ const NODE_COLORS = {
 
 function getNodeColor(node) {
   if (!node) return '#6b5b4f';
-  if (node.type === 'factory' || isFactoryNode(node)) return NODE_COLORS.factory;
+  if (isFactoryNode(node)) return NODE_COLORS.factory;
   if (node.group === 'corporate') return NODE_COLORS.corporate;
   if (node.group === 'family') return NODE_COLORS.family;
   return '#6b5b4f';
@@ -42,7 +36,7 @@ function getNodeRadius(node) {
   if (!node) return 6;
   let base = 7;
   if (node.type === 'company') base = 9;
-  if (node.type === 'factory' || isFactoryNode(node)) base = 8;
+  if (isFactoryNode(node)) base = 8;
   if (node.type === 'person') base = 5.5;
 
   // Scale by connection count (landmark nodes bigger)
@@ -164,7 +158,7 @@ function buildMetaPills(node) {
 
   if (node.type) {
     let typeVariant = 'neutral';
-    if (node.type === 'factory' || isFactoryNode(node)) typeVariant = 'factory';
+    if (isFactoryNode(node)) typeVariant = 'factory';
     else if (node.type === 'brand') typeVariant = 'boutique';
     push(node.type, typeVariant);
   }
@@ -283,13 +277,11 @@ function pulseDrawerOpen(el) {
 }
 
 function mergeData() {
-  const baseNodes = (baseGraphData && baseGraphData.nodes) ? baseGraphData.nodes : [];
-  const baseLinks = (baseGraphData && baseGraphData.links) ? baseGraphData.links : [];
-
-  // Simple passthrough — full control lives in data.js
+  // Clone so D3 can mutate positions/sources without touching baseGraphData
+  const base = (typeof baseGraphData !== 'undefined' && baseGraphData) ? baseGraphData : { nodes: [], links: [] };
   graphData = {
-    nodes: baseNodes.map(n => ({ ...n })),
-    links: baseLinks.map(l => ({ ...l }))
+    nodes: (base.nodes || []).map(n => ({ ...n })),
+    links: (base.links || []).map(l => ({ ...l }))
   };
 }
 
@@ -695,7 +687,7 @@ function getFilteredData() {
       if (typeActive.length > 0) {
         const matchesType = typeActive.some(k =>
           (k === 'boutique' && n.type === 'brand' && n.group === 'family') ||
-          (k === 'factory' && (n.type === 'factory' || isFactoryNode(n)))
+          (k === 'factory' && isFactoryNode(n))
         );
         if (!matchesType) return false;
       }
@@ -1064,7 +1056,7 @@ function updateFilterChipCounts() {
     } else if (key === 'boutique') {
       count = nodes.filter(n => n.type === 'brand' && n.group === 'family').length;
     } else if (key === 'factory') {
-      count = nodes.filter(n => n.type === 'factory' || isFactoryNode(n)).length;
+      count = nodes.filter(n => isFactoryNode(n)).length;
     }
     // 'all' keeps total
     countSpan.textContent = `(${count})`;
@@ -1800,10 +1792,46 @@ function removeBackdrop() {
 }
 
 // ============================================
-// Onboarding "How to" intro (replaces blank initial drawer state)
-// 4 clickable examples that zoom the map + open real drawer
-// Fully mobile-aware (larger touch targets in bottom sheet)
+// Onboarding "How to" intro
 // ============================================
+
+const INTRO_EXAMPLES = [
+  { id: 'padron', name: 'Padrón', blurb: 'Nicaragua family icon' },
+  { id: 'warped', name: 'Warped', blurb: 'Modern boutique' },
+  { id: 'davidoff', name: 'Davidoff', blurb: 'Luxury corporate' },
+  { id: 'myfather', name: 'My Father', blurb: 'Nicaragua powerhouse' }
+];
+
+function buildIntroExampleButtons(mobile) {
+  const gridGap = mobile ? 'gap-2.5' : 'gap-2';
+  const btnClass = mobile
+    ? 'example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]'
+    : 'example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]';
+  const blurbClass = mobile
+    ? 'block text-xs font-normal text-[#6B8A84] mt-0.5'
+    : 'text-[10px] text-[#6B8A84] font-normal';
+  const tip = mobile
+    ? 'Pinch to zoom • Drag to pan • Tap nodes for full info'
+    : 'Drag nodes • Scroll/pinch to zoom • Tap anything for details';
+  const tipClass = mobile ? 'mt-3 text-xs text-[#6B8A84]' : 'mt-3 text-[11px] text-[#6B8A84]';
+
+  const buttons = INTRO_EXAMPLES.map(({ id, name, blurb }) => {
+    const label = mobile
+      ? `${name} <span class="${blurbClass}">${blurb}</span>`
+      : `${name}<br><span class="${blurbClass}">${blurb}</span>`;
+    return `<button type="button" onclick="selectExample('${id}')" class="${btnClass}">${label}</button>`;
+  }).join('');
+
+  return `<div class="grid grid-cols-2 ${gridGap}">${buttons}</div><div class="${tipClass}">${tip}</div>`;
+}
+
+function findConnectionsLabel(connEl) {
+  const section = connEl ? connEl.parentElement : null;
+  if (!section) return null;
+  return section.querySelector('.text-xs.font-semibold')
+    || Array.from(section.querySelectorAll('div')).find(d => /connections/i.test(d.textContent || ''))
+    || null;
+}
 
 function selectExample(nodeId) {
   const node = graphData.nodes.find(n => n.id === nodeId);
@@ -1839,14 +1867,7 @@ function showDesktopHowTo() {
   const metaEl = document.getElementById('drawer-meta');
   const descEl = document.getElementById('drawer-description');
   const connEl = document.getElementById('drawer-connections');
-  const connSection = connEl ? connEl.parentElement : null;
-
-  // More robust label finding (matches the actual "Connections" text)
-  let connLabel = connSection ? connSection.querySelector('.text-xs.font-semibold') : null;
-  if (!connLabel && connSection) {
-    connLabel = Array.from(connSection.querySelectorAll('div')).find(d => /connections/i.test(d.textContent || ''));
-  }
-
+  const connLabel = findConnectionsLabel(connEl);
   const productWrap = document.getElementById('drawer-product-lines-wrap');
   const buyWrap = document.getElementById('drawer-buy-wrap');
 
@@ -1859,17 +1880,7 @@ function showDesktopHowTo() {
   descEl.innerHTML = `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
 
   if (connLabel) connLabel.textContent = 'START HERE — Tap an example';
-  if (connEl) {
-    connEl.innerHTML = `
-      <div class="grid grid-cols-2 gap-2">
-        <button onclick="selectExample('padron')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">Padrón<br><span class="text-[10px] text-[#6B8A84] font-normal">Nicaragua family icon</span></button>
-        <button onclick="selectExample('warped')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">Warped<br><span class="text-[10px] text-[#6B8A84] font-normal">Modern boutique</span></button>
-        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">Davidoff<br><span class="text-[10px] text-[#6B8A84] font-normal">Luxury corporate</span></button>
-        <button onclick="selectExample('myfather')" class="example-pill text-left px-3 py-2 rounded-2xl bg-white border border-[#CFE0DC] hover:border-[#CEA661] active:scale-[0.985] transition-all text-sm font-medium text-[#1A3330]">My Father<br><span class="text-[10px] text-[#6B8A84] font-normal">Nicaragua powerhouse</span></button>
-      </div>
-      <div class="mt-3 text-[11px] text-[#6B8A84]">Drag nodes • Scroll/pinch to zoom • Tap anything for details</div>
-    `;
-  }
+  if (connEl) connEl.innerHTML = buildIntroExampleButtons(false);
 
   if (productWrap) productWrap.style.display = 'none';
   if (buyWrap) buyWrap.style.display = 'none';
@@ -1906,8 +1917,7 @@ function showMobileHowTo() {
   const mMeta = document.getElementById('drawer-meta-mobile');
   const mDesc = document.getElementById('drawer-description-mobile');
   const mConn = document.getElementById('drawer-connections-mobile');
-  const connSection = mConn ? mConn.parentElement : null;
-  const connLabel = connSection ? connSection.querySelector('.text-xs.font-semibold') : null;
+  const connLabel = findConnectionsLabel(mConn);
   const mProductWrap = document.getElementById('drawer-product-lines-wrap-mobile');
   const mBuyWrap = document.getElementById('drawer-buy-wrap-mobile');
 
@@ -1919,17 +1929,7 @@ function showMobileHowTo() {
   mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Filters above the map let you narrow by ownership, country, or boutique.`;
 
   if (connLabel) connLabel.textContent = 'START HERE';
-  if (mConn) {
-    mConn.innerHTML = `
-      <div class="grid grid-cols-2 gap-2.5">
-        <button onclick="selectExample('padron')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">Padrón <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Nicaragua legend</span></button>
-        <button onclick="selectExample('warped')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">Warped <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Boutique favorite</span></button>
-        <button onclick="selectExample('davidoff')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">Davidoff <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Premium classic</span></button>
-        <button onclick="selectExample('myfather')" class="example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]">My Father <span class="block text-xs font-normal text-[#6B8A84] mt-0.5">Nicaragua star</span></button>
-      </div>
-      <div class="mt-3 text-xs text-[#6B8A84]">Pinch to zoom • Drag to pan • Tap nodes for full info</div>
-    `;
-  }
+  if (mConn) mConn.innerHTML = buildIntroExampleButtons(true);
 
   if (mProductWrap) mProductWrap.style.display = 'none';
   if (mBuyWrap) mBuyWrap.style.display = 'none';
@@ -1941,7 +1941,6 @@ function showMobileHowTo() {
   createOrShowBackdrop();
 }
 
-// Public/manual trigger for the How To guide (used by the new "How to explore" button + reliable fallback)
 function showHowTo() {
   const isMobile = window.innerWidth < 1024;
   const drawerEl = document.getElementById('drawer');
@@ -1950,8 +1949,6 @@ function showHowTo() {
   if (!isMobile && drawerVisible) {
     showDesktopHowTo();
   } else {
-    // Mobile (or desktop sidebar not visible) → open the bottom sheet version
-    // Always allow manual trigger even if previously seen
     showMobileHowTo();
   }
 }
