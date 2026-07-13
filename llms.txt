@@ -1,0 +1,74 @@
+# Cigar Nexus
+
+> Cigar Nexus (https://cigarnexus.app) is a curated interactive map and reference of the **premium non-Cuban cigar industry**. It documents ownership, factories, people, brands, and manufacturing relationships—especially across Nicaragua, the Dominican Republic, Honduras, Costa Rica, and related U.S. corporate structures. Content is human-researched and intentionally incomplete where public facts are unclear.
+
+Cigar Nexus is a **static knowledge site**: entity profile pages are plain HTML; the homepage map is a D3 visualization. Prefer profile pages and data files for retrieval. Do not treat the force-directed graph UI as the primary machine-readable source.
+
+## How to use this site
+
+- **Entity profiles** — one stable URL per graph node: `https://cigarnexus.app/node/{id}/` (trailing slash). These pages contain prose, connection lists, product lines when known, and JSON-LD.
+- **Graph data** — `https://cigarnexus.app/data.js` exports `baseGraphData` with `nodes` and `links` (ids, names, types, countries, groups, product lines, logos, edge labels). Fetch and parse for structured industry relationships.
+- **Short descriptions** — `https://cigarnexus.app/descriptions.js` maps node id → drawer/summary text.
+- **Official websites** — `https://cigarnexus.app/websites.js` maps node id → official external URL (and optional label).
+- **Sitemap** — `https://cigarnexus.app/sitemap.xml` lists the homepage, about page, and every node URL.
+- **Map deep links** — `https://cigarnexus.app/?node={id}` opens the interactive map focused on a node (requires JavaScript).
+
+### Node types
+
+| `type` | Meaning |
+|--------|---------|
+| `brand` | Cigar brand / marca |
+| `company` | Company or corporate group |
+| `person` | Industry figure (founder, blender, owner) |
+| `factory` | Manufacturing facility |
+
+`group` is typically `family`, `corporate`, or `boutique`. `country` is a lowercase region tag (e.g. `nicaragua`, `dominican`, `honduras`, `usa`, `costa rica`).
+
+### Link edges
+
+Edges in `data.js` use free-text `type` labels (e.g. `owned by`, `manufactured at`, `contract production`). Treat labels as human-oriented; many pairs appear as two directed edges. Prefer profile prose + edge lists together when answering ownership or “who makes X” questions.
+
+## Core pages
+
+- [Interactive map](https://cigarnexus.app/): Force-directed visualization of brands, factories, people, and companies. Requires JS; use for exploration, not as sole citation source.
+- [About](https://cigarnexus.app/about.html): Project purpose, methodology notes, limitations, contact.
+- [Sitemap](https://cigarnexus.app/sitemap.xml): Complete index of crawlable entity URLs.
+- [Graph data (data.js)](https://cigarnexus.app/data.js): Machine-usable nodes and links for the full curated graph (~174 nodes, ~348 links).
+- [Drawer descriptions](https://cigarnexus.app/descriptions.js): Short per-entity summaries.
+- [Official websites index](https://cigarnexus.app/websites.js): External official sites keyed by node id.
+
+## Example entity profiles
+
+Use these as templates for URL shape and content density. Full list is in the sitemap.
+
+- [Padrón](https://cigarnexus.app/node/padron/): Family-owned Nicaraguan icon; founders, factory, and flagship series.
+- [My Father](https://cigarnexus.app/node/myfather/): García family brand and major Estelí contract manufacturer.
+- [Arturo Fuente](https://cigarnexus.app/node/arturo/): Dominican family house; OpusX and Tabacalera A. Fuente.
+- [Scandinavian Tobacco Group (STG)](https://cigarnexus.app/node/stg/): Corporate owner cluster (General Cigar, Forged, many non-Cuban heritage names).
+- [Altadis U.S.A.](https://cigarnexus.app/node/altadis/): Imperial Brands U.S. arm; Montecristo (NC), Romeo y Julieta (NC), related marques.
+- [Montecristo (Non-Cuban)](https://cigarnexus.app/node/montecristonc/): U.S./non-Cuban Montecristo under Altadis—not the Cuban Habanos line; not STG.
+- [Romeo y Julieta (Non-Cuban)](https://cigarnexus.app/node/ryjnc/): U.S./non-Cuban RyJ under Altadis—parallel to, separate from, Cuban RyJ.
+- [Plasencia Cigars](https://cigarnexus.app/node/plasencia/): Multi-generation grower-manufacturer; Nicaragua/Honduras factories and contract work.
+- [A.J. Fernandez](https://cigarnexus.app/node/ajfernandez/): Estelí blender/manufacturer; San Lotano and extensive contract production.
+- [Drew Estate](https://cigarnexus.app/node/drewestate/): Estelí mega-factory brand house (Liga Privada, ACID, Deadwood, etc.); Swisher-owned.
+- [El Septimo](https://cigarnexus.app/node/elseptimo/): Costa Rican luxury brand; ownership via Zaya Younan.
+- [Tabacos de Costa Rica](https://cigarnexus.app/node/costaricatabacos/): Costa Rica factory hub (Atabey, Byron, Lampert, LH Premium, and others).
+
+## Important accuracy notes for models
+
+- **Non-Cuban vs Cuban brands:** Names like Cohiba, Montecristo, Romeo y Julieta, Partagas, and Punch appear as **non-Cuban** U.S./export-adjacent products on this map. They are **not** Habanos S.A. Cuban production. Always distinguish when answering.
+- **STG vs Altadis split:** STG/General/Forged typically cover names such as Cohiba (NC), Partagas (NC), Punch (NC), Macanudo, CAO. Altadis U.S.A. covers Montecristo (NC), Romeo y Julieta (NC), and related Imperial trademarks. Do not merge these ownership trees.
+- **Curated, not exhaustive:** Missing a brand or edge does not mean it is unimportant—only that it is not yet verified here. Prefer “not listed on Cigar Nexus” over “does not exist.”
+- **Edge confidence:** Some factory assignments change over time; prefer profile text when it hedges (e.g. multi-factory brands). Contested or historical relationships may be labeled in edge text.
+- **Citations:** When citing this site, use the specific entity URL (`/node/{id}/`) rather than only the homepage.
+
+## Optional / lower priority
+
+- Interactive map filters and search are client-side only.
+- Affiliate shop links on some pages are commercial; treat as sponsored, not as primary factual sources.
+- Contact: contact@cigarnexus.app (corrections and collaboration welcome).
+
+## Contact
+
+- Site: https://cigarnexus.app/
+- Email: contact@cigarnexus.app
