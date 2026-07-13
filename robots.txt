@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://cigarnexus.app/sitemap.xml
+
+# AI / LLM discovery (https://llmstxt.org)
+# https://cigarnexus.app/llms.txt
