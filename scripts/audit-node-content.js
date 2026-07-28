@@ -17,7 +17,7 @@ const expanded = require(path.join(ROOT, 'content', 'expanded', 'index.js'));
 const expandedKeys = new Set(Object.keys(expanded).filter((k) => k !== 'default'));
 
 const links = sb.baseGraphData.links.map((l) => ({
-  ...l,
+ ...l,
   source: typeof l.source === 'object' ? l.source.id : l.source,
   target: typeof l.target === 'object' ? l.target.id : l.target
 }));
@@ -69,19 +69,19 @@ console.log(`Manual expanded overrides: ${manual.length}`);
 console.log(`Auto-generated only: ${auto.length}`);
 console.log('');
 
-console.log(`PRIORITY — add to content/expanded/*.js (${priority.length} pages, <900 chars body):`);
+console.log(`PRIORITY: add to content/expanded/*.js (${priority.length} pages, <900 chars body):`);
 priority.forEach((r) => {
   console.log(`  ${r.chars}ch | ${r.id} | ${r.name} | conn=${r.conn} | ${r.url}`);
 });
 
 console.log('');
-console.log(`MEDIUM — auto OK but could improve (${medium.length} pages, 900–1199 chars):`);
+console.log(`MEDIUM: auto OK but could improve (${medium.length} pages, 900-1199 chars):`);
 medium.forEach((r) => {
   console.log(`  ${r.chars}ch | ${r.id} | ${r.name} | ${r.url}`);
 });
 
 console.log('');
-console.log(`SOLID AUTO — decent without manual override (${solid.length} pages, ≥1200 chars):`);
+console.log(`SOLID AUTO: decent without manual override (${solid.length} pages, ≥1200 chars):`);
 solid.forEach((r) => {
   console.log(`  ${r.chars}ch | ${r.id} | ${r.name}`);
 });

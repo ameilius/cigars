@@ -19,9 +19,9 @@ function isFactoryNode(node) {
 }
 
 const NODE_COLORS = {
-  family: '#13817b',    // teal — family / independent
-  corporate: '#CEA661', // gold — corporate / group
-  factory: '#b45309',   // amber — factories / growers
+  family: '#13817b',    // teal (family / independent)
+  corporate: '#CEA661', // gold (corporate / group)
+  factory: '#b45309',   // amber (factories / growers)
 };
 
 function getNodeColor(node) {
@@ -177,7 +177,7 @@ function buildMetaPills(node) {
 
 let selectedNodeId = null;
 
-// Link trace pulse on node select — set false to disable without reverting (rollback toggle)
+// Link trace pulse on node select: set false to disable without reverting (rollback toggle)
 const LINK_TRACE_ENABLED = true;
 const LINK_TRACE_DURATION_MS = 680;
 const LINK_TRACE_STAGGER_MS = 35;
@@ -764,7 +764,7 @@ function updateFilterStatus() {
   el.hidden = false;
 
   if (visible === 0) {
-    el.innerHTML = 'No nodes match — <button type="button" class="filter-status__clear" data-filter-reset>clear filters</button>';
+    el.innerHTML = 'No nodes match. <button type="button" class="filter-status__clear" data-filter-reset>clear filters</button>';
     return;
   }
 
@@ -992,7 +992,7 @@ function closeSearchOverlay() {
 
   updateSearchMobileBadge();
 
-  // Overlay close restores body scroll — graph size may change on mobile
+  // Overlay close restores body scroll: graph size may change on mobile
   requestAnimationFrame(refreshGraphDimensions);
 }
 
@@ -1064,7 +1064,7 @@ function updateFilterChipCounts() {
 }
 
 // -----------------------------
-// Desktop drag hint (one-time) — set false to disable / rollback
+// Desktop drag hint (one-time): set false to disable / rollback
 // -----------------------------
 const DRAG_HINT_ENABLED = true;
 const DRAG_HINT_STORAGE_KEY = 'cigarNexus_seenDragHint';
@@ -1379,7 +1379,7 @@ function canUseNativeShare(shareUrl) {
     return false;
   }
 
-  // Desktop Chrome's Web Share often throws RESULT_CODE_KILLED_BAD_MESSAGE — use clipboard instead
+  // Desktop Chrome's Web Share often throws RESULT_CODE_KILLED_BAD_MESSAGE: use clipboard instead
   const isDesktopPointer = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches;
   return !isDesktopPointer;
 }
@@ -1691,7 +1691,7 @@ function showDrawer(node, options = {}) {
     ).join('');
   }
 
-  // Buy links — Famous Smoke Shop affiliate (plus any per-node overrides)
+  // Buy links: Famous Smoke Shop affiliate (plus any per-node overrides)
   const famousSmokeHtml = typeof buildFamousSmokeBuyHtml === 'function' ? buildFamousSmokeBuyHtml() : '';
   const extraBuyHtml = (node.buyLinks && node.buyLinks.length)
     ? node.buyLinks.map(b => `<a href="${b.url}" target="_blank" rel="sponsored noopener" class="block text-xs px-3 py-1.5 rounded-xl bg-[#14817A] text-[#ECF4F2] hover:bg-[#0D5A55]">${b.label || 'Shop now'}</a>`).join('')
@@ -1925,7 +1925,7 @@ function showDesktopHowTo() {
 
   descEl.innerHTML = `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
 
-  if (connLabel) connLabel.textContent = 'START HERE — Tap an example';
+  if (connLabel) connLabel.textContent = 'START HERE: Tap an example';
   if (connEl) connEl.innerHTML = buildIntroExampleButtons(false);
 
   if (productWrap) productWrap.style.display = 'none';

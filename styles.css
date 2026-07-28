@@ -78,7 +78,7 @@ h1, h2, .font-display,
     font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Header — deep black so transparent logo reads clearly */
+/* Header: deep black so transparent logo reads clearly */
 .site-header {
     position: relative;
     background: linear-gradient(180deg, #1c1c1c 0%, #111111 52%, #0a0a0a 100%);
@@ -172,7 +172,7 @@ h1, h2, .font-display,
     opacity: 0.85;
 }
 
-/* Footer — deep black, mirrors site header; grows to fill page bottom */
+/* Footer: deep black, mirrors site header; grows to fill page bottom */
 .site-footer {
     position: relative;
     flex-grow: 1;
@@ -238,7 +238,7 @@ h1, h2, .font-display,
     transition: stroke 0.2s ease, stroke-opacity 0.2s ease, stroke-width 0.2s ease;
 }
 
-/* Ownership links — thicker, solid, dark */
+/* Ownership links: thicker, solid, dark */
 .link[data-type="owned by"],
 .link[data-type="subsidiary of"],
 .link[data-type="owns"] {
@@ -246,7 +246,7 @@ h1, h2, .font-display,
     stroke-opacity: 0.6;
 }
 
-/* Contract/manufacturing — dashed, medium */
+/* Contract/manufacturing: dashed, medium */
 .link[data-type*="manufactur"],
 .link[data-type*="contract"],
 .link[data-type*="produced"] {
@@ -255,7 +255,7 @@ h1, h2, .font-display,
     stroke-opacity: 0.5;
 }
 
-/* Partnership/blending — dotted, lighter */
+/* Partnership/blending: dotted, lighter */
 .link[data-type*="partner"],
 .link[data-type*="blended"],
 .link[data-category="partnership"] {
@@ -275,7 +275,7 @@ h1, h2, .font-display,
     stroke-opacity: 0.5;
 }
 
-/* Link trace pulse — flows from clicked node toward connected node (rollback: delete this block) */
+/* Link trace pulse: flows from clicked node toward connected node (rollback: delete this block) */
 @media (prefers-reduced-motion: no-preference) {
     .link.link-trace {
         transition: none;
@@ -384,7 +384,7 @@ h1, h2, .font-display,
     color: #0D5A55 !important;
 }
 
-/* Quiet tertiary action — sits with Share / Profile without competing */
+/* Quiet tertiary action: sits with Share / Profile without competing */
 .drawer-report-link {
     display: inline-flex;
     align-items: center;
@@ -550,7 +550,7 @@ h1, h2, .font-display,
     color: #0D5A55;
 }
 
-/* Map watermark — faint transparent logo behind nodes (rollback: delete .graph-watermark block) */
+/* Map watermark: faint transparent logo behind nodes (rollback: delete .graph-watermark block) */
 .graph-watermark {
     position: absolute;
     inset: 0;
@@ -572,7 +572,7 @@ h1, h2, .font-display,
     -webkit-user-drag: none;
 }
 
-/* Graph canvas layer — keep SVG behind floating controls/legend */
+/* Graph canvas layer: keep SVG behind floating controls/legend */
 #graph {
     position: absolute;
     inset: 0;
@@ -622,7 +622,7 @@ h1, h2, .font-display,
     background: #DBB978;
 }
 
-/* Graph legend — shared */
+/* Graph legend: shared */
 .graph-legend {
     padding: 0.5rem 0.75rem;
     background: rgba(236, 244, 242, 0.97);
@@ -897,7 +897,7 @@ h1, h2, .font-display,
         0 20px 60px -15px rgba(10, 10, 10, 0.22);
 }
 
-/* Selected graph node — gold ring */
+/* Selected graph node: gold ring */
 .node-group.node-selected .node {
     stroke: #CEA661 !important;
     stroke-width: 3.5px !important;
@@ -908,7 +908,7 @@ h1, h2, .font-display,
     fill: #14817A;
 }
 
-/* Nicer node hover — circle is .node inside g.node-group */
+/* Nicer node hover: circle is .node inside g.node-group */
 .node-group:hover .node {
     filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 5px rgba(206, 166, 97, 0.5));
     transform: scale(1.08);
@@ -1080,7 +1080,7 @@ h1, h2, .font-display,
     padding-right: 10px;
 }
 
-/* Desktop drag hint — one-time micro-tooltip (rollback: delete this block) */
+/* Desktop drag hint: one-time micro-tooltip (rollback: delete this block) */
 .drag-hint {
     position: absolute;
     left: 50%;
@@ -1153,7 +1153,7 @@ h1, h2, .font-display,
     }
 }
 
-/* Mobile welcome — floats over map bottom (no document-flow shift / CLS) */
+/* Mobile welcome: floats over map bottom (no document-flow shift / CLS) */
 .mobile-welcome--overlay {
     position: absolute;
     left: 0.75rem;
@@ -1276,7 +1276,7 @@ h1, h2, .font-display,
     overflow: hidden;
 }
 
-/* Drawer header shelf — distinct from scrollable content */
+/* Drawer header shelf: distinct from scrollable content */
 #drawer > div.p-5.border-b,
 #drawer-mobile > div.p-5.border-b {
     background: linear-gradient(to bottom, #F8FBFA 0%, #ECF4F2 100%);
@@ -1384,7 +1384,7 @@ h1, h2, .font-display,
     max-width: 100%;
 }
 
-/* Match graph link palette — ownership */
+/* Match graph link palette: ownership */
 .connection-type[data-rel*="owned"],
 .connection-type[data-rel*="subsidiary"] {
     background-color: #F0F7F6;
@@ -1565,7 +1565,7 @@ h1, h2, .font-display,
     min-height: 85px;
 }
 
-/* Person portraits in drawer — same card treatment, circular crop (any source size/aspect) */
+/* Person portraits in drawer: same card treatment, circular crop (any source size/aspect) */
 #drawer-logo-container.drawer-image-container--person,
 #drawer-logo-container-mobile.drawer-image-container--person {
     display: flex;

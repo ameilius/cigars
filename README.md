@@ -1,12 +1,12 @@
 # Cigar Nexus
 
-**An interactive visual map of the premium cigar industry** — ownership, factories, families, and corporate groups across Nicaragua, the Dominican Republic, Honduras, Costa Rica, and beyond.
+**An interactive visual map of the premium cigar industry**: ownership, factories, families, and corporate groups across Nicaragua, the Dominican Republic, Honduras, Costa Rica, and beyond.
 
 **Live:** [cigarnexus.app](https://cigarnexus.app/)
 
 ## Features
 
-- Force-directed graph (D3.js) — drag, zoom, pan, filters, search
+- Force-directed graph (D3.js): drag, zoom, pan, filters, search
 - Details drawer + shareable map permalinks (`/?node=…`)
 - SEO pages for every node at `/node/[id]/`
 - Curated graph data in `data.js` (no backend)
@@ -42,7 +42,7 @@ Keep facts sourced when possible. This is a curated non-Cuban industry map, not 
 ## Tech
 
 - D3.js v7, vanilla JS, Tailwind CSS (built, not CDN)
-- Static site — GitHub Pages / any static host
+- Static site (GitHub Pages / any static host)
 - No bundler for the map runtime; Node only for CSS + page generation
 
 ## License

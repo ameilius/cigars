@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data — 174 nodes, 348 links
+ * Cigar Nexus graph data: 174 nodes, 348 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -373,7 +373,7 @@ var baseGraphData = {
                 { source: "crownedheads", target: "nacsa", type: "historical production at" },
                 { source: "southerndraw", target: "plasenciahonduras", type: "manufactured at" },
                 { source: "kristoff", target: "williamventura", type: "manufactured at" },
-                // Montecristo / Romeo y Julieta (non-Cuban) = Altadis U.S.A. / Imperial Brands — not STG/General
+                // Montecristo / Romeo y Julieta (non-Cuban) = Altadis U.S.A. / Imperial Brands (not STG/General)
                 { source: "montecristonc", target: "altadis", type: "owned by" },
                 { source: "altadis", target: "montecristonc", type: "owns / distributes" },
                 { source: "montecristonc", target: "sanlotano", type: "manufactured at" },

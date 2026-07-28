@@ -124,7 +124,7 @@ var nodeWebsites = {
   westtampa: { website: "https://www.westtampatobacco.com" },
   zino: { website: "https://us.davidoffgeneva.com", websiteLabel: "Zino (Davidoff)" },
 
-  // P0–P3 factory nodes
+  // P0-P3 factory nodes
   williamventura: { website: "https://www.williamventuracigars.com" },
   lucianopichardo: { website: "https://lucianocigars.com", websiteLabel: "Luciano Cigars" },
   nicasueno: { website: "https://nicasuenocigars.com" },

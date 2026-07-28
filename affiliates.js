@@ -1,5 +1,5 @@
 /**
- * Affiliate partners — shared by the map drawer (browser) and SEO node page generator.
+ * Affiliate partners shared by the map drawer (browser) and SEO node page generator.
  */
 var famousSmokeAffiliate = {
   clickUrl: 'https://www.jdoqocy.com/click-101764792-15736363',

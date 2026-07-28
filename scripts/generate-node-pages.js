@@ -207,7 +207,7 @@ function buildAutoExpandedDescription(node, connections, shortDesc) {
 
   let html = `<p><strong>${escapeHtml(name)}</strong> is a ${escapeHtml(typeLabel)}`;
   if (countryLabel) html += ` with strong ties to ${escapeHtml(countryLabel)}`;
-  html += ` in the modern premium cigar industry. Classified as a ${escapeHtml(groupLabel)}, this node appears on the <a href="/?node=${node.id}">Cigar Nexus interactive map</a> — a visual tool for exploring ownership, manufacturing, and supply-chain relationships across Nicaragua, the Dominican Republic, Honduras, and beyond.</p>`;
+  html += ` in the modern premium cigar industry. Classified as a ${escapeHtml(groupLabel)}, this node appears on the <a href="/?node=${node.id}">Cigar Nexus interactive map</a>: a visual tool for exploring ownership, manufacturing, and supply-chain relationships across Nicaragua, the Dominican Republic, Honduras, and beyond.</p>`;
 
   if (shortDesc) {
     html += `<p>${escapeHtml(shortDesc)}</p>`;
@@ -221,7 +221,7 @@ function buildAutoExpandedDescription(node, connections, shortDesc) {
     const top = connections.slice(0, 6);
     const items = top.map(c => {
       const dir = c.direction === 'out' ? 'connects to' : 'is linked from';
-      return `<li>${escapeHtml(c.rel)} — ${dir} <a href="/node/${c.otherId}/">${escapeHtml(c.otherName)}</a></li>`;
+      return `<li>${escapeHtml(c.rel)}: ${dir} <a href="/node/${c.otherId}/">${escapeHtml(c.otherName)}</a></li>`;
     }).join('');
     html += `<p>Key relationships documented on Cigar Nexus:</p><ul>${items}</ul>`;
     if (connections.length > 6) {
@@ -229,7 +229,7 @@ function buildAutoExpandedDescription(node, connections, shortDesc) {
     }
   }
 
-  html += `<p>Use the <a href="/">interactive industry map</a> to filter by country, ownership type, or boutique vs. corporate — and click any connected node to trace how ${escapeHtml(name)} fits into the wider cigar world.</p>`;
+  html += `<p>Use the <a href="/">interactive industry map</a> to filter by country, ownership type, or boutique vs. corporate: and click any connected node to trace how ${escapeHtml(name)} fits into the wider cigar world.</p>`;
   return html;
 }
 
