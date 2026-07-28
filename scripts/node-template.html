@@ -179,6 +179,16 @@
       .node-hero__identity .node-website-link {
         margin-top: 0.625rem;
       }
+      .node-profile-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+      .node-cta-row .drawer-share-btn {
+        align-self: center;
+      }
       .node-body + section,
       section + section,
       section ~ div[class*="text-xs"] {
@@ -222,6 +232,17 @@
             <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1A3330]" itemprop="headline">{{NAME}}</h1>
             <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
             {{WEBSITE_LINK}}
+            <div class="node-profile-actions">
+              <button type="button"
+                      class="drawer-share-btn"
+                      data-share-url="{{CANONICAL}}"
+                      data-share-name="{{NAME}}"
+                      data-share-title="{{NAME}} | Cigar Nexus"
+                      aria-label="Share {{NAME}} profile">
+                <svg class="drawer-share-btn__icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                <span class="drawer-share-btn__label">Share</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -243,6 +264,15 @@
         <a href="{{BACK_TO_MAP}}" class="node-cta-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-[#ECF4F2] bg-[#14817A] rounded-2xl hover:bg-[#0D5A55] transition-colors shadow-sm">
           ← View on interactive map
         </a>
+        <button type="button"
+                class="drawer-share-btn"
+                data-share-url="{{CANONICAL}}"
+                data-share-name="{{NAME}}"
+                data-share-title="{{NAME}} | Cigar Nexus"
+                aria-label="Share {{NAME}} profile">
+          <svg class="drawer-share-btn__icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+          <span class="drawer-share-btn__label">Share</span>
+        </button>
         <a href="/" class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-[#14817A] border border-[#CFE0DC] rounded-2xl bg-white hover:border-[#CEA661] hover:bg-[#F8FBFA] transition-colors">
           Explore full map
         </a>
@@ -259,6 +289,90 @@
       <p class="mt-1"><a href="/">Return to Map</a> · <a href="/about.html">About</a></p>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    function canUseNativeShare(shareUrl) {
+      if (typeof navigator.share !== 'function' || !window.isSecureContext) return false;
+      try {
+        if (new URL(shareUrl).protocol !== 'https:') return false;
+      } catch (_) {
+        return false;
+      }
+      // Desktop Chrome Web Share is flaky — prefer clipboard (matches map drawer)
+      var isDesktop = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches;
+      return !isDesktop;
+    }
+
+    async function tryNativeShare(payload) {
+      var variants = [{ url: payload.url }, { title: payload.title, url: payload.url }, payload];
+      for (var i = 0; i < variants.length; i++) {
+        try {
+          await navigator.share(variants[i]);
+          return 'shared';
+        } catch (err) {
+          if (err && err.name === 'AbortError') return 'aborted';
+        }
+      }
+      return 'failed';
+    }
+
+    async function copyText(text) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch (_) {}
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return ok;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function showCopied(button) {
+      var label = button.querySelector('.drawer-share-btn__label');
+      var original = label ? label.textContent : 'Share';
+      if (label) label.textContent = 'Copied!';
+      button.classList.add('drawer-share-btn--copied');
+      button.disabled = true;
+      setTimeout(function () {
+        if (label) label.textContent = original;
+        button.classList.remove('drawer-share-btn--copied');
+        button.disabled = false;
+      }, 2000);
+    }
+
+    async function shareProfile(button) {
+      var url = button.getAttribute('data-share-url') || window.location.href;
+      var name = button.getAttribute('data-share-name') || document.title;
+      var title = button.getAttribute('data-share-title') || (name + ' | Cigar Nexus');
+      var text = 'See how ' + name + ' connects across the cigar industry on Cigar Nexus';
+
+      if (canUseNativeShare(url)) {
+        var result = await tryNativeShare({ title: title, text: text, url: url });
+        if (result === 'shared' || result === 'aborted') return;
+      }
+
+      var copied = await copyText(url);
+      if (copied) showCopied(button);
+    }
+
+    document.querySelectorAll('.drawer-share-btn[data-share-url]').forEach(function (btn) {
+      btn.addEventListener('click', function () { shareProfile(btn); });
+    });
+  })();
+  </script>
 
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47c138e86a9640b59aea782003168da5"}'></script>
