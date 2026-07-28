@@ -107,6 +107,34 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+const REPORT_CORRECTION_EMAIL = 'contact@cigarnexus.app';
+
+/** Pre-filled mailto for "Report a correction" on SEO node pages. */
+function buildReportCorrectionMailto(node) {
+  const id = String(node.id || '');
+  const displayName = String(node.name || id || 'Unknown');
+  const subject = `Correction: ${displayName} (Cigar Nexus)`;
+  const body = [
+    'Hi Cigar Nexus team,',
+    '',
+    "I'd like to suggest a correction for this profile:",
+    '',
+    `Name: ${displayName}`,
+    `Node ID: ${id}`,
+    `Map: ${SITE}/?node=${id}`,
+    `Profile: ${SITE}/node/${id}/`,
+    '',
+    'What should be corrected?',
+    '',
+    '',
+    'Source / reference (optional):',
+    '',
+    '',
+    'Thanks!',
+  ].join('\n');
+  return `mailto:${REPORT_CORRECTION_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 function stripHtml(html) {
   return String(html || '')
     .replace(/<[^>]+>/g, ' ')
@@ -561,6 +589,7 @@ function generateAllNodePages() {
       .replace(/\{\{FIND_CIGARS\}\}/g, buildFindCigarsHtml(buildFamousSmokeBuyHtml))
       .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
       .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
+      .replace(/\{\{REPORT_MAILTO\}\}/g, escapeHtml(buildReportCorrectionMailto(node)))
       .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites));
 
     fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');

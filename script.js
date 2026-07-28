@@ -1399,12 +1399,58 @@ async function tryNativeShare({ title, text, url }) {
 
 const SHARE_ICON_SVG = '<svg class="drawer-share-btn__icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>';
 
+const REPORT_ICON_SVG = '<svg class="drawer-report-link__icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>';
+
+const REPORT_CORRECTION_EMAIL = 'contact@cigarnexus.app';
+
+function buildReportCorrectionMailto({ id, name, mapUrl, profileUrl }) {
+  const displayName = String(name || id || 'Unknown');
+  const subject = `Correction: ${displayName} (Cigar Nexus)`;
+  const lines = [
+    'Hi Cigar Nexus team,',
+    '',
+    "I'd like to suggest a correction for this profile:",
+    '',
+    `Name: ${displayName}`,
+    `Node ID: ${id}`,
+  ];
+  if (mapUrl) lines.push(`Map: ${mapUrl}`);
+  if (profileUrl) lines.push(`Profile: ${profileUrl}`);
+  lines.push(
+    '',
+    'What should be corrected?',
+    '',
+    '',
+    'Source / reference (optional):',
+    '',
+    '',
+    'Thanks!'
+  );
+  return `mailto:${REPORT_CORRECTION_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+}
+
+function escapeHtmlAttr(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;');
+}
+
 function buildDrawerProfileActionsHtml(node) {
   const id = String(node.id || '');
   const name = escapeMetaLabel(node.name || id);
+  const mapUrl = buildNodeMapShareUrl(id);
+  const profileUrl = `${isLocalDevHost() ? SHARE_PRODUCTION_ORIGIN : window.location.origin}/node/${id}/`;
+  const reportHref = escapeHtmlAttr(buildReportCorrectionMailto({
+    id,
+    name: node.name || id,
+    mapUrl,
+    profileUrl,
+  }));
   return `<div class="drawer-profile-actions">
     <a href="/node/${id}/" class="drawer-profile-link">View Full Profile →</a>
     <button type="button" class="drawer-share-btn" data-node-id="${id}" onclick="shareNodeProfile(this.dataset.nodeId, this)" aria-label="Share ${name} on the map">${SHARE_ICON_SVG}<span class="drawer-share-btn__label">Share</span></button>
+    <a href="${reportHref}" class="drawer-report-link" aria-label="Report a correction for ${name}">${REPORT_ICON_SVG}<span class="drawer-report-link__label">Report a correction</span></a>
   </div>`;
 }
 

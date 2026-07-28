@@ -384,6 +384,57 @@ h1, h2, .font-display,
     color: #0D5A55 !important;
 }
 
+/* Quiet tertiary action — sits with Share / Profile without competing */
+.drawer-report-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.55rem;
+    min-height: 2rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #6B8A84;
+    text-decoration: none;
+    border-radius: 1rem;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: color 0.15s ease, background-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.drawer-report-link:hover {
+    color: #14817A;
+    background: rgba(20, 129, 122, 0.06);
+}
+.drawer-report-link:active {
+    color: #0D5A55;
+    background: rgba(20, 129, 122, 0.1);
+}
+.drawer-report-link:focus-visible {
+    outline: 2px solid rgba(20, 129, 122, 0.45);
+    outline-offset: 2px;
+}
+.drawer-report-link__icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+.drawer-report-link__label {
+    line-height: 1;
+}
+
+/* On narrow drawers, keep report on its own row so primary CTAs stay crisp */
+@media (max-width: 380px) {
+    .drawer-report-link {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        padding-left: 0.15rem;
+        margin-top: 0.1rem;
+    }
+}
+
 .drawer { transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); }
 
 .filter-chip {
