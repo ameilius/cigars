@@ -165,7 +165,7 @@ var drawerDescriptions = {
   "elseptimo": "El Septimo is an ultra-premium brand founded in 2005 by Gilles Botquin and owned since 2019 by Zaya Younan (El Septimo Geneva). Handmade in Costa Rica with multi-origin leaf and collection-driven lines (Sacred Arts, Emperor, Zaya, Culinary Art, Gilgamesh).",
   "zayayounan": "Zaya Younan is CEO and owner of El Septimo (acquired 2019). A U.S.-based entrepreneur behind Younan Company, he expanded the Costa Rican luxury brand from European and Middle Eastern markets into broad U.S. retail.",
   "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic, still family-owned by the León family since 1903.",
-  "mayflower": "Mayflower Cigars was launched by Michael Knowles and is produced at the Oliva factory in Estelí, Nicaragua.",
+  "mayflower": "Mayflower Cigars is Michael Knowles's premium brand, launched in 2023 with The Daily Wire and handmade at Oliva's Tabolisa factory in Estelí. Named for Knowles's Mayflower ancestors, the portfolio spans Dawn (mild-medium Ecuador Connecticut), Dusk (medium-full Habano), and Dream (Pennsylvania Broadleaf double maduro), with limited Dawn of America for the U.S. 250th.",
 
   // Karen Berger Cigars
   "karenberger": "Karen Berger Cigars is a vertically integrated Nicaraguan brand led by Karen Berger, continuing the legacy of Don Kiki Cigars. Known for quality Nicaraguan puros from their own Estelí farms and factory.",

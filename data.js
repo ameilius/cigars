@@ -111,7 +111,7 @@ var baseGraphData = {
                 { id: "elseptimo", name: "El Septimo", type: "brand", group: "corporate", country: "costa rica", productLines: ["Sacred Arts", "Emperor", "Zaya", "Culinary Art", "Gilgamesh", "Alexandra"], logo: "logos/elseptimo.png" },
                 { id: "zayayounan", name: "Zaya Younan", type: "person", group: "corporate", country: "usa", photo: "logos/zayayounan.jpg" },
                 { id: "laaurora", name: "La Aurora", type: "brand", group: "family", country: "dominican", productLines: ["Preferidos", "100 Años", "Family Reserve", "León Jimenes", "ADN Dominicano"], logo: "logos/laaurora.svg" },
-                { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream"], logo: "logos/mayflower.png" },
+                { id: "mayflower", name: "Mayflower Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Dawn", "Dusk", "Dream", "Dawn of America"], logo: "logos/mayflower.png" },
                 { id: "karenberger", name: "Karen Berger Cigars", type: "brand", group: "family", country: "nicaragua", productLines: ["Don Kiki Platinum", "K by Karen Berger Habano", "K by Karen Berger Maduro", "Ixtelli", "Halftime"], logo: "logos/karenberger.jpeg" },
                 { id: "karenbergerperson", name: "Karen Berger", type: "person", group: "family", country: "nicaragua", photo: "logos/karenbergerprofile.png" },
                 { id: "tabacaleraesteli", name: "Tabacalera Estelí", type: "factory", group: "family", country: "nicaragua" },
