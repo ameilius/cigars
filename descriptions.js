@@ -18,7 +18,7 @@ var drawerDescriptions = {
   "tabacoscubanica": "Tabacos Cubanica is the Padrón family’s historic factory in Estelí, Nicaragua. It produces the majority of Padrón cigars using traditional Cuban-inspired methods.",
 
   "davidoff": "Davidoff is a legendary luxury cigar brand now owned by Oettinger Davidoff in Switzerland. Famous for the Grand Cru, Millennium, and high-end lines made primarily in the Dominican Republic.",
-  "avo": "AVO is a premium Dominican brand under the Davidoff umbrella, known for its classic Cameroon wrapper and elegant, balanced blends.",
+  "avo": "AVO is the Dominican brand created by jazz pianist Avo Uvezian with Henke Kelner in the late 1980s, later acquired by Oettinger Davidoff. Rolled at Tabadom in Villa González, the portfolio spans Classic, Classic Maduro, XO, Heritage, and Syncro Nicaragua, music-named lines built for smooth, approachable premium smoking.",
   "griffins": "The Griffin’s is a historic Dominican brand under Oettinger Davidoff, originally created in the 1960s and known for its elegant, mild-to-medium profiles.",
   "oettinger": "Oettinger Davidoff is the Swiss-based corporate parent of Davidoff, AVO, and The Griffin’s. It oversees high-end production and global distribution of these luxury brands.",
   "tabadom": "Tabadom is Oettinger Davidoff’s Dominican manufacturing facility in Villa González. It rolls Davidoff, AVO, The Griffin’s, and related portfolio lines under the Swiss group’s quality standards.",

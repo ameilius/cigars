@@ -29,7 +29,7 @@ var baseGraphData = {
                 { id: "padron1964", name: "Padrón 1964 Anniversary", type: "brand", group: "family", country: "nicaragua", logo: "logos/padron1964.jpg" },
                 { id: "padron1926", name: "Padrón Serie 1926", type: "brand", group: "family", country: "nicaragua", logo: "logos/padron1926.jpg" },
                 { id: "davidoff", name: "Davidoff", type: "brand", group: "corporate", country: "dominican", productLines: ["Grand Cru", "Millennium", "Nicaragua", "Winston Churchill", "Late Hour"], logo: "logos/davidoff.png" },
-                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Heritage", "Syncro", "XO", "Proper"], logo: "logos/avo.jpg" },
+                { id: "avo", name: "AVO", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Classic Maduro", "XO", "Heritage", "Syncro Nicaragua", "Fogata", "Improvisation"], logo: "logos/avo.jpg" },
                 { id: "griffins", name: "The Griffin's", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Vintage", "Escudo", "Naturale"], logo: "logos/thegriffins.jpg" },
                 { id: "tabadom", name: "Tabadom (Villa González)", type: "factory", group: "corporate", country: "dominican" },
                 { id: "oettinger", name: "Oettinger Davidoff", type: "company", group: "corporate", country: "switzerland", logo: "logos/oettingerdavidoff.svg" },
