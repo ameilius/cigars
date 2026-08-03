@@ -30,8 +30,8 @@ var drawerDescriptions = {
   "stg": "Scandinavian Tobacco Group (STG) is the Danish corporate parent of General Cigar and Forged, owning U.S. Cohiba, Partagas, Punch, Macanudo, CAO, La Gloria Cubana, Room101, Alec Bradley, and more. It runs STG Estelí and Danlí capacity and is separate from Altadis Montecristo/RyJ ownership.",
   "generalcigar": "General Cigar Co. is STG's historic U.S. premium company behind Macanudo, CAO, Partagas (NC), La Gloria Cubana, and related brands, with deep Dominican and Central American factory ties. Sister Forged handles other STG names such as Cohiba (NC) and Punch (NC) in recent portfolio splits.",
   "forged": "Forged Cigar Co. is an STG company that handles production and distribution for several of its portfolio brands in the U.S. market.",
-  "macanudo": "Macanudo is one of the best-selling premium cigar brands in the United States. Produced by General Cigar under STG ownership, it is known for its consistent, elegant Connecticut-shade profile.",
-  "cao": "CAO is a bold, innovative brand originally founded in the 1990s and now owned by General Cigar/STG. Famous for its colorful packaging and full-flavored lines.",
+  "macanudo": "Macanudo is one of the best-selling U.S. premium brands under General Cigar/STG, launched in its modern form in 1971 from Jamaica and later concentrated in the Dominican Republic. Famous for mild-to-medium Connecticut Café profiles, with fuller lines like Inspirado, Cru Royale, and Estate Reserve.",
+  "cao": "CAO is the bold General Cigar/STG brand known for colorful packaging and full-flavored multi-origin lines (Brazilia, Flathead, MX2, Ecuador, and more). Long associated with blender Rick Rodriguez before he founded West Tampa; a creative counterweight to mild Macanudo in the STG portfolio.",
   "cohiba_nc": "Cohiba (Non-Cuban) is the U.S. STG/Forged Cohiba, legally separate from Cuban Habanos Cohiba after decades of trademark litigation. Dominican and Nicaraguan blends (including STG Estelí capacity) range from milder classics to fuller Blue Dot, Black, and Nicaragua lines for American retail.",
   "partagas_nc": "Partagas (Non-Cuban) is a General Cigar/STG heritage brand, not Cuban Partagás. Licensed after the Revolution and first sold in 1977 (Jamaica, then Dominican), it remains a full-flavored U.S. staple with classic Cameroon-era roots and newer multi-origin lines under STG distribution.",
   "punch_nc": "Punch (Non-Cuban) is the STG/Forged U.S. Punch, separate from Cuban Punch. Via Villazon into General (1997), it is a full-flavored, value-forward heritage brand with Honduras and Nicaragua production (including STG Danlí and Estelí) across Classic, Signature, Deluxe, Rare Corojo, and Gran Puro lines.",
@@ -133,7 +133,7 @@ var drawerDescriptions = {
 
   // === Additional corporate / other ===
   "alecbradley": "Alec Bradley is a well-known brand acquired by STG in 2023. It offers a wide range of cigars with a reputation for value and consistent quality.",
-  "room101": "Room101 is a bold, irreverent brand with a strong cult following. It has been associated with both independent and larger corporate ownership over the years.",
+  "room101": "Room101 is Matt Booth's irreverent cult brand, acquired by STG in 2022 and sold via General Cigar. Full-flavored, design-heavy limiteds with Honduran and Nicaraguan STG-network production (including Danlí and Estelí capacity) rather than a single boutique factory story.",
 
   // Camacho
   "camacho": "Camacho is a bold Honduran brand with deep roots under the Eiroa family before being acquired by Davidoff in 2008. Known for powerful Corojo cigars and strong, full-flavored profiles.",
@@ -157,7 +157,7 @@ var drawerDescriptions = {
   "ashton": "Ashton is the Levin family brand known for refined Dominican cigars (Classic, Cabinet, VSG, ESG, Symmetry) handmade at Tabacalera A. Fuente. Sister brands La Aroma de Cuba and San Cristóbal are Nicaraguan My Father products under the same ownership umbrella.",
   "lure": "Lure Cigars is an independent boutique brand founded by Lou Cross III with a fishing/outdoors theme. Produced in Estelí, Nicaragua.",
   "definition": "Definition Cigars is a boutique brand founded by Jamond Hackley emphasizing craftsmanship and balance. Made at the Luciano factory in Estelí.",
-  "lagloriacubana": "La Gloria Cubana (non-Cuban) is owned by General Cigar / STG. Famous for powerful Serie R and other full-flavored Dominican cigars.",
+  "lagloriacubana": "La Gloria Cubana (non-Cuban) is a General Cigar/STG brand born in Miami with Ernesto Perez-Carrillo, sold to General in 1999. Famous for full-flavored classics and Serie R large-ring cigars; Ernesto later left to found Casa Carrillo, while LGC remains a corporate full-body staple.",
   "domain": "Domain Cigars is a vertically integrated boutique brand co-founded by Esteban Disla and Daniel Lance. Their partnership began when Disla chose Lance by phone. Tobacco comes from Valle Regadío, and cigars are rolled at Familia Disla in Estelí.",
   "estebandisla": "Esteban Disla is a veteran Nicaraguan master blender and Domain Cigars co-founder. He spent 10+ years at Nica Sueño (RoMa Craft), blended for dozens of brands at STG Estelí, and chose Daniel Lance as his vertical partner.",
   "daniellance": "Daniel Lance is Domain Cigars co-founder and Lujo Concepts (BTX cutter) co-founder. A former U.S. tobacconist, he was chosen by Esteban Disla (their partnership started with a phone call) to build Domain from Valle Regadío farms to Estelí.",
