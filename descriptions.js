@@ -68,21 +68,21 @@ var drawerDescriptions = {
   "plasenciaesteli": "Plasencia Estelí (often called The Cathedral) is the family’s premium-oriented factory in Nicaragua. It produces many of their own high-end lines and select contract work.",
 
   // === Rocky Patel ===
-  "rockypatel": "Rocky Patel Premium Cigars is a vertically integrated operation led by Nish Patel. Owns Tavicusa factory and maintains deep partnerships with Plasencia.",
-  "nishpatel": "Nish Patel leads Rocky Patel Premium Cigars. He has guided the company’s vertical integration, including ownership of the Tavicusa factory in Estelí.",
+  "rockypatel": "Rocky Patel Premium Cigars is a high-volume boutique catalog brand (Decade, Vintage, Edge, Sun Grown) with Plasencia partnerships and owned TaviCusa capacity in Estelí.",
+  "nishpatel": "Nish Patel is Patel family leadership at Rocky Patel, associated with Nicaraguan factory and quality oversight including TaviCusa.",
   "tavicusa": "Tabacalera Villa Cuba (TaviCusa) is Rocky Patel’s factory in Estelí. It produces many Rocky Patel lines and supports their long-term manufacturing partnerships.",
 
   // === Drew Estate / Swisher ===
-  "drewestate": "Drew Estate (owned by Swisher International since 2014) is famous for innovative fermentation and bold cigars like Acid and Liga Privada. La Gran Fábrica in Estelí is their flagship.",
-  "jonathandrew": "Jonathan Drew (Sann) is the founder of Drew Estate. He built the company from a small operation into a major player known for fermentation innovation and cult brands.",
-  "swisher": "Swisher International is the large corporate owner of Drew Estate (acquired in 2014). It is one of the biggest cigar companies in the world by volume.",
-  "lagranfabrica": "La Gran Fábrica Drew Estate is the company’s large, modern factory in Estelí. It produces Liga Privada, Undercrown, and many other Drew Estate lines.",
+  "drewestate": "Drew Estate (Jonathan Drew) runs La Gran Fábrica in Estelí: Acid/infused innovation plus Liga Privada, Undercrown, and Herrera Estelí; owned by Swisher since 2014.",
+  "jonathandrew": "Jonathan Drew (Sann) founded Drew Estate and built La Gran Fábrica, spanning Acid innovation and Liga Privada ultra-premium traditional lines.",
+  "swisher": "Swisher International is the mass-market parent of Drew Estate (acquired 2014), funding La Gran Fábrica scale while Drew Estate keeps a premium creative identity.",
+  "lagranfabrica": "La Gran Fábrica Drew Estate is the huge Estelí factory behind Liga Privada, Undercrown, Acid, Deadwood, and most Drew Estate volume; Swisher-owned era expansion.",
 
   // === CLE / Eiroa family (Honduras) ===
-  "cle": "CLE Cigar Company, founded by Christian Eiroa, is a vertically integrated Honduran powerhouse. The Eiroa family also produces the highly regarded Aladino brand.",
-  "christianeiroa": "Christian Eiroa founded CLE Cigar Co. and the Aladino factory in Danlí, Honduras. He previously led the Camacho brand before launching his own family-focused operation.",
-  "eiroafamily": "Eiroa Family (Aladino) represents the broader family tobacco and manufacturing business in Honduras, closely tied to Christian Eiroa’s CLE operation.",
-  "eiroadanli": "CLE Factory (Danlí, Honduras) is the state-of-the-art Aladino factory opened by Christian Eiroa in 2013 on the site of his grandfather’s historic theater.",
+  "cle": "CLE Cigar Company (Christian Eiroa) is Honduran vertical Corojo power (Corojo, Cuarenta, Plus, Eiroa lines) based in Danlí, separate from Oettinger-owned Camacho.",
+  "christianeiroa": "Christian Eiroa founded CLE after leading Camacho's rise; Honduran Corojo specialist tied to the Eiroa family and the Aladino/CLE factory in Danlí.",
+  "eiroafamily": "The Eiroa Family (Aladino) is a multigenerational Honduran tobacco dynasty centered on Corojo, CLE/Christian Eiroa manufacturing in Danlí, and earlier Camacho leadership history.",
+  "eiroadanli": "CLE/Aladino factory in Danlí, Honduras: Christian Eiroa's vertical home for bold Corojo-forward CLE and Aladino cigars on historic family ground.",
 
   // === Aganorsa / TABSA ===
   "aganorsa": "Aganorsa Leaf (Max Fernández Pujals) is a major Nicaraguan grower-manufacturer operating TABSA in Estelí. Supplies and rolls for Illusione, Viaje, Warped, and other tobacco-driven boutiques while making its own Aganorsa brands.",
@@ -104,9 +104,9 @@ var drawerDescriptions = {
   "tabolisa": "Tabolisa (Oliva Estelí) is Oliva's primary factory: Serie V, Melanio, Serie G, NUB, Cain, and select contract brands like Mayflower. Vertical Nicaraguan capacity at industrial scale.",
 
   // === Perdomo ===
-  "perdomo": "Perdomo Cigars is a large family-owned operation led by Nick Perdomo Jr. Known for ambitious vertical integration and the massive El Monstro factory in Estelí.",
-  "nickperdomo": "Nick Perdomo Jr. founded Perdomo Cigars in 1992. He built the company from a small Miami operation into a fully vertically integrated Nicaraguan powerhouse.",
-  "perdomofactory": "Tabacalera Perdomo (El Monstro, Estelí) is the large, self-contained factory and farm operation of Perdomo Cigars. It handles growing, fermentation, rolling, and packaging in-house.",
+  "perdomo": "Perdomo is Nick Perdomo Jr.'s vertically integrated Estelí brand (Lot 23, Champagne, Reserve, anniversaries) rolled at Tabacalera Perdomo \"El Monstro.\"",
+  "nickperdomo": "Nick Perdomo Jr. leads Perdomo Cigars and the family's massive Estelí vertical operation from farms through El Monstro factory.",
+  "perdomofactory": "Tabacalera Perdomo (El Monstro) in Estelí is Perdomo's self-contained farm-to-box campus and one of Central America's largest family premium factories.",
 
   // === Joya de Nicaragua ===
   "joya": "Joya de Nicaragua is the historic national brand (founded 1968) known for Antaño and Clásico. The Estelí factory also contract-rolls for Dunbarton, Viaje, Warped, and other boutiques.",
@@ -136,7 +136,7 @@ var drawerDescriptions = {
   "room101": "Room101 is Matt Booth's irreverent cult brand, acquired by STG in 2022 and sold via General Cigar. Full-flavored, design-heavy limiteds with Honduran and Nicaraguan STG-network production (including Danlí and Estelí capacity) rather than a single boutique factory story.",
 
   // Camacho
-  "camacho": "Camacho is a bold Honduran brand with deep roots under the Eiroa family before being acquired by Davidoff in 2008. Known for powerful Corojo cigars and strong, full-flavored profiles.",
+  "camacho": "Camacho is Oettinger Davidoff's bold Honduran brand (Corojo, Triple Maduro, Liberty), historically built under Christian Eiroa before Swiss ownership; the fuller, aggressive counterweight to Davidoff elegance in the same group.",
 
   // Zino
   "zino": "Zino is the approachable Oettinger Davidoff brand named for Zino Davidoff, spanning Platinum, Nicaragua, and Honduras lines with stronger Central American identity than flagship Davidoff. Group-owned; select production uses Honduran network capacity.",
@@ -209,10 +209,10 @@ var drawerDescriptions = {
   // P2 brand nodes
   "gurkha": "Gurkha is a widely distributed premium brand with Dominican production across William Ventura, Casa Carrillo, and other contract facilities.",
   "caldwell": "Caldwell Cigar Co. was founded in 2013 by Robert Caldwell and friends to do everything differently: distinctive packaging, proprietary tobaccos, and blends such as Blind Man's Bluff, Long Live the King, Lost & Found, and Eastern Standard. Production spans partner factories including PDR, Nica Sueño, William Ventura, and La Alianza.",
-  "lfd": "La Flor Dominicana (LFD) is Litto Gomez's vertically integrated Dominican boutique, famous for the patented Chisel vitola, Double Ligero power, and cigars rolled at Tabacalera La Flor in Tamboril from Gomez family tobacco farms.",
-  "littogomez": "Litto Gomez is the founder of La Flor Dominicana, a former jeweler who built a Tamboril factory, La Canela farm, and one of the Dominican Republic's most innovative boutique cigar houses with wife Ines Lorenzo-Gomez.",
-  "lfdfactory": "Tabacalera La Flor S.A. in Tamboril is Litto Gomez's vertically integrated Dominican factory behind La Flor Dominicana, rolling Chisel, Ligero, and Air Bender lines from estate-grown leaf.",
-  "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line (No. 9, T52, H99, and Unico), hand-rolled in a dedicated room at La Gran Fábrica Drew Estate using Connecticut River Valley broadleaf and long-aged proprietary tobacco.",
+  "lfd": "La Flor Dominicana (Litto Gomez) is a vertically integrated Dominican boutique in Tamboril famous for Double Ligero, Air Bender, and the patented Chisel vitola.",
+  "littogomez": "Litto Gomez founded La Flor Dominicana with Ines Lorenzo-Gomez: jeweler-turned-cigarmaker, estate tobacco, Tamboril factory, full-bodied Dominican innovation.",
+  "lfdfactory": "Tabacalera La Flor in Tamboril is LFD's integrated Dominican factory for Chisel, Ligero, and Air Bender lines from Gomez family tobacco programs.",
+  "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line (No. 9, T52, H99, Unico), broadleaf-driven and rolled at La Gran Fábrica in Estelí.",
   "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities. It is a sister brand to Casa Carrillo within the Perez-Carrillo family.",
