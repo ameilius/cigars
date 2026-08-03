@@ -23,9 +23,9 @@ var drawerDescriptions = {
   "oettinger": "Oettinger Davidoff is the Swiss-based corporate parent of Davidoff, AVO, and The Griffin’s. It oversees high-end production and global distribution of these luxury brands.",
   "tabadom": "Tabadom is Oettinger Davidoff’s Dominican manufacturing facility in Villa González. It rolls Davidoff, AVO, The Griffin’s, and related portfolio lines under the Swiss group’s quality standards.",
 
-  "arturo": "Arturo Fuente is one of the most respected family-owned Dominican cigar companies. Founded in 1912, it is famous for the Hemingway series and OpusX.",
-  "tabafuente": "Tabacalera A. Fuente is the family’s historic factory in Santiago, Dominican Republic. It produces Arturo Fuente and the legendary OpusX line.",
-  "opusx": "Fuente Fuente OpusX is the flagship line of Arturo Fuente, grown and rolled at the family’s Chateau de la Fuente estate. Widely regarded as one of the greatest cigars ever made.",
+  "arturo": "Arturo Fuente is a multigenerational Dominican family house (from 1912 roots) famous for Hemingway, Don Carlos, Añejo, and OpusX. Production centers on Tabacalera A. Fuente in Santiago, with Château de la Fuente estate wrappers; longtime partners include J.C. Newman and Ashton.",
+  "tabafuente": "Tabacalera A. Fuente in Santiago, DR, is the Fuente family factory behind Arturo Fuente and OpusX, and the rolling home for partner brands Ashton and Diamond Crown (J.C. Newman). Estate agriculture at Château de la Fuente made Dominican Cuban-seed wrappers famous.",
+  "opusx": "Fuente Fuente OpusX is Arturo Fuente's ultra-premium flagship: the first major commercial success with Cuban-seed wrapper grown in the Dominican Republic at Château de la Fuente, rolled via Tabacalera A. Fuente. Limited, full-flavored, and a collector benchmark since the mid-1990s.",
 
   "stg": "Scandinavian Tobacco Group (STG) is the Danish corporate parent of General Cigar and Forged, owning U.S. Cohiba, Partagas, Punch, Macanudo, CAO, La Gloria Cubana, Room101, Alec Bradley, and more. It runs STG Estelí and Danlí capacity and is separate from Altadis Montecristo/RyJ ownership.",
   "generalcigar": "General Cigar Co. is STG's historic U.S. premium company behind Macanudo, CAO, Partagas (NC), La Gloria Cubana, and related brands, with deep Dominican and Central American factory ties. Sister Forged handles other STG names such as Cohiba (NC) and Punch (NC) in recent portfolio splits.",
@@ -36,8 +36,8 @@ var drawerDescriptions = {
   "partagas_nc": "Partagas (Non-Cuban) is a General Cigar/STG heritage brand, not Cuban Partagás. Licensed after the Revolution and first sold in 1977 (Jamaica, then Dominican), it remains a full-flavored U.S. staple with classic Cameroon-era roots and newer multi-origin lines under STG distribution.",
   "punch_nc": "Punch (Non-Cuban) is the STG/Forged U.S. Punch, separate from Cuban Punch. Via Villazon into General (1997), it is a full-flavored, value-forward heritage brand with Honduras and Nicaragua production (including STG Danlí and Estelí) across Classic, Signature, Deluxe, Rare Corojo, and Gran Puro lines.",
 
-  "jcnewman": "J.C. Newman is America’s oldest family-owned cigar company, founded in 1895. It produces the Diamond Crown and Brick House lines in the Dominican Republic.",
-  "diamondcrown": "Diamond Crown is the ultra-premium flagship line of J.C. Newman. Made at Tabacalera A. Fuente, it is known for its exceptional quality and elegant presentation.",
+  "jcnewman": "J.C. Newman (founded 1895, based in Tampa) is America's oldest family-owned premium cigar company. Dominican ultra-premiums like Diamond Crown are handmade at Tabacalera A. Fuente; other Newman brands use separate Nicaraguan capacity. Partnership with Fuente dates to 1986.",
+  "diamondcrown": "Diamond Crown is J.C. Newman's ultra-premium flagship, created for the company's 1995 centennial with Carlos Fuente Jr. and handmade at Tabacalera A. Fuente. Aged Dominican blends, ornate packaging, and later projects like Diamond Crown Tampa define the Newman-Fuente peak.",
 
 
 
@@ -154,7 +154,7 @@ var drawerDescriptions = {
   // New brands added
   "laaromadecuba": "La Aroma de Cuba is owned by Ashton (Levin family) and produced by the Garcia family at My Father in Estelí. Known for excellent value and consistent high ratings.",
   "sancristobal": "San Cristobal is owned by Ashton and made by the Garcia family at My Father. Strong family ties to Pete Johnson (Tatuaje) through Janny Garcia.",
-  "ashton": "Ashton is a long-standing premium brand owned by the Levin family and produced at the Arturo Fuente factory in the Dominican Republic.",
+  "ashton": "Ashton is the Levin family brand known for refined Dominican cigars (Classic, Cabinet, VSG, ESG, Symmetry) handmade at Tabacalera A. Fuente. Sister brands La Aroma de Cuba and San Cristóbal are Nicaraguan My Father products under the same ownership umbrella.",
   "lure": "Lure Cigars is an independent boutique brand founded by Lou Cross III with a fishing/outdoors theme. Produced in Estelí, Nicaragua.",
   "definition": "Definition Cigars is a boutique brand founded by Jamond Hackley emphasizing craftsmanship and balance. Made at the Luciano factory in Estelí.",
   "lagloriacubana": "La Gloria Cubana (non-Cuban) is owned by General Cigar / STG. Famous for powerful Serie R and other full-flavored Dominican cigars.",
