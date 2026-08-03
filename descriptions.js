@@ -7,7 +7,7 @@ var drawerDescriptions = {
   "myfather": "My Father is one of the most respected Nicaraguan brands, founded by Pepín García. Known for bold, full-bodied cigars with exceptional construction and complex flavors.",
   "pepin": "Pepín García is the legendary founder of My Father Cigars and a master blender with deep roots in the Cuban cigar tradition. He brought his family expertise to Nicaragua.",
   "tatuaje": "Tatuaje is a highly acclaimed boutique brand founded by Pete Johnson in collaboration with Pepín García. Famous for the Tatuaje Serie P and the Reserva line.",
-  "espinosa": "Espinosa Premium Cigars, led by Erik Espinosa, produces bold, innovative cigars. The La Zona factory in Estelí is a hub for many boutique projects.",
+  "espinosa": "Espinosa Premium Cigars (Erik Espinosa) runs La Zona in Estelí and the 601, Murciélago, Laranja, and Knuckle Sandwich portfolio. Brand owner plus contract manufacturer for other boutiques.",
   "erikespinosa": "Founder of Espinosa Premium Cigars and owner of La Zona factory in Estelí. Previously partnered in EO Brands before launching his own operation in 2012; known for the 601 and Murciélago lines.",
   "guyfieri": "Celebrity chef and TV personality (Diners, Drive-Ins and Dives). Co-creator of the Knuckle Sandwich cigar line with Erik Espinosa; actively involved in blending, marketing, and promotion.",
   "knucklesandwich": "Knuckle Sandwich is a popular collaboration between Guy Fieri and Erik Espinosa. Full-bodied Nicaraguan cigars primarily manufactured at A.J. Fernandez’s San Lotano factory, with blending roots at Espinosa’s La Zona.",
@@ -50,7 +50,7 @@ var drawerDescriptions = {
   "eobrands": "EO Brands (legacy) was the partnership between Erik Espinosa and Eddie Ortega that created the original 601 and Murciélago lines before the 2012 split.",
   "eddieortega": "Eddie Ortega was Erik Espinosa’s business partner in EO Brands/United Tobacco. He later left to pursue his own projects.",
 
-  "sixzeroone": "601 is the flagship brand line originally created under EO Brands and now continued by Espinosa Premium Cigars. Known for bold, full-flavored Nicaraguan cigars.",
+  "sixzeroone": "601 is Espinosa's flagship line from the EO Brands era: bold full Nicaraguan profiles (Red, Blue, La Bomba, and more), now centered at La Zona with historical A.J. Fernandez ties.",
   "murcielago": "Murciélago is a popular bold line from Espinosa, originally developed under EO Brands. It features a dark, powerful Nicaraguan profile.",
 
   "ajfernandez": "A.J. Fernandez is a highly regarded Nicaraguan cigar maker and blender. He operates the San Lotano factory and produces many acclaimed boutique and contract lines.",
@@ -90,11 +90,11 @@ var drawerDescriptions = {
   "tabsa": "TABSA (Aganorsa Factory, Estelí) is the highly regarded production facility of Aganorsa Leaf. It has been praised as one of the best factories in Nicaragua and rolls for Illusione, Foundation, Viaje, and others.",
 
   // === Foundation ===
-  "foundation": "Foundation Cigar Company (Nick Melillo) produces critically acclaimed lines like The Tabernacle and Olmec. They use contract production at top factories including My Father and A.J. Fernandez.",
+  "foundation": "Foundation Cigar Co. (Nick Melillo, ex-Drew Estate) is known for The Tabernacle, Olmec, El Güegüense, and Wise Man. Multi-factory boutique production includes A.J. Fernandez/San Lotano, My Father, and Joya.",
   "nickmelillo": "Nick Melillo is the founder of Foundation Cigar Company. A former Drew Estate executive, he is known for bold, terroir-driven blends and strong relationships with top Nicaraguan factories.",
 
   // === Warped / Kyle Gellis ===
-  "warped": "Warped Cigars (Kyle Gellis) is a modern boutique standout. Major production partner with NACSA and historical ties to Aganorsa/TABSA.",
+  "warped": "Warped Cigars (Kyle Gellis) is a traditionalist boutique with lines like Corto, Sarto, and Cloud Hopper. Major production at NACSA and historical Aganorsa/TABSA ties in Estelí.",
   "kylegellis": "Kyle Gellis founded Warped Cigars. He is known for creative, limited-production releases and close oversight of production at partner factories like NACSA.",
   "nacsa": "NACSA (Estelí) is a respected factory that has become a primary production partner for Warped and other boutique brands. Known for high-quality, attentive manufacturing.",
 
@@ -119,15 +119,15 @@ var drawerDescriptions = {
   "sobremesa": "Sobremesa is the flagship brand of Dunbarton Tobacco & Trust. Created by Steve Saka, it is celebrated for its complexity, balance, and the convivial spirit the name evokes.",
 
   // === Illusione ===
-  "illusione": "Illusione, founded by Dion Giolito, is a cult favorite known for powerful, refined Nicaraguan cigars. Long-time user of Aganorsa / TABSA tobacco and production.",
+  "illusione": "Illusione (Dion Giolito) is a cult \"quiet boutique\" for Original Documents, Singularé, 88, and Epernay. Long-term Aganorsa/TABSA production with some San Lotano and Joya work.",
   "diongiolito": "Dion Giolito is the founder of Illusione Cigars. He is known for his exacting standards and preference for powerful, terroir-driven Nicaraguan blends.",
 
   // === Viaje ===
-  "viaje": "Viaje (Andre Farkas) is a highly sought-after boutique brand famous for limited releases and creative blends. Frequent production partner of TABSA and Joya.",
+  "viaje": "Viaje (Andre Farkas) is a limited-release boutique known for Exclusivo, Double Ligero, Placeres, Oro, and Summerfest. Production spans TABSA, Joya, La Zona, and other top floors.",
   "andrefarkas": "Andre Farkas founded Viaje Cigars. He is known for highly allocated, creative limited editions and close relationships with top Nicaraguan factories.",
 
   // === HVC ===
-  "hvc": "HVC Cigars, founded by Reinier Lorenzo, built its own factory in Estelí. Known for the Hot Cake, Black Friday, and Edición Limitada series.",
+  "hvc": "HVC Cigars (Reinier Lorenzo) built from contract Estelí production to its own HVC factory. Known for Hot Cake, Black Friday, Edición Limitada, and bold value Nicaraguan blends.",
   "reinierlorenzo": "Reinier Lorenzo founded HVC Cigars. After years of contract production, he established his own factory in Estelí to gain greater control over quality and blends.",
   "hvcfactory": "HVC Factory (Estelí) is the company’s own production facility. It allows Reinier Lorenzo full oversight of the cigars that bear his initials.",
 
@@ -213,7 +213,7 @@ var drawerDescriptions = {
   "littogomez": "Litto Gomez is the founder of La Flor Dominicana, a former jeweler who built a Tamboril factory, La Canela farm, and one of the Dominican Republic's most innovative boutique cigar houses with wife Ines Lorenzo-Gomez.",
   "lfdfactory": "Tabacalera La Flor S.A. in Tamboril is Litto Gomez's vertically integrated Dominican factory behind La Flor Dominicana, rolling Chisel, Ligero, and Air Bender lines from estate-grown leaf.",
   "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line (No. 9, T52, H99, and Unico), hand-rolled in a dedicated room at La Gran Fábrica Drew Estate using Connecticut River Valley broadleaf and long-aged proprietary tobacco.",
-  "crownedheads": "Crowned Heads (Jon Huber & friends) is a celebrated boutique brand produced at My Father in Nicaragua with historical ties to NACSA.",
+  "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities. It is a sister brand to Casa Carrillo within the Perez-Carrillo family.",
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line, blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
