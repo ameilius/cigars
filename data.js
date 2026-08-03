@@ -4,9 +4,9 @@
  */
 var baseGraphData = {
             nodes: [
-                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["Le Bijou", "The Judge", "Le Grande", "Flor de las Antillas", "My Father Connecticut"], logo: "logos/myfather.png" },
+                { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["My Father", "The Judge", "Le Bijou", "Flor de las Antillas", "La Opulencia"], logo: "logos/myfather.png" },
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua", photo: "logos/pepingarcia.jpg" },
-                { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua", productLines: ["Brown Label", "Black Label", "Havana VI", "Reserva", "Fausto", "Cojonú"], logo: "logos/tatuaje.png" },
+                { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua", productLines: ["Brown Label", "Black Label", "Havana VI", "Fausto", "Cojonú", "Reserva"], logo: "logos/tatuaje.png" },
                 { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["601", "Murciélago", "Laranja", "Espinosa Habano", "Knuckle Sandwich"], logo: "logos/espinosa.webp" },
                 { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa", photo: "logos/erikespinosa.png" },
                 { id: "guyfieri", name: "Guy Fieri", type: "person", group: "family", country: "usa", photo: "logos/guyfieri.jpg" },
@@ -19,7 +19,7 @@ var baseGraphData = {
                 { id: "eddieortega", name: "Eddie Ortega", type: "person", group: "family", country: "usa", photo: "logos/eddieortega.webp" },
                 { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua", productLines: ["Red", "Blue", "Green", "La Bomba", "Oscuro"], logo: "logos/601.webp" },
                 { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua", logo: "logos/murcielago.png" },
-                { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua", productLines: ["San Lotano", "New World", "Enclave", "Bellagio", "Last Call"], photo: "logos/ajfernandez.jpg" },
+                { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua", productLines: ["San Lotano", "New World", "Enclave", "Last Call", "Bellas Artes"], photo: "logos/ajfernandez.jpg" },
                 { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua", productLines: ["Regular Line", "1964 Anniversary", "1926 Serie", "Family Reserve", "Damaso"], logo: "logos/padron.png" },
                 { id: "joseopadron", name: "José Orlando Padrón", type: "person", group: "family", country: "usa", photo: "logos/joseorlandopadron.png" },

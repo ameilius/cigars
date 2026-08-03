@@ -4,9 +4,9 @@
  */
 var drawerDescriptions = {
   // === Core / Early brands & people ===
-  "myfather": "My Father is one of the most respected Nicaraguan brands, founded by Pepín García. Known for bold, full-bodied cigars with exceptional construction and complex flavors.",
-  "pepin": "Pepín García is the legendary founder of My Father Cigars and a master blender with deep roots in the Cuban cigar tradition. He brought his family expertise to Nicaragua.",
-  "tatuaje": "Tatuaje is a highly acclaimed boutique brand founded by Pete Johnson in collaboration with Pepín García. Famous for the Tatuaje Serie P and the Reserva line.",
+  "myfather": "My Father Cigars is the García family company led by Pepín García: house lines (My Father, The Judge, Le Bijou, Flor de las Antillas) and a premier Estelí contract home for Tatuaje, Crowned Heads, and other boutiques.",
+  "pepin": "Pepín García is the master blender behind My Father Cigars, Cuban-trained and formerly of Miami's El Rey de los Habanos, now the patriarch of a major Estelí family factory and brand group.",
+  "tatuaje": "Tatuaje is Pete Johnson's boutique brand made with the García family at My Father in Estelí. Famous for Brown/Black labels, Havana VI, Fausto, and heavy limited-release culture.",
   "espinosa": "Espinosa Premium Cigars (Erik Espinosa) runs La Zona in Estelí and the 601, Murciélago, Laranja, and Knuckle Sandwich portfolio. Brand owner plus contract manufacturer for other boutiques.",
   "erikespinosa": "Founder of Espinosa Premium Cigars and owner of La Zona factory in Estelí. Previously partnered in EO Brands before launching his own operation in 2012; known for the 601 and Murciélago lines.",
   "guyfieri": "Celebrity chef and TV personality (Diners, Drive-Ins and Dives). Co-creator of the Knuckle Sandwich cigar line with Erik Espinosa; actively involved in blending, marketing, and promotion.",
@@ -53,8 +53,8 @@ var drawerDescriptions = {
   "sixzeroone": "601 is Espinosa's flagship line from the EO Brands era: bold full Nicaraguan profiles (Red, Blue, La Bomba, and more), now centered at La Zona with historical A.J. Fernandez ties.",
   "murcielago": "Murciélago is a popular bold line from Espinosa, originally developed under EO Brands. It features a dark, powerful Nicaraguan profile.",
 
-  "ajfernandez": "A.J. Fernandez is a highly regarded Nicaraguan cigar maker and blender. He operates the San Lotano factory and produces many acclaimed boutique and contract lines.",
-  "sanlotano": "San Lotano Factory (Estelí) is A.J. Fernandez’s facility in Nicaragua. It produces the AJ Fernandez brand along with many contract and private-label cigars.",
+  "ajfernandez": "A.J. Fernandez is a top Nicaraguan blender-manufacturer who runs San Lotano in Estelí: house brands (New World, Enclave, Last Call, San Lotano) plus major contract work for Foundation, Altadis projects, and many boutiques.",
+  "sanlotano": "San Lotano is A.J. Fernandez's Estelí factory for his own lines and high-profile contracts (Trinidad Espiritu, Foundation Tabernacle/Olmec-era, Montecristo Nicaragua programs, and more).",
 
   // === Padrón family factories & lines ===
   "tabacoscubanica": "Tabacos Cubanica is the Padrón family factory in Estelí, Nicaragua, home of the regular line, 1964 Anniversary, and Serie 1926. Vertical Nicaraguan puros, long aging, Cuban-inspired methods, no generic contract-brand identity.",
@@ -62,7 +62,7 @@ var drawerDescriptions = {
   "padron1926": "Padrón Serie 1926 is the top of the Padrón ladder, named for José Orlando Padrón's birth year. Longest-aged family inventory, limited production at Tabacos Cubanica, Natural and Maduro, a reference Nicaraguan puro.",
 
   // === Plasencia family ===
-  "plasencia": "Plasencia Cigars is a five-generation grower-manufacturer with roots in 1865 Cuba, now farming and rolling across Nicaragua and Honduras. Long a major contract partner, the family also produces its own Alma Fuerte, Alma del Campo, Alma del Fuego, and related lines; STG holds a minority stake via General Cigar.",
+  "plasencia": "Plasencia is a five-generation grower-manufacturer (roots 1865) farming and rolling across Nicaragua and Honduras. Own Alma series plus massive historic contract capacity; STG holds a minority stake via General Cigar.",
   "nestorplasencia": "Nestor Plasencia Sr. is a legendary fifth-generation tobacco grower and manufacturer. After multiple exiles from Cuba and Nicaragua, he built one of the largest and most respected operations in the industry.",
   "nestorandres": "Nestor Andrés Plasencia is the next-generation leader of the Plasencia family operation, heavily involved in farming, production, and the company’s modern direction.",
   "plasenciaesteli": "Plasencia Estelí (often called The Cathedral) is the family’s premium-oriented factory in Nicaragua. It produces many of their own high-end lines and select contract work.",
@@ -85,9 +85,9 @@ var drawerDescriptions = {
   "eiroadanli": "CLE Factory (Danlí, Honduras) is the state-of-the-art Aladino factory opened by Christian Eiroa in 2013 on the site of his grandfather’s historic theater.",
 
   // === Aganorsa / TABSA ===
-  "aganorsa": "Aganorsa Leaf, led by Max Fernández Pujals, is one of Nicaragua's most important independent tobacco growers. Their TABSA factory in Estelí produces many top boutique brands.",
+  "aganorsa": "Aganorsa Leaf (Max Fernández Pujals) is a major Nicaraguan grower-manufacturer operating TABSA in Estelí. Supplies and rolls for Illusione, Viaje, Warped, and other tobacco-driven boutiques while making its own Aganorsa brands.",
   "maxfernandez": "Max Fernández Pujals leads Aganorsa Leaf, a major grower and manufacturer known for high-quality Nicaraguan tobacco used by many premium brands.",
-  "tabsa": "TABSA (Aganorsa Factory, Estelí) is the highly regarded production facility of Aganorsa Leaf. It has been praised as one of the best factories in Nicaragua and rolls for Illusione, Foundation, Viaje, and others.",
+  "tabsa": "TABSA is Aganorsa's flagship Estelí factory, a top contract floor for Illusione, Viaje, Warped (historical), Foundation projects, early HVC, and other boutiques seeking grower-linked Nicaraguan production.",
 
   // === Foundation ===
   "foundation": "Foundation Cigar Co. (Nick Melillo, ex-Drew Estate) is known for The Tabernacle, Olmec, El Güegüense, and Wise Man. Multi-factory boutique production includes A.J. Fernandez/San Lotano, My Father, and Joya.",
@@ -109,8 +109,8 @@ var drawerDescriptions = {
   "perdomofactory": "Tabacalera Perdomo (El Monstro, Estelí) is the large, self-contained factory and farm operation of Perdomo Cigars. It handles growing, fermentation, rolling, and packaging in-house.",
 
   // === Joya de Nicaragua ===
-  "joya": "Joya de Nicaragua is the oldest premium cigar factory in Nicaragua (founded 1965). A key contract manufacturer for many boutique brands including Dunbarton and Warped.",
-  "joyafactory": "Joya de Nicaragua Factory (Estelí) is the historic facility that helped establish Nicaragua as a premium cigar origin. It continues to produce its own lines and important contract work.",
+  "joya": "Joya de Nicaragua is the historic national brand (founded 1968) known for Antaño and Clásico. The Estelí factory also contract-rolls for Dunbarton, Viaje, Warped, and other boutiques.",
+  "joyafactory": "The Joya de Nicaragua factory in Estelí produces house lines and major boutique contracts (Dunbarton/Sobremesa, Viaje, Warped, select Foundation). Historic national floor still central to modern indie production.",
   "alejandromartinez": "Alejandro Martínez Cuenca acquired Joya de Nicaragua in 1994 and led its revival. The Martínez family still owns the company today.",
 
   // === Dunbarton / Steve Saka ===
