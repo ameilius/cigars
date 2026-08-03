@@ -99,9 +99,9 @@ var drawerDescriptions = {
   "nacsa": "NACSA (Estelí) is a respected factory that has become a primary production partner for Warped and other boutique brands. Known for high-quality, attentive manufacturing.",
 
   // === Oliva ===
-  "oliva": "Oliva Cigar Co. is a major vertically integrated producer owned by the Vandermarliere family (Belgium). Famous for Serie V, Melanio, Nub, and Cain. Tabolisa is their primary Estelí factory.",
-  "fredvandermarliere": "Fred Vandermarliere is part of the Belgian family that owns Oliva Cigar Co. The family has driven significant investment and growth in Nicaraguan production.",
-  "tabolisa": "Tabolisa (Oliva Estelí) is the primary factory for Oliva Cigar Co. It produces the majority of the brand’s well-known lines including Serie V and Melanio.",
+  "oliva": "Oliva Cigar Co. is a major Estelí producer owned by Belgium's Vandermarliere family, rolling at Tabolisa. Famous for Serie V and Melanio (including Cigar of the Year), plus sub-brands NUB and Cain, and contract work such as Mayflower.",
+  "fredvandermarliere": "Fred Vandermarliere represents the Belgian family that owns Oliva Cigar Co., backing Estelí agriculture and the Tabolisa factory behind Serie V, Melanio, NUB, and Cain.",
+  "tabolisa": "Tabolisa (Oliva Estelí) is Oliva's primary factory: Serie V, Melanio, Serie G, NUB, Cain, and select contract brands like Mayflower. Vertical Nicaraguan capacity at industrial scale.",
 
   // === Perdomo ===
   "perdomo": "Perdomo Cigars is a large family-owned operation led by Nick Perdomo Jr. Known for ambitious vertical integration and the massive El Monstro factory in Estelí.",
@@ -217,8 +217,8 @@ var drawerDescriptions = {
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
   "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities. It is a sister brand to Casa Carrillo within the Perez-Carrillo family.",
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line, blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
-  "cain": "Cain is Oliva's ligero-forward Nicaraguan sub-brand, launched in 2009 with Serie F and expanded into Black, Habano, Maduro, Connecticut CT, and Daytona. Rolled at Tabolisa in Estelí with triple-fermented Nicaraguan long-fillers.",
-  "nub": "NUB is Oliva's short, fat vitola sub-brand, created by Sam Leccia in 2008 to hit the cigar's sweet spot in a ~4-inch format. Rolled at Tabolisa with Nicaraguan core blends; lines include Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB.",
+  "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
+  "nub": "NUB is Oliva's short, fat vitola sub-brand created by Sam Leccia in 2008 and rolled at Tabolisa. ~4-inch large-ring formats (460/464/358) with Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB lines.",
   "altadis": "Altadis U.S.A. (Tabacalera USA / Imperial Brands) holds U.S. rights to non-Cuban Montecristo, Romeo y Julieta, Trinidad, and related marques. The counterpart to STG's General/Forged tree, it pairs heritage names with Nicaraguan partners like A.J. Fernandez and Plasencia.",
   "montecristonc": "Montecristo (Non-Cuban) is owned by Altadis U.S.A. (Imperial Brands), not STG. Separate from Cuban Montecristo, it spans Dominican core lines plus Nicaraguan prestige projects with Plasencia and A.J. Fernandez at San Lotano (including 1935 Anniversary).",
   "ryjnc": "Romeo y Julieta (Non-Cuban) is an Altadis U.S.A. (Imperial) brand, separate from Cuban RyJ and not STG. Everyday U.S. lines like 1875 and Reserva Real sit beside Nicaraguan projects with Plasencia and A.J. Fernandez (Romeo San Andrés).",
