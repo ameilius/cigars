@@ -17,10 +17,10 @@ var drawerDescriptions = {
   "orlandopadron": "Orlando Padrón is a key member of the Padrón family leadership team, contributing to the brand’s operations and legacy.",
   "tabacoscubanica": "Tabacos Cubanica is the Padrón family’s historic factory in Estelí, Nicaragua. It produces the majority of Padrón cigars using traditional Cuban-inspired methods.",
 
-  "davidoff": "Davidoff is a legendary luxury cigar brand now owned by Oettinger Davidoff in Switzerland. Famous for the Grand Cru, Millennium, and high-end lines made primarily in the Dominican Republic.",
+  "davidoff": "Davidoff is the flagship luxury brand of Oettinger Davidoff (Basel), rebuilt as a non-Cuban house after the Cuban era with core production at Tabadom in the Dominican Republic. Lines include Grand Cru, Millennium, Winston Churchill, Late Hour, Aniversario, and Nicaragua.",
   "avo": "AVO is the Dominican brand created by jazz pianist Avo Uvezian with Henke Kelner in the late 1980s, later acquired by Oettinger Davidoff. Rolled at Tabadom in Villa González, the portfolio spans Classic, Classic Maduro, XO, Heritage, and Syncro Nicaragua, music-named lines built for smooth, approachable premium smoking.",
-  "griffins": "The Griffin’s is a historic Dominican brand under Oettinger Davidoff, originally created in the 1960s and known for its elegant, mild-to-medium profiles.",
-  "oettinger": "Oettinger Davidoff is the Swiss-based corporate parent of Davidoff, AVO, and The Griffin’s. It oversees high-end production and global distribution of these luxury brands.",
+  "griffins": "The Griffin's is an Oettinger Davidoff Dominican brand from Henke Kelner's early Tabadom era, known for elegant mild-to-medium profiles (Classic, Vintage, Escudo, Naturale). Rolled at Tabadom alongside Davidoff and AVO.",
+  "oettinger": "Oettinger Davidoff AG is the Swiss parent of Davidoff, AVO, The Griffin's, Zino, and Camacho. Headquartered in Basel, with Dominican manufacturing at Tabadom and multi-country leaf/factory programs for Camacho and Zino.",
   "tabadom": "Tabadom is Oettinger Davidoff’s Dominican manufacturing facility in Villa González. It rolls Davidoff, AVO, The Griffin’s, and related portfolio lines under the Swiss group’s quality standards.",
 
   "arturo": "Arturo Fuente is a multigenerational Dominican family house (from 1912 roots) famous for Hemingway, Don Carlos, Añejo, and OpusX. Production centers on Tabacalera A. Fuente in Santiago, with Château de la Fuente estate wrappers; longtime partners include J.C. Newman and Ashton.",
@@ -139,7 +139,7 @@ var drawerDescriptions = {
   "camacho": "Camacho is a bold Honduran brand with deep roots under the Eiroa family before being acquired by Davidoff in 2008. Known for powerful Corojo cigars and strong, full-flavored profiles.",
 
   // Zino
-  "zino": "Zino is a Davidoff Group brand created by Zino Davidoff himself. It offers approachable, well-made cigars with strong value, primarily produced in Honduras.",
+  "zino": "Zino is the approachable Oettinger Davidoff brand named for Zino Davidoff, spanning Platinum, Nicaragua, and Honduras lines with stronger Central American identity than flagship Davidoff. Group-owned; select production uses Honduran network capacity.",
 
   // West Tampa Tobacco Co.
   "westtampa": "West Tampa Tobacco Co. is a Tampa-based boutique brand founded in 2022 by Rick Rodriguez (former long-time CAO blender at General Cigar) and Gus Martinez. Most production is at Garmendia in Estelí.",
