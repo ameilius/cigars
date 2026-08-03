@@ -11,11 +11,11 @@ var drawerDescriptions = {
   "erikespinosa": "Founder of Espinosa Premium Cigars and owner of La Zona factory in Estelí. Previously partnered in EO Brands before launching his own operation in 2012; known for the 601 and Murciélago lines.",
   "guyfieri": "Celebrity chef and TV personality (Diners, Drive-Ins and Dives). Co-creator of the Knuckle Sandwich cigar line with Erik Espinosa; actively involved in blending, marketing, and promotion.",
   "knucklesandwich": "Knuckle Sandwich is a popular collaboration between Guy Fieri and Erik Espinosa. Full-bodied Nicaraguan cigars primarily manufactured at A.J. Fernandez’s San Lotano factory, with blending roots at Espinosa’s La Zona.",
-  "padron": "Padrón is a family-owned icon founded by José Orlando Padrón. World-renowned for consistency, quality, and the legendary 1964 Anniversary and 1926 Serie lines.",
-  "joseopadron": "José Orlando Padrón founded the Padrón brand in 1964 after arriving from Cuba. His vision of uncompromising quality established one of the most respected names in cigars.",
-  "jorgepadron": "Jorge Padrón is part of the family leadership at Padrón, helping guide the company’s continued focus on excellence and consistency.",
-  "orlandopadron": "Orlando Padrón is a key member of the Padrón family leadership team, contributing to the brand’s operations and legacy.",
-  "tabacoscubanica": "Tabacos Cubanica is the Padrón family’s historic factory in Estelí, Nicaragua. It produces the majority of Padrón cigars using traditional Cuban-inspired methods.",
+  "padron": "Padrón is the family-owned Nicaraguan icon founded in 1964 by José Orlando Padrón, produced at Tabacos Cubanica in Estelí. Famous for consistency, multi-year aging, and the regular line plus 1964 Anniversary and Serie 1926; led today with Jorge Padrón as president.",
+  "joseopadron": "José Orlando Padrón (1926–2017) founded Padrón Cigars in Miami in 1964 and moved production to Estelí by 1970. His vertical, anti-hype model and Nicaraguan bet still define the brand; 1964 and 1926 series mark his founding and birth years.",
+  "jorgepadron": "Jorge Padrón is president of Padrón Cigars and son of founder José Orlando Padrón. He leads the family company's Estelí operation and U.S. presence while preserving the aging discipline and no-hype culture behind 1964 and 1926.",
+  "orlandopadron": "Orlando Padrón is part of the Padrón family leadership team alongside president Jorge Padrón, helping steward Tabacos Cubanica production and the regular / 1964 / 1926 portfolio under the standards set by founder José Orlando Padrón.",
+  "tabacoscubanica": "Tabacos Cubanica is the Padrón family factory in Estelí, Nicaragua, home of the regular line, 1964 Anniversary, and Serie 1926. Vertical Nicaraguan puros, long aging, Cuban-inspired methods, no generic contract-brand identity.",
 
   "davidoff": "Davidoff is the flagship luxury brand of Oettinger Davidoff (Basel), rebuilt as a non-Cuban house after the Cuban era with core production at Tabadom in the Dominican Republic. Lines include Grand Cru, Millennium, Winston Churchill, Late Hour, Aniversario, and Nicaragua.",
   "avo": "AVO is the Dominican brand created by jazz pianist Avo Uvezian with Henke Kelner in the late 1980s, later acquired by Oettinger Davidoff. Rolled at Tabadom in Villa González, the portfolio spans Classic, Classic Maduro, XO, Heritage, and Syncro Nicaragua, music-named lines built for smooth, approachable premium smoking.",
@@ -57,9 +57,9 @@ var drawerDescriptions = {
   "sanlotano": "San Lotano Factory (Estelí) is A.J. Fernandez’s facility in Nicaragua. It produces the AJ Fernandez brand along with many contract and private-label cigars.",
 
   // === Padrón family factories & lines ===
-  "tabacoscubanica": "Tabacos Cubanica is the Padrón family’s historic factory in Estelí, Nicaragua. It produces the majority of Padrón cigars using traditional Cuban-inspired methods.",
-  "padron1964": "Padrón 1964 Anniversary is one of the most celebrated lines in the industry. It offers exceptional complexity and consistency in multiple vitolas and wrappers.",
-  "padron1926": "Padrón Serie 1926 is the pinnacle of the Padrón range. These cigars are known for their extraordinary depth, balance, and long aging process.",
+  "tabacoscubanica": "Tabacos Cubanica is the Padrón family factory in Estelí, Nicaragua, home of the regular line, 1964 Anniversary, and Serie 1926. Vertical Nicaraguan puros, long aging, Cuban-inspired methods, no generic contract-brand identity.",
+  "padron1964": "Padrón 1964 Anniversary honors the company's founding year: multi-year aged Nicaraguan puros (Natural and Maduro), usually box-pressed, made at Tabacos Cubanica. The step-up tier between the regular line and Serie 1926.",
+  "padron1926": "Padrón Serie 1926 is the top of the Padrón ladder, named for José Orlando Padrón's birth year. Longest-aged family inventory, limited production at Tabacos Cubanica, Natural and Maduro, a reference Nicaraguan puro.",
 
   // === Plasencia family ===
   "plasencia": "Plasencia Cigars is a five-generation grower-manufacturer with roots in 1865 Cuba, now farming and rolling across Nicaragua and Honduras. Long a major contract partner, the family also produces its own Alma Fuerte, Alma del Campo, Alma del Fuego, and related lines; STG holds a minority stake via General Cigar.",
