@@ -114,9 +114,9 @@ var drawerDescriptions = {
   "alejandromartinez": "Alejandro Martínez Cuenca acquired Joya de Nicaragua in 1994 and led its revival. The Martínez family still owns the company today.",
 
   // === Dunbarton / Steve Saka ===
-  "dunbarton": "Dunbarton Tobacco & Trust, founded by Steve Saka, produces the acclaimed Sobremesa, Mi Querida, and Muestra de Saka lines. Strong partnership with Joya de Nicaragua.",
-  "stevesaka": "Steve Saka is the founder of Dunbarton Tobacco & Trust. Former CEO of Drew Estate, he is respected for uncompromising blending and deep tobacco knowledge. Sobremesa is his signature brand.",
-  "sobremesa": "Sobremesa is the flagship brand of Dunbarton Tobacco & Trust. Created by Steve Saka, it is celebrated for its complexity, balance, and the convivial spirit the name evokes.",
+  "dunbarton": "Dunbarton Tobacco & Trust is Steve Saka's boutique house (post-Drew Estate): Sobremesa, Mi Querida, Sin Compromiso, Muestra de Saka. Major production ties to Joya de Nicaragua.",
+  "stevesaka": "Steve Saka led major years at Drew Estate, then founded Dunbarton Tobacco & Trust. Known for technical blending culture and lines like Sobremesa and Sin Compromiso.",
+  "sobremesa": "Sobremesa is Dunbarton/Steve Saka's flagship line (plus Brûlée extensions), widely associated with Joya de Nicaragua production in Estelí.",
 
   // === Illusione ===
   "illusione": "Illusione (Dion Giolito) is a cult \"quiet boutique\" for Original Documents, Singularé, 88, and Epernay. Long-term Aganorsa/TABSA production with some San Lotano and Joya work.",
@@ -132,7 +132,7 @@ var drawerDescriptions = {
   "hvcfactory": "HVC Factory (Estelí) is the company’s own production facility. It allows Reinier Lorenzo full oversight of the cigars that bear his initials.",
 
   // === Additional corporate / other ===
-  "alecbradley": "Alec Bradley is a well-known brand acquired by STG in 2023. It offers a wide range of cigars with a reputation for value and consistent quality.",
+  "alecbradley": "Alec Bradley (Alan Rubin) is a broad catalog brand (Prensado, Black Market, Tempus) now under STG after 2023 acquisition, with multi-factory Central American production.",
   "room101": "Room101 is Matt Booth's irreverent cult brand, acquired by STG in 2022 and sold via General Cigar. Full-flavored, design-heavy limiteds with Honduran and Nicaraguan STG-network production (including Danlí and Estelí capacity) rather than a single boutique factory story.",
 
   // Camacho
@@ -175,8 +175,8 @@ var drawerDescriptions = {
   // La Palina
   "lapalina": "La Palina dates to 1896, when Samuel Paley founded Congress Cigar Factory in Chicago and named the marca after his wife, Goldie Drell Paley. Revived in 2010 by great-grandson Bill Paley, the company is a negociant: it owns its tobacco, brands, and finished cigars, but not a factory. Goldie is rolled at El Titan de Bronze in Miami, with other lines made in Honduras, Nicaragua, the Dominican Republic, and Miami.",
   "billpaley": "William \"Bill\" Paley revived La Palina in 2010 on a New York City rooftop, honoring the Congress Cigar legacy his great-grandfather Samuel Paley began in 1896. He remains chairman and principal as industry veterans Sammy Phillips and Clay Roberts steer day-to-day operations.",
-  "eltitandebronze": "El Titan de Bronze is a renowned small-batch factory in Miami’s Little Havana. It produces La Palina’s flagship Goldie line and other ultra-premium cigars.",
-  "pdr": "PDR Cigars is a respected factory in the Dominican Republic that produces several La Palina lines.",
+  "eltitandebronze": "El Titan de Bronze is a Miami Little Havana small-batch factory famous for La Palina Goldie and other ultra-premium limited work.",
+  "pdr": "PDR Cigars (Abe Flores) is a Dominican boutique factory/brand house, including contract work for La Palina and other projects.",
 
   // Rojas Cigars (Noel Rojas)
   "noelrojas": "Noel Rojas is a Cuban-American master blender and founder of Rojas Cigars. Known as the 'King of Small Ring Gauges,' he specializes in boutique, balanced blends; his key projects include the original Guayacan brand and New Order of the Ages.",
@@ -185,9 +185,9 @@ var drawerDescriptions = {
   "neworder": "New Order of the Ages (NOA) originated as a collaborative factory/brand project led by Noel Rojas (with Renegade ties) in Estelí. The blends continue under Rojas with primary manufacturing at A.J. Fernandez Tabacalera.",
 
   // P0-P3 factory nodes
-  "williamventura": "Tabacalera William Ventura is a major Dominican contract manufacturer in Santiago. It rolls for Viaje, Kristoff, Caldwell, La Palina, and many other outside brands.",
+  "williamventura": "Tabacalera William Ventura is a major Santiago, DR contract factory for Viaje, Kristoff, Caldwell, La Palina, Gurkha, and many outside brands.",
   "lucianopichardo": "Tabacalera Pichardo (Luciano Tabacos) is an Estelí factory associated with Luciano Cigars. Definition Cigars and other boutique projects are rolled here.",
-  "nicasueno": "Fábrica de Tabacos Nica Sueño is an Estelí factory known for Caldwell lines including La Coalición and Nirvana, plus licensed specialty projects.",
+  "nicasueno": "Nica Sueño in Estelí is known for Caldwell production (La Coalición, Nirvana-era) and specialty licensed projects.",
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is the Honduran flagship of the Plasencia family, producing Southern Draw, Padilla, Tatuaje contract work, and more.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's Nicaraguan rolling facility, producing Montecristo (NC), Romeo y Julieta (NC), Room101, and other portfolio brands.",
   "stgdanli": "STG Danlí (HATSA) is STG's Honduran factory in Danlí, producing Camacho, Room101 Honduras lines, Zino, and Leaf by Oscar among others.",
@@ -196,9 +196,9 @@ var drawerDescriptions = {
   "raicescubanas": "Raíces Cubanas is a Nicaraguan factory associated with Drew Estate's Deadwood line (Fat Bottom Betty, Sweet Jane, Yummy Bitches).",
   "laaurorafactory": "La Aurora Cigar Factory in the Dominican Republic is the historic home of La Aurora, the country's oldest premium cigar manufacturer since 1903.",
   "elreyhabanos": "El Rey de los Habanos in Miami's Little Havana is where Pepín García began rolling after leaving Cuba. Tatuaje originated here before moving to Nicaragua.",
-  "casacarrillo": "Casa Carrillo is the unified Perez-Carrillo family cigar company (formerly E.P. Carrillo), led by master blender Ernesto Perez-Carrillo from Miami with flagship production at Tabacalera La Alianza in Santiago, DR.",
-  "ernestoperezcarrillo": "Ernesto Perez-Carrillo is a Cuban-American master blender who revived La Gloria Cubana in Miami, sold El Credito to Swedish Match in 1999, and founded Casa Carrillo in 2009 with his children Ernesto III and Lissette.",
-  "lacarrillo": "Casa Carrillo's Tabacalera La Alianza factory in Santiago, Dominican Republic rolls the company's Perez-Carrillo, Essence, and INCH lines plus contract work for Gurkha, Casdagli, and other outside brands.",
+  "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (from 2009 relaunch): E.P. Carrillo lines and INCH, rolled at La Alianza in Santiago, with deep contract work for other brands.",
+  "ernestoperezcarrillo": "Ernesto Perez-Carrillo built La Gloria Cubana's fame, worked under General after 1999, then founded Casa Carrillo in 2009. Master blender root of LGC, Casa Carrillo, and Kristoff family ties.",
+  "lacarrillo": "Tabacalera La Alianza (Casa Carrillo) in Santiago rolls Perez-Carrillo/INCH and contract brands including Gurkha, Casdagli, Crowned Heads, and Caldwell projects.",
   "laisla": "Tabacalera La Isla in the Dominican Republic produces Fratello, Nestor Miranda, and other boutique lines with craft-oriented oversight.",
   "caoamerican": "CAO American Caribbean in Nicaragua handles select CAO and negociant production including some La Palina lines.",
   "costaricatabacos": "Tabacos de Costa Rica is the Puriscal-region factory hub for Atabey, Byron, Lampert, Villa Casdagli, LH Premium, Nick & Jim, and Vegas de Santiago, spanning ultra-luxury allocations to local heritage.",
@@ -207,23 +207,23 @@ var drawerDescriptions = {
   "laflordecopan": "La Flor de Copán in Honduras produces Leaf by Oscar and related Oscar Valladares projects with distinctive candela-style presentation.",
 
   // P2 brand nodes
-  "gurkha": "Gurkha is a widely distributed premium brand with Dominican production across William Ventura, Casa Carrillo, and other contract facilities.",
+  "gurkha": "Gurkha is a high-distribution negociant brand with ornate packaging and many SKUs, using Dominican contract floors such as William Ventura and Casa Carrillo/La Alianza.",
   "caldwell": "Caldwell Cigar Co. was founded in 2013 by Robert Caldwell and friends to do everything differently: distinctive packaging, proprietary tobaccos, and blends such as Blind Man's Bluff, Long Live the King, Lost & Found, and Eastern Standard. Production spans partner factories including PDR, Nica Sueño, William Ventura, and La Alianza.",
   "lfd": "La Flor Dominicana (Litto Gomez) is a vertically integrated Dominican boutique in Tamboril famous for Double Ligero, Air Bender, and the patented Chisel vitola.",
   "littogomez": "Litto Gomez founded La Flor Dominicana with Ines Lorenzo-Gomez: jeweler-turned-cigarmaker, estate tobacco, Tamboril factory, full-bodied Dominican innovation.",
   "lfdfactory": "Tabacalera La Flor in Tamboril is LFD's integrated Dominican factory for Chisel, Ligero, and Air Bender lines from Gomez family tobacco programs.",
   "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line (No. 9, T52, H99, Unico), broadleaf-driven and rolled at La Gran Fábrica in Estelí.",
   "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
-  "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique brand with core production at Plasencia Honduras (El Paraíso).",
-  "kristoff": "Kristoff is a Dominican brand founded by Lissette Perez-Carrillo (daughter of Ernesto), with production at William Ventura and other DR facilities. It is a sister brand to Casa Carrillo within the Perez-Carrillo family.",
+  "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique with core production at Plasencia Honduras (El Paraíso).",
+  "kristoff": "Kristoff was founded by Lissette Perez-Carrillo (Ernesto's daughter): accessible Dominican premiums with production at William Ventura, sister story to Casa Carrillo but separate marca.",
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line, blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
   "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
   "nub": "NUB is Oliva's short, fat vitola sub-brand created by Sam Leccia in 2008 and rolled at Tabolisa. ~4-inch large-ring formats (460/464/358) with Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB lines.",
   "altadis": "Altadis U.S.A. (Tabacalera USA / Imperial Brands) holds U.S. rights to non-Cuban Montecristo, Romeo y Julieta, Trinidad, and related marques. The counterpart to STG's General/Forged tree, it pairs heritage names with Nicaraguan partners like A.J. Fernandez and Plasencia.",
   "montecristonc": "Montecristo (Non-Cuban) is owned by Altadis U.S.A. (Imperial Brands), not STG. Separate from Cuban Montecristo, it spans Dominican core lines plus Nicaraguan prestige projects with Plasencia and A.J. Fernandez at San Lotano (including 1935 Anniversary).",
   "ryjnc": "Romeo y Julieta (Non-Cuban) is an Altadis U.S.A. (Imperial) brand, separate from Cuban RyJ and not STG. Everyday U.S. lines like 1875 and Reserva Real sit beside Nicaraguan projects with Plasencia and A.J. Fernandez (Romeo San Andrés).",
-  "fratello": "Fratello (Omar de Frias) is a boutique brand rolled at La Zona in Estelí and Tabacalera La Isla in the Dominican Republic.",
-  "padilla": "Padilla Cigars (Ernesto Padilla) is a boutique brand with production at TABSA, Plasencia Honduras, and STG Estelí.",
+  "fratello": "Fratello (Omar de Frias, ex-NASA) is a boutique brand rolled at La Zona and Tabacalera La Isla, known for Classico, Navetta, Bianco, and Arlequin.",
+  "padilla": "Padilla is Ernesto Padilla's boutique brand with multi-factory production (TABSA, Plasencia Honduras, STG Estelí) and Miami-Cuban brand identity.",
   "ozgener": "Ozgener Family Cigars (Tim & Emre Ozgener) is rolled at La Corona Factory in Estelí, continuing the Ozgener family's cigar legacy.",
   "jassumkral": "Jas Sum Kral (Jas Sum Kral / Kral family) is a boutique brand produced at the My Father factory in Estelí.",
   "stolenthrone": "Stolen Throne is a boutique brand associated with the Rojas / New Order factory cluster in Estelí.",
