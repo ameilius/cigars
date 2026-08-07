@@ -179,10 +179,10 @@ var drawerDescriptions = {
   "pdr": "PDR Cigars (Abe Flores) is a Dominican boutique factory/brand house, including contract work for La Palina and other projects.",
 
   // Rojas Cigars (Noel Rojas)
-  "noelrojas": "Noel Rojas is a Cuban-American master blender and founder of Rojas Cigars. Known as the 'King of Small Ring Gauges,' he specializes in boutique, balanced blends; his key projects include the original Guayacan brand and New Order of the Ages.",
-  "rojas": "Rojas Cigars is the boutique brand founded by Noel Rojas. Lines include Guayacan, Havana Nights, Unfinished Business, and Street Tacos. Primary production and rolling for these Nicaraguan cigars is at A.J. Fernandez's facility in Estelí.",
-  "guayacan": "Guayacan by Noel Rojas is the pioneering brand line that established his reputation. Features Nicaraguan tobacco (including Aganorsa influence) in approachable, well-made cigars; rolled at A.J. Fernandez and partner facilities in Estelí.",
-  "neworder": "New Order of the Ages (NOA) is a Noel Rojas collaborative project tied to the Rojas/New Order Estelí cluster and A.J. Fernandez manufacturing relationships.",
+  "noelrojas": "Noel Rojas is a Cuban-American master blender and founder of Rojas Cigars, known for boutique Nicaraguan blends and small-ring craft. Runs the Rojas/New Order Estelí factory cluster and partners with brands like Stolen Throne; also works with A.J. Fernandez capacity.",
+  "rojas": "Rojas Cigars is Noel Rojas's boutique house (Guayacan, Havana Nights, and more), centered on Estelí production via the Rojas/New Order factory cluster and related Nicaraguan partners.",
+  "guayacan": "Guayacan is Noel Rojas's breakthrough line: approachable Nicaraguan boutique cigars that built his reputation before the wider Rojas portfolio and factory partnerships.",
+  "neworder": "New Order of the Ages (NOA) is Noel Rojas's collaborative Estelí factory/brand lineage; early home for some boutiques (including early JSK stories) and still linked to the Rojas factory and Stolen Throne production web.",
 
   // P0-P3 factory nodes
   "williamventura": "Tabacalera William Ventura is a major Santiago, DR contract factory for Viaje, Kristoff, Caldwell, La Palina, Gurkha, and many outside brands.",
@@ -192,7 +192,7 @@ var drawerDescriptions = {
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's Nicaraguan rolling facility, producing Montecristo (NC), Romeo y Julieta (NC), Room101, and other portfolio brands.",
   "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume.",
   "lacorona": "La Corona Factory in Estelí is the dedicated rolling home of Ozgener Family Cigars (Bosphorus, Aramas, Cypher).",
-  "rojasfactory": "Tabacalera New Order (Rojas cluster) in Estelí is tied to Noel Rojas projects including Stolen Throne and the New Order of the Ages lineage.",
+  "rojasfactory": "Tabacalera New Order / Rojas Cigar Factory in Estelí hosts Rojas house brands, NOA collaborative history, and long-term partner work for Stolen Throne.",
   "raicescubanas": "Raíces Cubanas is a Nicaraguan factory linked to Drew Estate's Deadwood line (Fat Bottom Betty, Sweet Jane), distinct from La Gran Fábrica.",
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under continuous León family ownership.",
   "elreyhabanos": "El Rey de los Habanos in Miami Little Havana is where Pepín García built his U.S. name; Tatuaje's origin chapter before My Father Nicaragua scale.",
@@ -225,8 +225,8 @@ var drawerDescriptions = {
   "fratello": "Fratello (Omar de Frias, ex-NASA) is a boutique brand rolled at La Zona and Tabacalera La Isla, known for Classico, Navetta, Bianco, and Arlequin.",
   "padilla": "Padilla is Ernesto Padilla's boutique brand with multi-factory production (TABSA, Plasencia Honduras, STG Estelí) and Miami-Cuban brand identity.",
   "ozgener": "Ozgener Family Cigars (Tim & Emre) produces Bosphorus, Aramas, and Cypher at La Corona Factory in Estelí.",
-  "jassumkral": "Jas Sum Kral (Jas Sum Kral / Kral family) is a boutique brand produced at the My Father factory in Estelí.",
-  "stolenthrone": "Stolen Throne is a boutique brand associated with the Rojas / New Order factory cluster in Estelí.",
+  "jassumkral": "Jas Sum Kral (Riste Ristevski) is a full-Nicaraguan boutique (Red Knight, La Bomba, Fenix, Kral). Early NOA/Rojas factory ties; later production associated with My Father on this map.",
+  "stolenthrone": "Stolen Throne (Lee Marsh & JR Cannon, ~2018) is a Virginia boutique with regal branding and a simple catalog, handmade with Noel Rojas at the Rojas/New Order factory in Estelí (Castle 919 and related lines).",
   "deadwood": "Deadwood is Drew Estate's infused-adjacent boutique line (Fat Bottom Betty, Sweet Jane) produced at Raíces Cubanas in Nicaragua.",
   "leafbyoscar": "Leaf by Oscar is the candela-wrapped Oscar Valladares + Island Jim Robinson line, handmade at La Flor de Copán in Honduras.",
   "oscarvalladares": "Oscar Valladares is a Honduran boutique house (Super Fly, 2012, The Oscar) based around La Flor de Copán, also home to Leaf by Oscar and Island Jim collaborations.",
