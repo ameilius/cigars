@@ -142,8 +142,8 @@ var drawerDescriptions = {
   "zino": "Zino is the approachable Oettinger Davidoff brand named for Zino Davidoff, spanning Platinum, Nicaragua, and Honduras lines with stronger Central American identity than flagship Davidoff. Group-owned; select production uses Honduran network capacity.",
 
   // West Tampa Tobacco Co.
-  "westtampa": "West Tampa Tobacco Co. is a Tampa-based boutique brand founded in 2022 by Rick Rodriguez (former long-time CAO blender at General Cigar) and Gus Martinez. Most production is at Garmendia in Estelí.",
-  "rickrodriguez": "Rick Rodriguez co-founded West Tampa Tobacco Co. in 2022 after nearly 30 years as a blender and ambassador for CAO at General Cigar. His family has deep roots in Tampa's historic West Tampa cigar district.",
+  "westtampa": "West Tampa Tobacco Co. is Rick Rodriguez's post-CAO boutique (with family), bold Nicaraguan-forward lines, typically tied to Garmendia/Estelí boutique production, independent of General Cigar.",
+  "rickrodriguez": "Rick Rodriguez was CAO's longtime master blender/ambassador under General Cigar, then co-founded West Tampa Tobacco Co. to build a family-run boutique brand.",
   "garmendia": "Garmendia Cigars is a respected factory in Estelí, Nicaragua. It produces the majority of West Tampa Tobacco Co. cigars as well as other boutique brands.",
 
   // Bella Dama Cigars (Chantel Leavitt - independent)
@@ -152,10 +152,10 @@ var drawerDescriptions = {
   "tabacaleraaragon": "Tabacalera Aragon in Estelí is a boutique-oriented factory used by independent brands seeking personalized Nicaraguan capacity.",
 
   // New brands added
-  "laaromadecuba": "La Aroma de Cuba is owned by Ashton (Levin family) and produced by the Garcia family at My Father in Estelí. Known for excellent value and consistent high ratings.",
-  "sancristobal": "San Cristobal is owned by Ashton and made by the Garcia family at My Father. Strong family ties to Pete Johnson (Tatuaje) through Janny Garcia.",
+  "laaromadecuba": "La Aroma de Cuba is the Ashton/Levin Nicaraguan sister brand, rolled by the García family at My Father in Estelí (Edición Especial, Mi Amor, Noblesse, and more). Fuller Nica power vs Dominican Fuente-made Ashton classics.",
+  "sancristobal": "San Cristóbal (Ashton portfolio) is a Levin-family Nicaraguan brand handmade at My Father, sibling to La Aroma de Cuba: Ashton ownership, García construction.",
   "ashton": "Ashton is the Levin family brand known for refined Dominican cigars (Classic, Cabinet, VSG, ESG, Symmetry) handmade at Tabacalera A. Fuente. Sister brands La Aroma de Cuba and San Cristóbal are Nicaraguan My Father products under the same ownership umbrella.",
-  "lure": "Lure Cigars is an independent boutique brand founded by Lou Cross III with a fishing/outdoors theme. Produced in Estelí, Nicaragua.",
+  "lure": "Lure Cigars (Lou Cross III) is a fishing-themed boutique brand with Estelí production in the Oveja Negra/Lanuza factory cluster.",
   "definition": "Definition Cigars (Jamond Hackley) is a boutique brand associated with Tabacalera Pichardo / Luciano production in Estelí.",
   "lagloriacubana": "La Gloria Cubana (non-Cuban) is a General Cigar/STG brand born in Miami with Ernesto Perez-Carrillo, sold to General in 1999. Famous for full-flavored classics and Serie R large-ring cigars; Ernesto later left to found Casa Carrillo, while LGC remains a corporate full-body staple.",
   "domain": "Domain Cigars is a vertically integrated boutique brand co-founded by Esteban Disla and Daniel Lance. Their partnership began when Disla chose Lance by phone. Tobacco comes from Valle Regadío, and cigars are rolled at Familia Disla in Estelí.",
@@ -191,7 +191,7 @@ var drawerDescriptions = {
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship factory for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's Nicaraguan rolling facility, producing Montecristo (NC), Romeo y Julieta (NC), Room101, and other portfolio brands.",
   "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume.",
-  "lacorona": "La Corona Factory in Estelí is the production home of Ozgener Family Cigars (Bosphorus, Aramas, Cypher).",
+  "lacorona": "La Corona Factory in Estelí is the dedicated rolling home of Ozgener Family Cigars (Bosphorus, Aramas, Cypher).",
   "rojasfactory": "Tabacalera New Order (Rojas cluster) in Estelí is tied to Noel Rojas projects including Stolen Throne and the New Order of the Ages lineage.",
   "raicescubanas": "Raíces Cubanas is a Nicaraguan factory linked to Drew Estate's Deadwood line (Fat Bottom Betty, Sweet Jane), distinct from La Gran Fábrica.",
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under continuous León family ownership.",
@@ -224,7 +224,7 @@ var drawerDescriptions = {
   "ryjnc": "Romeo y Julieta (Non-Cuban) is an Altadis U.S.A. (Imperial) brand, separate from Cuban RyJ and not STG. Everyday U.S. lines like 1875 and Reserva Real sit beside Nicaraguan projects with Plasencia and A.J. Fernandez (Romeo San Andrés).",
   "fratello": "Fratello (Omar de Frias, ex-NASA) is a boutique brand rolled at La Zona and Tabacalera La Isla, known for Classico, Navetta, Bianco, and Arlequin.",
   "padilla": "Padilla is Ernesto Padilla's boutique brand with multi-factory production (TABSA, Plasencia Honduras, STG Estelí) and Miami-Cuban brand identity.",
-  "ozgener": "Ozgener Family Cigars (Tim & Emre Ozgener) is rolled at La Corona Factory in Estelí, continuing the Ozgener family's cigar legacy.",
+  "ozgener": "Ozgener Family Cigars (Tim & Emre) produces Bosphorus, Aramas, and Cypher at La Corona Factory in Estelí.",
   "jassumkral": "Jas Sum Kral (Jas Sum Kral / Kral family) is a boutique brand produced at the My Father factory in Estelí.",
   "stolenthrone": "Stolen Throne is a boutique brand associated with the Rojas / New Order factory cluster in Estelí.",
   "deadwood": "Deadwood is Drew Estate's infused-adjacent boutique line (Fat Bottom Betty, Sweet Jane) produced at Raíces Cubanas in Nicaragua.",
