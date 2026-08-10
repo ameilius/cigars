@@ -595,11 +595,43 @@ function generateAllNodePages() {
     fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');
   }
 
+  // Static HTML redirects for renamed node IDs (old bookmarks / external links)
+  const nodeIdRedirects = {
+    attabey: 'atabey',
+  };
+  let redirectCount = 0;
+  for (const [fromId, toId] of Object.entries(nodeIdRedirects)) {
+    if (!baseGraphData.nodes.some(n => n.id === toId)) {
+      console.warn(`Skip redirect ${fromId} → ${toId}: target missing from data.js`);
+      continue;
+    }
+    const dir = path.join(outputBase, fromId);
+    fs.mkdirSync(dir, { recursive: true });
+    const target = `${SITE}/node/${toId}/`;
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url=${target}">
+  <link rel="canonical" href="${target}">
+  <title>Moved - Cigar Nexus</title>
+  <script>location.replace(${JSON.stringify(target)});</script>
+</head>
+<body>
+  <p>This page has moved to <a href="${target}">${escapeHtml(toId)}</a>.</p>
+</body>
+</html>
+`;
+    fs.writeFileSync(path.join(dir, 'index.html'), html, 'utf8');
+    redirectCount++;
+  }
+
   const websiteIds = new Set(Object.keys(nodeWebsites));
   const missingWebsites = baseGraphData.nodes
     .map(n => n.id)
     .filter(id => !websiteIds.has(id) && !baseGraphData.nodes.find(n => n.id === id && n.website));
   console.log(`Generated ${baseGraphData.nodes.length} node pages (${overrideCount} manual overrides, ${autoCount} auto-expanded).`);
+  if (redirectCount) console.log(`Legacy node redirects: ${redirectCount}.`);
   console.log(`Website links: ${baseGraphData.nodes.length - missingWebsites.length}/${baseGraphData.nodes.length} nodes${missingWebsites.length ? ` (no URL: ${missingWebsites.join(', ')})` : ''}.`);
 
   const sitemapPath = path.join(ROOT, 'sitemap.xml');

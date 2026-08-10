@@ -239,7 +239,7 @@ var drawerDescriptions = {
   "vegassantiago": "Vegas de Santiago is a heritage Costa Rican brand from the Puriscal region, rolled at Tabacos de Costa Rica as the local/traditional face beside ultra-luxury factory clients.",
   "selectedtobacco": "Selected Tobacco S.A. is the Costa Rican company behind Atabey, Byron, Bandolero, and Alfonso with blender Nelson Alfonso, rolled at Tabacos de Costa Rica.",
   "nelsonalfonso": "Nelson Alfonso blends Selected Tobacco's Atabey and Byron ultra-luxury lines at Tabacos de Costa Rica, known for multi-year aging.",
-  "attabey": "Atabey is Selected Tobacco's ultra-luxury, long-aged Costa Rican marca (Nelson Alfonso), rolled at Tabacos de Costa Rica. Highly allocated lines such as Ritos and Delirios define the top of the Costa Rica luxury tier.",
+  "atabey": "Atabey is Selected Tobacco's ultra-luxury, long-aged Costa Rican marca (Nelson Alfonso), rolled at Tabacos de Costa Rica. Highly allocated lines such as Ritos and Delirios define the top of the Costa Rica luxury tier.",
   "byron": "Byron is Selected Tobacco's classical ultra-premium line (Poetry, Epicure), blended by Nelson Alfonso and made at Tabacos de Costa Rica alongside Atabey.",
 
   // Fallback for anything added later

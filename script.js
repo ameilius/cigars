@@ -1323,8 +1323,30 @@ let currentDrawerNode = null;
 let mobileDrawerHideTimer = null;
 let suppressUrlSync = false;
 
+/** Legacy map/page IDs → current data.js ids (typos, renames). */
+const NODE_ID_ALIASES = {
+  attabey: 'atabey',
+};
+
+function resolveNodeId(rawId) {
+  if (!rawId) return null;
+  const id = String(rawId);
+  return NODE_ID_ALIASES[id] || id;
+}
+
 function getNodeIdFromUrl() {
-  return new URLSearchParams(window.location.search).get('node');
+  const raw = new URLSearchParams(window.location.search).get('node');
+  if (!raw) return null;
+  const resolved = resolveNodeId(raw);
+  // Canonicalize alias in the address bar when the real node exists
+  if (resolved !== raw && graphData?.nodes?.some(n => n.id === resolved)) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('node', resolved);
+      window.history.replaceState(window.history.state || {}, '', url);
+    } catch (_) {}
+  }
+  return resolved;
 }
 
 function isAgeGateVisible() {
