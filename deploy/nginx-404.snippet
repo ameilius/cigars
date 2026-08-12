@@ -1,0 +1,10 @@
+# Include inside the cigarnexus.app server { } block, then reload nginx:
+#   error_page 404 /404.html;
+#   location = /404.html { internal; }
+#
+# `internal` is optional. Leave it off if you want /404.html itself to be viewable.
+
+error_page 404 /404.html;
+location = /404.html {
+    root /home/cigarnexus/web/cigarnexus.app/public_html;
+}

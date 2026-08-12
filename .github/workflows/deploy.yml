@@ -25,7 +25,10 @@ jobs:
           npm run build:css
           test -f tailwind.css
           test "$(wc -c < tailwind.css)" -gt 8000
-          ! grep -R "cdn.tailwindcss.com" index.html about.html scripts/node-template.html
+          ! grep -R "cdn.tailwindcss.com" index.html about.html 404.html scripts/node-template.html
+          test -f 404.html
+          grep -q 'noindex' 404.html
+          grep -q 'This node is not on the map' 404.html
 
       - name: Verify SEO page build (CI gate)
         run: |
@@ -167,3 +170,7 @@ jobs:
             exit 1
           fi
           echo "Live site OK (tailwind.css ${TW_SIZE} bytes)"
+          FOUR_BODY=$(curl -fsS "https://cigarnexus.app/404.html")
+          echo "$FOUR_BODY" | grep -q "This node is not on the map"
+          echo "$FOUR_BODY" | grep -q 'href="/node/padron/"'
+          echo "Live 404 page OK"

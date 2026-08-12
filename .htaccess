@@ -1,0 +1,2 @@
+# Custom error pages (Apache / OpenLiteSpeed). Nginx ignores this file.
+ErrorDocument 404 /404.html
