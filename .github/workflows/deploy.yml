@@ -178,7 +178,7 @@ jobs:
           curl -fsS "https://cigarnexus.app/tailwind.css" | head -c 120 | grep -q -- "--tw-"
           INDEX_BODY=$(curl -fsS "https://cigarnexus.app/")
           echo "$INDEX_BODY" | grep -q 'href="tailwind.css"'
-          echo "$INDEX_BODY" | grep -q 'href="styles.css"'
+          echo "$INDEX_BODY" | grep -q 'href="styles.css'
           echo "$INDEX_BODY" | grep -q 'href="/node/padron/"'
           echo "$INDEX_BODY" | grep -q 'Interactive map of the premium cigar industry'
           if echo "$INDEX_BODY" | grep -q "cdn.tailwindcss.com"; then
