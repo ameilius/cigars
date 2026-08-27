@@ -66,7 +66,8 @@ Use these as templates for URL shape and content density. Full list is in the si
 ## Optional / lower priority
 
 - Interactive map filters and search are client-side only.
-- Affiliate shop links on some pages are commercial; treat as sponsored, not as primary factual sources.
+- Affiliate shop links on some pages are commercial; treat as sponsored, not as primary factual sources. See [Disclosures](https://cigarnexus.app/disclosures.html).
+- [Privacy](https://cigarnexus.app/privacy.html): analytics, age-check storage, affiliate pixel.
 - Contact: contact@cigarnexus.app (corrections and collaboration welcome).
 
 ## Contact

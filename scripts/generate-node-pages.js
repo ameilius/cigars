@@ -562,6 +562,8 @@ function buildSitemap(nodes, { includeDirectory = false } = {}) {
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   xml += `  <url>\n    <loc>${SITE}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
   xml += `  <url>\n    <loc>${SITE}/about.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+  xml += `  <url>\n    <loc>${SITE}/privacy.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.3</priority>\n  </url>\n`;
+  xml += `  <url>\n    <loc>${SITE}/disclosures.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>0.3</priority>\n  </url>\n`;
   if (includeDirectory) {
     xml += `  <url>\n    <loc>${SITE}/directory.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
   }
@@ -573,7 +575,7 @@ function buildSitemap(nodes, { includeDirectory = false } = {}) {
 }
 
 function extraSitemapPages(includeDirectory) {
-  return includeDirectory ? 3 : 2;
+  return includeDirectory ? 5 : 4;
 }
 
 function validateSitemap(xml, nodes, { includeDirectory = false } = {}) {
@@ -604,6 +606,12 @@ function validateSitemap(xml, nodes, { includeDirectory = false } = {}) {
   }
   if (!includeDirectory && hasDirectory) {
     throw new Error('Sitemap includes directory.html while the catalog is disabled');
+  }
+  if (!xml.includes(`${SITE}/privacy.html`)) {
+    throw new Error('Sitemap missing privacy.html');
+  }
+  if (!xml.includes(`${SITE}/disclosures.html`)) {
+    throw new Error('Sitemap missing disclosures.html');
   }
 
   const expectedTotal = nodeIds.size + extraSitemapPages(includeDirectory);

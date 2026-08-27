@@ -25,10 +25,14 @@ jobs:
           npm run build:css
           test -f tailwind.css
           test "$(wc -c < tailwind.css)" -gt 8000
-          ! grep -R "cdn.tailwindcss.com" index.html about.html 404.html scripts/node-template.html
+          ! grep -R "cdn.tailwindcss.com" index.html about.html 404.html privacy.html disclosures.html scripts/node-template.html
           test -f 404.html
           grep -q 'noindex' 404.html
           grep -q 'This node is not on the map' 404.html
+          test -f privacy.html
+          test -f disclosures.html
+          grep -q 'Famous Smoke Shop' disclosures.html
+          grep -q 'local storage' privacy.html
 
       - name: Verify SEO page build (CI gate)
         run: |
@@ -66,6 +70,8 @@ jobs:
           test "$SITEMAP_NODES" -eq "$NODE_COUNT"
           grep -q '<loc>https://cigarnexus.app/node/padron/</loc>' sitemap.xml
           grep -q '<loc>https://cigarnexus.app/directory.html</loc>' sitemap.xml
+          grep -q '<loc>https://cigarnexus.app/privacy.html</loc>' sitemap.xml
+          grep -q '<loc>https://cigarnexus.app/disclosures.html</loc>' sitemap.xml
           HOME_LINKS=$(grep -o 'href="/node/[^"]*/"' index.html | wc -l | tr -d ' ')
           DIR_LINKS=$(grep -o 'href="/node/[^"]*/"' directory.html | wc -l | tr -d ' ')
           test "$HOME_LINKS" -eq "$NODE_COUNT"
@@ -128,6 +134,8 @@ jobs:
             test "$SITEMAP_NODES" -eq "$NODE_COUNT"
             grep -q '<loc>https://cigarnexus.app/node/padron/</loc>' sitemap.xml
             grep -q '<loc>https://cigarnexus.app/directory.html</loc>' sitemap.xml
+            grep -q '<loc>https://cigarnexus.app/privacy.html</loc>' sitemap.xml
+            grep -q '<loc>https://cigarnexus.app/disclosures.html</loc>' sitemap.xml
             echo "Sitemap OK: $SITEMAP_NODES node URLs"
             date -u +%Y-%m-%dT%H:%M:%SZ > deploy-stamp.txt
 
@@ -215,3 +223,6 @@ jobs:
           echo "$FOUR_BODY" | grep -q "This node is not on the map"
           echo "$FOUR_BODY" | grep -q 'href="/node/padron/"'
           echo "Live 404 page OK"
+          curl -fsS "https://cigarnexus.app/privacy.html" | grep -q 'local storage'
+          curl -fsS "https://cigarnexus.app/disclosures.html" | grep -q 'Famous Smoke Shop'
+          echo "Live privacy and disclosures OK"

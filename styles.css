@@ -204,6 +204,19 @@ h1, h2, .font-display,
     color: #CEA661;
 }
 
+.site-footer__legal {
+    margin-top: 0.65rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.01em;
+    color: rgba(220, 220, 220, 0.52);
+}
+.site-footer__legal a {
+    color: rgba(220, 220, 220, 0.58);
+}
+.site-footer__legal a:hover {
+    color: #CEA661;
+}
+
 .nav-link--active {
     background-color: rgba(255, 255, 255, 0.12);
 }
