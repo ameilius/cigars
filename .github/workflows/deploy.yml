@@ -39,6 +39,22 @@ jobs:
           grep -q "Industry Connections" node/padron/index.html
           grep -q 'property="og:image:width"' node/lapalina/index.html
           grep -q 'property="og:image:height"' node/lapalina/index.html
+          if grep -R --include='index.html' -F 'SEO:' node; then
+            echo "ERROR: leaked SEO: editor notes in generated node pages"
+            exit 1
+          fi
+          grep -q '"@type": "ProfilePage"' node/padron/index.html
+          grep -q '"@type": "Brand"' node/padron/index.html
+          grep -q '"@type": "Person"' node/pepin/index.html
+          grep -q '"@type": "Organization"' node/stg/index.html
+          if grep -q '"@type": "Thing"' node/padron/index.html; then
+            echo "ERROR: Padron JSON-LD still uses generic Thing"
+            exit 1
+          fi
+          if grep -q 'SEO:' node/guyfieri/index.html; then
+            echo "ERROR: Guy Fieri page still contains SEO: notes"
+            exit 1
+          fi
           test -f sitemap.xml
           test -f directory.html
           grep -q 'Industry directory' directory.html
@@ -97,6 +113,12 @@ jobs:
             grep -q "Industry Connections" node/padron/index.html
             grep -q 'property="og:image:width"' node/lapalina/index.html
             grep -q 'property="og:image:height"' node/lapalina/index.html
+            if grep -R --include='index.html' -F 'SEO:' node; then
+              echo "ERROR: leaked SEO: editor notes in generated node pages"
+              exit 1
+            fi
+            grep -q '"@type": "ProfilePage"' node/padron/index.html
+            grep -q '"@type": "Person"' node/pepin/index.html
             test -f sitemap.xml
             test -f directory.html
             grep -q 'href="/node/padron/"' directory.html

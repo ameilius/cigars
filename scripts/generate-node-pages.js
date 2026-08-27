@@ -164,12 +164,44 @@ function stripHtml(html) {
   return String(html || '')
     .replace(/<[^>]+>/g, ' ')
     .replace(/\s+/g, ' ')
+    .replace(/\s+([,.;:!?])/g, '$1')
     .trim();
 }
 
-function truncate(text, max) {
-  if (!text || text.length <= max) return text;
-  return text.slice(0, max - 1).trim() + '…';
+/** Drop leftover sprint notes (SEO: "queries", Cross-link …) from profile HTML. */
+function stripEditorNotes(html) {
+  if (!html) return '';
+  const noteTail = /\s*(?:SEO:|For SEO[,:]|Cross-link\b)[\s\S]*$/i;
+  return String(html).replace(/<p(\b[^>]*)>([\s\S]*?)<\/p>/gi, (full, attrs, inner) => {
+    const cleaned = String(inner).replace(noteTail, '').trim();
+    const plain = stripHtml(cleaned);
+    if (!plain) return '';
+    if (/^(SEO:|For SEO\b|Cross-link\b)/i.test(plain)) return '';
+    return `<p${attrs}>${cleaned}</p>`;
+  });
+}
+
+function truncateAtWord(text, max) {
+  const t = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!t || t.length <= max) return t;
+  const slice = t.slice(0, max);
+  const lastSpace = slice.lastIndexOf(' ');
+  const cut = lastSpace > Math.floor(max * 0.6) ? slice.slice(0, lastSpace) : slice;
+  return cut.replace(/[.,;:]+$/, '').trim();
+}
+
+function firstParagraphPlain(html) {
+  const match = String(html || '').match(/<p\b[^>]*>([\s\S]*?)<\/p>/i);
+  return stripHtml(match ? match[1] : html);
+}
+
+function buildMetaDescription(html, max = 155) {
+  const first = firstParagraphPlain(html);
+  if (first.length >= 80 && first.length <= 160) return first;
+  if (first.length > 160) return truncateAtWord(first, max);
+  const all = stripHtml(html);
+  if (all.length <= 160) return all;
+  return truncateAtWord(all, max);
 }
 
 function formatCountry(country) {
@@ -260,9 +292,9 @@ function buildAutoExpandedDescription(node, connections, shortDesc) {
 
 function resolveDescription(node, connections, drawerDescriptions, expandedOverrides) {
   const override = expandedOverrides[node.id];
-  if (override) return wrapPlainTextAsHtml(override);
+  if (override) return stripEditorNotes(wrapPlainTextAsHtml(override));
   const short = drawerDescriptions[node.id] || drawerDescriptions.default;
-  return buildAutoExpandedDescription(node, connections, short);
+  return stripEditorNotes(buildAutoExpandedDescription(node, connections, short));
 }
 
 function getNodeUrl(nodeId) {
@@ -469,46 +501,55 @@ function buildMetaPills(node) {
   return pills.join('');
 }
 
-function buildJsonLd(node, plainDesc, connections, nodeWebsites) {
-  const related = connections.slice(0, 5).map(c => ({
-    '@type': 'Organization',
-    name: c.otherName,
-    url: `${SITE}/node/${c.otherId}/`
-  }));
+function schemaTypeForNodeType(type) {
+  if (type === 'person') return 'Person';
+  if (type === 'brand') return 'Brand';
+  return 'Organization';
+}
 
+function buildJsonLd(node, plainDesc, connections, nodeWebsites, allNodes) {
+  const byId = new Map((allNodes || []).map(n => [n.id, n]));
   const websiteEntry = resolveNodeWebsite(node, nodeWebsites);
+  const socialImage = resolveSocialImage(node);
 
-  const schema = {
-    '@type': 'Article',
-    headline: `${node.name} | Premium Cigar Industry Profile`,
+  const entity = {
+    '@type': schemaTypeForNodeType(node.type),
+    name: node.name,
+    url: `${SITE}/node/${node.id}/`,
+    description: plainDesc
+  };
+  if (websiteEntry) {
+    entity.sameAs = [websiteEntry.website];
+  }
+  if (socialImage.kind !== 'default') {
+    entity.image = socialImage.url;
+  }
+
+  const related = connections.slice(0, 5).map(c => {
+    const other = byId.get(c.otherId);
+    return {
+      '@type': schemaTypeForNodeType(other && other.type),
+      name: c.otherName,
+      url: `${SITE}/node/${c.otherId}/`
+    };
+  });
+
+  const page = {
+    '@type': 'ProfilePage',
+    name: `${node.name} | Cigar Nexus`,
     description: plainDesc,
     url: `${SITE}/node/${node.id}/`,
-    author: { '@type': 'Organization', name: 'Cigar Nexus' },
+    isPartOf: { '@type': 'WebSite', name: 'Cigar Nexus', url: SITE },
     publisher: { '@type': 'Organization', name: 'Cigar Nexus', url: SITE },
-    mainEntityOfPage: `${SITE}/node/${node.id}/`,
-    about: {
-      '@type': 'Thing',
-      name: node.name,
-      description: plainDesc
-    }
+    mainEntity: entity
   };
-
-  if (websiteEntry) {
-    schema.about.url = websiteEntry.website;
-    schema.about.sameAs = [websiteEntry.website];
-  }
-
-  if (related.length) schema.mentions = related;
-
-  const socialImage = resolveSocialImage(node);
-  if (socialImage.kind !== 'default') {
-    schema.image = socialImage.url;
-  }
+  if (related.length) page.mentions = related;
+  if (socialImage.kind !== 'default') page.image = socialImage.url;
 
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
-      schema,
+      page,
       buildBreadcrumbListJsonLd(node)
     ]
   }, null, 2);
@@ -725,7 +766,7 @@ function generateAllNodePages() {
     if (expandedOverrides[node.id]) overrideCount++;
     else autoCount++;
 
-    const plainDesc = truncate(stripHtml(descHtml), 155);
+    const plainDesc = buildMetaDescription(descHtml);
     const canonical = `${SITE}/node/${node.id}/`;
     const mapUrl = `/?node=${node.id}`;
     const socialImage = resolveSocialImage(node);
@@ -753,7 +794,7 @@ function generateAllNodePages() {
       .replace(/\{\{LOGO_BOX\}\}/g, buildLogoBoxHtml(node))
       .replace(/\{\{BACK_TO_MAP\}\}/g, mapUrl)
       .replace(/\{\{REPORT_MAILTO\}\}/g, escapeHtml(buildReportCorrectionMailto(node)))
-      .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites));
+      .replace(/\{\{JSON_LD\}\}/g, buildJsonLd(node, plainDesc, connections, nodeWebsites, baseGraphData.nodes));
 
     fs.writeFileSync(path.join(dir, 'index.html'), page, 'utf8');
   }

@@ -277,12 +277,12 @@
   <main class="node-page">
     {{BREADCRUMBS}}
 
-    <article itemscope itemtype="https://schema.org/Article">
+    <article>
       <header class="node-header">
         <div class="node-hero">
           <div class="node-hero__logo" id="node-logo-slot">{{LOGO_BOX}}</div>
           <div class="node-hero__identity">
-            <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1A3330]" itemprop="headline">{{NAME}}</h1>
+            <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1A3330]">{{NAME}}</h1>
             <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
             {{WEBSITE_LINK}}
             <div class="node-profile-actions">
@@ -306,7 +306,7 @@
         </div>
       </header>
 
-      <div class="node-body prose max-w-none text-[#3D5A55]" itemprop="articleBody">
+      <div class="node-body prose max-w-none text-[#3D5A55]">
         {{DESCRIPTION_HTML}}
       </div>
 
