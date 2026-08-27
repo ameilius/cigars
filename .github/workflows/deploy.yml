@@ -40,11 +40,21 @@ jobs:
           grep -q 'property="og:image:width"' node/lapalina/index.html
           grep -q 'property="og:image:height"' node/lapalina/index.html
           test -f sitemap.xml
+          test -f directory.html
+          grep -q 'Industry directory' directory.html
+          grep -q 'href="/node/padron/"' directory.html
+          grep -q 'href="/node/padron/"' index.html
+          grep -q 'profile-directory--home' index.html
           NODE_COUNT=$(node -e "const vm=require('vm');const fs=require('fs');const s={};vm.createContext(s);vm.runInContext(fs.readFileSync('data.js','utf8'),s);console.log(s.baseGraphData.nodes.length)")
           SITEMAP_NODES=$(grep -c 'cigarnexus.app/node/' sitemap.xml)
           test "$SITEMAP_NODES" -eq "$NODE_COUNT"
           grep -q '<loc>https://cigarnexus.app/node/padron/</loc>' sitemap.xml
-          echo "CI build OK: $(find node -name index.html | wc -l) pages, sitemap $SITEMAP_NODES node URLs"
+          grep -q '<loc>https://cigarnexus.app/directory.html</loc>' sitemap.xml
+          HOME_LINKS=$(grep -o 'href="/node/[^"]*/"' index.html | wc -l | tr -d ' ')
+          DIR_LINKS=$(grep -o 'href="/node/[^"]*/"' directory.html | wc -l | tr -d ' ')
+          test "$HOME_LINKS" -eq "$NODE_COUNT"
+          test "$DIR_LINKS" -eq "$NODE_COUNT"
+          echo "CI build OK: $(find node -name index.html | wc -l) pages, sitemap $SITEMAP_NODES node URLs, directory $DIR_LINKS links"
 
       - name: Deploy on VPS (git pull + generate)
         uses: appleboy/ssh-action@v1.0.3
@@ -88,10 +98,14 @@ jobs:
             grep -q 'property="og:image:width"' node/lapalina/index.html
             grep -q 'property="og:image:height"' node/lapalina/index.html
             test -f sitemap.xml
+            test -f directory.html
+            grep -q 'href="/node/padron/"' directory.html
+            grep -q 'href="/node/padron/"' index.html
             NODE_COUNT=$($NODE_BIN -e "const vm=require('vm');const fs=require('fs');const s={};vm.createContext(s);vm.runInContext(fs.readFileSync('data.js','utf8'),s);console.log(s.baseGraphData.nodes.length)")
             SITEMAP_NODES=$(grep -c 'cigarnexus.app/node/' sitemap.xml)
             test "$SITEMAP_NODES" -eq "$NODE_COUNT"
             grep -q '<loc>https://cigarnexus.app/node/padron/</loc>' sitemap.xml
+            grep -q '<loc>https://cigarnexus.app/directory.html</loc>' sitemap.xml
             echo "Sitemap OK: $SITEMAP_NODES node URLs"
             date -u +%Y-%m-%dT%H:%M:%SZ > deploy-stamp.txt
 
@@ -165,10 +179,15 @@ jobs:
           INDEX_BODY=$(curl -fsS "https://cigarnexus.app/")
           echo "$INDEX_BODY" | grep -q 'href="tailwind.css"'
           echo "$INDEX_BODY" | grep -q 'href="styles.css"'
+          echo "$INDEX_BODY" | grep -q 'href="/node/padron/"'
+          echo "$INDEX_BODY" | grep -q 'Interactive map of the premium cigar industry'
           if echo "$INDEX_BODY" | grep -q "cdn.tailwindcss.com"; then
             echo "ERROR: index.html still references Tailwind CDN"
             exit 1
           fi
+          DIR_BODY=$(curl -fsS "https://cigarnexus.app/directory.html")
+          echo "$DIR_BODY" | grep -q 'Industry directory'
+          echo "$DIR_BODY" | grep -q 'href="/node/padron/"'
           echo "Live site OK (tailwind.css ${TW_SIZE} bytes)"
           FOUR_BODY=$(curl -fsS "https://cigarnexus.app/404.html")
           echo "$FOUR_BODY" | grep -q "This node is not on the map"

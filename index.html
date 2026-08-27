@@ -121,6 +121,7 @@
                 </button>
                 <div class="flex items-center gap-x-1 text-xs sm:text-sm">
                     <a href="index.html" class="nav-link nav-link--active px-3 py-1.5 rounded-2xl text-[#CEA661] font-medium transition-colors">Map</a>
+                    <a href="/directory.html" class="nav-link px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#DCEBE8] transition-colors">Directory</a>
                     <a href="about.html" class="px-3 py-1.5 hover:bg-white/10 rounded-2xl text-[#DCEBE8] transition-colors">About</a>
                 </div>
             </div>
@@ -128,6 +129,11 @@
     </header>
 
     <div class="max-w-screen-xl mx-auto px-6 pt-6">
+
+        <div class="map-page-heading mb-4 sm:mb-5">
+            <h1 class="map-page-title">Interactive map of the premium cigar industry</h1>
+            <p class="map-page-lede">Ownership, factories, and relationships across Nicaragua, the Dominican Republic, Honduras, and Costa Rica. Click a node, or browse every profile in the directory below.</p>
+        </div>
         
         <!-- Filters (moved above graph for prominence + mobile friendly) -->
         <div class="mb-3 sm:mb-4">
@@ -352,12 +358,15 @@
             </div>
         </div>
 
+            <!-- PROFILE_DIRECTORY_START -->
+            <!-- PROFILE_DIRECTORY_END -->
+
     </div>
 
     <footer class="site-footer">
         <div class="max-w-screen-xl mx-auto px-6 pb-8 text-center text-sm">
             <p>&copy; Cigar Nexus · Interactive map of the premium cigar industry.</p>
-            <p class="mt-1"><a href="index.html">Return to Map</a> · <a href="about.html">About</a></p>
+            <p class="mt-1"><a href="index.html">Return to Map</a> · <a href="/directory.html">Directory</a> · <a href="about.html">About</a></p>
         </div>
     </footer>
 

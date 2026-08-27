@@ -1,10 +1,16 @@
 /**
  * Cigar Nexus SEO page generator
  * Run on deploy: builds /node/[id]/ static pages + sitemap.xml
+ *                + /directory.html and the homepage profile catalog
  *
  * Content priority per node:
  *   1. content/expanded/*.js (manual researched overrides by type)
  *   2. Auto-generated rich HTML from drawer text + graph connections
+ *
+ * ROLLBACK the HTML directory:
+ *   ENABLE_PROFILE_DIRECTORY=0 npm run build:site
+ *   or set ENABLE_PROFILE_DIRECTORY to false below, then redeploy.
+ *   git revert of this commit also restores the pre-directory homepage.
  */
 const fs = require('fs');
 const path = require('path');
@@ -14,6 +20,25 @@ const { readImageDimensions } = require('./read-image-dimensions');
 
 const ROOT = path.join(__dirname, '..');
 const SITE = 'https://cigarnexus.app';
+
+function envFlag(name, defaultValue) {
+  const raw = process.env[name];
+  if (raw == null || String(raw).trim() === '') return defaultValue;
+  return !/^(0|false|off|no)$/i.test(String(raw).trim());
+}
+
+/** Homepage catalog + /directory.html. Flip false or set env 0 to roll back. */
+const ENABLE_PROFILE_DIRECTORY = envFlag('ENABLE_PROFILE_DIRECTORY', true);
+
+const PROFILE_DIRECTORY_START = '<!-- PROFILE_DIRECTORY_START -->';
+const PROFILE_DIRECTORY_END = '<!-- PROFILE_DIRECTORY_END -->';
+
+const DIRECTORY_GROUPS = [
+  { type: 'brand', label: 'Brands', blurb: 'Marcas and product houses' },
+  { type: 'company', label: 'Companies', blurb: 'Corporate groups and family companies' },
+  { type: 'person', label: 'People', blurb: 'Founders, blenders, and operators' },
+  { type: 'factory', label: 'Factories', blurb: 'Rolling houses and grower facilities' },
+];
 
 function readUtf8(filePath) {
   return fs.readFileSync(filePath, 'utf8').replace(/^\uFEFF/, '');
@@ -489,13 +514,16 @@ function buildJsonLd(node, plainDesc, connections, nodeWebsites) {
   }, null, 2);
 }
 
-function buildSitemap(nodes) {
+function buildSitemap(nodes, { includeDirectory = false } = {}) {
   const today = new Date().toISOString().split('T')[0];
   const sorted = [...nodes].sort((a, b) => a.id.localeCompare(b.id));
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   xml += `  <url>\n    <loc>${SITE}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
   xml += `  <url>\n    <loc>${SITE}/about.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+  if (includeDirectory) {
+    xml += `  <url>\n    <loc>${SITE}/directory.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
+  }
   sorted.forEach(node => {
     xml += `  <url>\n    <loc>${SITE}/node/${node.id}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
   });
@@ -503,7 +531,11 @@ function buildSitemap(nodes) {
   return xml;
 }
 
-function validateSitemap(xml, nodes) {
+function extraSitemapPages(includeDirectory) {
+  return includeDirectory ? 3 : 2;
+}
+
+function validateSitemap(xml, nodes, { includeDirectory = false } = {}) {
   const nodeIds = new Set(nodes.map(n => n.id));
   const found = [...xml.matchAll(/<loc>https:\/\/cigarnexus\.app\/node\/([^/]+)\//g)].map(m => m[1]);
 
@@ -525,10 +557,141 @@ function validateSitemap(xml, nodes) {
     throw new Error(`Sitemap missing node URLs: ${missing.join(', ')}`);
   }
 
-  const totalUrls = (xml.match(/<loc>/g) || []).length;
-  if (totalUrls !== nodeIds.size + 2) {
-    throw new Error(`Sitemap has ${totalUrls} total URLs, expected ${nodeIds.size + 2}`);
+  const hasDirectory = xml.includes(`${SITE}/directory.html`);
+  if (includeDirectory && !hasDirectory) {
+    throw new Error('Sitemap missing directory.html');
   }
+  if (!includeDirectory && hasDirectory) {
+    throw new Error('Sitemap includes directory.html while the catalog is disabled');
+  }
+
+  const expectedTotal = nodeIds.size + extraSitemapPages(includeDirectory);
+  const totalUrls = (xml.match(/<loc>/g) || []).length;
+  if (totalUrls !== expectedTotal) {
+    throw new Error(`Sitemap has ${totalUrls} total URLs, expected ${expectedTotal}`);
+  }
+}
+
+function directoryGroupClass(type) {
+  if (type === 'factory') return 'factory';
+  if (type === 'company') return 'corporate';
+  return 'family';
+}
+
+function countDirectoryLinks(html) {
+  return [...String(html).matchAll(/href="\/node\/([^/]+)\/"/g)].map((m) => m[1]);
+}
+
+function buildDirectoryGroupsHtml(nodes, { open = false } = {}) {
+  const openAttr = open ? ' open' : '';
+  return DIRECTORY_GROUPS.map((group) => {
+    const items = nodes
+      .filter((n) => n.type === group.type)
+      .slice()
+      .sort((a, b) => String(a.name || a.id).localeCompare(String(b.name || b.id), 'en', { sensitivity: 'base' }));
+    const links = items.map((n) => {
+      const name = escapeHtml(n.name || n.id);
+      return `<li><a href="/node/${escapeHtml(n.id)}/">${name}</a></li>`;
+    }).join('');
+    return `<details class="profile-directory__group" data-type="${escapeHtml(group.type)}"${openAttr}>
+      <summary>
+        <span class="profile-directory__dot profile-directory__dot--${directoryGroupClass(group.type)}" aria-hidden="true"></span>
+        <span class="profile-directory__summary-text">
+          <span class="profile-directory__label">${escapeHtml(group.label)}</span>
+          <span class="profile-directory__count">${items.length}</span>
+        </span>
+        <span class="profile-directory__blurb">${escapeHtml(group.blurb)}</span>
+      </summary>
+      <ul class="profile-directory__links">${links}</ul>
+    </details>`;
+  }).join('\n');
+}
+
+function buildHomepageDirectoryHtml(nodes) {
+  const count = nodes.length;
+  const groups = buildDirectoryGroupsHtml(nodes, { open: false });
+  return `<section class="profile-directory profile-directory--home" aria-labelledby="profile-directory-heading">
+  <div class="profile-directory__intro">
+    <h2 id="profile-directory-heading" class="profile-directory__heading">Industry directory</h2>
+    <p class="profile-directory__lede">Every brand, person, factory, and company on this map has a dedicated profile. ${count} pages, grouped below. Expand a group or open the full directory.</p>
+    <a class="profile-directory__all" href="/directory.html">Open the full directory</a>
+  </div>
+  ${groups}
+</section>`;
+}
+
+function buildDirectoryJsonLd(nodes) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Cigar industry directory',
+    url: `${SITE}/directory.html`,
+    isPartOf: { '@type': 'WebSite', name: 'Cigar Nexus', url: `${SITE}/` },
+    about: 'Directory of premium cigar brands, companies, people, and factories on Cigar Nexus.',
+    numberOfItems: nodes.length
+  }, null, 2);
+}
+
+function injectHomepageDirectory(innerHtml) {
+  const filePath = path.join(ROOT, 'index.html');
+  const src = readUtf8(filePath);
+  const start = src.indexOf(PROFILE_DIRECTORY_START);
+  const end = src.indexOf(PROFILE_DIRECTORY_END);
+  if (start === -1 || end === -1 || end < start) {
+    throw new Error('index.html is missing PROFILE_DIRECTORY_START / PROFILE_DIRECTORY_END markers');
+  }
+  const before = src.slice(0, start + PROFILE_DIRECTORY_START.length);
+  const after = src.slice(end);
+  const block = innerHtml ? `\n${innerHtml}\n            ` : '\n            ';
+  const next = `${before}${block}${after}`;
+  fs.writeFileSync(filePath, next, 'utf8');
+}
+
+function writeDirectoryPage(nodes) {
+  const outPath = path.join(ROOT, 'directory.html');
+  if (!ENABLE_PROFILE_DIRECTORY) {
+    if (fs.existsSync(outPath)) fs.unlinkSync(outPath);
+    return;
+  }
+  const templatePath = path.join(__dirname, 'directory-template.html');
+  let page = readUtf8(templatePath);
+  const groups = buildDirectoryGroupsHtml(nodes, { open: true });
+  page = page
+    .replace(/\{\{COUNT\}\}/g, String(nodes.length))
+    .replace(/\{\{DIRECTORY_GROUPS\}\}/g, groups)
+    .replace(/\{\{JSON_LD\}\}/g, buildDirectoryJsonLd(nodes));
+  fs.writeFileSync(outPath, page, 'utf8');
+}
+
+function publishProfileDirectory(nodes) {
+  const directoryPath = path.join(ROOT, 'directory.html');
+  if (!ENABLE_PROFILE_DIRECTORY) {
+    injectHomepageDirectory('');
+    if (fs.existsSync(directoryPath)) fs.unlinkSync(directoryPath);
+    console.log('Profile directory disabled (ENABLE_PROFILE_DIRECTORY=0). Homepage catalog cleared.');
+    return;
+  }
+
+  const homeHtml = buildHomepageDirectoryHtml(nodes);
+  injectHomepageDirectory(homeHtml);
+  writeDirectoryPage(nodes);
+
+  const homeIds = countDirectoryLinks(homeHtml);
+  const pageIds = countDirectoryLinks(readUtf8(directoryPath));
+  const expected = nodes.map((n) => n.id).sort();
+  const check = (ids, label) => {
+    const sorted = [...ids].sort();
+    if (sorted.length !== expected.length) {
+      throw new Error(`${label} has ${sorted.length} profile links, expected ${expected.length}`);
+    }
+    const missing = expected.filter((id) => !ids.includes(id));
+    if (missing.length) {
+      throw new Error(`${label} missing profile links: ${missing.slice(0, 8).join(', ')}`);
+    }
+  };
+  check(homeIds, 'Homepage directory');
+  check(pageIds, 'directory.html');
+  console.log(`Profile directory: ${nodes.length} links on homepage and directory.html`);
 }
 
 // --- Main ---
@@ -634,11 +797,14 @@ function generateAllNodePages() {
   if (redirectCount) console.log(`Legacy node redirects: ${redirectCount}.`);
   console.log(`Website links: ${baseGraphData.nodes.length - missingWebsites.length}/${baseGraphData.nodes.length} nodes${missingWebsites.length ? ` (no URL: ${missingWebsites.join(', ')})` : ''}.`);
 
+  publishProfileDirectory(baseGraphData.nodes);
+
   const sitemapPath = path.join(ROOT, 'sitemap.xml');
-  const sitemap = buildSitemap(baseGraphData.nodes);
-  validateSitemap(sitemap, baseGraphData.nodes);
+  const sitemap = buildSitemap(baseGraphData.nodes, { includeDirectory: ENABLE_PROFILE_DIRECTORY });
+  validateSitemap(sitemap, baseGraphData.nodes, { includeDirectory: ENABLE_PROFILE_DIRECTORY });
   fs.writeFileSync(sitemapPath, sitemap, 'utf8');
-  console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + 2} URLs, synced with data.js).`);
+  const extra = extraSitemapPages(ENABLE_PROFILE_DIRECTORY);
+  console.log(`Updated sitemap.xml (${baseGraphData.nodes.length + extra} URLs, synced with data.js).`);
 }
 
 try {

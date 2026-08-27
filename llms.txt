@@ -30,7 +30,8 @@ Edges in `data.js` use free-text `type` labels (e.g. `owned by`, `manufactured a
 
 ## Core pages
 
-- [Interactive map](https://cigarnexus.app/): Force-directed visualization of brands, factories, people, and companies. Requires JS; use for exploration, not as sole citation source.
+- [Interactive map](https://cigarnexus.app/): Force-directed visualization of brands, factories, people, and companies. Requires JS; use for exploration, not as sole citation source. The homepage HTML also includes a full profile directory.
+- [Industry directory](https://cigarnexus.app/directory.html): Plain-HTML index of every entity profile, grouped by type.
 - [About](https://cigarnexus.app/about.html): Project purpose, methodology notes, limitations, contact.
 - [Sitemap](https://cigarnexus.app/sitemap.xml): Complete index of crawlable entity URLs.
 - [Graph data (data.js)](https://cigarnexus.app/data.js): Machine-usable nodes and links for the full curated graph (~174 nodes, ~348 links).
