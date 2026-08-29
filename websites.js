@@ -191,5 +191,8 @@ var nodeWebsites = {
   tabdegarcia: { website: "https://www.altadisusa.com/", websiteLabel: "Altadis U.S.A." },
   romacraft: { website: "https://www.romacrafttobac.com" },
   skipmartin: { website: "https://www.romacrafttobac.com", websiteLabel: "RoMa Craft Tobac" },
-  michaelrosales: { website: "https://www.romacrafttobac.com", websiteLabel: "RoMa Craft Tobac" }
+  michaelrosales: { website: "https://www.romacrafttobac.com", websiteLabel: "RoMa Craft Tobac" },
+  latelier: { website: "https://tatuajecigars.com", websiteLabel: "Tatuaje / L'Atelier" },
+  petejohnson: { website: "https://tatuajecigars.com", websiteLabel: "Tatuaje Cigars" },
+  hoyonc: { website: "https://www.generalcigar.com", websiteLabel: "General Cigar Co." }
 };

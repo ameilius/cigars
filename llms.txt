@@ -57,6 +57,8 @@ Use these as templates for URL shape and content density. Full list is in the si
 - [Tabacos de Costa Rica](https://cigarnexus.app/node/costaricatabacos/): Costa Rica factory hub (Atabey, Byron, Lampert, LH Premium, and others).
 - [Aging Room](https://cigarnexus.app/node/agingroom/): Rafael Nodal boutique marca; Altadis distributes; Palma (DR) and A.J. Fernandez (Nicaragua).
 - [RoMa Craft](https://cigarnexus.app/node/romacraft/): Skip Martin and Michael Rosales boutique; Nica Sueño factory in Estelí (CroMagnon, Intemperance, Neanderthal).
+- [L'Atelier](https://cigarnexus.app/node/latelier/): Pete Johnson sister marca to Tatuaje; My Father, Estelí; Sancti Spíritus leaf.
+- [Hoyo de Monterrey (Non-Cuban)](https://cigarnexus.app/node/hoyonc/): General Cigar / STG U.S. Hoyo, not Habanos; Honduras / STG Danlí, Villazon history with Punch.
 
 ## Important accuracy notes for models
 

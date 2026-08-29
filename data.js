@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 184 nodes, 396 links
+ * Cigar Nexus graph data: 187 nodes, 414 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -188,6 +188,9 @@ var baseGraphData = {
                 { id: "romacraft", name: "RoMa Craft Tobac", type: "company", group: "family", country: "usa", productLines: ["CroMagnon", "Intemperance", "Neanderthal", "Aquitaine", "Baka", "Maestranza", "CRAFT Maquette"], logo: "logos/romacraft.jpg" },
                 { id: "skipmartin", name: "Skip Martin", type: "person", group: "family", country: "nicaragua" },
                 { id: "michaelrosales", name: "Michael Rosales", type: "person", group: "family", country: "usa" },
+                { id: "latelier", name: "L'Atelier", type: "brand", group: "family", country: "nicaragua", productLines: ["LAT", "La Mission", "Selection Speciale", "Côte d'Or", "Surrogates"], logo: "logos/latelier.jpg" },
+                { id: "petejohnson", name: "Pete Johnson", type: "person", group: "family", country: "usa" },
+                { id: "hoyonc", name: "Hoyo de Monterrey (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Excalibur", "Hoyo de Tradición", "La Amistad", "Rojo", "Oscuro", "Epicure Selección"], logo: "logos/hoyo.jpg" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -587,5 +590,23 @@ var baseGraphData = {
                 { source: "skipmartin", target: "nicasueno", type: "co-owns / operates" },
                 { source: "nicasueno", target: "estebandisla", type: "co-founded with" },
                 { source: "estebandisla", target: "nicasueno", type: "co-founded" },
+                { source: "latelier", target: "petejohnson", type: "founded by" },
+                { source: "petejohnson", target: "latelier", type: "founded" },
+                { source: "tatuaje", target: "petejohnson", type: "founded by" },
+                { source: "petejohnson", target: "tatuaje", type: "founded" },
+                { source: "latelier", target: "myfather", type: "manufactured at" },
+                { source: "myfather", target: "latelier", type: "manufactures" },
+                { source: "latelier", target: "pepin", type: "produced with" },
+                { source: "pepin", target: "latelier", type: "manufactures for" },
+                { source: "hoyonc", target: "generalcigar", type: "owned by" },
+                { source: "generalcigar", target: "hoyonc", type: "owns" },
+                { source: "hoyonc", target: "stg", type: "brand of" },
+                { source: "stg", target: "hoyonc", type: "owns" },
+                { source: "hoyonc", target: "stgdanli", type: "manufactured at" },
+                { source: "stgdanli", target: "hoyonc", type: "manufactures" },
+                { source: "hoyonc", target: "ajfernandez", type: "La Amistad produced with" },
+                { source: "ajfernandez", target: "hoyonc", type: "collaboration blends" },
+                { source: "hoyonc", target: "punch_nc", type: "sibling brand (Villazon)" },
+                { source: "punch_nc", target: "hoyonc", type: "sibling brand (Villazon)" },
             ]
         };

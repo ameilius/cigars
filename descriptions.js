@@ -6,7 +6,7 @@ var drawerDescriptions = {
   // === Core / Early brands & people ===
   "myfather": "My Father Cigars is the García family company led by Pepín García: house lines (My Father, The Judge, Le Bijou, Flor de las Antillas) and a premier Estelí contract home for Tatuaje, Crowned Heads, and other boutiques.",
   "pepin": "Pepín García is the master blender behind My Father Cigars, Cuban-trained and formerly of Miami's El Rey de los Habanos, now the patriarch of a major Estelí family factory and brand group.",
-  "tatuaje": "Tatuaje is Pete Johnson's boutique brand made with the García family at My Father in Estelí. Famous for Brown/Black labels, Havana VI, Fausto, and heavy limited-release culture.",
+  "tatuaje": "Tatuaje is Pete Johnson's boutique brand made with the García family at My Father in Estelí. Famous for Brown/Black labels, Havana VI, Fausto, and heavy limited-release culture. Sister company L'Atelier (2012) is his second García-made marca.",
   "espinosa": "Espinosa Premium Cigars (Erik Espinosa) runs La Zona in Estelí and the 601, Murciélago, Laranja, and Knuckle Sandwich portfolio. Brand owner plus contract manufacturer for other boutiques.",
   "erikespinosa": "Erik Espinosa founded Espinosa Premium Cigars and La Zona after co-creating 601/Murciélago under EO Brands with Eddie Ortega. Brand owner plus Estelí factory operator.",
   "guyfieri": "Guy Fieri partners with Espinosa on Knuckle Sandwich cigars, routing celebrity branding through La Zona manufacturing.",
@@ -27,7 +27,7 @@ var drawerDescriptions = {
   "opusx": "Fuente Fuente OpusX is Arturo Fuente's ultra-premium flagship: the first major commercial success with Cuban-seed wrapper grown in the Dominican Republic at Château de la Fuente, rolled via Tabacalera A. Fuente. Limited, full-flavored, and a collector benchmark since the mid-1990s.",
 
   "stg": "Scandinavian Tobacco Group (STG) is the Danish corporate parent of General Cigar and Forged, owning U.S. Cohiba, Partagas, Punch, Macanudo, CAO, La Gloria Cubana, Room101, Alec Bradley, and more. It runs STG Estelí and Danlí capacity and is separate from Altadis Montecristo/RyJ ownership.",
-  "generalcigar": "General Cigar Co. is STG's historic U.S. premium company behind Macanudo, CAO, Partagas (NC), La Gloria Cubana, and related brands, with deep Dominican and Central American factory ties. Sister Forged handles other STG names such as Cohiba (NC) and Punch (NC) in recent portfolio splits.",
+  "generalcigar": "General Cigar Co. is STG's historic U.S. premium company behind Macanudo, CAO, Hoyo de Monterrey (NC), Partagas (NC), La Gloria Cubana, and related brands, with deep Dominican and Central American factory ties. Sister Forged handles other STG names such as Cohiba (NC) and Punch (NC) in recent portfolio splits.",
   "forged": "Forged Cigar Co. is an STG company that handles production and distribution for several of its portfolio brands in the U.S. market.",
   "macanudo": "Macanudo is one of the best-selling U.S. premium brands under General Cigar/STG, launched in its modern form in 1971 from Jamaica and later concentrated in the Dominican Republic. Famous for mild-to-medium Connecticut Café profiles, with fuller lines like Inspirado, Cru Royale, and Estate Reserve.",
   "cao": "CAO is the bold General Cigar/STG brand known for colorful packaging and full-flavored multi-origin lines (Brazilia, Flathead, MX2, Ecuador, and more). Long associated with blender Rick Rodriguez before he founded West Tampa; a creative counterweight to mild Macanudo in the STG portfolio.",
@@ -189,7 +189,7 @@ var drawerDescriptions = {
   "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the boutique factory Skip Martin co-owns with Esteban Disla: house production for RoMa Craft (CroMagnon, Intemperance, Neanderthal) plus outside work such as Caldwell projects.",
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
-  "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume.",
+  "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey (Rojo, Oscuro, and related Honduras lines).",
   "lacorona": "La Corona Factory in Estelí is the dedicated home of Ozgener Family Cigars (Bosphorus, Aramas, Cypher).",
   "rojasfactory": "Tabacalera New Order / Rojas factory in Estelí hosts Rojas house brands, NOA history, and Stolen Throne production.",
   "raicescubanas": "Raíces Cubanas is a Nicaraguan factory linked to Drew Estate's Deadwood line, distinct from La Gran Fábrica.",
@@ -251,6 +251,9 @@ var drawerDescriptions = {
   "romacraft": "RoMa Craft Tobac is Skip Martin and Michael Rosales's boutique house (the name is Ro-sales + Ma-rtin), launched in 2012. Nearly everything is rolled at their Estelí factory Nica Sueño: CroMagnon, Intemperance, Neanderthal, Aquitaine, Baka, Maestranza, and CRAFT Maquette limiteds.",
   "skipmartin": "Skip Martin is co-founder of RoMa Craft and co-owner/operator of Nica Sueño in Estelí, where he lives and blends. Former Austin/Galveston retailer who built the factory with Esteban Disla after early Costa Rica experiments.",
   "michaelrosales": "Michael Rosales (the \"Ro\" in RoMa) co-founded RoMa Craft with Skip Martin. Austin-based, formerly Costa Rican Imports; he handles the U.S. side while Martin runs the Estelí factory.",
+  "latelier": "L'Atelier (French for \"the workshop\") is Pete Johnson's 2012 sister marca to Tatuaje, rolled at My Father in Estelí. Signature Sancti Spíritus hybrid leaf; lines include LAT, La Mission, Selection Speciale, Côte d'Or, and Surrogates.",
+  "petejohnson": "Pete Johnson is the founder of Tatuaje (2003) and L'Atelier Imports (2012). Both brands are rolled with the García family at My Father in Estelí, after Tatuaje's Miami start at El Rey de los Habanos.",
+  "hoyonc": "Hoyo de Monterrey (Non-Cuban) is General Cigar / STG's U.S. marca, separate from Habanos Cuban Hoyo. Villazon brought it to Honduras in the 1960s; General bought Villazon in 1997. Core Honduras production at STG Danlí; La Amistad Dark Sumatra with A.J. Fernandez.",
 
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
