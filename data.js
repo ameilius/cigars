@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 181 nodes, 386 links
+ * Cigar Nexus graph data: 184 nodes, 396 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -185,6 +185,9 @@ var baseGraphData = {
                 { id: "jochyblanco", name: "Jochy Blanco", type: "person", group: "family", country: "dominican" },
                 { id: "hupmannnc", name: "H. Upmann (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Vintage Cameroon", "The Banker", "1844 Reserve", "Legacy", "Nicaragua AJ Fernandez", "Herman's Batch"], logo: "logos/hupmann.jpg" },
                 { id: "tabdegarcia", name: "Tabacalera de García (La Romana)", type: "factory", group: "corporate", country: "dominican" },
+                { id: "romacraft", name: "RoMa Craft Tobac", type: "company", group: "family", country: "usa", productLines: ["CroMagnon", "Intemperance", "Neanderthal", "Aquitaine", "Baka", "Maestranza", "CRAFT Maquette"], logo: "logos/romacraft.jpg" },
+                { id: "skipmartin", name: "Skip Martin", type: "person", group: "family", country: "nicaragua" },
+                { id: "michaelrosales", name: "Michael Rosales", type: "person", group: "family", country: "usa" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -574,5 +577,15 @@ var baseGraphData = {
                 { source: "tabdegarcia", target: "ryjnc", type: "manufactures (core Dominican lines)" },
                 { source: "altadis", target: "tabdegarcia", type: "historical core factory" },
                 { source: "tabdegarcia", target: "altadis", type: "historical manufacturing for" },
+                { source: "romacraft", target: "skipmartin", type: "founded by" },
+                { source: "skipmartin", target: "romacraft", type: "founded" },
+                { source: "romacraft", target: "michaelrosales", type: "founded by" },
+                { source: "michaelrosales", target: "romacraft", type: "founded" },
+                { source: "romacraft", target: "nicasueno", type: "manufactured at" },
+                { source: "nicasueno", target: "romacraft", type: "manufactures" },
+                { source: "nicasueno", target: "skipmartin", type: "co-owned / operated by" },
+                { source: "skipmartin", target: "nicasueno", type: "co-owns / operates" },
+                { source: "nicasueno", target: "estebandisla", type: "co-founded with" },
+                { source: "estebandisla", target: "nicasueno", type: "co-founded" },
             ]
         };

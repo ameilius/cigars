@@ -186,7 +186,7 @@ var drawerDescriptions = {
   // P0-P3 factory nodes
   "williamventura": "Tabacalera William Ventura is a major Santiago, DR contract factory for Viaje, Kristoff, Caldwell, La Palina, Gurkha, and many outside brands.",
   "lucianopichardo": "Tabacalera Pichardo / Luciano in Estelí rolls Luciano-related work and boutique clients such as Definition Cigars.",
-  "nicasueno": "Nica Sueño in Estelí is known for Caldwell production (La Coalición, Nirvana-era) and specialty licensed projects.",
+  "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the boutique factory Skip Martin co-owns with Esteban Disla: house production for RoMa Craft (CroMagnon, Intemperance, Neanderthal) plus outside work such as Caldwell projects.",
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
   "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume.",
@@ -248,6 +248,9 @@ var drawerDescriptions = {
   "jochyblanco": "José \"Jochy\" Blanco runs Tabacalera Palma in Tamboril and is a longtime blending and manufacturing partner (and Boutique Blends partner) on Aging Room's Dominican lines.",
   "hupmannnc": "H. Upmann (Non-Cuban) is Altadis U.S.A.'s U.S. marca, separate from Habanos Cuban H. Upmann. Core Dominican production historically at Tabacalera de García (La Romana); Nicaraguan prestige lines (Nicaragua by AJ Fernandez, Heritage, anniversary projects) at San Lotano. Vintage Cameroon, The Banker, 1844 Reserve, and Legacy are the familiar shop names.",
   "tabdegarcia": "Tabacalera de García in La Romana is the large Dominican factory long associated with Altadis U.S.A. volume for non-Cuban Montecristo, Romeo y Julieta, and H. Upmann. Recent ownership and U.S. sanctions issues have pushed some Altadis SKUs toward other partners, including A.J. Fernandez.",
+  "romacraft": "RoMa Craft Tobac is Skip Martin and Michael Rosales's boutique house (the name is Ro-sales + Ma-rtin), launched in 2012. Nearly everything is rolled at their Estelí factory Nica Sueño: CroMagnon, Intemperance, Neanderthal, Aquitaine, Baka, Maestranza, and CRAFT Maquette limiteds.",
+  "skipmartin": "Skip Martin is co-founder of RoMa Craft and co-owner/operator of Nica Sueño in Estelí, where he lives and blends. Former Austin/Galveston retailer who built the factory with Esteban Disla after early Costa Rica experiments.",
+  "michaelrosales": "Michael Rosales (the \"Ro\" in RoMa) co-founded RoMa Craft with Skip Martin. Austin-based, formerly Costa Rican Imports; he handles the U.S. side while Martin runs the Estelí factory.",
 
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."

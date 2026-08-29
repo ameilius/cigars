@@ -188,5 +188,8 @@ var nodeWebsites = {
   lapalma: { website: "https://www.lagaleracigars.com", websiteLabel: "La Galera / Tabacalera Palma" },
   jochyblanco: { website: "https://www.lagaleracigars.com", websiteLabel: "La Galera / Tabacalera Palma" },
   hupmannnc: { website: "https://www.altadisusa.com/cigars/h-upmann/", websiteLabel: "H. Upmann (Altadis U.S.A.)" },
-  tabdegarcia: { website: "https://www.altadisusa.com/", websiteLabel: "Altadis U.S.A." }
+  tabdegarcia: { website: "https://www.altadisusa.com/", websiteLabel: "Altadis U.S.A." },
+  romacraft: { website: "https://www.romacrafttobac.com" },
+  skipmartin: { website: "https://www.romacrafttobac.com", websiteLabel: "RoMa Craft Tobac" },
+  michaelrosales: { website: "https://www.romacrafttobac.com", websiteLabel: "RoMa Craft Tobac" }
 };
