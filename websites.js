@@ -186,5 +186,7 @@ var nodeWebsites = {
   rafaelnodal: { website: "https://www.altadisusa.com/cigars/aging-room/", websiteLabel: "Aging Room (Altadis U.S.A.)" },
   boutiqueblends: { website: "https://www.altadisusa.com/cigars/aging-room/", websiteLabel: "Aging Room (Altadis U.S.A.)" },
   lapalma: { website: "https://www.lagaleracigars.com", websiteLabel: "La Galera / Tabacalera Palma" },
-  jochyblanco: { website: "https://www.lagaleracigars.com", websiteLabel: "La Galera / Tabacalera Palma" }
+  jochyblanco: { website: "https://www.lagaleracigars.com", websiteLabel: "La Galera / Tabacalera Palma" },
+  hupmannnc: { website: "https://www.altadisusa.com/cigars/h-upmann/", websiteLabel: "H. Upmann (Altadis U.S.A.)" },
+  tabdegarcia: { website: "https://www.altadisusa.com/", websiteLabel: "Altadis U.S.A." }
 };

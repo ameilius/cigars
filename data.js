@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 179 nodes, 370 links
+ * Cigar Nexus graph data: 181 nodes, 386 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -183,6 +183,8 @@ var baseGraphData = {
                 { id: "boutiqueblends", name: "Boutique Blends", type: "company", group: "family", country: "usa", logo: "logos/agingroom.jpg" },
                 { id: "lapalma", name: "Tabacalera Palma (Tamboril)", type: "factory", group: "family", country: "dominican" },
                 { id: "jochyblanco", name: "Jochy Blanco", type: "person", group: "family", country: "dominican" },
+                { id: "hupmannnc", name: "H. Upmann (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Vintage Cameroon", "The Banker", "1844 Reserve", "Legacy", "Nicaragua AJ Fernandez", "Herman's Batch"], logo: "logos/hupmann.jpg" },
+                { id: "tabdegarcia", name: "Tabacalera de García (La Romana)", type: "factory", group: "corporate", country: "dominican" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -556,5 +558,21 @@ var baseGraphData = {
                 { source: "altadis", target: "rafaelnodal", type: "product leadership" },
                 { source: "agingroom", target: "plasenciaesteli", type: "some production" },
                 { source: "plasenciaesteli", target: "agingroom", type: "some contract production" },
+                { source: "hupmannnc", target: "altadis", type: "owned by" },
+                { source: "altadis", target: "hupmannnc", type: "owns" },
+                { source: "hupmannnc", target: "tabdegarcia", type: "manufactured at" },
+                { source: "tabdegarcia", target: "hupmannnc", type: "manufactures" },
+                { source: "hupmannnc", target: "sanlotano", type: "Nicaragua AJ lines produced at" },
+                { source: "sanlotano", target: "hupmannnc", type: "manufactures (Nicaragua AJ lines)" },
+                { source: "hupmannnc", target: "ajfernandez", type: "collaboration with" },
+                { source: "ajfernandez", target: "hupmannnc", type: "collaboration blends" },
+                { source: "hupmannnc", target: "rafaelnodal", type: "product leadership" },
+                { source: "rafaelnodal", target: "hupmannnc", type: "product leadership" },
+                { source: "montecristonc", target: "tabdegarcia", type: "core Dominican production at" },
+                { source: "tabdegarcia", target: "montecristonc", type: "manufactures (core Dominican lines)" },
+                { source: "ryjnc", target: "tabdegarcia", type: "core Dominican production at" },
+                { source: "tabdegarcia", target: "ryjnc", type: "manufactures (core Dominican lines)" },
+                { source: "altadis", target: "tabdegarcia", type: "historical core factory" },
+                { source: "tabdegarcia", target: "altadis", type: "historical manufacturing for" },
             ]
         };

@@ -49,6 +49,7 @@ Use these as templates for URL shape and content density. Full list is in the si
 - [Altadis U.S.A.](https://cigarnexus.app/node/altadis/): Imperial Brands U.S. arm; Montecristo (NC), Romeo y Julieta (NC), related marques.
 - [Montecristo (Non-Cuban)](https://cigarnexus.app/node/montecristonc/): U.S./non-Cuban Montecristo under Altadis, not the Cuban Habanos line; not STG.
 - [Romeo y Julieta (Non-Cuban)](https://cigarnexus.app/node/ryjnc/): U.S./non-Cuban RyJ under Altadis, parallel to, separate from, Cuban RyJ.
+- [H. Upmann (Non-Cuban)](https://cigarnexus.app/node/hupmannnc/): Altadis U.S. marca, not Habanos Cuban H. Upmann; Tabacalera de García (DR) and A.J. Fernandez (Nicaragua).
 - [Plasencia Cigars](https://cigarnexus.app/node/plasencia/): Multi-generation grower-manufacturer; Nicaragua/Honduras factories and contract work.
 - [A.J. Fernandez](https://cigarnexus.app/node/ajfernandez/): Estelí blender/manufacturer; San Lotano and extensive contract production.
 - [Drew Estate](https://cigarnexus.app/node/drewestate/): Estelí mega-factory brand house (Liga Privada, ACID, Deadwood, etc.); Swisher-owned.
