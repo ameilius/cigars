@@ -53,13 +53,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tailwind.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=5">
 
     <!-- Data + descriptions, then main script -->
     <script src="data.js"></script>
     <script src="descriptions.js"></script>
     <script src="affiliates.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=5" defer></script>
 
     <!-- JSON-LD Structured Data for SEO and LLMs -->
     <script type="application/ld+json">
@@ -187,6 +187,10 @@
                         <button type="button" class="drag-hint__dismiss" aria-label="Dismiss hint">×</button>
                     </div>
 
+                    <button id="focus-exit" type="button" class="focus-exit hidden" onclick="exitMapFocus()" aria-hidden="true" aria-label="Show full map and clear selection">
+                        Show full map
+                    </button>
+
                     <div class="graph-controls">
                         <button onclick="zoomToFit()" type="button" class="graph-control-btn">
                             Zoom to fit
@@ -271,7 +275,7 @@
                                 <div id="drawer-meta" class="mt-1.5 flex flex-wrap gap-1.5"></div>
                             </div>
 
-                            <button onclick="closeDrawer()" class="text-[#6B8A84] hover:text-[#14817A] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
+                            <button type="button" onclick="exitMapFocus()" class="text-[#6B8A84] hover:text-[#14817A] text-3xl leading-none -mt-1 transition-colors self-start" aria-label="Close and show full map">×</button>
                         </div>
                     </div>
                     
@@ -325,8 +329,11 @@
                         <div id="drawer-meta-mobile" class="mt-1 flex flex-wrap gap-1.5"></div>
                     </div>
 
-                    <button onclick="closeDrawer()" class="text-[#6B8A84] hover:text-[#14817A] text-3xl leading-none -mt-1 transition-colors self-start">×</button>
+                    <button type="button" onclick="exitMapFocus()" class="text-[#6B8A84] hover:text-[#14817A] text-3xl leading-none -mt-1 transition-colors self-start" aria-label="Close and show full map">×</button>
                 </div>
+                <button id="focus-exit-drawer" type="button" class="focus-exit-drawer hidden" onclick="exitMapFocus()" aria-hidden="true">
+                    Show full map
+                </button>
             </div>
             
             <div class="p-5 flex-1 overflow-auto text-[#1A3330]">

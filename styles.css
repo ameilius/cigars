@@ -921,6 +921,21 @@ h1, h2, .font-display,
     fill: #14817A;
 }
 
+/* 1-hop focus dim. Rollback: set FOCUS_DIM_ENABLED = false in script.js (classes stop applying). */
+.node-group.node-dimmed {
+    opacity: 0.14;
+}
+.node-group.node-dimmed:hover {
+    opacity: 0.52;
+}
+.node-group.node-focus,
+.node-group.node-dimmed {
+    transition: opacity 160ms ease;
+}
+.node-label.label-dimmed {
+    opacity: 0 !important;
+}
+
 /* Nicer node hover: circle is .node inside g.node-group */
 .node-group:hover .node {
     filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 5px rgba(206, 166, 97, 0.5));
@@ -1120,6 +1135,84 @@ h1, h2, .font-display,
 }
 .drag-hint.hidden {
     display: none !important;
+}
+
+/* Show full map: appears while a node is focused (desktop). Rollback: remove #focus-exit in index.html */
+.focus-exit {
+    position: absolute;
+    left: 50%;
+    bottom: 1.15rem;
+    transform: translateX(-50%);
+    z-index: 16;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.05rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(206, 166, 97, 0.55);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 18px -6px rgba(20, 129, 122, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    color: #14817A;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: focusExitIn 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+.focus-exit.hidden {
+    display: none !important;
+}
+.focus-exit:hover {
+    background: #ffffff;
+}
+.focus-exit:active {
+    transform: translateX(-50%) scale(0.98);
+}
+@keyframes focusExitIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.focus-exit-drawer {
+    display: none;
+}
+@media (max-width: 1023px) {
+    .focus-exit {
+        bottom: 0.85rem;
+        padding: 0.7rem 1.15rem;
+        font-size: 0.875rem;
+        min-height: 44px;
+    }
+    .focus-exit-drawer:not(.hidden) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 0.85rem;
+        min-height: 44px;
+        padding: 0.65rem 1rem;
+        border-radius: 1rem;
+        border: 1px solid #b38c4f;
+        background: #CEA661;
+        color: #14817A;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(10, 10, 10, 0.12);
+    }
+    .focus-exit-drawer:not(.hidden):active {
+        transform: scale(0.985);
+    }
 }
 .drag-hint__icon {
     flex-shrink: 0;
@@ -2043,6 +2136,10 @@ h1, h2, .font-display,
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .node-group.node-focus,
+    .node-group.node-dimmed {
+        transition: none;
+    }
     .profile-directory__group summary { transition: none; }
     .drawer-panel,
     .drawer-panel.drawer-open,
@@ -2052,6 +2149,7 @@ h1, h2, .font-display,
     .search-overlay,
     .search-result-item,
     .mobile-welcome,
+    .focus-exit,
     .drag-hint,
     .drawer-panel--mobile.drawer-panel--howto.drawer-open,
     #age-gate,

@@ -183,20 +183,67 @@ const LINK_TRACE_DURATION_MS = 680;
 const LINK_TRACE_STAGGER_MS = 35;
 let linkTraceTimer = null;
 
+// 1-hop grey-out on node select: set false to restore the full-map look without a git revert
+const FOCUS_DIM_ENABLED = true;
+// Zoom-to-fit the selected node + 1-hop neighbors: set false to keep the old camera
+const FOCUS_ZOOM_ENABLED = true;
+
+function getFocusNeighborIds(nodeId) {
+  const ids = new Set();
+  if (!nodeId) return ids;
+  ids.add(nodeId);
+  const linksList = (graphData && graphData.links) || [];
+  for (let i = 0; i < linksList.length; i++) {
+    const l = linksList[i];
+    const s = l.source.id || l.source;
+    const t = l.target.id || l.target;
+    if (s === nodeId) ids.add(t);
+    else if (t === nodeId) ids.add(s);
+  }
+  return ids;
+}
+
+function updateFocusDim(nodeId) {
+  if (!viewport) return;
+
+  const nodeGroups = viewport.selectAll('.node-group');
+  const labelEls = viewport.selectAll('text.node-label');
+
+  if (!FOCUS_DIM_ENABLED || !nodeId) {
+    nodeGroups.classed('node-dimmed', false).classed('node-focus', false);
+    labelEls.classed('label-dimmed', false).classed('label-focus', false);
+    return;
+  }
+
+  const focusIds = getFocusNeighborIds(nodeId);
+  nodeGroups
+    .classed('node-focus', d => focusIds.has(d.id))
+    .classed('node-dimmed', d => !focusIds.has(d.id));
+  labelEls
+    .classed('label-focus', d => focusIds.has(d.id))
+    .classed('label-dimmed', d => !focusIds.has(d.id));
+}
+
 function setSelectedNode(nodeId, options = {}) {
   selectedNodeId = nodeId || null;
+  updateFocusExitControl();
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', d => d.id === nodeId);
   updateLinkHighlight(nodeId);
+  updateFocusDim(nodeId);
+  updateLabelVisibility();
   if (options.animate) animateLinkTrace(nodeId);
 }
 
 function clearSelectedNode() {
   selectedNodeId = null;
   cancelLinkTrace();
+  updateFocusExitControl();
   if (!viewport) return;
   viewport.selectAll('.node-group').classed('node-selected', false);
   updateLinkHighlight(null);
+  updateFocusDim(null);
+  updateLabelVisibility();
 }
 
 function cancelLinkTrace() {
@@ -348,12 +395,18 @@ function initializeApp() {
     console.error('initializeGraph threw:', e);
   }
 
-  // Keyboard escape closes search overlay first, then drawer
+  // Escape: search overlay, then leave node focus, then drawer
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (searchOverlayOpen) closeSearchOverlay();
-      else closeDrawer();
+    if (e.key !== 'Escape') return;
+    if (searchOverlayOpen) {
+      closeSearchOverlay();
+      return;
     }
+    if (selectedNodeId || currentDrawerNode) {
+      exitMapFocus();
+      return;
+    }
+    closeDrawer();
   });
 
   // Initial render of any saved state
@@ -476,6 +529,7 @@ function initializeGraph() {
       });
 
     svg.call(zoomBehavior);
+    setupClearSelectionGestures();
 
     // Build simulation
     simulation = d3.forceSimulation()
@@ -624,7 +678,10 @@ function updateGraph() {
   });
 
   if (selectedNodeId) setSelectedNode(selectedNodeId);
-  else updateLinkHighlight(null);
+  else {
+    updateLinkHighlight(null);
+    updateFocusDim(null);
+  }
 
   updateLabelVisibility();
 }
@@ -632,8 +689,12 @@ function updateGraph() {
 function updateLabelVisibility() {
   if (!labels || !currentTransform) return;
   const scale = currentTransform.k || 1;
+  const focusIds = (FOCUS_DIM_ENABLED && selectedNodeId)
+    ? getFocusNeighborIds(selectedNodeId)
+    : null;
 
-  // Show labels when reasonably zoomed in, or for high-degree nodes when zoomed out (landmarks)
+  // Show labels when reasonably zoomed in, or for high-degree nodes when zoomed out (landmarks).
+  // In 1-hop focus mode, only the selected node and its neighbors keep labels.
   labels.each(function(d) {
     const el = d3.select(this);
     const degree = (graphData.links || []).filter(l =>
@@ -642,14 +703,17 @@ function updateLabelVisibility() {
     const isLandmark = degree >= 5;
 
     let show = false;
-    if (scale > 0.72) {
+    if (focusIds) {
+      show = focusIds.has(d.id);
+    } else if (scale > 0.72) {
       show = true;
     } else if (scale > 0.38 && isLandmark) {
       show = true;
       el.attr('font-size', '8.5px').attr('dy', getNodeRadius(d) + 11);
     }
 
-    el.style('opacity', show ? (scale > 0.9 ? 0.95 : 0.75) : 0);
+    const opacity = show ? ((scale > 0.9 || focusIds) ? 0.95 : 0.75) : 0;
+    el.style('opacity', opacity);
   });
 }
 
@@ -860,6 +924,35 @@ function getFilteredNodeBounds(extraPadding = 48) {
   return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
 }
 
+function getFocusNodeBounds(nodeId, extraPadding = 42) {
+  if (!nodeId || !viewport) return null;
+  const focusIds = getFocusNeighborIds(nodeId);
+  const positioned = [];
+  viewport.selectAll('.node-group').each(function(d) {
+    if (focusIds.has(d.id) && hasNodeCoords(d)) positioned.push(d);
+  });
+  if (!positioned.length) return null;
+
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const n of positioned) {
+    const pad = getNodeRadius(n) + extraPadding;
+    minX = Math.min(minX, n.x - pad);
+    minY = Math.min(minY, n.y - pad);
+    maxX = Math.max(maxX, n.x + pad);
+    maxY = Math.max(maxY, n.y + pad);
+  }
+
+  // Labels sit below the bubble
+  maxY += 16;
+
+  if (!isFinite(minX) || !isFinite(maxX)) return null;
+  return { x: minX, y: minY, width: Math.max(maxX - minX, 24), height: Math.max(maxY - minY, 24) };
+}
+
 function waitForSearchLayoutSettle(callback, generation) {
   if (!simulation) {
     callback();
@@ -1013,8 +1106,8 @@ function selectSearchResult(nodeId) {
       waitForLiveNode(node.id, (live) => {
         currentDrawerNode = node;
         setSelectedNode(node.id);
-        zoomToNode(live, zoomOpts);
-        showDrawer(node);
+        applyFocusCamera(node.id, { ...zoomOpts, live });
+        showDrawer(node, { zoomToFocus: false });
       });
     });
   });
@@ -1188,6 +1281,43 @@ function resetZoom() {
   svg.transition().duration(550).call(zoomBehavior.transform, d3.zoomIdentity);
 }
 
+function updateFocusExitControl() {
+  const on = !!selectedNodeId;
+  const pill = document.getElementById('focus-exit');
+  const drawerBtn = document.getElementById('focus-exit-drawer');
+  [pill, drawerBtn].forEach(el => {
+    if (!el) return;
+    el.classList.toggle('hidden', !on);
+    el.setAttribute('aria-hidden', on ? 'false' : 'true');
+  });
+  if (on) dismissDragHint(false);
+}
+
+function exitMapFocus() {
+  const shouldRefit = FOCUS_ZOOM_ENABLED && !!(selectedNodeId || currentDrawerNode);
+  closeDrawer({ keepMapFocus: false });
+  if (shouldRefit && svg) zoomToFit(prefersReducedMotion());
+}
+
+function setupClearSelectionGestures() {
+  if (!svg) return;
+  const root = svg.node();
+  if (!root || root.dataset.focusExitBound === '1') return;
+  root.dataset.focusExitBound = '1';
+
+  let ptr = null;
+  root.addEventListener('pointerdown', (e) => {
+    ptr = { x: e.clientX, y: e.clientY };
+  });
+  root.addEventListener('click', (e) => {
+    if (!selectedNodeId) return;
+    if (ptr && Math.hypot(e.clientX - ptr.x, e.clientY - ptr.y) > 12) return;
+    const target = e.target;
+    if (target && target.closest && target.closest('g.node-group')) return;
+    exitMapFocus();
+  });
+}
+
 function refreshGraphDimensions() {
   const container = document.getElementById('graph');
   if (!container || !svg) return;
@@ -1245,6 +1375,57 @@ function zoomToNode(targetNode, options = {}) {
   return true;
 }
 
+function zoomToFocusNeighborhood(nodeId, options = {}) {
+  if (!svg || !viewport || !nodeId) return false;
+
+  refreshGraphDimensions();
+
+  const bounds = getFocusNodeBounds(nodeId, options.padding ?? 42);
+  if (!bounds || !bounds.width || !bounds.height) {
+    const live = getLiveNode(nodeId);
+    if (live) return zoomToNode(live, options);
+    return false;
+  }
+
+  const raiseForDrawer = !!options.raiseForDrawer;
+  const viewW = graphWidth;
+  const viewH = raiseForDrawer ? graphHeight * 0.52 : graphHeight;
+  const focusY = raiseForDrawer ? graphHeight * 0.30 : graphHeight / 2;
+  const paddingFactor = options.paddingFactor ?? 0.72;
+  const maxScale = options.maxScale ?? 2.15;
+  const minScale = options.minScale ?? 0.5;
+
+  const scale = Math.max(
+    minScale,
+    Math.min(
+      maxScale,
+      paddingFactor / Math.max(bounds.width / viewW, bounds.height / viewH)
+    )
+  );
+
+  const midX = bounds.x + bounds.width / 2;
+  const midY = bounds.y + bounds.height / 2;
+  const tx = graphWidth / 2 - scale * midX;
+  const ty = focusY - scale * midY;
+  const duration = prefersReducedMotion() ? 0 : (options.duration ?? 620);
+
+  const transform = d3.zoomIdentity.translate(tx, ty).scale(scale);
+  if (duration <= 0) {
+    svg.call(zoomBehavior.transform, transform);
+  } else {
+    svg.transition().duration(duration).call(zoomBehavior.transform, transform);
+  }
+  return true;
+}
+
+function applyFocusCamera(nodeId, options = {}) {
+  if (!nodeId) return false;
+  if (FOCUS_ZOOM_ENABLED) return zoomToFocusNeighborhood(nodeId, options);
+  const live = options.live || getLiveNode(nodeId);
+  if (live) return zoomToNode(live, options);
+  return false;
+}
+
 function waitForLiveNode(nodeId, callback, attempt = 0) {
   const live = getLiveNode(nodeId);
   if (hasNodeCoords(live)) {
@@ -1262,7 +1443,7 @@ function focusNodeOnMap(node, options = {}) {
     currentDrawerNode = node;
     setSelectedNode(node.id);
     refreshGraphDimensions();
-    zoomToNode(live, options);
+    applyFocusCamera(node.id, { ...options, live });
   });
 }
 
@@ -1295,7 +1476,7 @@ function expandGraphWithFocus(node) {
     if (!target || !hasNodeCoords(target)) return;
     currentDrawerNode = node;
     setSelectedNode(node.id);
-    zoomToNode(target, zoomOpts);
+    applyFocusCamera(node.id, { ...zoomOpts, live: target });
   };
 
   requestAnimationFrame(refocus);
@@ -1363,7 +1544,7 @@ function applyNodeDeepLink({ syncUrl = 'replace' } = {}) {
     return false;
   }
   focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
-  showDrawer(node, { syncUrl, animateTrace: false });
+  showDrawer(node, { syncUrl, animateTrace: false, zoomToFocus: false });
   return true;
 }
 
@@ -1571,7 +1752,7 @@ function openDrawerFromUrl(nodeId) {
     closeDrawer({ keepMapFocus: false, suppressDefault: true, skipUrlUpdate: true });
   }
   focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024 });
-  showDrawer(node, { syncUrl: 'skip', animateTrace: false });
+  showDrawer(node, { syncUrl: 'skip', animateTrace: false, zoomToFocus: false });
 }
 
 function setupUrlHistory() {
@@ -1671,6 +1852,14 @@ function showDrawer(node, options = {}) {
 
   const metaHTML = buildMetaPills(node);
   setSelectedNode(node.id, { animate: options.animateTrace !== false });
+  if (options.zoomToFocus !== false && FOCUS_ZOOM_ENABLED) {
+    waitForLiveNode(node.id, () => {
+      applyFocusCamera(node.id, {
+        raiseForDrawer: isMobile,
+        duration: options.zoomDuration
+      });
+    });
+  }
 
   const desc = descriptions[node.id] || "A notable node in the cigar industry with connections to the brands and factories shown in the graph.";
 
@@ -1780,7 +1969,7 @@ function showDrawerFromId(id) {
     closeDrawer({ keepMapFocus: false, suppressDefault: true, skipUrlUpdate: true });
     const zoomOpts = { raiseForDrawer: window.innerWidth < 1024 };
     focusNodeOnMap(node, zoomOpts);
-    setTimeout(() => showDrawer(node), 420);
+    setTimeout(() => showDrawer(node, { zoomToFocus: false }), 420);
   }
 }
 
@@ -1807,6 +1996,7 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
   if (dLink) dLink.innerHTML = '';
   const mLink = document.getElementById('drawer-dedicated-link-mobile');
   if (mLink) mLink.innerHTML = '';
+  clearDrawerVisuals();
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1848,7 +2038,7 @@ function createOrShowBackdrop() {
     backdrop = document.createElement('div');
     backdrop.id = 'drawer-backdrop';
     backdrop.className = 'fixed inset-0 bg-black/40 z-40 lg:hidden';
-    backdrop.onclick = closeDrawer;
+    backdrop.onclick = exitMapFocus;
     document.body.appendChild(backdrop);
   }
   backdrop.style.display = 'block';
@@ -1893,6 +2083,25 @@ function buildIntroExampleButtons(mobile) {
   return `<div class="grid grid-cols-2 ${gridGap}">${buttons}</div><div class="${tipClass}">${tip}</div>`;
 }
 
+function clearDrawerVisuals() {
+  const pairs = [
+    ['drawer-logo-container', 'drawer-logo'],
+    ['drawer-logo-container-mobile', 'drawer-logo-mobile']
+  ];
+  for (const [cid, iid] of pairs) {
+    const container = document.getElementById(cid);
+    const img = document.getElementById(iid);
+    if (container) {
+      container.classList.add('hidden');
+      container.classList.remove('drawer-image-container--person');
+    }
+    if (img) {
+      img.removeAttribute('src');
+      img.alt = '';
+    }
+  }
+}
+
 function findConnectionsLabel(connEl) {
   const section = connEl ? connEl.parentElement : null;
   if (!section) return null;
@@ -1911,7 +2120,7 @@ function selectExample(nodeId) {
   focusNodeOnMap(node, zoomOpts);
 
   setTimeout(() => {
-    showDrawer(node);
+    showDrawer(node, { zoomToFocus: false });
     try { sessionStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
   }, 420);
 }
@@ -1944,8 +2153,9 @@ function showDesktopHowTo() {
   titleEl.textContent = 'How to Explore';
   if (metaEl) metaEl.innerHTML = `<span class="meta-pill meta-pill--guide">Interactive Map</span>`;
   clearSelectedNode();
+  clearDrawerVisuals();
 
-  descEl.innerHTML = `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
+  descEl.innerHTML = `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Click empty space or Show full map to see the whole graph again. Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
 
   if (connLabel) connLabel.textContent = 'START HERE: Tap an example';
   if (connEl) connEl.innerHTML = buildIntroExampleButtons(false);
@@ -1993,8 +2203,9 @@ function showMobileHowTo() {
 
   mTitle.textContent = 'How to Explore';
   if (mMeta) mMeta.innerHTML = `<span class="meta-pill meta-pill--guide">Interactive Map</span>`;
+  clearDrawerVisuals();
 
-  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Filters above the map let you narrow by ownership, country, or boutique.`;
+  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Tap outside the sheet or Show full map to go back. Filters above the map let you narrow by ownership, country, or boutique.`;
 
   if (connLabel) connLabel.textContent = 'START HERE';
   if (mConn) mConn.innerHTML = buildIntroExampleButtons(true);
@@ -2010,6 +2221,11 @@ function showMobileHowTo() {
 }
 
 function showHowTo() {
+  if (selectedNodeId || currentDrawerNode) {
+    exitMapFocus();
+    return;
+  }
+
   const isMobile = window.innerWidth < 1024;
   const drawerEl = document.getElementById('drawer');
   const drawerVisible = drawerEl && (drawerEl.offsetParent !== null || getComputedStyle(drawerEl).display !== 'none');
@@ -2026,6 +2242,7 @@ window.zoomToFit = zoomToFit;
 window.resetZoom = resetZoom;
 window.toggleFilter = toggleFilter;
 window.closeDrawer = closeDrawer;
+window.exitMapFocus = exitMapFocus;
 window.showDrawerFromId = showDrawerFromId;
 window.shareNodeProfile = shareNodeProfile;
 window.zoomToNode = zoomToNode;
