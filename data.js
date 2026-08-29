@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 174 nodes, 348 links
+ * Cigar Nexus graph data: 179 nodes, 370 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -178,6 +178,11 @@ var baseGraphData = {
                 { id: "nelsonalfonso", name: "Nelson Alfonso", type: "person", group: "family", country: "costa rica", photo: "logos/nelsonalfonso.png" },
                 { id: "atabey", name: "Atabey", type: "brand", group: "boutique", country: "costa rica", productLines: ["Ritos", "Delirios", "Brujos", "Black"], logo: "logos/atabey.png" },
                 { id: "byron", name: "Byron", type: "brand", group: "boutique", country: "costa rica", productLines: ["Poetry", "Epicure", "Edición Limitada"], logo: "logos/byron.png" },
+                { id: "agingroom", name: "Aging Room", type: "brand", group: "family", country: "dominican", productLines: ["Quattro Nicaragua", "Quattro Original", "Small Batch", "La Boheme", "Solera", "Blue Amber"], logo: "logos/agingroom.jpg" },
+                { id: "rafaelnodal", name: "Rafael Nodal", type: "person", group: "family", country: "usa" },
+                { id: "boutiqueblends", name: "Boutique Blends", type: "company", group: "family", country: "usa", logo: "logos/agingroom.jpg" },
+                { id: "lapalma", name: "Tabacalera Palma (Tamboril)", type: "factory", group: "family", country: "dominican" },
+                { id: "jochyblanco", name: "Jochy Blanco", type: "person", group: "family", country: "dominican" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -529,5 +534,27 @@ var baseGraphData = {
                 { source: "ligaprivada", target: "nickmelillo", type: "historical production lead at" },
                 { source: "elseptimo", target: "zayayounan", type: "owned by (acquired 2019)" },
                 { source: "zayayounan", target: "elseptimo", type: "owns (acquired 2019)" },
+                { source: "agingroom", target: "rafaelnodal", type: "founded by" },
+                { source: "rafaelnodal", target: "agingroom", type: "founded" },
+                { source: "boutiqueblends", target: "rafaelnodal", type: "founded by" },
+                { source: "rafaelnodal", target: "boutiqueblends", type: "founded" },
+                { source: "agingroom", target: "boutiqueblends", type: "brand of" },
+                { source: "boutiqueblends", target: "agingroom", type: "owns" },
+                { source: "agingroom", target: "lapalma", type: "manufactured at" },
+                { source: "lapalma", target: "agingroom", type: "manufactures" },
+                { source: "lapalma", target: "jochyblanco", type: "operated by" },
+                { source: "jochyblanco", target: "lapalma", type: "operates" },
+                { source: "jochyblanco", target: "boutiqueblends", type: "partner" },
+                { source: "boutiqueblends", target: "jochyblanco", type: "partner" },
+                { source: "agingroom", target: "sanlotano", type: "Quattro Nicaragua / La Boheme produced at" },
+                { source: "sanlotano", target: "agingroom", type: "manufactures (Quattro Nicaragua, La Boheme)" },
+                { source: "agingroom", target: "ajfernandez", type: "Nicaragua production with" },
+                { source: "ajfernandez", target: "agingroom", type: "production partner" },
+                { source: "agingroom", target: "altadis", type: "distributed by (since 2017)" },
+                { source: "altadis", target: "agingroom", type: "distributes" },
+                { source: "rafaelnodal", target: "altadis", type: "VP Product Capability" },
+                { source: "altadis", target: "rafaelnodal", type: "product leadership" },
+                { source: "agingroom", target: "plasenciaesteli", type: "some production" },
+                { source: "plasenciaesteli", target: "agingroom", type: "some contract production" },
             ]
         };

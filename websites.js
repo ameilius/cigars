@@ -181,5 +181,10 @@ var nodeWebsites = {
   byron: { website: "https://www.2guyscigars.com/selected-tobacco/", websiteLabel: "Byron (Selected Tobacco)" },
   selectedtobacco: { website: "https://www.2guyscigars.com/selected-tobacco/" },
   costaricatabacos: { website: "https://tabacosdecostarica.com/" },
-  nelsonalfonso: { website: "https://tabacosdecostarica.com/", websiteLabel: "Tabacos de Costa Rica" }
+  nelsonalfonso: { website: "https://tabacosdecostarica.com/", websiteLabel: "Tabacos de Costa Rica" },
+  agingroom: { website: "https://www.altadisusa.com/cigars/aging-room/", websiteLabel: "Aging Room (Altadis U.S.A.)" },
+  rafaelnodal: { website: "https://www.altadisusa.com/cigars/aging-room/", websiteLabel: "Aging Room (Altadis U.S.A.)" },
+  boutiqueblends: { website: "https://www.altadisusa.com/cigars/aging-room/", websiteLabel: "Aging Room (Altadis U.S.A.)" },
+  lapalma: { website: "https://www.lagaleracigars.com", websiteLabel: "La Galera / Tabacalera Palma" },
+  jochyblanco: { website: "https://www.lagaleracigars.com", websiteLabel: "La Galera / Tabacalera Palma" }
 };

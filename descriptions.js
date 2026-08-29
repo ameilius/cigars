@@ -53,7 +53,7 @@ var drawerDescriptions = {
   "murcielago": "Murciélago is Espinosa's bold dark line from the EO Brands era, continued under Espinosa Premium Cigars / La Zona as a full-power portfolio staple.",
 
   "ajfernandez": "A.J. Fernandez is a top Nicaraguan blender-manufacturer who runs San Lotano in Estelí: house brands (New World, Enclave, Last Call, San Lotano) plus major contract work for Foundation, Altadis projects, and many boutiques.",
-  "sanlotano": "San Lotano is A.J. Fernandez's Estelí factory for his own lines and high-profile contracts (Trinidad Espiritu, Foundation Tabernacle/Olmec-era, Montecristo Nicaragua programs, and more).",
+  "sanlotano": "San Lotano is A.J. Fernandez's Estelí factory for his own lines and high-profile contracts (Aging Room Quattro Nicaragua and La Boheme, Trinidad Espiritu, Foundation Tabernacle/Olmec-era, Montecristo Nicaragua programs, and more).",
 
   // === Padrón family factories & lines ===
   "tabacoscubanica": "Tabacos Cubanica is the Padrón family factory in Estelí, Nicaragua, home of the regular line, 1964 Anniversary, and Serie 1926. Vertical Nicaraguan puros, long aging, Cuban-inspired methods, no generic contract-brand identity.",
@@ -218,7 +218,7 @@ var drawerDescriptions = {
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line, blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
   "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
   "nub": "NUB is Oliva's short, fat vitola sub-brand created by Sam Leccia in 2008 and rolled at Tabolisa. ~4-inch large-ring formats (460/464/358) with Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB lines.",
-  "altadis": "Altadis U.S.A. (Tabacalera USA / Imperial Brands) holds U.S. rights to non-Cuban Montecristo, Romeo y Julieta, Trinidad, and related marques. The counterpart to STG's General/Forged tree, it pairs heritage names with Nicaraguan partners like A.J. Fernandez and Plasencia.",
+  "altadis": "Altadis U.S.A. (Tabacalera USA / Imperial Brands) holds U.S. rights to non-Cuban Montecristo, Romeo y Julieta, Trinidad, and related marques. The counterpart to STG's General/Forged tree, it pairs heritage names with Nicaraguan partners like A.J. Fernandez and Plasencia, and distributes Rafael Nodal's independently owned Aging Room.",
   "montecristonc": "Montecristo (Non-Cuban) is owned by Altadis U.S.A. (Imperial Brands), not STG. Separate from Cuban Montecristo, it spans Dominican core lines plus Nicaraguan prestige projects with Plasencia and A.J. Fernandez at San Lotano (including 1935 Anniversary).",
   "ryjnc": "Romeo y Julieta (Non-Cuban) is an Altadis U.S.A. (Imperial) brand, separate from Cuban RyJ and not STG. Everyday U.S. lines like 1875 and Reserva Real sit beside Nicaraguan projects with Plasencia and A.J. Fernandez (Romeo San Andrés).",
   "fratello": "Fratello (Omar de Frias, ex-NASA) is a boutique brand rolled at La Zona and Tabacalera La Isla, known for Classico, Navetta, Bianco, and Arlequin.",
@@ -241,6 +241,11 @@ var drawerDescriptions = {
   "nelsonalfonso": "Nelson Alfonso blends Selected Tobacco's Atabey and Byron ultra-luxury lines at Tabacos de Costa Rica, known for multi-year aging.",
   "atabey": "Atabey is Selected Tobacco's ultra-luxury, long-aged Costa Rican marca (Nelson Alfonso), rolled at Tabacos de Costa Rica. Highly allocated lines such as Ritos and Delirios define the top of the Costa Rica luxury tier.",
   "byron": "Byron is Selected Tobacco's classical ultra-premium line (Poetry, Epicure), blended by Nelson Alfonso and made at Tabacos de Costa Rica alongside Atabey.",
+  "agingroom": "Aging Room is Rafael Nodal's boutique marca (Boutique Blends), launched in 2011: small-batch, highly rated lines such as Quattro Nicaragua and Small Batch. Dominican production at Tabacalera Palma with Jochy Blanco; Nicaraguan Quattro Nicaragua and La Boheme at A.J. Fernandez / San Lotano. Altadis distributes; Nodal still owns the brand and is Altadis VP of Product Capability.",
+  "rafaelnodal": "Rafael Nodal is the Cuban-born founder of Aging Room and Boutique Blends, and vice president of product capability at Altadis U.S.A. / Tabacalera USA. He still owns Aging Room while blending Altadis heritage projects with partners such as A.J. Fernandez.",
+  "boutiqueblends": "Boutique Blends is Rafael Nodal's Miami company (formerly Habana Cuba Cigar Co.), owner of Aging Room. Partners have included Alina Nodal, Hank Bischoff, and Jochy Blanco. Altadis distributes; it is not an Altadis-owned house.",
+  "lapalma": "Tabacalera Palma in Tamboril, Dominican Republic, is Jochy Blanco's family factory: house La Galera work plus contract rolling for Aging Room and other boutiques.",
+  "jochyblanco": "José \"Jochy\" Blanco runs Tabacalera Palma in Tamboril and is a longtime blending and manufacturing partner (and Boutique Blends partner) on Aging Room's Dominican lines.",
 
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
