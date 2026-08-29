@@ -421,7 +421,8 @@ const OG_FALLBACK_SIZE = { width: 1200, height: 630 };
 
 function localPathFromSiteUrl(url) {
   if (!url || !url.startsWith(`${SITE}/`)) return null;
-  return path.join(ROOT, url.slice(SITE.length + 1).replace(/\//g, path.sep));
+  const rel = url.slice(SITE.length + 1).replace(/\?.*$/, '');
+  return path.join(ROOT, rel.replace(/\//g, path.sep));
 }
 
 function resolveOgImageDimensions(socialImage) {
