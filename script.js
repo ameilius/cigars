@@ -2209,7 +2209,7 @@ function showMobileHowTo() {
   if (mMeta) mMeta.innerHTML = `<span class="meta-pill meta-pill--guide">Interactive Map</span>`;
   clearDrawerVisuals();
 
-  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Close the card to keep the map focused on that bubble and its connections. Show full map to see the whole graph again. Filters above the map let you narrow by ownership, country, or boutique.`;
+  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Tap Show on map to close the card and see that bubble and its connections. Show full map resets to the whole graph. Filters above the map let you narrow by ownership, country, or boutique.`;
 
   if (connLabel) connLabel.textContent = 'START HERE';
   if (mConn) mConn.innerHTML = buildIntroExampleButtons(true);
