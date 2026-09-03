@@ -187,7 +187,7 @@ var baseGraphData = {
                 { id: "tabdegarcia", name: "Tabacalera de García (La Romana)", type: "factory", group: "corporate", country: "dominican" },
                 { id: "romacraft", name: "RoMa Craft Tobac", type: "company", group: "family", country: "usa", productLines: ["CroMagnon", "Intemperance", "Neanderthal", "Aquitaine", "Baka", "Maestranza", "CRAFT Maquette"], logo: "logos/romacraft.png" },
                 { id: "skipmartin", name: "Skip Martin", type: "person", group: "family", country: "nicaragua", photo: "logos/skipmartin.jpg" },
-                { id: "michaelrosales", name: "Michael Rosales", type: "person", group: "family", country: "usa" },
+                { id: "michaelrosales", name: "Michael Rosales", type: "person", group: "family", country: "usa", photo: "logos/michaelrosales.png" },
                 { id: "latelier", name: "L'Atelier", type: "brand", group: "family", country: "nicaragua", productLines: ["LAT", "La Mission", "Selection Speciale", "Côte d'Or", "Surrogates"], logo: "logos/latelier.jpg?v=2" },
                 { id: "petejohnson", name: "Pete Johnson", type: "person", group: "family", country: "usa" },
                 { id: "hoyonc", name: "Hoyo de Monterrey (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Excalibur", "Hoyo de Tradición", "La Amistad", "Rojo", "Oscuro", "Epicure Selección"], logo: "logos/hoyo.jpg?v=2" },
