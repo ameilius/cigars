@@ -1985,7 +1985,11 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
   } else if (keepMapFocus && node) {
     setSelectedNode(node.id);
     refreshGraphDimensions();
-    focusNodeOnMap(node, { raiseForDrawer: window.innerWidth < 1024, duration: 0 });
+    // Sheet is gone: fit the cluster in the full graph, not the upper third
+    focusNodeOnMap(node, {
+      raiseForDrawer: false,
+      duration: prefersReducedMotion() ? 0 : 420
+    });
   } else {
     clearSelectedNode();
     currentDrawerNode = null;
@@ -1996,7 +2000,7 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
   if (dLink) dLink.innerHTML = '';
   const mLink = document.getElementById('drawer-dedicated-link-mobile');
   if (mLink) mLink.innerHTML = '';
-  clearDrawerVisuals();
+  if (!keepMapFocus) clearDrawerVisuals();
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -2027,7 +2031,7 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
   }
   removeBackdrop();
 
-  if (!skipUrlUpdate && !suppressUrlSync) {
+  if (!keepMapFocus && !skipUrlUpdate && !suppressUrlSync) {
     clearNodeUrl();
   }
 }
@@ -2038,7 +2042,7 @@ function createOrShowBackdrop() {
     backdrop = document.createElement('div');
     backdrop.id = 'drawer-backdrop';
     backdrop.className = 'fixed inset-0 bg-black/40 z-40 lg:hidden';
-    backdrop.onclick = exitMapFocus;
+    backdrop.onclick = () => closeDrawer({ keepMapFocus: true });
     document.body.appendChild(backdrop);
   }
   backdrop.style.display = 'block';
@@ -2205,7 +2209,7 @@ function showMobileHowTo() {
   if (mMeta) mMeta.innerHTML = `<span class="meta-pill meta-pill--guide">Interactive Map</span>`;
   clearDrawerVisuals();
 
-  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Tap outside the sheet or Show full map to go back. Filters above the map let you narrow by ownership, country, or boutique.`;
+  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Close the card to keep the map focused on that bubble and its connections. Show full map to see the whole graph again. Filters above the map let you narrow by ownership, country, or boutique.`;
 
   if (connLabel) connLabel.textContent = 'START HERE';
   if (mConn) mConn.innerHTML = buildIntroExampleButtons(true);

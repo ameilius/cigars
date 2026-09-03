@@ -39,6 +39,8 @@ Edit `data.js` for relationships. Add drawer text in `descriptions.js` and long-
 
 Keep facts sourced when possible. This is a curated non-Cuban industry map, not an exhaustive directory.
 
+Do not generate fake logos or placeholder wordmarks when adding a node. Official art only; skip `logo` / `photo` until a real file exists. Never invent portraits of real people.
+
 ## Tech
 
 - D3.js v7, vanilla JS, Tailwind CSS (built, not CDN)

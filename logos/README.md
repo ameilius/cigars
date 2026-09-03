@@ -1,6 +1,8 @@
 ﻿# Cigar Nexus Logos
 
-Place logo PNGs here (transparent background preferred).
+Place official logo files here (transparent background preferred).
+
+Do not generate fake logos, gold wordmarks, or placeholder art. If there is no real official mark, omit the `logo` field on the node and leave the drawer without an image until a real file is supplied. Same rule for people: never invent portraits.
 
 ### Naming Convention
 Use lowercase with hyphens:
