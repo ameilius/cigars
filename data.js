@@ -182,7 +182,7 @@ var baseGraphData = {
                 { id: "rafaelnodal", name: "Rafael Nodal", type: "person", group: "family", country: "usa" },
                 { id: "boutiqueblends", name: "Boutique Blends", type: "company", group: "family", country: "usa", logo: "logos/boutiqueblends.jpg" },
                 { id: "lapalma", name: "Tabacalera Palma (Tamboril)", type: "factory", group: "family", country: "dominican" },
-                { id: "jochyblanco", name: "Jochy Blanco", type: "person", group: "family", country: "dominican" },
+                { id: "jochyblanco", name: "Jochy Blanco", type: "person", group: "family", country: "dominican", photo: "logos/jochyblanco.png" },
                 { id: "hupmannnc", name: "H. Upmann (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Vintage Cameroon", "The Banker", "1844 Reserve", "Legacy", "Nicaragua AJ Fernandez", "Herman's Batch"], logo: "logos/hupmann.jpg?v=2" },
                 { id: "tabdegarcia", name: "Tabacalera de García (La Romana)", type: "factory", group: "corporate", country: "dominican" },
                 { id: "romacraft", name: "RoMa Craft Tobac", type: "company", group: "family", country: "usa", productLines: ["CroMagnon", "Intemperance", "Neanderthal", "Aquitaine", "Baka", "Maestranza", "CRAFT Maquette"], logo: "logos/romacraft.png" },
