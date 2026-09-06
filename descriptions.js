@@ -6,7 +6,7 @@ var drawerDescriptions = {
   // === Core / Early brands & people ===
   "myfather": "My Father Cigars is the García family company led by Pepín García: house lines (My Father, The Judge, Le Bijou, Flor de las Antillas) and a premier Estelí contract home for Tatuaje, Crowned Heads, and other boutiques.",
   "pepin": "Pepín García is the master blender behind My Father Cigars, Cuban-trained and formerly of Miami's El Rey de los Habanos, now the patriarch of a major Estelí family factory and brand group.",
-  "tatuaje": "Tatuaje is Pete Johnson's boutique brand made with the García family at My Father in Estelí. Famous for Brown/Black labels, Havana VI, Fausto, and heavy limited-release culture. Sister company L'Atelier (2012) is his second García-made marca.",
+  "tatuaje": "Tatuaje is Pete Johnson's 2003 boutique brand. The García family rolls it: first at El Rey de los Habanos in Miami, then at My Father in Estelí. Brown Label, Black Label, Havana VI, Fausto, Cojonú, Reserva. L'Atelier is his later sister marca, also García-made.",
   "espinosa": "Espinosa Premium Cigars (Erik Espinosa) runs La Zona in Estelí and the 601, Murciélago, Laranja, and Knuckle Sandwich portfolio. Brand owner plus contract manufacturer for other boutiques.",
   "erikespinosa": "Erik Espinosa founded Espinosa Premium Cigars and La Zona after co-creating 601/Murciélago under EO Brands with Eddie Ortega. Brand owner plus Estelí factory operator.",
   "guyfieri": "Guy Fieri partners with Espinosa on Knuckle Sandwich cigars, routing celebrity branding through La Zona manufacturing.",
