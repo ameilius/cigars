@@ -98,7 +98,7 @@ var drawerDescriptions = {
   "nacsa": "NACSA in Estelí is a prominent factory closely tied to Warped/Kyle Gellis production and boutique Nicaraguan craft.",
 
   // === Oliva ===
-  "oliva": "Oliva Cigar Co. is a major Estelí producer owned by Belgium's Vandermarliere family, rolling at Tabolisa. Famous for Serie V and Melanio (including Cigar of the Year), plus sub-brands NUB and Cain, and contract work such as Mayflower.",
+  "oliva": "Oliva Cigar Co. is a Nicaraguan premium house owned by Belgium's Vandermarliere family since 2016. Serie V, Melanio (2014 Cigar of the Year), NUB, and Cain are rolled at Tabolisa in Estelí. Mayflower is a contract brand on the same floor.",
   "fredvandermarliere": "Fred Vandermarliere represents Belgian family ownership of Oliva Cigar Co. and investment in Tabolisa/Estelí agriculture.",
   "tabolisa": "Tabolisa (Oliva Estelí) is Oliva's primary factory: Serie V, Melanio, Serie G, NUB, Cain, and select contract brands like Mayflower. Vertical Nicaraguan capacity at industrial scale.",
 
