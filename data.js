@@ -46,7 +46,7 @@ var baseGraphData = {
                 { id: "cohiba_nc", name: "Cohiba (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Red Dot", "Blue Dot", "Black", "Nicaragua", "Spectre"], logo: "logos/cohiba.jpg" },
                 { id: "partagas_nc", name: "Partagas (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Black Label", "Cortado", "Valle Verde", "Legacy"], logo: "logos/partagas.svg" },
                 { id: "punch_nc", name: "Punch (Non-Cuban)", type: "brand", group: "corporate", country: "dominican", productLines: ["Classic", "Signature", "Deluxe", "Rare Corojo", "Gran Puro"], logo: "logos/punch.jpg" },
-                { id: "plasencia", name: "Plasencia Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Alma Fuerte", "Alma del Campo", "Alma del Fuego", "Cosecha 146", "1865"], logo: "logos/plasencia.svg" },
+                { id: "plasencia", name: "Plasencia Cigars", type: "company", group: "family", country: "nicaragua", productLines: ["Alma Fuerte", "Alma del Campo", "Alma del Fuego", "Cosecha 146", "1865"], logo: "logos/plasencia.png" },
                 { id: "nestorplasencia", name: "Nestor Plasencia Sr.", type: "person", group: "family", country: "nicaragua", photo: "logos/nestorplasenciasr.png" },
                 { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua", photo: "logos/nestorandresplasencia.png" },
                 { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
