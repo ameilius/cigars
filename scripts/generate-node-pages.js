@@ -177,6 +177,7 @@ function stripEditorNotes(html) {
     const plain = stripHtml(cleaned);
     if (!plain) return '';
     if (/^(SEO:|For SEO\b|Cross-link\b)/i.test(plain)) return '';
+    if (/^Map [A-Z][\s\S]{0,90}\bas\b/i.test(plain)) return '';
     return `<p${attrs}>${cleaned}</p>`;
   });
 }

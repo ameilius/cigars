@@ -61,7 +61,7 @@ var drawerDescriptions = {
   "padron1926": "Padrón Serie 1926 is the top of the Padrón ladder, named for José Orlando Padrón's birth year. Longest-aged family inventory, limited production at Tabacos Cubanica, Natural and Maduro, a reference Nicaraguan puro.",
 
   // === Plasencia family ===
-  "plasencia": "Plasencia is a five-generation grower-manufacturer (roots 1865) farming and rolling across Nicaragua and Honduras. Own Alma series plus massive historic contract capacity; STG holds a minority stake via General Cigar.",
+  "plasencia": "Plasencia is a five-generation grower-manufacturer that has farmed tobacco since 1865. The family rolls Alma, Cosecha, and 1865 in Nicaragua and Honduras, and still makes cigars for many other brands. STG holds a minority stake; Plasencia is not an STG house brand.",
   "nestorplasencia": "Nestor Plasencia Sr. is a central leader of the five-generation Plasencia grower-manufacturer dynasty across Nicaragua and Honduras.",
   "nestorandres": "Nestor Andrés Plasencia is next-generation Plasencia leadership spanning farms, factories, and the Alma consumer brand era.",
   "plasenciaesteli": "Plasencia Estelí (\"The Cathedral\") is Plasencia's Nicaraguan flagship factory for Alma series and premium production.",
