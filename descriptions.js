@@ -252,7 +252,7 @@ var drawerDescriptions = {
   "skipmartin": "Skip Martin is co-founder of RoMa Craft and co-owner/operator of Nica Sueño in Estelí, where he lives and blends. Former Austin/Galveston retailer who built the factory with Esteban Disla after early Costa Rica experiments.",
   "michaelrosales": "Michael Rosales (the \"Ro\" in RoMa) co-founded RoMa Craft with Skip Martin. Austin-based, formerly Costa Rican Imports; he handles the U.S. side while Martin runs the Estelí factory.",
   "latelier": "L'Atelier (French for \"the workshop\") is Pete Johnson's 2012 sister marca to Tatuaje, rolled at My Father in Estelí. Signature Sancti Spíritus hybrid leaf; lines include LAT, La Mission, Selection Speciale, Côte d'Or, and Surrogates.",
-  "petejohnson": "Pete Johnson is the founder of Tatuaje (2003) and L'Atelier Imports (2012). Both brands are rolled with the García family at My Father in Estelí, after Tatuaje's Miami start at El Rey de los Habanos.",
+  "petejohnson": "Pete Johnson founded Tatuaje (2003) and L'Atelier (2012). He owns the brands. The García family rolls them: first at El Rey de los Habanos in Miami, then at My Father in Estelí. He is not a factory owner.",
   "hoyonc": "Hoyo de Monterrey (Non-Cuban) is General Cigar / STG's U.S. marca, separate from Habanos Cuban Hoyo. Villazon brought it to Honduras in the 1960s; General bought Villazon in 1997. Core Honduras production at STG Danlí; La Amistad Dark Sumatra with A.J. Fernandez.",
 
   // Fallback for anything added later
