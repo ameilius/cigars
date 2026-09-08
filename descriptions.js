@@ -142,7 +142,7 @@ var drawerDescriptions = {
 
   // West Tampa Tobacco Co.
   "westtampa": "West Tampa Tobacco Co. is Rick Rodriguez's post-CAO boutique (with family), bold Nicaraguan-forward lines, typically tied to Garmendia/Estelí boutique production, independent of General Cigar.",
-  "rickrodriguez": "Rick Rodriguez was CAO's longtime blender/ambassador, then co-founded West Tampa Tobacco Co. as a family boutique.",
+  "rickrodriguez": "Rick Rodriguez joined General Cigar in 2000, became CAO's blender and ambassador in 2010, and left in 2022 to co-found West Tampa Tobacco Co. with his daughter Sara and Gus Martinez. Grandparents were Cuban rollers in West Tampa. West Tampa cigars are made at Garmendia in Estelí.",
   "garmendia": "Garmendia in Estelí is a boutique factory closely associated with West Tampa / Rick Rodriguez Nicaraguan production.",
 
   // Bella Dama Cigars (Chantel Leavitt - independent)
