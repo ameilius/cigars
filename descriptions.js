@@ -99,7 +99,7 @@ var drawerDescriptions = {
 
   // === Oliva ===
   "oliva": "Oliva Cigar Co. is a Nicaraguan premium house owned by Belgium's Vandermarliere family since 2016. Serie V, Melanio (2014 Cigar of the Year), NUB, and Cain are rolled at Tabolisa in Estelí. Mayflower is a contract brand on the same floor.",
-  "fredvandermarliere": "Fred Vandermarliere represents Belgian family ownership of Oliva Cigar Co. and investment in Tabolisa/Estelí agriculture.",
+  "fredvandermarliere": "Fred Vandermarliere's family (J. Cortès) bought Oliva in 2016. Serie V, Melanio, NUB, and Cain still roll at Tabolisa in Estelí.",
   "tabolisa": "Tabolisa (Oliva Estelí) is Oliva's primary factory: Serie V, Melanio, Serie G, NUB, Cain, and select contract brands like Mayflower. Vertical Nicaraguan capacity at industrial scale.",
 
   // === Perdomo ===
@@ -110,7 +110,7 @@ var drawerDescriptions = {
   // === Joya de Nicaragua ===
   "joya": "Joya de Nicaragua is the historic national brand (founded 1968) known for Antaño and Clásico. The Estelí factory also contract-rolls for Dunbarton, Viaje, Warped, and other boutiques.",
   "joyafactory": "Joya de Nicaragua factory produces house Antaño/Clásico lines and major boutique contracts (Dunbarton, Viaje, Warped, Foundation).",
-  "alejandromartinez": "Alejandro Martínez Cuenca helps guide Joya de Nicaragua, the historic national brand and Estelí factory still central to boutique contracts.",
+  "alejandromartinez": "Dr. Alejandro Martínez Cuenca bought Joya de Nicaragua in the early 1990s and rebuilt Nicaragua's oldest premium brand. Son Juan is executive president. Factory in Estelí.",
 
   // === Dunbarton / Steve Saka ===
   "dunbarton": "Dunbarton Tobacco & Trust is Steve Saka's boutique house (post-Drew Estate): Sobremesa, Mi Querida, Sin Compromiso, Muestra de Saka. Major production ties to Joya de Nicaragua.",
@@ -147,7 +147,7 @@ var drawerDescriptions = {
 
   // Bella Dama Cigars (Chantel Leavitt - independent)
   "belladamacigars": "Bella Dama is an independent woman-owned boutique brand using established Central American manufacturing partners.",
-  "chantelleavitt": "Chantel Leavitt is a boutique brand-side leader in the modern indie scene, linked on the graph to Nicaraguan contract production projects.",
+  "chantelleavitt": "Chantel Leavitt founded Bella Dama Cigars in 2020. Poker-themed lines (King, Ace, All-In) rolled at Tabacalera Aragon in Estelí. She owns the brand, not the factory.",
   "tabacaleraaragon": "Tabacalera Aragon in Estelí is a boutique-oriented factory used by independents including West Tampa–era Nicaraguan production associations.",
 
   // New brands added
@@ -162,7 +162,7 @@ var drawerDescriptions = {
   "daniellance": "Daniel Lance is Domain Cigars co-founder and Lujo Concepts (BTX cutter) co-founder. A former U.S. tobacconist, he was chosen by Esteban Disla (their partnership started with a phone call) to build Domain from Valle Regadío farms to Estelí.",
   "familiadisla": "Tabacalera Familia Disla is Domain Cigars' Estelí factory for Disla-family tobacco and Neutron/Negentropy/Entropy lines.",
   "elseptimo": "El Septimo is a Costa Rican ultra-premium brand founded in 2005 by Gilles Botquin and owned since 2019 by Zaya Younan. Collection-driven lines (Sacred Arts, Emperor, Zaya, Culinary Art, Gilgamesh).",
-  "zayayounan": "Zaya Younan owns El Septimo (acquired 2019) and expanded the Costa Rican luxury brand into broader U.S. retail.",
+  "zayayounan": "Zaya Younan bought El Septimo in 2019 and pushed the Costa Rican luxury marca into the U.S. Separate from Selected Tobacco's Atabey/Byron house.",
   "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic (León family since 1903): Preferidos, 1903, León Jimenes, still family-vertical at the La Aurora factory.",
   "mayflower": "Mayflower Cigars is Michael Knowles's premium brand, launched in 2023 with The Daily Wire and handmade at Oliva's Tabolisa factory in Estelí. Named for Knowles's Mayflower ancestors, the portfolio spans Dawn (mild-medium Ecuador Connecticut), Dusk (medium-full Habano), and Dream (Pennsylvania Broadleaf double maduro), with limited Dawn of America for the U.S. 250th.",
 
