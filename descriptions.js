@@ -52,7 +52,7 @@ var drawerDescriptions = {
   "sixzeroone": "601 is Espinosa's flagship line from the EO Brands era: bold full Nicaraguan profiles (Red, Blue, La Bomba, and more), now centered at La Zona with historical A.J. Fernandez ties.",
   "murcielago": "Murciélago is Espinosa's bold dark line from the EO Brands era, continued under Espinosa Premium Cigars / La Zona as a full-power portfolio staple.",
 
-  "ajfernandez": "A.J. Fernandez is a top Nicaraguan blender-manufacturer who runs San Lotano in Estelí: house brands (New World, Enclave, Last Call, San Lotano) plus major contract work for Foundation, Altadis projects, and many boutiques.",
+  "ajfernandez": "A.J. Fernandez (Abdel J. Fernandez) left Cuba in 2003 and built Tabacalera Fernandez / San Lotano in Estelí. House brands include San Lotano, New World, Enclave, Last Call, and Bellas Artes. He also blends for Foundation, Altadis (Montecristo Nicaragua, Trinidad Espiritu), and Aging Room.",
   "sanlotano": "San Lotano is A.J. Fernandez's Estelí factory for his own lines and high-profile contracts (Aging Room Quattro Nicaragua and La Boheme, Trinidad Espiritu, Foundation Tabernacle/Olmec-era, Montecristo Nicaragua programs, and more).",
 
   // === Padrón family factories & lines ===
