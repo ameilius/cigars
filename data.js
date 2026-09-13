@@ -179,7 +179,7 @@ var baseGraphData = {
                 { id: "atabey", name: "Atabey", type: "brand", group: "boutique", country: "costa rica", productLines: ["Ritos", "Delirios", "Brujos", "Black"], logo: "logos/atabey.png" },
                 { id: "byron", name: "Byron", type: "brand", group: "boutique", country: "costa rica", productLines: ["Poetry", "Epicure", "Edición Limitada"], logo: "logos/byron.png" },
                 { id: "agingroom", name: "Aging Room", type: "brand", group: "family", country: "dominican", productLines: ["Quattro Nicaragua", "Quattro Original", "Small Batch", "La Boheme", "Solera", "Blue Amber"], logo: "logos/agingroom.webp" },
-                { id: "rafaelnodal", name: "Rafael Nodal", type: "person", group: "family", country: "usa" },
+                { id: "rafaelnodal", name: "Rafael Nodal", type: "person", group: "family", country: "usa", photo: "logos/rafael-nodal.jpg" },
                 { id: "boutiqueblends", name: "Boutique Blends", type: "company", group: "family", country: "usa", logo: "logos/boutiqueblends.jpg" },
                 { id: "lapalma", name: "Tabacalera Palma (Tamboril)", type: "factory", group: "family", country: "dominican" },
                 { id: "jochyblanco", name: "Jochy Blanco", type: "person", group: "family", country: "dominican", photo: "logos/jochyblanco.png" },
