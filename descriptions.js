@@ -196,7 +196,7 @@ var drawerDescriptions = {
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under León family ownership.",
   "elreyhabanos": "El Rey de los Habanos in Miami is Pepín García's Little Havana chapter and the origin story behind Tatuaje before My Father scale.",
   "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (from 2009 relaunch): E.P. Carrillo lines and INCH, rolled at La Alianza in Santiago, with deep contract work for other brands.",
-  "ernestoperezcarrillo": "Ernesto Perez-Carrillo built La Gloria Cubana, left General in 2009 to found Casa Carrillo; master blender behind Pledge/Encore/INCH at La Alianza.",
+  "ernestoperezcarrillo": "Ernesto Perez-Carrillo Jr. built non-Cuban La Gloria Cubana in Miami, sold it to Swedish Match/General in 1999, left in 2009, and founded E.P. Carrillo / Casa Carrillo. Pledge and Encore won Cigar of the Year. Factory is Casa Carrillo (La Alianza) in Santiago.",
   "lacarrillo": "Tabacalera La Alianza (Casa Carrillo) in Santiago rolls Perez-Carrillo/INCH and major contract brands (Gurkha, Casdagli, Crowned Heads, Caldwell).",
   "laisla": "Tabacalera La Isla (DR) is a mid-tier Dominican boutique factory for craft projects including Fratello and related indie brands.",
   "caoamerican": "CAO American Caribbean is STG/General-linked Nicaraguan capacity for CAO-family and related negociant routing.",
