@@ -67,7 +67,8 @@ var drawerDescriptions = {
   "plasenciaesteli": "Plasencia Estelí (\"The Cathedral\") is Plasencia's Nicaraguan flagship factory for Alma series and premium production.",
 
   // === Rocky Patel ===
-  "rockypatel": "Rocky Patel Premium Cigars is a high-volume boutique catalog brand (Decade, Vintage, Edge, Sun Grown) with Plasencia partnerships and owned TaviCusa capacity in Estelí.",
+  "rakeshpatel": "Rakesh \"Rocky\" Patel is the founder of Rocky Patel Premium Cigars. Former Los Angeles lawyer; Indian Tabac in 1995; his name on the company in 2003. Cigars made with Plasencia in Honduras and at TaviCusa in Estelí. Brother Nish Patel helps run the company.",
+  "rockypatel": "Rocky Patel Premium Cigars is the company founded by Rocky Patel (Decade, Vintage, The Edge, Sun Grown) with Plasencia production in Honduras and owned TaviCusa capacity in Estelí.",
   "nishpatel": "Nish Patel is Rocky Patel family leadership tied to TaviCusa factory oversight and multi-factory quality control.",
   "tavicusa": "TaviCusa (Tabacalera Villa Cuba) is Rocky Patel's own Estelí factory capacity alongside Plasencia contract partnerships.",
 

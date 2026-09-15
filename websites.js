@@ -80,6 +80,7 @@ var nodeWebsites = {
   nickmelillo: { website: "https://foundationcigarcompany.com", websiteLabel: "Foundation Cigar Company" },
   nickperdomo: { website: "https://perdomocigars.com", websiteLabel: "Perdomo Cigars" },
   nishpatel: { website: "https://www.rockypatel.com", websiteLabel: "Rocky Patel" },
+  rakeshpatel: { website: "https://www.rockypatel.com", websiteLabel: "Rocky Patel Premium Cigars" },
   noelrojas: { website: "https://www.rojascigars.com", websiteLabel: "Rojas Cigars" },
   oliva: { website: "https://olivacigar.com" },
   cain: { website: "https://olivacigar.com", websiteLabel: "Oliva Cigar Co." },

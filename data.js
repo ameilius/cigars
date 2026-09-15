@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 187 nodes, 414 links
+ * Cigar Nexus graph data: 188 nodes, 424 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -51,6 +51,7 @@ var baseGraphData = {
                 { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua", photo: "logos/nestorandresplasencia.png" },
                 { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["Decade", "Vintage", "The Edge", "Sun Grown", "Fifteenth"], logo: "logos/rockypatel.webp" },
+                { id: "rakeshpatel", name: "Rocky Patel", type: "person", group: "family", country: "usa" },
                 { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa", photo: "logos/nishpatel.png" },
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Acid", "Herrera Estelí", "Deadwood"], logo: "logos/drewestate.jpg" },
@@ -253,6 +254,16 @@ var baseGraphData = {
                 { source: "rockypatel", target: "tavicusa", type: "owns" },
                 { source: "rockypatel", target: "plasencia", type: "long-term manufacturing partnership (Honduras)" },
                 { source: "rockypatel", target: "plasenciaesteli", type: "contract production" },
+                { source: "rockypatel", target: "rakeshpatel", type: "founded by" },
+                { source: "rakeshpatel", target: "rockypatel", type: "founded" },
+                { source: "rakeshpatel", target: "nishpatel", type: "brother" },
+                { source: "nishpatel", target: "rakeshpatel", type: "brother" },
+                { source: "rakeshpatel", target: "tavicusa", type: "established" },
+                { source: "tavicusa", target: "rakeshpatel", type: "established by" },
+                { source: "rakeshpatel", target: "plasencia", type: "long-term manufacturing partner" },
+                { source: "plasencia", target: "rakeshpatel", type: "manufactures for" },
+                { source: "rakeshpatel", target: "plasenciahonduras", type: "core Honduras production at" },
+                { source: "plasenciahonduras", target: "rakeshpatel", type: "manufactures for" },
                 { source: "drewestate", target: "jonathandrew", type: "founded by" },
                 { source: "drewestate", target: "lagranfabrica", type: "operates" },
                 { source: "swisher", target: "drewestate", type: "owns (acquired 2014)" },
