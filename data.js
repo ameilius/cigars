@@ -1,11 +1,12 @@
 ﻿/**
- * Cigar Nexus graph data: 189 nodes, 432 links
+ * Cigar Nexus graph data: 190 nodes, 438 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
             nodes: [
                 { id: "myfather", name: "My Father", type: "brand", group: "family", country: "nicaragua", productLines: ["My Father", "The Judge", "Le Bijou", "Flor de las Antillas", "La Opulencia"], logo: "logos/myfather.png" },
                 { id: "pepin", name: "Pepín García", type: "person", group: "family", country: "nicaragua", photo: "logos/pepingarcia.jpg" },
+                { id: "jaimegarcia", name: "Jaime García", type: "person", group: "family", country: "nicaragua", photo: "logos/jaimegarcia.png" },
                 { id: "tatuaje", name: "Tatuaje", type: "brand", group: "family", country: "nicaragua", productLines: ["Brown Label", "Black Label", "Havana VI", "Fausto", "Cojonú", "Reserva"], logo: "logos/tatuaje.png" },
                 { id: "espinosa", name: "Espinosa Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["601", "Murciélago", "Laranja", "Espinosa Habano", "Knuckle Sandwich"], logo: "logos/espinosa.webp" },
                 { id: "erikespinosa", name: "Erik Espinosa", type: "person", group: "family", country: "usa", photo: "logos/erikespinosa.png" },
@@ -198,6 +199,12 @@ var baseGraphData = {
                 { source: "myfather", target: "pepin", type: "founded by" },
                 { source: "pepin", target: "tatuaje", type: "manufactures for" },
                 { source: "myfather", target: "tatuaje", type: "shared factory roots" },
+                { source: "myfather", target: "jaimegarcia", type: "blender / family leadership" },
+                { source: "jaimegarcia", target: "myfather", type: "created namesake blend" },
+                { source: "pepin", target: "jaimegarcia", type: "son" },
+                { source: "jaimegarcia", target: "pepin", type: "father" },
+                { source: "elreyhabanos", target: "jaimegarcia", type: "family Miami factory" },
+                { source: "jaimegarcia", target: "elreyhabanos", type: "opened with family" },
                 { source: "espinosa", target: "erikespinosa", type: "founded by" },
                 { source: "espinosa", target: "lazona", type: "opened factory" },
                 { source: "lazona", target: "laranja", type: "manufactures" },

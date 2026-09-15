@@ -4,7 +4,8 @@
  */
 var drawerDescriptions = {
   // === Core / Early brands & people ===
-  "myfather": "My Father Cigars is the García family company led by Pepín García: house lines (My Father, The Judge, Le Bijou, Flor de las Antillas) and a premier Estelí contract home for Tatuaje, Crowned Heads, and other boutiques.",
+  "myfather": "My Father Cigars is the García family company: Pepín García and son Jaime García (who created the My Father blend). House lines include The Judge, Le Bijou, and Flor de las Antillas. Estelí contract home for Tatuaje, Crowned Heads, and others.",
+  "jaimegarcia": "Jaime García is Pepín's son and the blender behind the My Father namesake blend (2008) and The Judge (2024 Cigar of the Year). He runs the Estelí factory. Family also rolls Tatuaje, L'Atelier, and Crowned Heads.",
   "pepin": "Pepín García is the master blender behind My Father Cigars, Cuban-trained and formerly of Miami's El Rey de los Habanos, now the patriarch of a major Estelí family factory and brand group.",
   "tatuaje": "Tatuaje is Pete Johnson's 2003 boutique brand. The García family rolls it: first at El Rey de los Habanos in Miami, then at My Father in Estelí. Brown Label, Black Label, Havana VI, Fausto, Cojonú, Reserva. L'Atelier is his later sister marca, also García-made.",
   "espinosa": "Espinosa Premium Cigars (Erik Espinosa) runs La Zona in Estelí and the 601, Murciélago, Laranja, and Knuckle Sandwich portfolio. Brand owner plus contract manufacturer for other boutiques.",

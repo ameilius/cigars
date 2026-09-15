@@ -44,6 +44,7 @@ Use these as templates for URL shape and content density. Full list is in the si
 
 - [Padrón](https://cigarnexus.app/node/padron/): Family-owned Nicaraguan icon; founders, factory, and flagship series.
 - [My Father](https://cigarnexus.app/node/myfather/): García family brand and major Estelí contract manufacturer.
+- [Jaime García](https://cigarnexus.app/node/jaimegarcia/): Pepín's son; created the My Father blend and The Judge; Estelí factory lead.
 - [Arturo Fuente](https://cigarnexus.app/node/arturo/): Dominican family house; OpusX and Tabacalera A. Fuente.
 - [Carlos "Carlito" Fuente Jr.](https://cigarnexus.app/node/carlitofuente/): Fuente president; created OpusX and Hemingway; Santiago factory.
 - [Scandinavian Tobacco Group (STG)](https://cigarnexus.app/node/stg/): Corporate owner cluster (General Cigar, Forged, many non-Cuban heritage names).
