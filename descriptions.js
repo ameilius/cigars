@@ -22,7 +22,8 @@ var drawerDescriptions = {
   "oettinger": "Oettinger Davidoff AG is the Swiss parent of Davidoff, AVO, The Griffin's, Zino, and Camacho. Headquartered in Basel, with Dominican manufacturing at Tabadom and multi-country leaf/factory programs for Camacho and Zino.",
   "tabadom": "Tabadom in Villa González is Oettinger Davidoff's Dominican factory for Davidoff, AVO, and The Griffin's.",
 
-  "arturo": "Arturo Fuente is a multigenerational Dominican family house (from 1912 roots) famous for Hemingway, Don Carlos, Añejo, and OpusX. Production centers on Tabacalera A. Fuente in Santiago, with Château de la Fuente estate wrappers; longtime partners include J.C. Newman and Ashton.",
+  "carlitofuente": "Carlos \"Carlito\" Fuente Jr. is president of Arturo Fuente. Tampa-born; rebuilt the company in the Dominican Republic with his father after 1980. Created Hemingway, Don Carlos, and OpusX (1995) from Château de la Fuente wrapper. Factory is Tabacalera A. Fuente in Santiago.",
+  "arturo": "Arturo Fuente is a multigenerational Dominican family house (from 1912 roots) famous for Hemingway, Don Carlos, Añejo, and OpusX. Led by Carlos \"Carlito\" Fuente Jr. Production at Tabacalera A. Fuente in Santiago; partners include J.C. Newman and Ashton.",
   "tabafuente": "Tabacalera A. Fuente in Santiago, DR, is the Fuente family factory behind Arturo Fuente and OpusX, and the rolling home for partner brands Ashton and Diamond Crown (J.C. Newman). Estate agriculture at Château de la Fuente made Dominican Cuban-seed wrappers famous.",
   "opusx": "Fuente Fuente OpusX is Arturo Fuente's ultra-premium flagship: the first major commercial success with Cuban-seed wrapper grown in the Dominican Republic at Château de la Fuente, rolled via Tabacalera A. Fuente. Limited, full-flavored, and a collector benchmark since the mid-1990s.",
 

@@ -9,6 +9,7 @@ var nodeWebsites = {
   alejandromartinez: { website: "https://joyacigars.com", websiteLabel: "Joya de Nicaragua" },
   andrefarkas: { website: "https://www.viajecigars.com", websiteLabel: "Viaje Cigars" },
   arturo: { website: "https://arturofuente.com" },
+  carlitofuente: { website: "https://arturofuente.com", websiteLabel: "Arturo Fuente" },
   ashton: { website: "https://www.ashtoncigars.com" },
   avo: { website: "https://us.davidoffgeneva.com", websiteLabel: "AVO (Davidoff)" },
   belladamacigars: { website: "https://belladamacigars.com" },

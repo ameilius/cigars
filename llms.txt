@@ -45,6 +45,7 @@ Use these as templates for URL shape and content density. Full list is in the si
 - [Padrón](https://cigarnexus.app/node/padron/): Family-owned Nicaraguan icon; founders, factory, and flagship series.
 - [My Father](https://cigarnexus.app/node/myfather/): García family brand and major Estelí contract manufacturer.
 - [Arturo Fuente](https://cigarnexus.app/node/arturo/): Dominican family house; OpusX and Tabacalera A. Fuente.
+- [Carlos "Carlito" Fuente Jr.](https://cigarnexus.app/node/carlitofuente/): Fuente president; created OpusX and Hemingway; Santiago factory.
 - [Scandinavian Tobacco Group (STG)](https://cigarnexus.app/node/stg/): Corporate owner cluster (General Cigar, Forged, many non-Cuban heritage names).
 - [Altadis U.S.A.](https://cigarnexus.app/node/altadis/): Imperial Brands U.S. arm; Montecristo (NC), Romeo y Julieta (NC), related marques.
 - [Montecristo (Non-Cuban)](https://cigarnexus.app/node/montecristonc/): U.S./non-Cuban Montecristo under Altadis, not the Cuban Habanos line; not STG.

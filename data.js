@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 188 nodes, 424 links
+ * Cigar Nexus graph data: 189 nodes, 432 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -36,6 +36,7 @@ var baseGraphData = {
                 { id: "arturo", name: "Arturo Fuente", type: "brand", group: "family", country: "dominican", productLines: ["OpusX", "Hemingway", "Don Carlos", "Flor Fina 8-5-8", "Añejo", "Gran Reserva", "Casa Cuba"], logo: "logos/arturofuente.png" },
                 { id: "tabafuente", name: "Tabacalera A. Fuente", type: "factory", group: "family", country: "dominican" },
                 { id: "opusx", name: "Fuente Fuente OpusX", type: "brand", group: "family", country: "dominican", productLines: ["Perfecxion", "Forbidden X", "Lost City", "Shark"], logo: "logos/fuenteopusx.jpg" },
+                { id: "carlitofuente", name: "Carlos \"Carlito\" Fuente Jr.", type: "person", group: "family", country: "dominican", photo: "logos/carlitofuente.jpg" },
                 { id: "jcnewman", name: "J.C. Newman", type: "brand", group: "family", country: "usa", productLines: ["Diamond Crown", "Brick House", "Cuesta-Rey", "La Unica"], logo: "logos/jcnewman.webp" },
                 { id: "diamondcrown", name: "Diamond Crown", type: "brand", group: "family", country: "dominican", productLines: ["Classic", "Maximus", "Julius Caeser", "Black Diamond", "Tampa"], logo: "logos/diamondcrown.webp" },
                 { id: "stg", name: "Scandinavian Tobacco Group (STG)", type: "company", group: "corporate", country: "denmark", logo: "logos/scandinavian.svg" },
@@ -239,6 +240,14 @@ var baseGraphData = {
                 { source: "diamondcrown", target: "jcnewman", type: "brand of" },
                 { source: "diamondcrown", target: "tabafuente", type: "handmade at" },
                 { source: "jcnewman", target: "arturo", type: "longtime partnership" },
+                { source: "arturo", target: "carlitofuente", type: "family leadership" },
+                { source: "carlitofuente", target: "arturo", type: "president / family leadership" },
+                { source: "opusx", target: "carlitofuente", type: "created by" },
+                { source: "carlitofuente", target: "opusx", type: "created" },
+                { source: "tabafuente", target: "carlitofuente", type: "family factory of" },
+                { source: "carlitofuente", target: "tabafuente", type: "operates" },
+                { source: "jcnewman", target: "carlitofuente", type: "longtime partnership" },
+                { source: "carlitofuente", target: "jcnewman", type: "longtime partnership" },
                 { source: "generalcigar", target: "stg", type: "owned by" },
                 { source: "forged", target: "stg", type: "owned by" },
                 { source: "macanudo", target: "generalcigar", type: "sold by" },
