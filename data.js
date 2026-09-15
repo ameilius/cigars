@@ -51,7 +51,7 @@ var baseGraphData = {
                 { id: "nestorandres", name: "Nestor Andrés Plasencia", type: "person", group: "family", country: "nicaragua", photo: "logos/nestorandresplasencia.png" },
                 { id: "plasenciaesteli", name: "Plasencia Estelí (The Cathedral)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "rockypatel", name: "Rocky Patel Premium Cigars", type: "company", group: "family", country: "usa", productLines: ["Decade", "Vintage", "The Edge", "Sun Grown", "Fifteenth"], logo: "logos/rockypatel.webp" },
-                { id: "rakeshpatel", name: "Rocky Patel", type: "person", group: "family", country: "usa" },
+                { id: "rakeshpatel", name: "Rocky Patel", type: "person", group: "family", country: "usa", photo: "logos/rocky.png" },
                 { id: "nishpatel", name: "Nish Patel", type: "person", group: "family", country: "usa", photo: "logos/nishpatel.png" },
                 { id: "tavicusa", name: "Tabacalera Villa Cuba (TaviCusa, Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "drewestate", name: "Drew Estate", type: "company", group: "family", country: "usa", productLines: ["Liga Privada", "Undercrown", "Acid", "Herrera Estelí", "Deadwood"], logo: "logos/drewestate.jpg" },
