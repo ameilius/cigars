@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 190 nodes, 438 links
+ * Cigar Nexus graph data: 193 nodes, 450 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -194,6 +194,9 @@ var baseGraphData = {
                 { id: "latelier", name: "L'Atelier", type: "brand", group: "family", country: "nicaragua", productLines: ["LAT", "La Mission", "Selection Speciale", "Côte d'Or", "Surrogates"], logo: "logos/latelier.jpg?v=2" },
                 { id: "petejohnson", name: "Pete Johnson", type: "person", group: "family", country: "usa", photo: "logos/petejohnson.png" },
                 { id: "hoyonc", name: "Hoyo de Monterrey (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Excalibur", "Hoyo de Tradición", "La Amistad", "Rojo", "Oscuro", "Epicure Selección"], logo: "logos/hoyo.jpg?v=2" },
+                { id: "acid", name: "Acid", type: "brand", group: "family", country: "nicaragua", productLines: ["Kuba Kuba", "Blondie", "Cold Infusion", "1400cc", "Krush"] },
+                { id: "diesel", name: "Diesel", type: "brand", group: "family", country: "nicaragua", productLines: ["Unholy Cocktail", "Unlimited", "Whiskey Row", "Grind"] },
+                { id: "brickhouse", name: "Brick House", type: "brand", group: "family", country: "nicaragua", productLines: ["Classic", "Maduro", "Connecticut", "Mighty Mighty"] },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -281,6 +284,18 @@ var baseGraphData = {
                 { source: "rakeshpatel", target: "plasenciahonduras", type: "core Honduras production at" },
                 { source: "plasenciahonduras", target: "rakeshpatel", type: "manufactures for" },
                 { source: "drewestate", target: "jonathandrew", type: "founded by" },
+                { source: "acid", target: "drewestate", type: "brand of" },
+                { source: "drewestate", target: "acid", type: "owns" },
+                { source: "acid", target: "lagranfabrica", type: "manufactured at" },
+                { source: "lagranfabrica", target: "acid", type: "manufactures" },
+                { source: "acid", target: "jonathandrew", type: "created by" },
+                { source: "jonathandrew", target: "acid", type: "created" },
+                { source: "diesel", target: "ajfernandez", type: "blended by" },
+                { source: "ajfernandez", target: "diesel", type: "blends" },
+                { source: "diesel", target: "sanlotano", type: "manufactured at" },
+                { source: "sanlotano", target: "diesel", type: "manufactures" },
+                { source: "brickhouse", target: "jcnewman", type: "brand of" },
+                { source: "jcnewman", target: "brickhouse", type: "owns" },
                 { source: "drewestate", target: "lagranfabrica", type: "operates" },
                 { source: "swisher", target: "drewestate", type: "owns (acquired 2014)" },
                 { source: "cle", target: "christianeiroa", type: "founded by" },

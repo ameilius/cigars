@@ -75,7 +75,10 @@ var drawerDescriptions = {
   "tavicusa": "TaviCusa (Tabacalera Villa Cuba) is Rocky Patel's own Estelí factory capacity alongside Plasencia contract partnerships.",
 
   // === Drew Estate / Swisher ===
-  "drewestate": "Drew Estate (Jonathan Drew) runs La Gran Fábrica in Estelí: Acid/infused innovation plus Liga Privada, Undercrown, and Herrera Estelí; owned by Swisher since 2014.",
+  "acid": "Acid is Drew Estate's infused brand, launched around 1999 by Jonathan Drew and Marvin Samel and named for artist Scott Chester. Handmade at La Gran Fábrica in Estelí. Not a sprayed short-filler flavored cigar.",
+  "diesel": "Diesel is a 2009 Cigars International catalog brand blended by A.J. Fernandez at San Lotano in Estelí. Unholy Cocktail was the first vitola. It is not an A.J. house line like New World or San Lotano.",
+  "brickhouse": "Brick House is a J.C. Newman brand from 1937, revived in 2009 as a Nicaraguan cigar. Rolled at the family's PENSA factory in Estelí. Diamond Crown is the separate Dominican Fuente partnership.",
+  "drewestate": "Drew Estate (Jonathan Drew) runs La Gran Fábrica in Estelí: Acid plus Liga Privada, Undercrown, and Herrera Estelí; owned by Swisher since 2014.",
   "jonathandrew": "Jonathan Drew (Sann) founded Drew Estate and La Gran Fábrica: Acid innovation plus Liga Privada; Swisher-owned since 2014.",
   "swisher": "Swisher International is the mass-market parent of Drew Estate (acquired 2014), funding La Gran Fábrica scale while Drew Estate keeps a premium creative identity.",
   "lagranfabrica": "La Gran Fábrica Drew Estate is the huge Estelí campus behind Liga Privada, Undercrown, Acid, Deadwood, and most Drew Estate volume.",

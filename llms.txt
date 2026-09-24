@@ -56,6 +56,9 @@ Use these as templates for URL shape and content density. Full list is in the si
 - [Plasencia Cigars](https://cigarnexus.app/node/plasencia/): Multi-generation grower-manufacturer; Nicaragua/Honduras factories and contract work.
 - [A.J. Fernandez](https://cigarnexus.app/node/ajfernandez/): Estelí blender/manufacturer; San Lotano and extensive contract production.
 - [Drew Estate](https://cigarnexus.app/node/drewestate/): Estelí mega-factory brand house (Liga Privada, ACID, Deadwood, etc.); Swisher-owned.
+- [Acid](https://cigarnexus.app/node/acid/): Drew Estate infused brand; handmade at La Gran Fábrica.
+- [Diesel](https://cigarnexus.app/node/diesel/): Cigars International catalog brand blended by A.J. Fernandez at San Lotano.
+- [Brick House](https://cigarnexus.app/node/brickhouse/): J.C. Newman Nicaraguan brand, revived 2009; rolled at PENSA in Estelí.
 - [El Septimo](https://cigarnexus.app/node/elseptimo/): Costa Rican luxury brand; ownership via Zaya Younan.
 - [Tabacos de Costa Rica](https://cigarnexus.app/node/costaricatabacos/): Costa Rica factory hub (Atabey, Byron, Lampert, LH Premium, and others).
 - [Aging Room](https://cigarnexus.app/node/agingroom/): Rafael Nodal boutique marca; Altadis distributes; Palma (DR) and A.J. Fernandez (Nicaragua).
