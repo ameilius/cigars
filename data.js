@@ -194,9 +194,9 @@ var baseGraphData = {
                 { id: "latelier", name: "L'Atelier", type: "brand", group: "family", country: "nicaragua", productLines: ["LAT", "La Mission", "Selection Speciale", "Côte d'Or", "Surrogates"], logo: "logos/latelier.jpg?v=2" },
                 { id: "petejohnson", name: "Pete Johnson", type: "person", group: "family", country: "usa", photo: "logos/petejohnson.png" },
                 { id: "hoyonc", name: "Hoyo de Monterrey (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Excalibur", "Hoyo de Tradición", "La Amistad", "Rojo", "Oscuro", "Epicure Selección"], logo: "logos/hoyo.jpg?v=2" },
-                { id: "acid", name: "Acid", type: "brand", group: "family", country: "nicaragua", productLines: ["Kuba Kuba", "Blondie", "Cold Infusion", "1400cc", "Krush"] },
-                { id: "diesel", name: "Diesel", type: "brand", group: "family", country: "nicaragua", productLines: ["Unholy Cocktail", "Unlimited", "Whiskey Row", "Grind"] },
-                { id: "brickhouse", name: "Brick House", type: "brand", group: "family", country: "nicaragua", productLines: ["Classic", "Maduro", "Connecticut", "Mighty Mighty"] },
+                { id: "acid", name: "Acid", type: "brand", group: "family", country: "nicaragua", productLines: ["Kuba Kuba", "Blondie", "Cold Infusion", "1400cc", "Krush"], logo: "logos/acid.jpg" },
+                { id: "diesel", name: "Diesel", type: "brand", group: "family", country: "nicaragua", productLines: ["Unholy Cocktail", "Unlimited", "Whiskey Row", "Grind"], logo: "logos/diesel.jpg" },
+                { id: "brickhouse", name: "Brick House", type: "brand", group: "family", country: "nicaragua", productLines: ["Classic", "Maduro", "Connecticut", "Mighty Mighty"], logo: "logos/brickhouse.png" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
