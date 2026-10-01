@@ -200,7 +200,7 @@ var baseGraphData = {
                 { id: "undercrown", name: "Undercrown", type: "brand", group: "family", country: "nicaragua", productLines: ["Maduro", "Shade", "Sun Grown", "10"], logo: "logos/undercrown.png" },
                 { id: "manowar", name: "Man O' War", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Virtue", "Ruination", "Armada"], logo: "logos/manowar.jpg" },
                 { id: "seriev", name: "Serie V", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Melanio", "Melanio Maduro"], logo: "logos/oliva-serie-v.jpg" },
-                { id: "bolivar_nc", name: "Bolivar (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Cofradia", "Cofradia Oscuro", "Gran Republica"] },
+                { id: "bolivar_nc", name: "Bolivar (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Cofradia", "Cofradia Oscuro", "Gran Republica"], logo: "logos/bolivar.jpg" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
