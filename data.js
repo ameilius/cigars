@@ -197,9 +197,9 @@ var baseGraphData = {
                 { id: "acid", name: "Acid", type: "brand", group: "family", country: "nicaragua", productLines: ["Kuba Kuba", "Blondie", "Cold Infusion", "1400cc", "Krush"], logo: "logos/acid.jpg" },
                 { id: "diesel", name: "Diesel", type: "brand", group: "family", country: "nicaragua", productLines: ["Unholy Cocktail", "Unlimited", "Whiskey Row", "Grind"], logo: "logos/diesel.jpg" },
                 { id: "brickhouse", name: "Brick House", type: "brand", group: "family", country: "nicaragua", productLines: ["Classic", "Maduro", "Connecticut", "Mighty Mighty"], logo: "logos/brickhouse.png" },
-                { id: "undercrown", name: "Undercrown", type: "brand", group: "family", country: "nicaragua", productLines: ["Maduro", "Shade", "Sun Grown", "10"] },
-                { id: "manowar", name: "Man O' War", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Virtue", "Ruination", "Armada"] },
-                { id: "seriev", name: "Serie V", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Melanio", "Melanio Maduro"] },
+                { id: "undercrown", name: "Undercrown", type: "brand", group: "family", country: "nicaragua", productLines: ["Maduro", "Shade", "Sun Grown", "10"], logo: "logos/undercrown.png" },
+                { id: "manowar", name: "Man O' War", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Virtue", "Ruination", "Armada"], logo: "logos/manowar.jpg" },
+                { id: "seriev", name: "Serie V", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Melanio", "Melanio Maduro"], logo: "logos/oliva-serie-v.jpg" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
