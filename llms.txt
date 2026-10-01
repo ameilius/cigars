@@ -57,7 +57,10 @@ Use these as templates for URL shape and content density. Full list is in the si
 - [A.J. Fernandez](https://cigarnexus.app/node/ajfernandez/): Estelí blender/manufacturer; San Lotano and extensive contract production.
 - [Drew Estate](https://cigarnexus.app/node/drewestate/): Estelí mega-factory brand house (Liga Privada, ACID, Deadwood, etc.); Swisher-owned.
 - [Acid](https://cigarnexus.app/node/acid/): Drew Estate infused brand; handmade at La Gran Fábrica.
-- [Diesel](https://cigarnexus.app/node/diesel/): Cigars International catalog brand blended by A.J. Fernandez at San Lotano.
+- [Diesel](https://cigarnexus.app/node/diesel/): STG catalog brand sold by Forged; blended by A.J. Fernandez at San Lotano.
+- [Undercrown](https://cigarnexus.app/node/undercrown/): Drew Estate traditional brand, released 2011 from the Liga Privada rollers' factory blend; La Gran Fábrica.
+- [Man O' War](https://cigarnexus.app/node/manowar/): 2009 Cigars International catalog brand inside STG, blended by A.J. Fernandez at San Lotano.
+- [Serie V](https://cigarnexus.app/node/seriev/): Oliva flagship, introduced 2006 at Tabolisa; Melanio Figurado was Cigar of the Year 2014.
 - [Brick House](https://cigarnexus.app/node/brickhouse/): J.C. Newman Nicaraguan brand, revived 2009; rolled at PENSA in Estelí.
 - [El Septimo](https://cigarnexus.app/node/elseptimo/): Costa Rican luxury brand; ownership via Zaya Younan.
 - [Tabacos de Costa Rica](https://cigarnexus.app/node/costaricatabacos/): Costa Rica factory hub (Atabey, Byron, Lampert, LH Premium, and others).

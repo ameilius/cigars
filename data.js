@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 193 nodes, 450 links
+ * Cigar Nexus graph data: 196 nodes, 472 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -197,6 +197,9 @@ var baseGraphData = {
                 { id: "acid", name: "Acid", type: "brand", group: "family", country: "nicaragua", productLines: ["Kuba Kuba", "Blondie", "Cold Infusion", "1400cc", "Krush"], logo: "logos/acid.jpg" },
                 { id: "diesel", name: "Diesel", type: "brand", group: "family", country: "nicaragua", productLines: ["Unholy Cocktail", "Unlimited", "Whiskey Row", "Grind"], logo: "logos/diesel.jpg" },
                 { id: "brickhouse", name: "Brick House", type: "brand", group: "family", country: "nicaragua", productLines: ["Classic", "Maduro", "Connecticut", "Mighty Mighty"], logo: "logos/brickhouse.png" },
+                { id: "undercrown", name: "Undercrown", type: "brand", group: "family", country: "nicaragua", productLines: ["Maduro", "Shade", "Sun Grown", "10"] },
+                { id: "manowar", name: "Man O' War", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Virtue", "Ruination", "Armada"] },
+                { id: "seriev", name: "Serie V", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Melanio", "Melanio Maduro"] },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -296,6 +299,28 @@ var baseGraphData = {
                 { source: "sanlotano", target: "diesel", type: "manufactures" },
                 { source: "brickhouse", target: "jcnewman", type: "brand of" },
                 { source: "jcnewman", target: "brickhouse", type: "owns" },
+                { source: "undercrown", target: "drewestate", type: "brand of" },
+                { source: "drewestate", target: "undercrown", type: "owns" },
+                { source: "undercrown", target: "lagranfabrica", type: "manufactured at" },
+                { source: "lagranfabrica", target: "undercrown", type: "manufactures" },
+                { source: "undercrown", target: "jonathandrew", type: "released by" },
+                { source: "jonathandrew", target: "undercrown", type: "released" },
+                { source: "undercrown", target: "ligaprivada", type: "factory-floor counterpart" },
+                { source: "ligaprivada", target: "undercrown", type: "factory-floor counterpart" },
+                { source: "manowar", target: "ajfernandez", type: "blended by" },
+                { source: "ajfernandez", target: "manowar", type: "blends" },
+                { source: "manowar", target: "sanlotano", type: "manufactured at" },
+                { source: "sanlotano", target: "manowar", type: "manufactures" },
+                { source: "manowar", target: "diesel", type: "sibling brand" },
+                { source: "diesel", target: "manowar", type: "sibling brand" },
+                { source: "manowar", target: "stg", type: "catalog brand of" },
+                { source: "stg", target: "manowar", type: "owns catalog brand" },
+                { source: "diesel", target: "forged", type: "sold by" },
+                { source: "forged", target: "diesel", type: "sells" },
+                { source: "seriev", target: "oliva", type: "brand of" },
+                { source: "oliva", target: "seriev", type: "owns" },
+                { source: "seriev", target: "tabolisa", type: "manufactured at" },
+                { source: "tabolisa", target: "seriev", type: "manufactures" },
                 { source: "drewestate", target: "lagranfabrica", type: "operates" },
                 { source: "swisher", target: "drewestate", type: "owns (acquired 2014)" },
                 { source: "cle", target: "christianeiroa", type: "founded by" },
