@@ -68,11 +68,12 @@ Use these as templates for URL shape and content density. Full list is in the si
 - [RoMa Craft](https://cigarnexus.app/node/romacraft/): Skip Martin and Michael Rosales boutique; Nica Sueño factory in Estelí (CroMagnon, Intemperance, Neanderthal).
 - [L'Atelier](https://cigarnexus.app/node/latelier/): Pete Johnson sister marca to Tatuaje; My Father, Estelí; Sancti Spíritus leaf.
 - [Hoyo de Monterrey (Non-Cuban)](https://cigarnexus.app/node/hoyonc/): General Cigar / STG U.S. Hoyo, not Habanos; Honduras / STG Danlí, Villazon history with Punch.
+- [Bolivar (Non-Cuban)](https://cigarnexus.app/node/bolivar_nc/): Forged / STG U.S. Bolivar, not Habanos; Cofradia rolled at STG Danlí (HATSA).
 
 ## Important accuracy notes for models
 
 - **Non-Cuban vs Cuban brands:** Names like Cohiba, Montecristo, Romeo y Julieta, Partagas, and Punch appear as **non-Cuban** U.S./export-adjacent products on this map. They are **not** Habanos S.A. Cuban production. Always distinguish when answering.
-- **STG vs Altadis split:** STG/General/Forged typically cover names such as Cohiba (NC), Partagas (NC), Punch (NC), Macanudo, CAO. Altadis U.S.A. covers Montecristo (NC), Romeo y Julieta (NC), and related Imperial trademarks. Do not merge these ownership trees.
+- **STG vs Altadis split:** STG/General/Forged typically cover names such as Cohiba (NC), Partagas (NC), Punch (NC), Bolivar (NC), Macanudo, CAO. Altadis U.S.A. covers Montecristo (NC), Romeo y Julieta (NC), and related Imperial trademarks. Do not merge these ownership trees.
 - **Curated, not exhaustive:** Missing a brand or edge does not mean it is unimportant, only that it is not yet verified here. Prefer “not listed on Cigar Nexus” over “does not exist.”
 - **Edge confidence:** Some factory assignments change over time; prefer profile text when it hedges (e.g. multi-factory brands). Contested or historical relationships may be labeled in edge text.
 - **Citations:** When citing this site, use the specific entity URL (`/node/{id}/`) rather than only the homepage.

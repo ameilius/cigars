@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 196 nodes, 472 links
+ * Cigar Nexus graph data: 197 nodes, 480 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -200,6 +200,7 @@ var baseGraphData = {
                 { id: "undercrown", name: "Undercrown", type: "brand", group: "family", country: "nicaragua", productLines: ["Maduro", "Shade", "Sun Grown", "10"], logo: "logos/undercrown.png" },
                 { id: "manowar", name: "Man O' War", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Virtue", "Ruination", "Armada"], logo: "logos/manowar.jpg" },
                 { id: "seriev", name: "Serie V", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Melanio", "Melanio Maduro"], logo: "logos/oliva-serie-v.jpg" },
+                { id: "bolivar_nc", name: "Bolivar (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Cofradia", "Cofradia Oscuro", "Gran Republica"] },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -675,5 +676,13 @@ var baseGraphData = {
                 { source: "ajfernandez", target: "hoyonc", type: "collaboration blends" },
                 { source: "hoyonc", target: "punch_nc", type: "sibling brand (Villazon)" },
                 { source: "punch_nc", target: "hoyonc", type: "sibling brand (Villazon)" },
+                { source: "bolivar_nc", target: "stg", type: "brand of" },
+                { source: "stg", target: "bolivar_nc", type: "owns" },
+                { source: "bolivar_nc", target: "forged", type: "sold by" },
+                { source: "forged", target: "bolivar_nc", type: "sells" },
+                { source: "bolivar_nc", target: "stgdanli", type: "manufactured at" },
+                { source: "stgdanli", target: "bolivar_nc", type: "manufactures" },
+                { source: "bolivar_nc", target: "ernestoperezcarrillo", type: "2005 blending input" },
+                { source: "ernestoperezcarrillo", target: "bolivar_nc", type: "consulted on 2005 relaunch" },
             ]
         };

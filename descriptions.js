@@ -35,6 +35,7 @@ var drawerDescriptions = {
   "cao": "CAO is the bold General Cigar/STG brand known for colorful packaging and full-flavored multi-origin lines (Brazilia, Flathead, MX2, Ecuador, and more). Long associated with blender Rick Rodriguez before he founded West Tampa; a creative counterweight to mild Macanudo in the STG portfolio.",
   "cohiba_nc": "Cohiba (Non-Cuban) is the U.S. STG/Forged Cohiba, legally separate from Cuban Habanos Cohiba after decades of trademark litigation. Dominican and Nicaraguan blends (including STG Estelí capacity) range from milder classics to fuller Blue Dot, Black, and Nicaragua lines for American retail.",
   "partagas_nc": "Partagas (Non-Cuban) is a General Cigar/STG heritage brand, not Cuban Partagás. Licensed after the Revolution and first sold in 1977 (Jamaica, then Dominican), it remains a full-flavored U.S. staple with classic Cameroon-era roots and newer multi-origin lines under STG distribution.",
+  "bolivar_nc": "Bolivar (Non-Cuban) is Forged's U.S. Bolivar, owned by STG, separate from the Cuban Habanos brand. Cofradia and Cofradia Oscuro are rolled at STG Danlí (HATSA) in Honduras.",
   "punch_nc": "Punch (Non-Cuban) is the STG/Forged U.S. Punch, separate from Cuban Punch. Via Villazon into General (1997), it is a full-flavored, value-forward heritage brand with Honduras and Nicaragua production (including STG Danlí and Estelí) across Classic, Signature, Deluxe, Rare Corojo, and Gran Puro lines.",
 
   "jcnewman": "J.C. Newman (founded 1895, based in Tampa) is America's oldest family-owned premium cigar company. Dominican ultra-premiums like Diamond Crown are handmade at Tabacalera A. Fuente; other Newman brands use separate Nicaraguan capacity. Partnership with Fuente dates to 1986.",
@@ -198,7 +199,7 @@ var drawerDescriptions = {
   "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the boutique factory Skip Martin co-owns with Esteban Disla: house production for RoMa Craft (CroMagnon, Intemperance, Neanderthal) plus outside work such as Caldwell projects.",
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
-  "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey (Rojo, Oscuro, and related Honduras lines).",
+  "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey and Bolivar Cofradia.",
   "lacorona": "La Corona Factory in Estelí is the dedicated home of Ozgener Family Cigars (Bosphorus, Aramas, Cypher).",
   "rojasfactory": "Tabacalera New Order / Rojas factory in Estelí hosts Rojas house brands, NOA history, and Stolen Throne production.",
   "raicescubanas": "Raíces Cubanas is a Nicaraguan factory linked to Drew Estate's Deadwood line, distinct from La Gran Fábrica.",

@@ -43,6 +43,7 @@ var nodeWebsites = {
   espinosahabano: { website: "https://espinosacigars.com", websiteLabel: "Espinosa Premium Cigars" },
   eltitandebronze: { website: "https://eltitancigars.com", websiteLabel: "El Titan de Bronze" },
   forged: { website: "https://forgedcigarco.com" },
+  bolivar_nc: { website: "https://forgedcigarco.com", websiteLabel: "Forged Cigar Co." },
   foundation: { website: "https://foundationcigarcompany.com" },
   fredvandermarliere: { website: "https://olivacigar.com", websiteLabel: "Oliva Cigar Co." },
   garmendia: { website: "https://garmendiacigars.com" },
