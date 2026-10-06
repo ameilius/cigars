@@ -187,6 +187,9 @@ let linkTraceTimer = null;
 const FOCUS_DIM_ENABLED = true;
 // Zoom-to-fit the selected node + 1-hop neighbors: set false to keep the old camera
 const FOCUS_ZOOM_ENABLED = true;
+// Homepage presentation pass. Set false to restore the previous heading, filters, map height, search prompt, text examples, and plain how-to copy.
+const HOME_POLISH_ENABLED = true;
+if (HOME_POLISH_ENABLED && document.body) document.body.classList.add('home-polish');
 
 function getFocusNeighborIds(nodeId) {
   const ids = new Set();
@@ -365,8 +368,31 @@ let graphWidth = 800, graphHeight = 620;
 // -----------------------------
 // Initialize Everything
 // -----------------------------
+function applyHomePolish() {
+  if (!HOME_POLISH_ENABLED) return;
+  const search = document.getElementById('search');
+  if (search) search.placeholder = 'Search brands, people, factories…';
+  fillMapCount();
+}
+
+function fillMapCount() {
+  const el = document.getElementById('map-page-count');
+  if (!el || !graphData) return;
+  const names = (graphData.nodes || []).length;
+  const pairs = new Set();
+  for (const link of graphData.links || []) {
+    const s = link.source && link.source.id ? link.source.id : link.source;
+    const t = link.target && link.target.id ? link.target.id : link.target;
+    if (!s || !t || s === t) continue;
+    pairs.add(s < t ? s + '\0' + t : t + '\0' + s);
+  }
+  el.textContent = names + ' names, ' + pairs.size + ' connections';
+  el.hidden = false;
+}
+
 function initializeApp() {
   mergeData();
+  applyHomePolish();
 
   // Populate filter chip counts (defensive)
   try {
@@ -1923,7 +1949,7 @@ function showDrawer(node, options = {}) {
 
     buyEl.innerHTML = buyHTML;
     buyWrap.style.display = (node.buyLinks && node.buyLinks.length) ? 'block' : 'block';
-    drawer.classList.remove('hidden');
+    drawer.classList.remove('hidden', 'drawer-panel--guide');
     drawer.style.display = 'flex';
     pulseDrawerOpen(drawer);
   }
@@ -2009,6 +2035,7 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
     if (window.innerWidth >= 1024 && !suppressDefault) {
       showDesktopHowTo();
     } else {
+      drawer.classList.remove('drawer-panel--guide');
       drawer.style.display = 'none';
     }
   }
@@ -2064,7 +2091,55 @@ const INTRO_EXAMPLES = [
   { id: 'myfather', name: 'My Father', blurb: 'Nicaragua powerhouse' }
 ];
 
+const HOME_HOUSES = [
+  { id: 'arturo', name: 'Arturo Fuente' },
+  { id: 'padron', name: 'Padrón' },
+  { id: 'drewestate', name: 'Drew Estate' },
+  { id: 'oliva', name: 'Oliva' },
+  { id: 'myfather', name: 'My Father' }
+];
+
+function buildHowToIntro(mobile) {
+  const choose = mobile
+    ? 'Tap a house below, or any bubble.'
+    : 'Click a house below, or any bubble.';
+  const reset = mobile
+    ? 'Show on map keeps that cluster. Show full map clears it.'
+    : 'Show full map brings the whole industry back.';
+  return `<div class="howto">
+    <p class="howto__lead">Each bubble is a house, a person, or a factory. The lines show who owns it, and where it is made.</p>
+    <div class="howto__key" aria-label="Bubble colors">
+      <span><i class="howto__dot howto__dot--family"></i>Family</span>
+      <span><i class="howto__dot howto__dot--corporate"></i>Corporate</span>
+      <span><i class="howto__dot howto__dot--factory"></i>Factory</span>
+    </div>
+    <ol class="howto__steps">
+      <li class="howto__step"><span class="howto__mark">1</span><span class="howto__copy"><strong>Choose</strong>${choose}</span></li>
+      <li class="howto__step"><span class="howto__mark">2</span><span class="howto__copy"><strong>Focus</strong>Neighbors stay bright. The rest fades back.</span></li>
+      <li class="howto__step"><span class="howto__mark">3</span><span class="howto__copy"><strong>Reset</strong>${reset}</span></li>
+    </ol>
+  </div>`;
+}
+
+function buildIntroHouseButtons(mobile) {
+  const nodesById = new Map(((graphData && graphData.nodes) || []).map(n => [n.id, n]));
+  const buttons = HOME_HOUSES.map(({ id, name }) => {
+    const node = nodesById.get(id);
+    if (!node) return '';
+    const logo = node.logo
+      ? `<span class="intro-house__logo"><img src="${escapeHtmlAttr(node.logo)}" alt=""></span>`
+      : '';
+    return `<button type="button" class="intro-house" onclick="selectExample('${id}')">${logo}<span class="intro-house__name">${escapeMetaLabel(name)}</span></button>`;
+  }).join('');
+  const gestures = mobile
+    ? ['Drag to pan', 'Pinch to zoom', 'Tap a bubble']
+    : ['Drag to move', 'Scroll to zoom', 'Click a bubble'];
+  const gestureHtml = `<div class="howto__gestures">${gestures.map(label => `<span>${escapeMetaLabel(label)}</span>`).join('')}</div>`;
+  return `<div class="intro-houses">${buttons}</div>${gestureHtml}`;
+}
+
 function buildIntroExampleButtons(mobile) {
+  if (HOME_POLISH_ENABLED) return buildIntroHouseButtons(mobile);
   const gridGap = mobile ? 'gap-2.5' : 'gap-2';
   const btnClass = mobile
     ? 'example-pill text-left px-3.5 py-3 rounded-2xl bg-white border-2 border-[#CFE0DC] active:bg-[#ECF4F2] active:scale-[0.985] transition-all text-[15px] font-semibold text-[#1A3330]'
@@ -2159,16 +2234,21 @@ function showDesktopHowTo() {
   clearSelectedNode();
   clearDrawerVisuals();
 
-  descEl.innerHTML = `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Click empty space or Show full map to see the whole graph again. Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
+  descEl.innerHTML = HOME_POLISH_ENABLED
+    ? buildHowToIntro(false)
+    : `Explore the cigar world. Click any node to see who makes it, who owns it and where it's rolled.<br><br>Click empty space or Show full map to see the whole graph again. Use the filters above the graph to focus on Family vs Corporate, countries, or Boutique brands.`;
 
-  if (connLabel) connLabel.textContent = 'START HERE: Tap an example';
+  if (connLabel) connLabel.textContent = HOME_POLISH_ENABLED ? 'Start with a house' : 'START HERE: Tap an example';
   if (connEl) connEl.innerHTML = buildIntroExampleButtons(false);
+  const deskLink = document.getElementById('drawer-dedicated-link');
+  if (deskLink) deskLink.innerHTML = '';
 
   if (productWrap) productWrap.style.display = 'none';
   if (buyWrap) buyWrap.style.display = 'none';
 
   drawer.style.display = 'flex';
   drawer.classList.remove('hidden');
+  drawer.classList.toggle('drawer-panel--guide', HOME_POLISH_ENABLED);
   pulseDrawerOpen(drawer);
 }
 
@@ -2209,10 +2289,19 @@ function showMobileHowTo() {
   if (mMeta) mMeta.innerHTML = `<span class="meta-pill meta-pill--guide">Interactive Map</span>`;
   clearDrawerVisuals();
 
-  mDesc.innerHTML = `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Tap Show on map to close the card and see that bubble and its connections. Show full map resets to the whole graph. Filters above the map let you narrow by ownership, country, or boutique.`;
+  mDesc.innerHTML = HOME_POLISH_ENABLED
+    ? buildHowToIntro(true)
+    : `Explore the cigar world. Tap any bubble to see who makes it, who owns it and where it's rolled.<br><br>Tap Show on map to close the card and see that bubble and its connections. Show full map resets to the whole graph. Filters above the map let you narrow by ownership, country, or boutique.`;
 
-  if (connLabel) connLabel.textContent = 'START HERE';
+  if (connLabel) connLabel.textContent = HOME_POLISH_ENABLED ? 'Start with a house' : 'START HERE';
   if (mConn) mConn.innerHTML = buildIntroExampleButtons(true);
+  const mobLink = document.getElementById('drawer-dedicated-link-mobile');
+  if (mobLink) mobLink.innerHTML = '';
+  const focusBtn = document.getElementById('focus-exit-drawer');
+  if (focusBtn) {
+    focusBtn.classList.add('hidden');
+    focusBtn.setAttribute('aria-hidden', 'true');
+  }
 
   if (mProductWrap) mProductWrap.style.display = 'none';
   if (mBuyWrap) mBuyWrap.style.display = 'none';

@@ -53,13 +53,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tailwind.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=7">
 
     <!-- Data + descriptions, then main script -->
     <script src="data.js?v=19"></script>
     <script src="descriptions.js"></script>
     <script src="affiliates.js"></script>
-    <script src="script.js?v=7" defer></script>
+    <script src="script.js?v=9" defer></script>
 
     <!-- JSON-LD Structured Data for SEO and LLMs -->
     <script type="application/ld+json">
@@ -128,25 +128,32 @@
         </div>
     </header>
 
-    <div class="max-w-screen-xl mx-auto px-6 pt-6">
+    <div class="max-w-screen-xl mx-auto px-6 pt-6 map-page">
 
         <div class="map-page-heading mb-4 sm:mb-5">
             <h1 class="map-page-title">Interactive map of the premium cigar industry</h1>
+            <p id="map-page-count" class="map-page-count" hidden></p>
             <p class="map-page-lede">Ownership, factories, and relationships across Nicaragua, the Dominican Republic, Honduras, and Costa Rica. Click a node, or browse every profile in the directory below.</p>
         </div>
         
         <!-- Filters (moved above graph for prominence + mobile friendly) -->
         <div class="mb-3 sm:mb-4">
-            <div class="text-[10px] font-semibold tracking-[0.6px] text-[#6B8A84] mb-1.5 px-0.5">FILTER THE MAP</div>
+            <div class="filter-kicker text-[10px] font-semibold tracking-[0.6px] text-[#6B8A84] mb-1.5 px-0.5">FILTER THE MAP</div>
             <div class="flex flex-wrap gap-2" id="filter-chips">
-                <div data-key="all" onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">All <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
-                <div data-key="family" onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Family / Independent <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
-                <div data-key="corporate" onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Corporate / Group <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
-                <div data-key="nicaragua" onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Nicaragua <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
-                <div data-key="dominican" onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Dominican Republic <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
-                <div data-key="honduras" onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Honduras <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
-                <div data-key="boutique" onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Boutique <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
-                <div data-key="factory" onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Factory / Grower <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                <div class="filter-row" data-filter-group="kind">
+                    <span class="filter-row__label">Kind</span>
+                    <div data-key="all" onclick="toggleFilter('all', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">All <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                    <div data-key="family" onclick="toggleFilter('family', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Family / Independent <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                    <div data-key="corporate" onclick="toggleFilter('corporate', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Corporate / Group <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                    <div data-key="boutique" onclick="toggleFilter('boutique', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Boutique <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                    <div data-key="factory" onclick="toggleFilter('factory', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Factory / Grower <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                </div>
+                <div class="filter-row" data-filter-group="country">
+                    <span class="filter-row__label">Country</span>
+                    <div data-key="nicaragua" onclick="toggleFilter('nicaragua', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Nicaragua <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                    <div data-key="dominican" onclick="toggleFilter('dominican', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Dominican Republic <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                    <div data-key="honduras" onclick="toggleFilter('honduras', this)" class="filter-chip cursor-pointer px-3.5 sm:px-4 py-1.5 bg-white border border-gray-300 hover:border-[#117A72] rounded-full text-sm font-medium flex items-center gap-1.5">Honduras <span class="chip-count ml-0.5 px-1.5 py-px text-[10px] font-semibold rounded-full bg-[#DCEBE8] text-[#14817A]"></span></div>
+                </div>
             </div>
             <div id="filter-status" class="filter-status" hidden></div>
         </div>
