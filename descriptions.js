@@ -145,7 +145,7 @@ var drawerDescriptions = {
   "room101": "Room101 is Matt Booth's irreverent cult brand, acquired by STG in 2022 and sold via General Cigar. Full-flavored, design-heavy limiteds with Honduran and Nicaraguan STG-network production (including Danlí and Estelí capacity) rather than a single boutique factory story.",
 
   // Camacho
-  "camacho": "Camacho is Oettinger Davidoff's bold Honduran brand (Corojo, Triple Maduro, Liberty), historically built under Christian Eiroa before Swiss ownership; the fuller, aggressive counterweight to Davidoff elegance in the same group.",
+  "camacho": "Camacho is Oettinger Davidoff's Honduran brand. Simon Camacho opened a Miami factory in 1961, the Eiroa family built the Corojo reputation at Rancho Jamastran in Danlí, and Oettinger bought the company and that factory in 2008 without the farms. Corojo, Connecticut, Triple Maduro, and the annual Liberty release are the core lines. Current rolling is at Davidoff's Diadema factory outside Danlí, not at Christian Eiroa's CLE floor.",
 
   // Zino
   "zino": "Zino is the approachable Oettinger Davidoff brand named for Zino Davidoff, spanning Platinum, Nicaragua, and Honduras lines with stronger Central American identity than flagship Davidoff. Group-owned; select production uses Honduran network capacity.",
