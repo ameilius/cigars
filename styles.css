@@ -2357,19 +2357,59 @@ h1, h2, .font-display,
     color: #6B8A84;
 }
 .home-polish .filter-chip { flex: 0 0 auto; }
-.home-polish .filter-chip[data-key]:not(.filter-active) {
-    background: transparent;
-    border-color: rgba(107, 138, 132, 0.35);
-    color: #3D5A55;
+.home-polish .filter-chip[data-key="family"],
+.home-polish .filter-chip[data-key="boutique"] {
+    --chip: #13817b;
+    --chip-ink: #f7fbfa;
 }
-.home-polish .filter-chip[data-key]:hover:not(.filter-active) {
-    background: rgba(255, 255, 255, 0.55);
-    border-color: rgba(206, 166, 97, 0.7);
+.home-polish .filter-chip[data-key="corporate"] {
+    --chip: #CEA661;
+    --chip-ink: #1A2420;
+}
+.home-polish .filter-chip[data-key="factory"] {
+    --chip: #b45309;
+    --chip-ink: #fffaf5;
+}
+.home-polish .filter-chip[data-key="nicaragua"] {
+    --chip: #2f7d46;
+    --chip-ink: #f6fbf7;
+}
+.home-polish .filter-chip[data-key="dominican"] {
+    --chip: #2f5f99;
+    --chip-ink: #f5f8fc;
+}
+.home-polish .filter-chip[data-key="honduras"] {
+    --chip: #9a6232;
+    --chip-ink: #fffaf6;
+}
+.home-polish .filter-chip[data-key="all"]:not(.filter-active) {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(107, 138, 132, 0.4);
     color: #1A3330;
 }
-.home-polish .filter-chip:not(.filter-active) .chip-count {
-    background: transparent;
-    color: #6B8A84;
+.home-polish .filter-chip[data-key]:not([data-key="all"]):not(.filter-active) {
+    background: color-mix(in srgb, var(--chip) 18%, #fff);
+    border-color: color-mix(in srgb, var(--chip) 52%, #fff);
+    color: #1A3330;
+}
+.home-polish .filter-chip[data-key]:not([data-key="all"]):hover:not(.filter-active) {
+    background: color-mix(in srgb, var(--chip) 30%, #fff);
+    border-color: var(--chip);
+    color: #1A3330;
+}
+.home-polish .filter-chip[data-key]:not([data-key="all"]):not(.filter-active) .chip-count {
+    background: color-mix(in srgb, var(--chip) 16%, #fff);
+    color: color-mix(in srgb, var(--chip) 78%, #1A2420);
+}
+.home-polish .filter-chip[data-key]:not([data-key="all"]).filter-active {
+    background: var(--chip);
+    border-color: color-mix(in srgb, var(--chip) 78%, #1a1a1a);
+    color: var(--chip-ink);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--chip) 38%, transparent);
+}
+.home-polish .filter-chip[data-key]:not([data-key="all"]).filter-active .chip-count {
+    background: color-mix(in srgb, var(--chip-ink) 20%, transparent);
+    color: inherit;
 }
 .home-polish .map-page {
     width: 100%;
