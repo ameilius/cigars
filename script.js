@@ -2096,7 +2096,8 @@ const HOME_HOUSES = [
   { id: 'padron', name: 'Padrón' },
   { id: 'drewestate', name: 'Drew Estate' },
   { id: 'oliva', name: 'Oliva' },
-  { id: 'myfather', name: 'My Father' }
+  { id: 'myfather', name: 'My Father' },
+  { id: 'davidoff', name: 'Davidoff' }
 ];
 
 function buildHowToIntro(mobile) {
