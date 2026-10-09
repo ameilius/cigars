@@ -42,6 +42,7 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cigarnexus">
     <meta name="twitter:url" content="https://cigarnexus.app/">
     <meta name="twitter:title" content="Cigar Nexus • Interactive Map of the Cigar Industry">
     <meta name="twitter:description" content="Explore ownership, factories, and relationships in the premium cigar world through an interactive graph.">
@@ -53,7 +54,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tailwind.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=8">
+    <link rel="stylesheet" href="styles.css?v=9">
 
     <!-- Data + descriptions, then main script -->
     <script src="data.js?v=19"></script>
@@ -82,17 +83,50 @@
       }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://cigarnexus.app/#organization",
+          "name": "Cigar Nexus",
+          "url": "https://cigarnexus.app/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://cigarnexus.app/favicon.ico"
+          },
+          "sameAs": [
+            "https://x.com/cigarnexus",
+            "https://x.com/ameilius"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://cigarnexus.app/#website",
+          "name": "Cigar Nexus",
+          "url": "https://cigarnexus.app/",
+          "publisher": {
+            "@id": "https://cigarnexus.app/#organization"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="text-[#1A3330]">
     <!-- Header -->
     <header class="site-header">
         <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="site-lockup">
             <a href="index.html"
                class="site-brand flex items-center gap-x-3 rounded-2xl -ml-1 pl-1 pr-3 py-1 hover:bg-white/5 active:bg-white/10 transition-colors"
                aria-label="Cigar Nexus home">
                 <img src="logos/cigarnexus-svg-crop.svg" alt="Cigar Nexus" class="site-logo" width="379" height="260" />
                 <span class="site-tagline text-[11px] text-[#DCEBE8] tracking-[0.3px] hidden md:inline">A Visual Map of the Cigar World</span>
             </a>
+            <a class="x-link" href="https://x.com/cigarnexus" target="_blank" rel="me noopener noreferrer" aria-label="Cigar Nexus on X"><svg class="x-link__mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span class="x-link__label">@cigarnexus</span></a>
+            </div>
             
             <div class="hidden sm:flex flex-1 max-w-md mx-8 search-container relative">
                 <input id="search" 
@@ -380,7 +414,7 @@
     <footer class="site-footer">
         <div class="max-w-screen-xl mx-auto px-6 pb-8 text-center text-sm">
             <p>&copy; Cigar Nexus · Interactive map of the premium cigar industry.</p>
-            <p class="mt-1"><a href="index.html">Return to Map</a> · <a href="/directory.html">Directory</a> · <a href="about.html">About</a></p>
+            <p class="mt-1"><a href="index.html">Return to Map</a> · <a href="/directory.html">Directory</a> · <a href="about.html">About</a> · <a class="x-link" href="https://x.com/cigarnexus" target="_blank" rel="me noopener noreferrer"><svg class="x-link__mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>@cigarnexus</span></a></p>
             <p class="site-footer__legal"><a href="privacy.html">Privacy</a> · <a href="disclosures.html">Disclosures</a></p>
         </div>
     </footer>
