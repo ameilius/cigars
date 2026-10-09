@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 197 nodes, 480 links
+ * Cigar Nexus graph data: 197 nodes, 479 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -67,7 +67,7 @@ var baseGraphData = {
                 { id: "aganorsa", name: "Aganorsa Leaf", type: "company", group: "family", country: "nicaragua", logo: "logos/aganorsa.jpg" },
                 { id: "maxfernandez", name: "Max Fernández Pujals", type: "person", group: "family", country: "nicaragua", photo: "logos/maxfernandezpujals.png" },
                 { id: "tabsa", name: "TABSA (Aganorsa Factory, Estelí)", type: "factory", group: "family", country: "nicaragua" },
-                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa", productLines: ["The Tabernacle", "Olmec", "El Güegüense", "Wise Man", "Guardian of the Farm"], logo: "logos/foundation.jpg" },
+                { id: "foundation", name: "Foundation Cigar Company", type: "company", group: "family", country: "usa", productLines: ["The Tabernacle", "The Wise Man", "Olmec", "Charter Oak", "Highclere Castle"], logo: "logos/foundation.jpg" },
                 { id: "nickmelillo", name: "Nick Melillo", type: "person", group: "family", country: "usa", photo: "logos/nickmelillo.png" },
                 { id: "alecbradley", name: "Alec Bradley", type: "brand", group: "corporate", country: "honduras", productLines: ["Prensado", "Black Market", "Tempus", "Magic Toast", "Kintsugi"], logo: "logos/alecbradley.png" },
                 { id: "room101", name: "Room101", type: "brand", group: "corporate", country: "dominican", productLines: ["Farce", "Name Dropper", "Hit & Run", "Quills"], logo: "logos/room101.jpg" },
@@ -334,6 +334,7 @@ var baseGraphData = {
                 { source: "foundation", target: "myfather", type: "production partner (Wise Man)" },
                 { source: "foundation", target: "ajfernandez", type: "production partner (Tabernacle, Olmec)" },
                 { source: "foundation", target: "sanlotano", type: "production at" },
+                { source: "foundation", target: "tabsa", type: "historical production (El Güegüense)" },
                 { source: "alecbradley", target: "stg", type: "owned by (acquired 2023)" },
                 { source: "alecbradley", target: "forged", type: "sold by" },
                 { source: "room101", target: "stg", type: "owned by (acquired 2022)" },
@@ -411,7 +412,6 @@ var baseGraphData = {
                 { source: "dunbarton", target: "lazona", type: "contract production" },
                 { source: "dunbarton", target: "ajfernandez", type: "contract production" },
                 { source: "guayacan", target: "myfather", type: "Reserve line produced at" },
-                { source: "foundation", target: "joyafactory", type: "production at" },
                 { source: "murcielago", target: "plasencia", type: "contract production" },
                 { source: "espinosa", target: "plasencia", type: "contract production" },
                 { source: "lagranfabrica", target: "macanudo", type: "manufactures" },
@@ -492,7 +492,6 @@ var baseGraphData = {
                 { source: "stgesteli", target: "padilla", type: "manufactures" },
                 { source: "stgesteli", target: "room101", type: "manufactures" },
                 { source: "stgesteli", target: "southerndraw", type: "manufactures" },
-                { source: "stgesteli", target: "foundation", type: "manufactures" },
                 { source: "stgesteli", target: "hvc", type: "manufactures" },
                 { source: "stgesteli", target: "cohiba_nc", type: "manufactures" },
                 { source: "stgesteli", target: "macanudo", type: "manufactures" },

@@ -56,7 +56,7 @@ var drawerDescriptions = {
   "murcielago": "Murciélago is Espinosa's bold dark line from the EO Brands era, continued under Espinosa Premium Cigars / La Zona as a full-power portfolio staple.",
 
   "ajfernandez": "A.J. Fernandez (Abdel J. Fernandez) left Cuba in 2003 and built Tabacalera Fernandez / San Lotano in Estelí. House brands include San Lotano, New World, Enclave, Last Call, and Bellas Artes. He also blends for Foundation, Altadis (Montecristo Nicaragua, Trinidad Espiritu), and Aging Room.",
-  "sanlotano": "San Lotano is A.J. Fernandez's Estelí factory for his own lines and high-profile contracts (Aging Room Quattro Nicaragua and La Boheme, Trinidad Espiritu, Foundation Tabernacle/Olmec-era, Montecristo Nicaragua programs, and more).",
+  "sanlotano": "San Lotano is A.J. Fernandez's Estelí factory for his own lines and high-profile contracts (Aging Room Quattro Nicaragua and La Boheme, Trinidad Espiritu, Foundation's Tabernacle and Olmec, Montecristo Nicaragua programs, and more).",
 
   // === Padrón family factories & lines ===
   "tabacoscubanica": "Tabacos Cubanica is the Padrón family factory in Estelí, Nicaragua, home of the regular line, 1964 Anniversary, and Serie 1926. Vertical Nicaraguan puros, long aging, Cuban-inspired methods, no generic contract-brand identity.",
@@ -96,11 +96,11 @@ var drawerDescriptions = {
   // === Aganorsa / TABSA ===
   "aganorsa": "Aganorsa Leaf (Max Fernández Pujals) is a major Nicaraguan grower-manufacturer operating TABSA in Estelí. Supplies and rolls for Illusione, Viaje, Warped, and other tobacco-driven boutiques while making its own Aganorsa brands.",
   "maxfernandez": "Max Fernández Pujals leads Aganorsa Leaf and TABSA: grower-manufacturer hub for Illusione, Viaje, Warped, and Aganorsa house brands.",
-  "tabsa": "TABSA is Aganorsa's flagship Estelí factory, a top contract floor for Illusione, Viaje, Warped (historical), Foundation projects, early HVC, and other boutiques seeking grower-linked Nicaraguan production.",
+  "tabsa": "TABSA is Aganorsa's flagship Estelí factory, a top contract floor for Illusione, Viaje, Warped (historical), Foundation's early El Güegüense, early HVC, and other boutiques seeking grower-linked Nicaraguan production.",
 
   // === Foundation ===
-  "foundation": "Foundation Cigar Co. (Nick Melillo, ex-Drew Estate) is known for The Tabernacle, Olmec, El Güegüense, and Wise Man. Multi-factory boutique production includes A.J. Fernandez/San Lotano, My Father, and Joya.",
-  "nickmelillo": "Nick Melillo founded Foundation after Drew Estate years; Tabernacle, Olmec, and Wise Man via multi-factory Nicaraguan partners.",
+  "foundation": "Foundation is Nick Melillo's Connecticut company, started in 2015 after Drew Estate. El Güegüense debuted at TABSA and was retired in 2024. Tabernacle, Charter Oak, Olmec, and Highclere Castle roll at A.J. Fernandez. The current Wise Man blends roll at My Father.",
+  "nickmelillo": "Nick Melillo founded Foundation in 2015 after production and tobacco work at Drew Estate. He does not own a factory. Tabernacle and Olmec roll at A.J. Fernandez, The Wise Man rolls at My Father, and the debut El Güegüense was made at TABSA.",
 
   // === Warped / Kyle Gellis ===
   "warped": "Warped Cigars (Kyle Gellis) is a traditionalist boutique with lines like Corto, Sarto, and Cloud Hopper. Major production at NACSA and historical Aganorsa/TABSA ties in Estelí.",
@@ -119,7 +119,7 @@ var drawerDescriptions = {
 
   // === Joya de Nicaragua ===
   "joya": "Joya de Nicaragua is the historic national brand (founded 1968) known for Antaño and Clásico. The Estelí factory also contract-rolls for Dunbarton, Viaje, Warped, and other boutiques.",
-  "joyafactory": "Joya de Nicaragua factory produces house Antaño/Clásico lines and major boutique contracts (Dunbarton, Viaje, Warped, Foundation).",
+  "joyafactory": "Joya de Nicaragua factory produces house Antaño/Clásico lines and major boutique contracts (Dunbarton, Viaje, Warped).",
   "alejandromartinez": "Dr. Alejandro Martínez Cuenca bought Joya de Nicaragua in the early 1990s and rebuilt Nicaragua's oldest premium brand. Son Juan is executive president. Factory in Estelí.",
 
   // === Dunbarton / Steve Saka ===
