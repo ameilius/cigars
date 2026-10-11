@@ -325,51 +325,149 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
   return html;
 }
 
-function nodeTypeDot(n) {
-  if (n.type === 'factory') return '#b45309';
-  if (n.group === 'corporate') return '#CEA661';
-  return '#13817b';
+function linkType(link) {
+  return String(link.type || '').toLowerCase();
 }
 
+// Same idea as getLinkCategory in script.js: free-text labels, matched by includes.
+// "production" and "rolled" cover labels such as "production at" and "rolled at".
+function isProductionLink(link) {
+  const t = linkType(link);
+  return t.includes('contract') || t.includes('manufactur') || t.includes('produced')
+    || t.includes('production') || t.includes('rolled');
+}
+
+// The floor end of a production edge. "manufactures" / "manufactures for" put the
+// floor on the source. "manufactured at", "produced at", and "production at" put it
+// on the target.
+function productionPlaceId(link) {
+  if (!isProductionLink(link)) return null;
+  const t = linkType(link);
+  const sourceIsPlace = (t.includes('manufactures') && !t.includes('manufactured') && !t.includes('manufactures at'))
+    || t.includes(' for ');
+  return sourceIsPlace ? link.source : link.target;
+}
+
+function isOwnershipLink(link) {
+  const t = linkType(link);
+  return t.includes('owned') || t.includes('subsidiary') || t.includes('owns') || t.includes('brand of');
+}
+
+// "owns" : source is the parent. "owned by", "brand of", "subsidiary of": target is.
+function ownershipParentId(link) {
+  if (!isOwnershipLink(link)) return null;
+  const t = linkType(link);
+  if (t.includes('owns') && !t.includes('owned')) return link.source;
+  return link.target;
+}
+
+function isListedBrand(node) {
+  if (!node) return false;
+  if (node.type === 'brand') return true;
+  return node.type === 'company' && Array.isArray(node.productLines) && node.productLines.length > 0;
+}
+
+function preferBrands(indexOf) {
+  return (a, b) => {
+    const rank = (n) => (n.type === 'brand' ? 0 : 1);
+    const byType = rank(a) - rank(b);
+    if (byType) return byType;
+    return (indexOf.get(a.id) || 0) - (indexOf.get(b.id) || 0);
+  };
+}
+
+const RELATED_BRAND_CAP = 8;
+
+function relatedBrandLinks(nodes) {
+  return nodes.map(n => (
+    `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#CFE0DC] text-[#1A3330] hover:border-[#CEA661] hover:text-[#14817A] transition-colors">${escapeHtml(n.name)}</a>`
+  )).join('\n');
+}
+
+function relatedBrandSection(id, title, nodes) {
+  if (!nodes.length) return '';
+  return `<div class="mt-8">
+    <h2 id="${id}" class="node-section-label">${title}</h2>
+    <div class="flex flex-wrap gap-2">
+      ${relatedBrandLinks(nodes)}
+    </div>
+  </div>`;
+}
+
+// Two-hop brands from baseGraphData only. No file-order filler.
+// Also made at this factory: other brands that share a factory the current node
+// reaches by a production edge. A brand counts as that factory when other brands
+// are manufactured there (My Father is the example).
+// Same parent company: other brands that share a company (or brand) the current
+// node reaches by an ownership edge (owned by, owns, brand of, subsidiary).
+// Drop a section with no matches. Drop the whole box when both are empty.
 function buildRelatedHtml(node, allNodes, allLinks) {
-  const connections = getConnections(node.id, allNodes, allLinks);
-  const relatedIds = new Set(connections.map(c => c.otherId));
+  const byId = new Map(allNodes.map(n => [n.id, n]));
+  const indexOf = new Map(allNodes.map((n, i) => [n.id, i]));
 
-  // Same country peers (excluding already connected)
-  const countryPeers = allNodes
-    .filter(n => n.id !== node.id && n.country === node.country && !relatedIds.has(n.id))
-    .slice(0, 4);
+  const placeIsHub = (placeId) => {
+    const place = byId.get(placeId);
+    return !!(place && (place.type === 'factory' || place.type === 'brand') && place.id !== node.id);
+  };
 
-  // Same group peers
-  const groupPeers = allNodes
-    .filter(n => n.id !== node.id && n.group === node.group && n.country !== node.country && !relatedIds.has(n.id))
-    .slice(0, 3);
+  const factoryIds = new Set();
+  for (const link of allLinks) {
+    if (link.source !== node.id && link.target !== node.id) continue;
+    const place = productionPlaceId(link);
+    if (place && placeIsHub(place)) factoryIds.add(place);
+  }
 
-  const picks = [];
-  const seen = new Set([node.id]);
-  [...connections.slice(0, 4).map(c => allNodes.find(n => n.id === c.otherId)).filter(Boolean),
-   ...countryPeers,
-   ...groupPeers].forEach(n => {
-    if (n && !seen.has(n.id)) {
-      seen.add(n.id);
-      picks.push(n);
-    }
-  });
+  const factorySeen = new Set([node.id]);
+  const factoryBrands = [];
+  for (const link of allLinks) {
+    const place = productionPlaceId(link);
+    if (!place || !factoryIds.has(place)) continue;
+    const otherId = place === link.source ? link.target : link.source;
+    if (!otherId || otherId === place || factorySeen.has(otherId)) continue;
+    const other = byId.get(otherId);
+    if (!isListedBrand(other)) continue;
+    factorySeen.add(otherId);
+    factoryBrands.push(other);
+  }
+  factoryBrands.sort(preferBrands(indexOf));
 
-  const final = picks.slice(0, 8);
-  if (!final.length) return '';
+  const parentIds = new Set();
+  for (const link of allLinks) {
+    const parent = ownershipParentId(link);
+    if (!parent || parent === node.id) continue;
+    const child = parent === link.source ? link.target : link.source;
+    if (child !== node.id) continue;
+    const parentNode = byId.get(parent);
+    if (!parentNode || (parentNode.type !== 'company' && parentNode.type !== 'brand')) continue;
+    parentIds.add(parent);
+  }
 
-  let html = '<section class="mt-8" aria-labelledby="related-nodes-heading">';
-  html += '<h2 id="related-nodes-heading" class="node-section-label">Explore Related Nodes</h2>';
-  html += '<div class="flex flex-wrap gap-2">';
-  final.forEach(n => {
-    html += `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#CFE0DC] text-[#1A3330] hover:border-[#CEA661] hover:text-[#14817A] transition-colors">
-  <span style="width:7px;height:7px;border-radius:50%;background:${nodeTypeDot(n)};flex-shrink:0;display:inline-block"></span>
-  ${escapeHtml(n.name)}
-</a>`;
-  });
-  html += '</div></section>';
-  return html;
+  const parentSeen = new Set([node.id]);
+  const parentBrands = [];
+  for (const link of allLinks) {
+    const parent = ownershipParentId(link);
+    if (!parent || !parentIds.has(parent)) continue;
+    const child = parent === link.source ? link.target : link.source;
+    if (!child || child === parent || parentSeen.has(child)) continue;
+    const other = byId.get(child);
+    if (!isListedBrand(other)) continue;
+    parentSeen.add(child);
+    parentBrands.push(other);
+  }
+  parentBrands.sort(preferBrands(indexOf));
+
+  const factoryHtml = relatedBrandSection(
+    'also-made-heading',
+    'Also made at this factory',
+    factoryBrands.slice(0, RELATED_BRAND_CAP)
+  );
+  const parentHtml = relatedBrandSection(
+    'same-parent-heading',
+    'Same parent company',
+    parentBrands.slice(0, RELATED_BRAND_CAP)
+  );
+  if (!factoryHtml && !parentHtml) return '';
+  return `<section class="related-brands" aria-label="Related brands">${factoryHtml}${parentHtml}</section>`;
 }
 
 function buildProductLinesHtml(node) {
