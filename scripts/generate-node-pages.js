@@ -848,6 +848,72 @@ function buildDirectoryGroupsHtml(nodes, { open = false } = {}) {
   }).join('\n');
 }
 
+const DIRECTORY_FLAGS = {
+  nicaragua: ['🇳🇮', 'Nicaragua'], dominican: ['🇩🇴', 'Dominican Republic'], honduras: ['🇭🇳', 'Honduras'],
+  usa: ['🇺🇸', 'United States'], 'costa rica': ['🇨🇷', 'Costa Rica'], belgium: ['🇧🇪', 'Belgium'],
+  denmark: ['🇩🇰', 'Denmark'], switzerland: ['🇨🇭', 'Switzerland'],
+};
+
+function directoryNodeKind(n) {
+  if (n.type === 'factory') return 'factory';
+  if (n.group === 'corporate') return 'corporate';
+  if (n.group === 'family') return 'family';
+  return 'other';
+}
+
+function directoryLetter(name) {
+  const c = String(name || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().charAt(0).toUpperCase();
+  return /[A-Z]/.test(c) ? c : '#';
+}
+
+/** Full /directory.html: tabs + A–Z + filter. Every profile is a plain static <a href>. */
+function buildDirectoryPageHtml(nodes) {
+  const sections = DIRECTORY_GROUPS.map((group) => {
+    const items = nodes
+      .filter((n) => n.type === group.type)
+      .slice()
+      .sort((a, b) => String(a.name || a.id).localeCompare(String(b.name || b.id), 'en', { sensitivity: 'base' }));
+    let lastLetter = '';
+    const lis = items.map((n) => {
+      const name = escapeHtml(n.name || n.id);
+      const letter = directoryLetter(n.name || n.id);
+      let head = '';
+      if (letter !== lastLetter) {
+        lastLetter = letter;
+        head = `<li class="dir-letter" id="${group.type}-${letter === '#' ? 'num' : letter}" data-letter="${letter}" aria-hidden="true">${letter}</li>`;
+      }
+      const flag = DIRECTORY_FLAGS[String(n.country || '').toLowerCase()];
+      const flagHtml = flag ? `<span class="dir-flag" title="${flag[1]}" aria-label="${flag[1]}">${flag[0]}</span>` : '';
+      return `${head}<li class="dir-item dir-item--${directoryNodeKind(n)}" data-letter="${letter}"><span class="dir-dot" aria-hidden="true"></span><a href="/node/${escapeHtml(n.id)}/">${name}</a>${flagHtml}</li>`;
+    }).join('');
+    return `<section class="dir-section profile-directory__group" id="dir-${group.type}" data-type="${escapeHtml(group.type)}">
+      <div class="dir-section__head">
+        <span class="profile-directory__dot profile-directory__dot--${directoryGroupClass(group.type)}" aria-hidden="true"></span>
+        <span class="profile-directory__label">${escapeHtml(group.label)}</span>
+        <span class="profile-directory__count">${items.length}</span>
+        <span class="profile-directory__blurb">${escapeHtml(group.blurb)}</span>
+      </div>
+      <ul class="dir-list">${lis}</ul>
+    </section>`;
+  }).join('\n');
+
+  const tabs = [`<button type="button" class="dir-tab is-active" data-tab="all">All <span>${nodes.length}</span></button>`]
+    .concat(DIRECTORY_GROUPS.map((g) => `<button type="button" class="dir-tab" data-tab="${g.type}">${escapeHtml(g.label)} <span>${nodes.filter((n) => n.type === g.type).length}</span></button>`))
+    .join('');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+    .map((l) => `<button type="button" class="dir-az__l" data-jump="${l}">${l}</button>`).join('');
+
+  return `<div class="dir-toolbar" role="toolbar" aria-label="Directory navigation">
+  <div class="dir-toolbar__row">
+    <nav class="dir-tabs" aria-label="Sections">${tabs}</nav>
+    <label class="dir-filter"><span class="dir-visually-hidden">Filter the directory</span><input type="search" id="dir-filter" placeholder="Filter names…" autocomplete="off" spellcheck="false"></label>
+  </div>
+  <div class="dir-az" aria-label="Jump to letter">${letters}</div>
+  <p class="dir-empty" id="dir-empty" hidden>No names match that filter.</p>
+</div>
+${sections}`;
+}
+
 function buildHomepageDirectoryHtml(nodes) {
   const count = nodes.length;
   const groups = buildDirectoryGroupsHtml(nodes, { open: false });
@@ -896,7 +962,7 @@ function writeDirectoryPage(nodes) {
   }
   const templatePath = path.join(__dirname, 'directory-template.html');
   let page = readUtf8(templatePath);
-  const groups = buildDirectoryGroupsHtml(nodes, { open: true });
+  const groups = buildDirectoryPageHtml(nodes);
   page = page
     .replace(/\{\{COUNT\}\}/g, String(nodes.length))
     .replace(/\{\{DIRECTORY_GROUPS\}\}/g, groups)
