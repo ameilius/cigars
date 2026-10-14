@@ -1,5 +1,5 @@
 ﻿/**
- * Cigar Nexus graph data: 197 nodes, 479 links
+ * Cigar Nexus graph data: 197 nodes, 478 links
  * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
  */
 var baseGraphData = {
@@ -660,7 +660,6 @@ var baseGraphData = {
                 { source: "latelier", target: "petejohnson", type: "founded by" },
                 { source: "petejohnson", target: "latelier", type: "founded" },
                 { source: "tatuaje", target: "petejohnson", type: "founded by" },
-                { source: "petejohnson", target: "tatuaje", type: "founded" },
                 { source: "latelier", target: "myfather", type: "manufactured at" },
                 { source: "myfather", target: "latelier", type: "manufactures" },
                 { source: "latelier", target: "pepin", type: "produced with" },
