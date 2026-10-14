@@ -232,9 +232,16 @@ function truncateAtWord(text, max) {
   return cut.replace(/[.,;:]+$/, '').trim();
 }
 
+function decodeEntities(str) {
+  return String(str || '')
+    .replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'")
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&');
+}
+
 function firstParagraphPlain(html) {
   const match = String(html || '').match(/<p\b[^>]*>([\s\S]*?)<\/p>/i);
-  return stripHtml(match ? match[1] : html);
+  return decodeEntities(stripHtml(match ? match[1] : html));
 }
 
 function buildMetaDescription(html, max = 155) {
