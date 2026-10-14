@@ -441,7 +441,7 @@ var baseGraphData = {
                 { source: "ryjnc", target: "altadis", type: "owned by" },
                 { source: "altadis", target: "ryjnc", type: "owns / distributes" },
                 { source: "ryjnc", target: "plasencia", type: "1875 Nicaragua produced at (Plasencia)" },
-                { source: "fratello", target: "laisla", type: "manufactured at" },
+                { source: "fratello", target: "laisla", type: "After BurnR (Cigar Dojo, 2023) produced at" },
                 { source: "padilla", target: "tabsa", type: "historical production (Tabacalera Tropical)" },
                 { source: "jassumkral", target: "myfather", type: "manufactured at" },
                 { source: "stolenthrone", target: "rojasfactory", type: "manufactured at" },

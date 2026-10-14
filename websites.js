@@ -158,6 +158,7 @@ var nodeWebsites = {
   ligaprivada: { website: "https://drewestate.com/products/liga-privada/", websiteLabel: "Drew Estate" },
   crownedheads: { website: "https://crownedheads.com" },
   southerndraw: { website: "https://southerndrawcigars.com" },
+  voneicken: { website: "https://www.von-eicken.com/en/company/locations/", websiteLabel: "Joh. Wilh. von Eicken (parent company)" },
   kristoff: { website: "https://kristoffcigars.com" },
   montecristonc: { website: "https://www.montecristo.com", websiteLabel: "Montecristo (US)" },
   ryjnc: { website: "https://www.romeoyjulieta.com", websiteLabel: "Romeo y Julieta (US)" },

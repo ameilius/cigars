@@ -56,7 +56,7 @@ var drawerDescriptions = {
   "murcielago": "Murciélago is Espinosa's bold dark line from the EO Brands era, continued under Espinosa Premium Cigars / La Zona as a full-power portfolio staple.",
 
   "ajfernandez": "A.J. Fernandez (Abdel J. Fernandez) left Cuba in 2003 and built Tabacalera Fernandez / San Lotano in Estelí. House brands include San Lotano, New World, Enclave, Last Call, and Bellas Artes. He also blends for Foundation, Altadis (Montecristo Nicaragua, Trinidad Espiritu), and Aging Room.",
-  "sanlotano": "San Lotano is A.J. Fernandez's Estelí factory for his own lines and high-profile contracts (Aging Room Quattro Nicaragua and La Boheme, Trinidad Espiritu, Foundation's Tabernacle and Olmec, Montecristo Nicaragua programs, and more).",
+  "sanlotano": "San Lotano is A.J. Fernández's second factory, in Ocotal north of Estelí (opened 2017). It makes Man O' War, Ave Maria, 601, Murciélago and Knuckle Sandwich.",
 
   // === Padrón family factories & lines ===
   "tabacoscubanica": "Tabacos Cubanica is the Padrón family factory in Estelí, Nicaragua, home of the regular line, 1964 Anniversary, and Serie 1926. Vertical Nicaraguan puros, long aging, Cuban-inspired methods, no generic contract-brand identity.",
@@ -65,7 +65,7 @@ var drawerDescriptions = {
 
   // === Plasencia family ===
   "plasencia": "Plasencia is a five-generation grower-manufacturer that has farmed tobacco since 1865. The family rolls Alma, Cosecha, and 1865 in Nicaragua and Honduras, and still makes cigars for many other brands. STG holds a minority stake; Plasencia is not an STG house brand.",
-  "nestorplasencia": "Nestor Plasencia Sr. is a central leader of the five-generation Plasencia grower-manufacturer dynasty across Nicaragua and Honduras.",
+  "nestorplasencia": "Nestor Plasencia Sr. leads the Plasencia family's tobacco and cigar business in Nicaragua and Honduras. He started rolling cigars in 1985; Cuban-born, raised in Estelí.",
   "nestorandres": "Nestor Andrés Plasencia is a fifth-generation Plasencia who, with brothers Gustavo and José Luis, launched the family's own brand (Alma Fuerte 2016, Cosecha 146 2017).",
   "plasenciaesteli": "Plasencia Estelí (\"The Cathedral\") is Plasencia's Nicaraguan flagship factory for Alma series and premium production.",
 
@@ -80,7 +80,7 @@ var drawerDescriptions = {
   "diesel": "Diesel is a 2009 Cigars International brand made by A.J. Fernández in Nicaragua. Unholy Cocktail was the first size. Sold by STG's Forged since 2021.",
   "brickhouse": "Brick House is a J.C. Newman brand from 1937, revived in 2009 as a Nicaraguan cigar. Rolled at the family's PENSA factory in Estelí. Diamond Crown is the separate Dominican Fuente partnership.",
   "undercrown": "Undercrown is Drew Estate's traditional brand, released in 2011 from a blend the Liga Privada rollers made for themselves at La Gran Fábrica. Maduro uses Mexican San Andrés. Shade (2015) and Sun Grown (2017) came later.",
-  "manowar": "Man O' War is a 2009 Cigars International catalog brand blended by A.J. Fernandez at San Lotano in Estelí. Virtue and Ruination followed in 2010. It is not an A.J. house line.",
+  "manowar": "Man O' War is a 2009 Cigars International catalog brand blended by A.J. Fernández (Ruination 2009, Virtue 2010). Made at his San Lotano factory in Ocotal since 2017.",
   "seriev": "Serie V is Oliva's flagship, introduced in 2006 and rolled at Tabolisa in Estelí. Melanio, added in 2012, uses an Ecuador Sumatra wrapper. The Melanio Figurado was Cigar of the Year in 2014.",
   "drewestate": "Drew Estate (Jonathan Drew) runs La Gran Fábrica in Estelí: Acid plus Liga Privada, Undercrown, and Herrera Estelí; owned by Swisher since 2014.",
   "jonathandrew": "Jonathan Drew (Sann) founded Drew Estate and La Gran Fábrica: Acid innovation plus Liga Privada; Swisher-owned since 2014.",
@@ -118,8 +118,8 @@ var drawerDescriptions = {
   "perdomofactory": "Tabacalera Perdomo (El Monstro) is Perdomo's vertically integrated Estelí campus from farms through rolling.",
 
   // === Joya de Nicaragua ===
-  "joya": "Joya de Nicaragua is the historic national brand (founded 1968) known for Antaño and Clásico. The Estelí factory also contract-rolls for Dunbarton, Viaje, Warped, and other boutiques.",
-  "joyafactory": "Joya de Nicaragua factory produces house Antaño/Clásico lines and major boutique contracts (Dunbarton, Viaje, Warped).",
+  "joya": "Joya de Nicaragua (1968, Bermejo and Camacho) is Nicaragua's oldest cigar brand, known for Antaño and Clásico. The Estelí factory also makes Sobremesa, Fratello and some Viaje.",
+  "joyafactory": "The Joya de Nicaragua factory in Estelí makes the house Antaño and Clásico lines plus contract cigars for Dunbarton (Sobremesa), Fratello and Viaje.",
   "alejandromartinez": "Dr. Alejandro Martínez Cuenca bought Joya de Nicaragua in 1994 and rebuilt Nicaragua's oldest cigar brand. Son Juan Ignacio has been executive president since 2013.",
 
   // === Dunbarton / Steve Saka ===
@@ -196,7 +196,7 @@ var drawerDescriptions = {
   // P0-P3 factory nodes
   "williamventura": "Tabacalera William Ventura is a major Santiago, DR contract factory for Viaje, Kristoff, Caldwell, La Palina, Gurkha, and many outside brands.",
   "lucianopichardo": "Tabacalera Pichardo in Estelí (Eradio Pichardo and Luciano Meirelles) made Mil Dias for Crowned Heads and the first Ozgener Bosphorus.",
-  "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the boutique factory Skip Martin co-owns with Esteban Disla: house production for RoMa Craft (CroMagnon, Intemperance, Neanderthal) plus outside work such as Caldwell projects.",
+  "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the factory Skip Martin built with Esteban Disla: home of RoMa Craft (CroMagnon) and Powstanie. halfwheel Factory of the Year 2020, 2022, 2024.",
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
   "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey and Bolivar Cofradia.",
@@ -204,7 +204,7 @@ var drawerDescriptions = {
   "raicescubanas": "Raíces Cubanas is the Endemaño family's factory in Danlí, Honduras, making cigars for Alec Bradley, Illusione, Viaje, and private labels.",
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under León family ownership.",
   "elreyhabanos": "El Rey de los Habanos in Miami is Pepín García's Little Havana chapter and the origin story behind Tatuaje before My Father scale.",
-  "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (from 2009 relaunch): E.P. Carrillo lines and INCH, rolled at La Alianza in Santiago, with deep contract work for other brands.",
+  "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (founded 2009 as EPC Cigar Co.; renamed in 2025) behind E.P. Carrillo, Pérez-Carrillo and INCH, made at its Santiago factory.",
   "ernestoperezcarrillo": "Ernesto Perez-Carrillo Jr. built non-Cuban La Gloria Cubana in Miami, sold it to Swedish Match/General in 1999, left in 2009, and founded E.P. Carrillo / Casa Carrillo. Pledge and Encore won Cigar of the Year. Factory is Casa Carrillo (La Alianza) in Santiago.",
   "lacarrillo": "Tabacalera La Alianza (Casa Carrillo) in Santiago rolls Perez-Carrillo/INCH and major contract brands (Gurkha, Casdagli, Crowned Heads, Caldwell).",
   "laisla": "Tabacalera La iSLA is Hostos Fernández Quesada's contract factory in Santiago, DR, with clients such as Viaje.",
@@ -244,12 +244,12 @@ var drawerDescriptions = {
   "lhpremium": "LH Premium / Lavida Habana is Nicholas Syris's boutique brand (Claro, Colorado, Maduro, Nick lines) rolled at Tabacos de Costa Rica; home base for the Nick & Jim collab.",
   "nickandjim": "Nick & Jim is the Nicholas Syris + Island Jim Robinson collaboration rolled at Tabacos de Costa Rica (separate from Robinson's Honduran Island Jim / Leaf by Oscar lines).",
   "lampert": "Lampert Cigars (Stefan Lampert) rolls Oro and Ocean Breeze at Tabacos de Costa Rica, with additional projects in Nicaragua and the Dominican Republic. Modern European boutique positioning on the Costa Rica factory graph.",
-  "casdagli": "Casdagli is a Swiss family house; Villa Casdagli (Pigasus and related) rolls at Tabacos de Costa Rica, with other projects historically in the Dominican Republic.",
+  "casdagli": "Casdagli Cigars (Jeremy Casdagli, 1997) grew from a Cairo/Manchester trading family. Lines are made at Kelner Boutique Factory (DR), IGM and Tabacos de Costa Rica (Villa Casdagli).",
   "vegassantiago": "Vegas de Santiago is a heritage Costa Rican brand from the Puriscal region, rolled at Tabacos de Costa Rica as the local/traditional face beside ultra-luxury factory clients.",
-  "selectedtobacco": "Selected Tobacco S.A. is the Costa Rican company behind Atabey, Byron, Bandolero, and Alfonso with blender Nelson Alfonso, rolled at Tabacos de Costa Rica.",
+  "selectedtobacco": "Selected Tobacco S.A. is Nelson Alfonso's Costa Rica-based company (2012) behind Atabey, Byron and Bandolero. Alfonso designed Habanos packaging, including the Cohiba Behike.",
   "nelsonalfonso": "Nelson Alfonso blends Selected Tobacco's Atabey and Byron ultra-luxury lines at Tabacos de Costa Rica, known for multi-year aging.",
   "atabey": "Atabey is Selected Tobacco's ultra-luxury, long-aged Costa Rican marca (Nelson Alfonso), rolled at Tabacos de Costa Rica. Highly allocated lines such as Ritos and Delirios define the top of the Costa Rica luxury tier.",
-  "byron": "Byron is Selected Tobacco's classical ultra-premium line (Poetry, Epicure), blended by Nelson Alfonso and made at Tabacos de Costa Rica alongside Atabey.",
+  "byron": "Byron is Selected Tobacco's revived 1850 brand (Siglo XIX, XX, XXI), launched in 2012 by Nelson Alfonso alongside Atabey and made in Costa Rica.",
   "agingroom": "Aging Room is Rafael Nodal's boutique marca (Boutique Blends), launched in 2011: small-batch, highly rated lines such as Quattro Nicaragua and Small Batch. Dominican production at Tabacalera Palma with Jochy Blanco; Nicaraguan Quattro Nicaragua and La Boheme at A.J. Fernandez / San Lotano. Altadis distributes; Nodal still owns the brand and is Altadis VP of Product Capability.",
   "rafaelnodal": "Rafael Nodal is the Cuban-born founder of Aging Room and Boutique Blends, and vice president of product capability at Altadis U.S.A. / Tabacalera USA. He still owns Aging Room while blending Altadis heritage projects with partners such as A.J. Fernandez.",
   "boutiqueblends": "Boutique Blends is Rafael Nodal's Miami company (formerly Habana Cuba Cigar Co.), owner of Aging Room. Partners have included Alina Nodal, Hank Bischoff, and Jochy Blanco. Altadis distributes; it is not an Altadis-owned house.",
@@ -257,7 +257,7 @@ var drawerDescriptions = {
   "lapalma": "Tabacalera Palma in Tamboril, Dominican Republic, is Jochy Blanco's family factory: house La Galera work plus contract rolling for Aging Room and other boutiques.",
   "jochyblanco": "José \"Jochy\" Blanco, a fourth-generation grower, is CEO of Tabacalera Palma in Tamboril, maker of La Galera and partner in Boutique Blends' Aging Room.",
   "hupmannnc": "H. Upmann (Non-Cuban) is Altadis U.S.A.'s U.S. marca, separate from Habanos Cuban H. Upmann. Core Dominican production historically at Tabacalera de García (La Romana); Nicaraguan prestige lines (Nicaragua by AJ Fernandez, Heritage, anniversary projects) at San Lotano. Vintage Cameroon, The Banker, 1844 Reserve, and Legacy are the familiar shop names.",
-  "tabdegarcia": "Tabacalera de García in La Romana is the large Dominican factory long associated with Altadis U.S.A. volume for non-Cuban Montecristo, Romeo y Julieta, and H. Upmann. Recent ownership and U.S. sanctions issues have pushed some Altadis SKUs toward other partners, including A.J. Fernandez.",
+  "tabdegarcia": "Tabacalera de García in La Romana (1969) is the Tabacalera group's handmade-only factory for non-Cuban Montecristo, Romeo y Julieta and H. Upmann. U.S. shipments halted by 2025 sanctions resumed in May 2026.",
   "romacraft": "RoMa Craft Tobac is Skip Martin and Michael Rosales's boutique house (the name is Ro-sales + Ma-rtin), launched in 2012. Nearly everything is rolled at their Estelí factory Nica Sueño: CroMagnon, Intemperance, Neanderthal, Aquitaine, Baka, Maestranza, and CRAFT Maquette limiteds.",
   "skipmartin": "Skip Martin is co-founder of RoMa Craft Tobac and, with Esteban Disla, the NicaSueño factory in Estelí. Former Galveston retailer whose shop Hurricane Ike destroyed in 2008.",
   "michaelrosales": "Michael Rosales (the \"Ro\" in RoMa) co-founded RoMa Craft Tobac with Skip Martin in 2012, merging his Costa Rican Imports (Adrians Costa Rica) with Martin's Galveston Bay Tobacco.",
