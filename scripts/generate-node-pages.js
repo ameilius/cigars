@@ -308,20 +308,31 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
     return '<p class="text-sm text-[#6B8A84] italic">No direct connections listed.</p>';
   }
 
-  let html = '<div class="space-y-2">';
+  const byId = new Map(allNodes.map(n => [n.id, n]));
+  const kindOf = (n) => {
+    if (!n) return 'other';
+    if (n.type === 'factory') return 'factory';
+    if (n.group === 'corporate') return 'corporate';
+    if (n.group === 'family') return 'family';
+    return 'other';
+  };
+  const kindLabel = { factory: 'Factory', corporate: 'Corporate group', family: 'Family / independent', other: 'Node' };
+
+  let html = '<ul class="connection-grid" role="list">';
   connections.forEach(c => {
     const dir = c.direction === 'out' ? '→' : '←';
     const url = getNodeUrl(c.otherId);
+    const kind = kindOf(byId.get(c.otherId));
     html += `
-      <div class="connection-item flex flex-col gap-1 px-2.5 py-2 rounded-xl bg-white border border-[#CFE0DC] text-xs">
-        <div class="flex items-center gap-2 flex-wrap">
-          <span class="connection-type" data-rel="${escapeHtml(c.rel)}">${escapeHtml(c.rel)}</span>
-          <span class="text-[#CEA661]">${dir}</span>
-        </div>
-        <a href="${url}" class="font-medium text-[#1A3330] hover:text-[#14817A] leading-snug">${escapeHtml(c.otherName)}</a>
-      </div>`;
+      <li class="connection-item connection-card connection-card--${kind}">
+        <span class="connection-card__top">
+          <span class="connection-type" data-rel="${escapeHtml(c.rel)}" title="${escapeHtml(c.rel)}">${escapeHtml(c.rel)}</span>
+          <span class="connection-card__dir" aria-hidden="true">${dir}</span>
+        </span>
+        <a href="${url}" class="connection-card__link"><span class="connection-card__dot" title="${kindLabel[kind]}" aria-hidden="true"></span>${escapeHtml(c.otherName)}</a>
+      </li>`;
   });
-  html += '</div>';
+  html += '</ul>';
   return html;
 }
 
