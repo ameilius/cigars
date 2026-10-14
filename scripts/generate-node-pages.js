@@ -472,7 +472,7 @@ const RELATED_BRAND_CAP = 8;
 
 function relatedBrandLinks(nodes) {
   return nodes.map(n => (
-    `<a href="${getNodeUrl(n.id)}" class="inline-flex items-center px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#CFE0DC] text-[#1A3330] hover:border-[#CEA661] hover:text-[#14817A] transition-colors">${escapeHtml(n.name)}</a>`
+    `<a href="${getNodeUrl(n.id)}" class="related-chip related-chip--${nodeKind(n)} inline-flex items-center px-3 py-1.5 text-sm rounded-2xl bg-white border border-[#CFE0DC] text-[#1A3330] hover:border-[#CEA661] hover:text-[#14817A] transition-colors"><span class="related-chip__dot" aria-hidden="true"></span>${escapeHtml(n.name)}</a>`
   )).join('\n');
 }
 
@@ -480,7 +480,7 @@ function relatedBrandSection(id, title, nodes) {
   if (!nodes.length) return '';
   return `<div class="mt-8">
     <h2 id="${id}" class="node-section-label">${title}</h2>
-    <div class="flex flex-wrap gap-2">
+    <div class="related-chip-row flex flex-wrap gap-2">
       ${relatedBrandLinks(nodes)}
     </div>
   </div>`;
@@ -566,9 +566,9 @@ function buildProductLinesHtml(node) {
   if (!node.productLines || !node.productLines.length) return '';
   let html = '<section class="mt-8" aria-labelledby="product-lines-heading">';
   html += '<h2 id="product-lines-heading" class="node-section-label">Notable Cigars &amp; Product Lines</h2>';
-  html += '<div class="flex flex-wrap gap-1.5">';
+  html += '<div class="product-chip-row flex flex-wrap gap-1.5">';
   node.productLines.forEach(line => {
-    html += `<span class="inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#CFE0DC] text-[#14817A]">${escapeHtml(line)}</span>`;
+    html += `<span class="product-chip inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#CFE0DC] text-[#14817A]">${escapeHtml(line)}</span>`;
   });
   html += '</div></section>';
   return html;
@@ -576,7 +576,7 @@ function buildProductLinesHtml(node) {
 
 function buildFindCigarsHtml(buildFamousSmokeBuyHtml) {
   if (!buildFamousSmokeBuyHtml) return '';
-  return `<section class="mt-8" aria-labelledby="find-cigars-heading">
+  return `<section class="find-card mt-8" aria-labelledby="find-cigars-heading">
     <h2 id="find-cigars-heading" class="node-section-label">Find These Cigars</h2>
     <div class="node-affiliate-block space-y-2 max-w-sm">
       ${buildFamousSmokeBuyHtml()}
