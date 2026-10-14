@@ -21,7 +21,7 @@ var baseGraphData = {
                 { id: "sixzeroone", name: "601", type: "brand", group: "family", country: "nicaragua", productLines: ["Red Label Habano", "Blue Maduro", "Green Oscuro", "La Bomba", "Warhead"], logo: "logos/601.png" },
                 { id: "murcielago", name: "Murciélago", type: "brand", group: "family", country: "nicaragua", productLines: ["Murciélago"], logo: "logos/murcielago.png" },
                 { id: "ajfernandez", name: "A.J. Fernandez", type: "person", group: "family", country: "nicaragua", productLines: ["San Lotano", "New World", "Enclave", "Last Call", "Bellas Artes", "Días de Gloria", "Ramon Allones"], photo: "logos/ajfernandez.jpg" },
-                { id: "sanlotano", name: "San Lotano Factory (Estelí)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "sanlotano", name: "San Lotano Factory (Ocotal)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "padron", name: "Padrón", type: "brand", group: "family", country: "nicaragua", productLines: ["Padrón Series", "1964 Anniversary Series", "1926 Serie", "Family Reserve", "Dámaso"], logo: "logos/padron.png" },
                 { id: "joseopadron", name: "José Orlando Padrón", type: "person", group: "family", country: "usa", photo: "logos/joseorlandopadron.png" },
                 { id: "jorgepadron", name: "Jorge Padrón", type: "person", group: "family", country: "usa", photo: "logos/jorgepadron.png" },
