@@ -188,8 +188,8 @@ var drawerDescriptions = {
   "pdr": "PDR Cigars (Abe Flores) is a Dominican boutique factory/brand house, including contract work for La Palina and other craft projects.",
 
   // Rojas Cigars (Noel Rojas)
-  "noelrojas": "Noel Rojas is a Cuban-American master blender and founder of Rojas Cigars, known for boutique Nicaraguan blends and small-ring craft. Runs the Rojas/New Order Estelí factory cluster and partners with brands like Stolen Throne; also works with A.J. Fernandez capacity.",
-  "rojas": "Rojas Cigars is Noel Rojas's boutique house (Guayacan, Havana Nights, and more), centered on Estelí production via the Rojas/New Order factory cluster and related Nicaraguan partners.",
+  "noelrojas": "Noel Rojas is a Cuban-American cigar maker and founder of Rojas Cigars, the self-styled King of Small Gauge. He runs the Rojas Cigar Factory in Estelí, which also makes Stolen Throne.",
+  "rojas": "Rojas Cigars is Noel Rojas's boutique brand (Guayacan, KSG, Street Tacos, Unfinished Business), made at his Rojas Cigar Factory in Estelí with tobacco from his Condega and Jalapa farms.",
   "guayacan": "Guayacan is Noel Rojas's breakthrough line: approachable Nicaraguan boutique cigars that built his reputation before the wider Rojas portfolio and factory partnerships.",
   "neworder": "New Order of the Ages (NOA): the Estelí factory Noel Rojas and Brandon Hayes opened in 2016; made Guayacan, Rojas and boutique brands such as Jas Sum Kral before closing by mid-2018.",
 
