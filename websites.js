@@ -108,6 +108,7 @@ var nodeWebsites = {
   rickrodriguez: { website: "https://www.westtampatobacco.com", websiteLabel: "West Tampa Tobacco Co." },
   rockypatel: { website: "https://www.rockypatel.com" },
   room101: { website: "https://room101cigars.com" },
+  ajfesteli: { website: "https://ajfcigars.com", websiteLabel: "A.J. Fernandez" },
   sanlotano: { website: "https://ajfcigars.com", websiteLabel: "A.J. Fernandez" },
   sancristobal: { website: "https://www.sancristobalcigar.com" },
   sixzeroone: { website: "https://espinosacigars.com", websiteLabel: "Espinosa Premium Cigars" },

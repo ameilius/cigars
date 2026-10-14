@@ -6,9 +6,9 @@ var drawerDescriptions = {
   // === Core / Early brands & people ===
   "myfather": "My Father Cigars is the García family company: Pepín García and son Jaime García (who created the My Father blend). House lines include The Judge, Le Bijou, and Flor de las Antillas. Estelí contract home for Tatuaje, Crowned Heads, and others.",
   "jaimegarcia": "Jaime García is Pepín's son and the blender behind the My Father namesake blend (2008) and The Judge (2024 Cigar of the Year). He runs the Estelí factory. Family also rolls Tatuaje, L'Atelier, and Crowned Heads.",
-  "pepin": "Pepín García is the master blender behind My Father Cigars, Cuban-trained and formerly of Miami's El Rey de los Habanos, now the patriarch of a major Estelí family factory and brand group.",
+  "pepin": "Pepín García is the Cuban-born blender behind My Father Cigars. He opened El Rey de los Habanos in Little Havana in 2003 (first client: Tatuaje), then the Estelí factory in 2009.",
   "tatuaje": "Tatuaje is Pete Johnson's 2003 boutique brand. The García family rolls it: first at El Rey de los Habanos in Miami, then at My Father in Estelí. Brown Label, Black Label, Havana VI, Fausto, Cojonú, Reserva. L'Atelier is his later sister marca, also García-made.",
-  "espinosa": "Espinosa Premium Cigars (Erik Espinosa) runs La Zona in Estelí and the 601, Murciélago, Laranja, and Knuckle Sandwich portfolio. Brand owner plus contract manufacturer for other boutiques.",
+  "espinosa": "Espinosa Premium Cigars (Erik Espinosa) began in 2012 after the EO Brands split, and runs La Zona in Estelí. Murciélago and Knuckle Sandwich are made by A.J. Fernández.",
   "erikespinosa": "Erik Espinosa founded Espinosa Premium Cigars (2012) and runs La Zona in Estelí, after co-founding EO Brands with Eddie Ortega in 2003.",
   "guyfieri": "Guy Fieri's Knuckle Sandwich (2022) is blended by Espinosa Premium Cigars and rolled at A.J. Fernández's San Lotano factory in Ocotal, Nicaragua.",
   "knucklesandwich": "Knuckle Sandwich is the Guy Fieri + Espinosa collaboration, rolled in the La Zona / Espinosa ecosystem (Habano, Maduro, and related lines).",
@@ -55,7 +55,8 @@ var drawerDescriptions = {
   "sixzeroone": "601 is Espinosa's flagship line from the EO Brands era: bold full Nicaraguan profiles (Red, Blue, La Bomba, and more), now centered at La Zona with historical A.J. Fernandez ties.",
   "murcielago": "Murciélago is Espinosa's bold dark line from the EO Brands era, continued under Espinosa Premium Cigars / La Zona as a full-power portfolio staple.",
 
-  "ajfernandez": "A.J. Fernandez (Abdel J. Fernandez) left Cuba in 2003 and built Tabacalera Fernandez / San Lotano in Estelí. House brands include San Lotano, New World, Enclave, Last Call, and Bellas Artes. He also blends for Foundation, Altadis (Montecristo Nicaragua, Trinidad Espiritu), and Aging Room.",
+  "ajfernandez": "A.J. Fernández is a Cuban-born blender who started in 2004 with six rollers in Estelí. His San Lotano brand came in 2010. He runs Tabacalera A.J. Fernández in Estelí and San Lotano in Ocotal.",
+  "ajfesteli": "Tabacalera A.J. Fernández is A.J. Fernández's main factory in Estelí (consolidated 2013), halfwheel's 2018 Factory of the Year. It makes Trinidad Espiritu, Southern Draw, Foundation's Tabernacle and more.",
   "sanlotano": "San Lotano is A.J. Fernández's second factory, in Ocotal north of Estelí (opened 2017). It makes Man O' War, Ave Maria, 601, Murciélago and Knuckle Sandwich.",
 
   // === Padrón family factories & lines ===
@@ -81,7 +82,7 @@ var drawerDescriptions = {
   "brickhouse": "Brick House is a J.C. Newman brand from 1937, revived in 2009 as a Nicaraguan cigar. Rolled at the family's PENSA factory in Estelí. Diamond Crown is the separate Dominican Fuente partnership.",
   "undercrown": "Undercrown is Drew Estate's traditional brand, released in 2011 from a blend the Liga Privada rollers made for themselves at La Gran Fábrica. Maduro uses Mexican San Andrés. Shade (2015) and Sun Grown (2017) came later.",
   "manowar": "Man O' War is a 2009 Cigars International catalog brand blended by A.J. Fernández (Ruination 2009, Virtue 2010). Made at his San Lotano factory in Ocotal since 2017.",
-  "seriev": "Serie V is Oliva's flagship, introduced in 2006 and rolled at Tabolisa in Estelí. Melanio, added in 2012, uses an Ecuador Sumatra wrapper. The Melanio Figurado was Cigar of the Year in 2014.",
+  "seriev": "Serie V is Oliva's flagship (2007), rolled at Tabolisa in Estelí. Melanio, added in 2012, uses an Ecuador Sumatra wrapper; the Melanio Figurado was Cigar of the Year in 2014.",
   "drewestate": "Drew Estate (Jonathan Drew) runs La Gran Fábrica in Estelí: Acid plus Liga Privada, Undercrown, and Herrera Estelí; owned by Swisher since 2014.",
   "jonathandrew": "Jonathan Drew (Sann) founded Drew Estate and La Gran Fábrica: Acid innovation plus Liga Privada; Swisher-owned since 2014.",
   "swisher": "Swisher International is the mass-market parent of Drew Estate (acquired 2014), funding La Gran Fábrica scale while Drew Estate keeps a premium creative identity.",
@@ -99,7 +100,7 @@ var drawerDescriptions = {
   "tabsa": "TABSA is Aganorsa's flagship Estelí factory, a top contract floor for Illusione, Viaje, Warped (historical), Foundation's early El Güegüense, early HVC, and other boutiques seeking grower-linked Nicaraguan production.",
 
   // === Foundation ===
-  "foundation": "Foundation is Nick Melillo's Connecticut company, started in 2015 after Drew Estate. El Güegüense debuted at TABSA and was retired in 2024. Tabernacle, Charter Oak, Olmec, and Highclere Castle roll at A.J. Fernandez. The current Wise Man blends roll at My Father.",
+  "foundation": "Foundation is Nick Melillo's Connecticut company, started in 2015 after Drew Estate. El Güegüense debuted at TABSA and was retired in 2024. Tabernacle and Olmec are made at A.J. Fernández's Estelí factory; The Wise Man at My Father.",
   "nickmelillo": "Nick Melillo founded Foundation in 2015 after years at Drew Estate. He owns no factory. The Wise Man is made at My Father, Aksum by A.J. Fernández; El Güegüense was Aganorsa's.",
 
   // === Warped / Kyle Gellis ===
@@ -128,7 +129,7 @@ var drawerDescriptions = {
   "sobremesa": "Sobremesa is Dunbarton/Steve Saka's flagship line (plus Brûlée extensions), widely associated with Joya de Nicaragua production in Estelí.",
 
   // === Illusione ===
-  "illusione": "Illusione (Dion Giolito) is a cult \"quiet boutique\" for Original Documents, Singularé, 88, and Epernay. Long-term Aganorsa/TABSA production with some San Lotano work.",
+  "illusione": "Illusione (Dion Giolito) is a quiet boutique: Original Documents, Singularé, Epernay. Long-term production at TABSA (Aganorsa); some lines at Raíces Cubanas and San Lotano.",
   "diongiolito": "Dion Giolito founded Illusione, the quiet Aganorsa/TABSA boutique behind Original Documents, Singularé, 88, and Epernay.",
 
   // === Viaje ===
@@ -136,7 +137,7 @@ var drawerDescriptions = {
   "andrefarkas": "Andre Farkas founded Viaje Cigars around 2007–2008: small-batch releases such as Zombie, made at contract factories from Joya de Nicaragua to Raíces Cubanas, TABSA and PDR.",
 
   // === HVC ===
-  "hvc": "HVC Cigars (Reinier Lorenzo) built from contract Estelí production to its own HVC factory. Known for Hot Cake, Black Friday, Edición Limitada, and bold value Nicaraguan blends.",
+  "hvc": "HVC Cigars (Reinier Lorenzo) had Hot Cake, Black Friday and First Selection made at Aganorsa factories, then opened its own Estelí factory in 2022 with Selección No. 1.",
   "reinierlorenzo": "Reinier Lorenzo founded HVC and moved from TABSA-era contract work to owning the HVC Factory in Estelí (Hot Cake, Black Friday).",
   "hvcfactory": "HVC Factory in Estelí is Reinier Lorenzo's owned production home for Hot Cake, Black Friday, and related HVC lines.",
 
@@ -151,7 +152,7 @@ var drawerDescriptions = {
   "zino": "Zino is the approachable Oettinger Davidoff brand named for Zino Davidoff, spanning Platinum, Nicaragua, and Honduras lines with stronger Central American identity than flagship Davidoff. Group-owned; select production uses Honduran network capacity.",
 
   // West Tampa Tobacco Co.
-  "westtampa": "West Tampa Tobacco Co. is Rick Rodriguez's post-CAO boutique (with family), bold Nicaraguan-forward lines, typically tied to Garmendia/Estelí boutique production, independent of General Cigar.",
+  "westtampa": "West Tampa Tobacco Co. (2022) is Rick Rodriguez and Gus Martinez's company after Rodriguez's years at General Cigar (CAO). White and Black are made at Garmendia; some later releases at NACSA.",
   "rickrodriguez": "Rick Rodriguez joined General Cigar in 2000, became CAO's blender and ambassador in 2010, and left in 2022 to co-found West Tampa Tobacco Co. with his daughter Sara and Gus Martinez. Grandparents were Cuban rollers in West Tampa. West Tampa cigars are made at Garmendia in Estelí.",
   "garmendia": "Garmendia in Estelí is a boutique factory closely associated with West Tampa / Rick Rodriguez Nicaraguan production.",
 
@@ -161,7 +162,7 @@ var drawerDescriptions = {
   "tabacaleraaragon": "Tabacalera Aragon in Estelí has been the sole producer of Bella Dama Cigars since 2024.",
 
   // New brands added
-  "laaromadecuba": "La Aroma de Cuba is the Ashton/Levin Nicaraguan sister brand, rolled by the García family at My Father in Estelí (Edición Especial, Mi Amor, Noblesse, and more). Fuller Nica power vs Dominican Fuente-made Ashton classics.",
+  "laaromadecuba": "La Aroma de Cuba is Ashton's revived brand, made by the García family: Edición Especial (2008), then the reblended original (2009), Mi Amor and Pasión, now at My Father in Estelí.",
   "sancristobal": "San Cristóbal (Ashton portfolio) is a Levin-family Nicaraguan brand handmade at My Father, sibling to La Aroma de Cuba: Ashton ownership, García construction.",
   "ashton": "Ashton is the Levin family brand known for refined Dominican cigars (Classic, Cabinet, VSG, ESG, Symmetry) handmade at Tabacalera A. Fuente. Sister brands La Aroma de Cuba and San Cristóbal are Nicaraguan My Father products under the same ownership umbrella.",
   "lure": "Lure Cigars (Lou Cross III) is a fishing-themed boutique, first made at Tabacalera Pages and since fall 2025 at La Tabacaria in Estelí.",
@@ -169,7 +170,7 @@ var drawerDescriptions = {
   "lagloriacubana": "La Gloria Cubana (non-Cuban) is a General Cigar/STG brand born in Miami with Ernesto Perez-Carrillo, sold to General in 1999. Famous for full-flavored classics and Serie R large-ring cigars; Ernesto later left to found Casa Carrillo, while LGC remains a corporate full-body staple.",
   "domain": "Domain Cigars is a vertically integrated boutique brand co-founded by Esteban Disla and Daniel Lance. Their partnership began when Disla chose Lance by phone. Tobacco comes from Valle Regadío, and cigars are rolled at Familia Disla in Estelí.",
   "estebandisla": "Esteban Disla is a veteran Nicaraguan master blender and Domain Cigars co-founder. He spent 10+ years at Nica Sueño (RoMa Craft), blended for dozens of brands at STG Estelí, and chose Daniel Lance as his vertical partner.",
-  "daniellance": "Daniel Lance is Domain Cigars co-founder and Lujo Concepts (BTX cutter) co-founder. A former U.S. tobacconist, he was chosen by Esteban Disla (their partnership started with a phone call) to build Domain from Valle Regadío farms to Estelí.",
+  "daniellance": "Daniel Lance co-founded Domain Cigars (2024) and Tabacalera Familia Disla with Esteban Disla. A 17-year retail veteran (Outlaw, Fidel's), he also co-founded Lujo Concepts (BTX cutter).",
   "familiadisla": "Tabacalera Familia Disla is Domain Cigars' Estelí factory for Disla-family tobacco and Neutron/Negentropy/Entropy lines.",
   "elseptimo": "El Septimo is a Costa Rican ultra-premium brand founded in 2005 by Gilles Botquin and owned since 2019 by Zaya Younan. Collection-driven lines (Sacred Arts, Emperor, Zaya, Culinary Art, Gilgamesh).",
   "zayayounan": "Zaya Younan bought El Septimo in 2019 and pushed the Costa Rican luxury marca into the U.S. Separate from Selected Tobacco's Atabey/Byron house.",
@@ -224,17 +225,17 @@ var drawerDescriptions = {
   "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a veteran-owned boutique made by A.J. Fernandez in Estelí since 2014.",
   "kristoff": "Kristoff was founded in 2004 by Glen Case of suburban Chicago, named for his son, and has always been made at the Charles Fairmorn factory (Tabacalera Von Eicken) in Santiago, DR.",
-  "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line, blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
+  "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan Trinidad line, by Rafael Nodal and A.J. Fernández, made at Tabacalera A.J. Fernández in Estelí. Series No. 3 Belicoso: No. 5 of 2025.",
   "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
   "nub": "NUB is Oliva's short, fat vitola sub-brand created by Sam Leccia in 2008 and rolled at Tabolisa. ~4-inch large-ring formats (460/464/358) with Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB lines.",
   "altadis": "Altadis U.S.A. (Tabacalera USA / Imperial Brands) holds U.S. rights to non-Cuban Montecristo, Romeo y Julieta, H. Upmann, Trinidad, and related marques. The counterpart to STG's General/Forged tree, it pairs heritage names with Nicaraguan partners like A.J. Fernandez and Plasencia, and distributes Rafael Nodal's independently owned Aging Room.",
-  "montecristonc": "Montecristo (Non-Cuban) is owned by Altadis U.S.A. (Imperial Brands), not STG. Separate from Cuban Montecristo, it spans Dominican core lines plus Nicaraguan prestige projects with Plasencia and A.J. Fernandez at San Lotano (including 1935 Anniversary).",
+  "montecristonc": "Montecristo (Non-Cuban) is owned by Altadis U.S.A. (Imperial Brands), not STG. Dominican core lines plus Nicaraguan projects with A.J. Fernández: the Nicaragua Series in Estelí and 1935 Anniversary Nicaragua No. 2 at San Lotano.",
   "ryjnc": "Romeo y Julieta (Non-Cuban) is an Altadis U.S.A. (Imperial) brand, separate from Cuban RyJ and not STG. Everyday U.S. lines like 1875 and Reserva Real sit beside Nicaraguan projects with Plasencia and A.J. Fernandez (Romeo San Andrés).",
   "fratello": "Fratello (Omar de Frias, ex-NASA) is a 2013 boutique brand. Classico, Navetta, Bianco and Arlequín are made at Joya de Nicaragua; Oro and The Texan at La Aurora.",
   "padilla": "Padilla is Ernesto Padilla's boutique brand with multi-factory production (TABSA, Plasencia Honduras, STG Estelí) and Miami-Cuban brand identity.",
   "ozgener": "Ozgener Family Cigars (Tim Ozgener, of the CAO family) makes Bosphorus and Aramas at E.P. Carrillo's La Alianza in the DR.",
-  "jassumkral": "Jas Sum Kral (Riste Ristevski) is a full-Nicaraguan boutique (Red Knight, La Bomba, Fenix, Kral). Early NOA/Rojas factory ties; later production associated with My Father on this map.",
-  "stolenthrone": "Stolen Throne (Lee Marsh & JR Cannon, ~2018) is a Virginia boutique with regal branding and a simple catalog, handmade with Noel Rojas at the Rojas/New Order factory in Estelí (Castle 919 and related lines).",
+  "jassumkral": "Jas Sum Kral (\"I Am King\" in Macedonian) is Riste Ristevski's brand, founded in 2015: Red Knight, Zlatno Sonce, Crna Nok. Made at NOA (2015–17), then Tabacalera Aragon until October 2024.",
+  "stolenthrone": "Stolen Throne (Lee Marsh, c. 2019) is a boutique made with Noel Rojas at the Rojas Cigar Factory in Estelí. Flagship: Crook of the Crown; also Castle 919 and Yorktown Fleet.",
   "deadwood": "Deadwood is Drew Estate's dessert-leaning boutique line (Fat Bottom Betty, Sweet Jane).",
   "leafbyoscar": "Leaf by Oscar is Island Jim Robinson's leaf-wrapped line, made by Oscar Valladares at his factory in Danlí, Honduras.",
   "oscarvalladares": "Oscar Valladares is a Honduran boutique house (Super Fly, 2012, The Oscar) with its factory in Danlí, also making Leaf by Oscar and Island Jim.",
@@ -250,13 +251,13 @@ var drawerDescriptions = {
   "nelsonalfonso": "Nelson Alfonso blends Selected Tobacco's Atabey and Byron ultra-luxury lines at Tabacos de Costa Rica, known for multi-year aging.",
   "atabey": "Atabey is Selected Tobacco's ultra-luxury, long-aged Costa Rican marca (Nelson Alfonso), rolled at Tabacos de Costa Rica. Highly allocated lines such as Ritos and Delirios define the top of the Costa Rica luxury tier.",
   "byron": "Byron is Selected Tobacco's revived 1850 brand (Siglo XIX, XX, XXI), launched in 2012 by Nelson Alfonso alongside Atabey and made in Costa Rica.",
-  "agingroom": "Aging Room is Rafael Nodal's boutique marca (Boutique Blends), launched in 2011: small-batch, highly rated lines such as Quattro Nicaragua and Small Batch. Dominican production at Tabacalera Palma with Jochy Blanco; Nicaraguan Quattro Nicaragua and La Boheme at A.J. Fernandez / San Lotano. Altadis distributes; Nodal still owns the brand and is Altadis VP of Product Capability.",
+  "agingroom": "Aging Room is Rafael Nodal's boutique marca (Boutique Blends), launched in 2011. Dominican production at Tabacalera Palma with Jochy Blanco; Quattro Nicaragua and La Boheme at Tabacalera A.J. Fernández in Estelí. Altadis distributes.",
   "rafaelnodal": "Rafael Nodal is the Cuban-born founder of Aging Room and Boutique Blends, and vice president of product capability at Altadis U.S.A. / Tabacalera USA. He still owns Aging Room while blending Altadis heritage projects with partners such as A.J. Fernandez.",
   "boutiqueblends": "Boutique Blends is Rafael Nodal's Miami company (formerly Habana Cuba Cigar Co.), owner of Aging Room. Partners have included Alina Nodal, Hank Bischoff, and Jochy Blanco. Altadis distributes; it is not an Altadis-owned house.",
   "voneicken": "Tabacalera Von Eicken in Santiago, DR (formerly the Charles Fairmorn factory) was founded in 2001 by Germany's Joh. Wilh. von Eicken. It makes Kristoff, Epic and Bronx Tale.",
   "lapalma": "Tabacalera Palma in Tamboril, Dominican Republic, is Jochy Blanco's family factory: house La Galera work plus contract rolling for Aging Room and other boutiques.",
   "jochyblanco": "José \"Jochy\" Blanco, a fourth-generation grower, is CEO of Tabacalera Palma in Tamboril, maker of La Galera and partner in Boutique Blends' Aging Room.",
-  "hupmannnc": "H. Upmann (Non-Cuban) is Altadis U.S.A.'s U.S. marca, separate from Habanos Cuban H. Upmann. Core Dominican production historically at Tabacalera de García (La Romana); Nicaraguan prestige lines (Nicaragua by AJ Fernandez, Heritage, anniversary projects) at San Lotano. Vintage Cameroon, The Banker, 1844 Reserve, and Legacy are the familiar shop names.",
+  "hupmannnc": "H. Upmann (Non-Cuban) is Altadis U.S.A.'s marca, separate from Cuban H. Upmann. Dominican production at Tabacalera de García; Nicaraguan lines (by AJ Fernandez, 2017; Heritage, 2022) at Tabacalera A.J. Fernández in Estelí.",
   "tabdegarcia": "Tabacalera de García in La Romana (1969) is the Tabacalera group's handmade-only factory for non-Cuban Montecristo, Romeo y Julieta and H. Upmann. U.S. shipments halted by 2025 sanctions resumed in May 2026.",
   "romacraft": "RoMa Craft Tobac is Skip Martin and Michael Rosales's boutique house (the name is Ro-sales + Ma-rtin), launched in 2012. Nearly everything is rolled at their Estelí factory Nica Sueño: CroMagnon, Intemperance, Neanderthal, Aquitaine, Baka, Maestranza, and CRAFT Maquette limiteds.",
   "skipmartin": "Skip Martin is co-founder of RoMa Craft Tobac and, with Esteban Disla, the NicaSueño factory in Estelí. Former Galveston retailer whose shop Hurricane Ike destroyed in 2008.",
