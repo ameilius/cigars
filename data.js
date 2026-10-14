@@ -146,7 +146,7 @@ var baseGraphData = {
                 { id: "lfdfactory", name: "Tabacalera La Flor S.A. (Tamboril)", type: "factory", group: "family", country: "dominican" },
                 { id: "caoamerican", name: "CAO American Caribbean", type: "factory", group: "corporate", country: "nicaragua" },
                 { id: "costaricatabacos", name: "Tabacos de Costa Rica", type: "factory", group: "family", country: "costa rica", logo: "logos/tabacosdecostarica.png" },
-                { id: "ovejanegra", name: "Oveja Negra (Lanuza)", type: "factory", group: "family", country: "nicaragua" },
+                { id: "ovejanegra", name: "Fábrica Oveja Negra (Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "lanuzafactory", name: "Lanuza Cigar Factory", type: "factory", group: "family", country: "nicaragua" },
                 { id: "laflordecopan", name: "La Flor de Copán", type: "factory", group: "family", country: "honduras" },
                 { id: "gurkha", name: "Gurkha", type: "brand", group: "corporate", country: "dominican", productLines: ["Heritage", "Cellar Reserve", "Ghost", "Royal Challenge", "Grand Reserve", "Black Dragon"], logo: "logos/gurkha.png" },
