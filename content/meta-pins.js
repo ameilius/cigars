@@ -21,9 +21,9 @@ module.exports = {
   espinosahabano: "Espinosa Habano is a core house line from Espinosa Premium Cigars: Habano-wrapper Nicaraguan blending executed at La Zona. It sits among the everyday",
   plasenciaesteli: "Plasencia Estelí (\"The Cathedral\") is the Nicaraguan flagship factory of the Plasencia family, known for impressive architecture and premium-oriented",
   murcielago: "Murciélago is a bold line from Espinosa Premium Cigars, originally developed under the EO Brands partnership era and continued as a dark, full-flavored",
-  knucklesandwich: "Knuckle Sandwich is the popular collaboration between chef/TV personality Guy Fieri and Espinosa Premium Cigars, rolled in the Espinosa/La Zona ecosystem",
+  knucklesandwich: "Knuckle Sandwich is the cigar brand of chef/TV personality Guy Fieri, developed with Erik Espinosa and made by A.J. Fernandez at the San Lotano factory in Ocotal",
   crema: "Crema is an Espinosa portfolio line known for a creamier, more approachable profile than the company's full-power 601 and Murciélago offerings. It fills",
-  lazona: "La Zona is the flagship Estelí factory of Espinosa Premium Cigars, producing house lines ( 601, Murciélago, Laranja, Knuckle Sandwich, Habano, Crema)",
+  lazona: "La Zona is the Estelí factory Erik Espinosa opened in 2012, producing Espinosa house lines (Espinosa Habano, Crema, Laranja Reserva) while also rolling cigars",
   stgesteli: "STG Estelí is Scandinavian Tobacco Group 's major Nicaraguan rolling facility, producing portfolio brands and related routing for Macanudo, CAO-adjacent",
   caoamerican: "CAO American Caribbean is a Nicaraguan production node associated with CAO and negociant-style capacity inside the STG / General Cigar universe. It",
   nacsa: "NACSA (Nicaraguan American Cigars, S.A.) is a prominent Estelí factory closely associated in recent years with Warped Cigars and Kyle Gellis 's hands-on",
@@ -34,5 +34,5 @@ module.exports = {
   karenberger: "Karen Berger Cigars is a vertically integrated Nicaraguan brand led by Karen Berger, continuing the legacy of Don Kiki Cigars after her late husband",
   karenbergerperson: "Karen Berger owns and leads Karen Berger Cigars in Estelí, continuing the Don Kiki family operation. The company farms and rolls at Tabacalera Estelí",
   vegassantiago: "Vegas de Santiago is a heritage Costa Rican cigar name tied to the Puriscal tobacco region southwest of San José, an area enthusiasts can visit for",
-  lanuzafactory: "Lanuza Cigar Factory in Estelí is part of the Oveja Negra / Lanuza boutique production cluster. It supports Lanuza-related house work and select contracts",
+  lanuzafactory: "Lanuza Cigar Factory in Estelí is a small Nicaraguan workshop run by Raúl Antonio Lanuza Aguirre. It makes its own Lanuza lines and private-label blends for",
 };
