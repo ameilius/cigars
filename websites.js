@@ -140,7 +140,6 @@ var nodeWebsites = {
   plasenciahonduras: { website: "https://plasenciacigars.com", websiteLabel: "Plasencia Cigars" },
   stgesteli: { website: "https://www.st-group.com", websiteLabel: "Scandinavian Tobacco Group" },
   stgdanli: { website: "https://www.st-group.com", websiteLabel: "Scandinavian Tobacco Group" },
-  lacorona: { website: "https://ozgenerfamilycigars.com", websiteLabel: "Ozgener Family Cigars" },
   rojasfactory: { website: "https://www.rojascigars.com", websiteLabel: "Rojas Cigars" },
   raicescubanas: { website: "https://drewestate.com", websiteLabel: "Drew Estate" },
   laaurorafactory: { website: "https://www.laaurora.com.do", websiteLabel: "La Aurora" },

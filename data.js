@@ -134,7 +134,6 @@ var baseGraphData = {
                 { id: "stgdanli", name: "STG Danlí (HATSA)", type: "factory", group: "corporate", country: "honduras" },
                 { id: "tabacalerapages", name: "Tabacalera Pages de Nicaragua", type: "factory", group: "family", country: "nicaragua" },
                 { id: "latabacaria", name: "La Tabacaria (Estelí)", type: "factory", group: "family", country: "nicaragua" },
-                { id: "lacorona", name: "La Corona Factory", type: "factory", group: "family", country: "nicaragua" },
                 { id: "rojasfactory", name: "Tabacalera New Order (Rojas)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "raicescubanas", name: "Raíces Cubanas", type: "factory", group: "family", country: "nicaragua" },
                 { id: "laaurorafactory", name: "La Aurora Cigar Factory", type: "factory", group: "family", country: "dominican" },

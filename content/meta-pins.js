@@ -6,11 +6,11 @@
  */
 module.exports = {
   definition: "Definition Cigars is a boutique brand founded by Jamond Hackley, emphasizing craftsmanship and balanced blends. Production on this map is associated with",
-  ozgener: "Ozgener Family Cigars (Tim and Emre Ozgener) continues a multi-generational cigar family story after earlier industry chapters connected to CAO and",
-  southerndraw: "Southern Draw, founded by Robert and Sharon Holt, is a family boutique brand built on faith-forward culture, consistent Nicaraguan-forward blends, and",
+  ozgener: "Ozgener Family Cigars is Tim Ozgener's brand, launched in 2022 by the family that founded CAO. Bosphorus and Aramas are rolled at E.P. Carrillo's La Alianza in",
+  southerndraw: "Southern Draw, founded by Robert and Sharon Holt in 2014, is a veteran-owned family boutique brand made by A.J. Fernandez in Estelí, with botanical lines like",
   lure: "Lure Cigars is an independent boutique brand founded by Lou Cross III with a fishing/outdoors theme and Nicaraguan production. On this map it is",
   belladamacigars: "Bella Dama Cigars is an independent, woman-owned boutique brand focused on approachable premium blends and distinctive branding. Like many modern U.S",
-  tabacaleraaragon: "Tabacalera Aragon in Estelí is a boutique-oriented Nicaraguan factory used by independent brands seeking personalized capacity. Trade and graph",
+  tabacaleraaragon: "Tabacalera Aragon in Estelí is a Nicaraguan factory that has been the sole producer of Bella Dama Cigars since 2024. Founder Chantel Leavitt chose Aragon after",
   lucianopichardo: "Tabacalera Pichardo (Luciano Tabacos) is an Estelí factory associated with Luciano-related projects and boutique clients such as Definition Cigars. It is",
   ovejanegra: "Oveja Negra (Lanuza) is a boutique Estelí factory identity in the Lanuza production cluster, rolling house and contract projects that want craft oversight",
   lfdfactory: "Tabacalera La Flor S.A. in Tamboril is Litto Gomez's vertically integrated Dominican factory behind La Flor Dominicana. It rolls Chisel, Ligero, Double",
