@@ -358,7 +358,7 @@ function nodeKind(n) {
   return 'other';
 }
 
-function buildHeaderSummary(node, allNodes, allLinks) {
+function buildHeaderFacts(node, allNodes, allLinks) {
   const byId = new Map(allNodes.map(n => [n.id, n]));
   const pick = (outRe, inRe, filter) => {
     const ids = [];
@@ -378,6 +378,32 @@ function buildHeaderSummary(node, allNodes, allLinks) {
   const isFactory = o => o.type === 'factory';
   const notFactory = o => o.type !== 'factory';
   const isBrand = o => o.type === 'brand';
+  const facts = [];
+  const add = (label, ids, max) => { if (ids.length) facts.push({ label, ids, max }); };
+
+  if (node.type === 'factory') {
+    const brands = pick(/^manufactures|^contract production|^produces/i, new RegExp(MADE_AT_OUT.source + '|originated at', 'i'), o => o.type === 'brand' || o.type === 'company');
+    if (brands.length) facts.push({ label: `Makes ${brands.length} brand${brands.length === 1 ? '' : 's'}`, ids: brands, max: 3, makes: true });
+    add('Operated by', pick(/^operated by|^owned by/i, /^operates|^owns/i, notFactory), 2);
+  } else if (node.type === 'brand') {
+    add('Made at', pick(MADE_AT_OUT, MADE_AT_IN), 2);
+    add('Owned by', pick(OWNED_OUT, OWNED_IN, notFactory), 2);
+    if (facts.length < 2) add('Founded by', pick(FOUNDED_OUT, FOUNDED_IN, o => o.type === 'person'), 2);
+  } else if (node.type === 'person') {
+    add('Founded', pick(/^founded( \/|$)|^co-founded$|^created$/i, FOUNDED_OUT), 3);
+    add('Owns', pick(/^owns/i, /^owned by/i), 2);
+    if (facts.length < 2) add('Makes', pick(/^manufactures|^contract production|^produces/i, MADE_AT_OUT, o => o.type === 'brand' || o.type === 'company'), 3);
+  } else {
+    add('Made at', pick(MADE_AT_OUT, MADE_AT_IN), 3);
+    add('Owns', pick(/^owns|^operates|^sells/i, OWNED_OUT, isBrand), 3);
+    if (facts.length < 2) add('Operates', pick(/^operates(?! own factory)/i, /^operated by/i, isFactory), 2);
+    if (facts.length < 2) add('Founded by', pick(FOUNDED_OUT, FOUNDED_IN), 2);
+  }
+  return facts;
+}
+
+function buildHeaderSummary(node, allNodes, allLinks) {
+  const byId = new Map(allNodes.map(n => [n.id, n]));
   const link = id => {
     const o = byId.get(id);
     return `<a href="${getNodeUrl(id)}" class="node-summary__link node-summary__link--${nodeKind(o)}">${escapeHtml(o.name)}</a>`;
@@ -386,29 +412,105 @@ function buildHeaderSummary(node, allNodes, allLinks) {
     const shown = ids.slice(0, max).map(link).join(', ');
     return ids.length > max ? `${shown} <span class="node-summary__more">+${ids.length - max} more</span>` : shown;
   };
-  const parts = [];
-  const add = (label, ids, max) => { if (ids.length) parts.push(`<span class="node-summary__part"><span class="node-summary__label">${label}</span> ${list(ids, max)}</span>`); };
-
-  if (node.type === 'factory') {
-    const brands = pick(/^manufactures|^contract production|^produces/i, new RegExp(MADE_AT_OUT.source + '|originated at', 'i'), o => o.type === 'brand' || o.type === 'company');
-    if (brands.length) parts.push(`<span class="node-summary__part"><span class="node-summary__label">Makes ${brands.length} brand${brands.length === 1 ? '' : 's'}</span> ${list(brands, 3)}</span>`);
-    add('Operated by', pick(/^operated by|^owned by/i, /^operates|^owns/i, notFactory), 2);
-  } else if (node.type === 'brand') {
-    add('Made at', pick(MADE_AT_OUT, MADE_AT_IN), 2);
-    add('Owned by', pick(OWNED_OUT, OWNED_IN, notFactory), 2);
-    if (parts.length < 2) add('Founded by', pick(FOUNDED_OUT, FOUNDED_IN, o => o.type === 'person'), 2);
-  } else if (node.type === 'person') {
-    add('Founded', pick(/^founded( \/|$)|^co-founded$|^created$/i, FOUNDED_OUT), 3);
-    add('Owns', pick(/^owns/i, /^owned by/i), 2);
-    if (parts.length < 2) add('Makes', pick(/^manufactures|^contract production|^produces/i, MADE_AT_OUT, o => o.type === 'brand' || o.type === 'company'), 3);
-  } else {
-    add('Made at', pick(MADE_AT_OUT, MADE_AT_IN), 3);
-    add('Owns', pick(/^owns|^operates|^sells/i, OWNED_OUT, isBrand), 3);
-    if (parts.length < 2) add('Operates', pick(/^operates(?! own factory)/i, /^operated by/i, isFactory), 2);
-    if (parts.length < 2) add('Founded by', pick(FOUNDED_OUT, FOUNDED_IN), 2);
-  }
+  const parts = buildHeaderFacts(node, allNodes, allLinks).map(f =>
+    `<span class="node-summary__part"><span class="node-summary__label">${f.label}</span> ${list(f.ids, f.max)}</span>`);
   if (!parts.length) return '';
   return `<p class="node-summary">${parts.join('<span class="node-summary__sep" aria-hidden="true">·</span>')}</p>`;
+}
+
+// -----------------------------
+// Social previews: OG cards + short share descriptions
+// -----------------------------
+const OG_TYPE_LABEL = { brand: 'Brand', factory: 'Factory', person: 'Person', company: 'Company' };
+const OG_COUNTRY = { usa: 'United States', dominican: 'Dominican Republic', 'costa rica': 'Costa Rica' };
+const ABBREV = /(?:\b(?:Jr|Sr|Dr|Mr|Mrs|Ms|St|Co|Inc|Ltd|Corp|Bros|vs|No|Mt|Ft|approx|Av|Ave)|\b[A-Z]|\bS\.A|\bS\. de R\.L|\bU\.S|\bE\.P|\bA\.J|\bJ\.C|\bL\.P)\.$/;
+
+function ogCountry(c) {
+  if (!c) return '';
+  const k = String(c).toLowerCase();
+  return OG_COUNTRY[k] || k.replace(/\b\w/g, ch => ch.toUpperCase());
+}
+
+function splitSentences(text) {
+  const out = [];
+  let buf = '';
+  const parts = String(text).split(/(?<=[.!?]["\u201d']?)\s+(?=["\u201c]?[A-Z0-9])/);
+  for (const p of parts) {
+    buf = buf ? `${buf} ${p}` : p;
+    if (!ABBREV.test(buf)) { out.push(buf); buf = ''; }
+  }
+  if (buf) out.push(buf);
+  return out;
+}
+
+function factValue(f, byId, max = 2) {
+  const names = f.ids.slice(0, max).map(id => (byId.get(id) || {}).name || id);
+  const more = f.ids.length - names.length;
+  return names.join(', ') + (more > 0 ? ` +${more} more` : '');
+}
+
+function buildShareDescription(node, descHtml, facts, byId, max = 150) {
+  const first = firstParagraphPlain(descHtml).replace(/\s+/g, ' ').replace(/\s+(['\u2019]s\b|[,.;:!?)])/g, '$1').trim();
+  const sentences = splitSentences(first).filter(s => /[.!?]["\u201d']?$/.test(s));
+  let out = '';
+  for (const sentence of sentences) {
+    const next = out ? `${out} ${sentence}` : sentence;
+    if (next.length > max) break;
+    out = next;
+  }
+  if (out.length >= 60) return out;
+  // Fallback: one factual sentence from the header facts.
+  const name = node.name || node.id;
+  const type = formatType(node.type);
+  const article = /^[aeiou]/i.test(type) ? 'an' : 'a';
+  const f = facts[0];
+  let s = `${name} is ${article} ${type}`;
+  if (f) {
+    const v = factValue(f, byId, 2).replace(/ \+\d+ more$/, '').replace(/, (?![^(]*\))([^,]*)$/, ' and $1');
+    const lbl = f.label.toLowerCase();
+    // "made at" / "owned by" read as participles; bare verbs ("operates", "founded") need "that".
+    const rel = node.type === 'person' ? 'who' : 'that';
+    const verb = f.makes ? `${rel} makes` : (/ (by|at|in)$/.test(lbl) ? lbl : `${rel} ${lbl}`);
+    s += ` ${verb} ${v}`;
+  } else if (node.country) {
+    s += ` in ${formatCountry(node.country)}`;
+  }
+  s = s.replace(/\.*$/, '.');
+  if (s.length <= max) {
+    const tail = ` Explore ${node.type === 'person' ? 'their' : 'its'} connections on the Cigar Nexus map.`;
+    return (s + tail).length <= max ? s + tail : s;
+  }
+  return out || s;
+}
+
+let OG_CARDS = null;
+function buildAllOgCards(nodes, links) {
+  const byId = new Map(nodes.map(n => [n.id, n]));
+  const cards = nodes.map(node => ({
+    id: node.id,
+    name: node.name || node.id,
+    typeLabel: OG_TYPE_LABEL[node.type] || 'Profile',
+    country: ogCountry(node.country),
+    facts: buildHeaderFacts(node, nodes, links).slice(0, 2).map(f => ({
+      label: f.makes ? 'Makes' : f.label,
+      value: factValue(f, byId, f.makes ? 3 : 2)
+    }))
+  }));
+  const counts = nodes.reduce((a, n) => { a[n.type] = (a[n.type] || 0) + 1; return a; }, {});
+  const stats = `${nodes.length} brands, factories, people and companies`;
+  const tmp = path.join(require('os').tmpdir(), `og-cards-${process.pid}.json`);
+  try {
+    fs.writeFileSync(tmp, JSON.stringify({ cards, stats }));
+    const out = execSync(`${JSON.stringify(process.execPath)} ${JSON.stringify(path.join(__dirname, 'og-cards.js'))} ${JSON.stringify(tmp)}`, { maxBuffer: 16 * 1024 * 1024, stdio: ['ignore', 'pipe', 'inherit'] });
+    const parsed = JSON.parse(String(out));
+    console.log(`OG cards: ${Object.keys(parsed.cards).length} ready (${parsed.rendered} rendered)`);
+    return parsed.cards;
+  } catch (err) {
+    console.warn('OG cards unavailable, falling back to logo/social-preview images:', err.message);
+    return null;
+  } finally {
+    try { fs.unlinkSync(tmp); } catch (_) {}
+  }
 }
 
 function getNodeUrl(nodeId) {
@@ -1071,6 +1173,8 @@ if (fs.existsSync(outputBase)) {
 }
 
 function generateAllNodePages() {
+  OG_CARDS = buildAllOgCards(baseGraphData.nodes, allLinks);
+  const nodesById = new Map(baseGraphData.nodes.map(n => [n.id, n]));
   let overrideCount = 0;
   let autoCount = 0;
 
@@ -1086,9 +1190,23 @@ function generateAllNodePages() {
     const plainDesc = META_PINS[node.id] || buildMetaDescription(descHtml);
     const canonical = `${SITE}/node/${node.id}/`;
     const mapUrl = `/?node=${node.id}`;
-    const socialImage = resolveSocialImage(node);
-    const ogDimensions = resolveOgImageDimensions(socialImage);
-    const ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
+    const facts = buildHeaderFacts(node, baseGraphData.nodes, allLinks);
+    const shareDesc = buildShareDescription(node, descHtml, facts, nodesById);
+    const card = OG_CARDS && OG_CARDS[node.id];
+    let socialImage, ogDimensions, ogImageAlt, twitterCard;
+    if (card) {
+      socialImage = { url: `${SITE}${card.path}?v=${card.version}`, kind: 'card' };
+      ogDimensions = { width: 1200, height: 630 };
+      const typeWord = OG_TYPE_LABEL[node.type] || 'Profile';
+      const f = facts[0];
+      ogImageAlt = `${node.name || node.id}: ${typeWord} profile on Cigar Nexus${f ? ` (${f.makes ? 'makes' : f.label.toLowerCase()} ${factValue(f, nodesById, 2)})` : ''}`;
+      twitterCard = 'summary_large_image';
+    } else {
+      socialImage = resolveSocialImage(node);
+      ogDimensions = resolveOgImageDimensions(socialImage);
+      ogImageAlt = `${node.name || node.id} | Cigar Nexus`;
+      twitterCard = twitterCardForSocialImage(socialImage.kind);
+    }
 
     const page = template
       .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
@@ -1099,7 +1217,9 @@ function generateAllNodePages() {
       .replace(/\{\{OG_IMAGE_WIDTH\}\}/g, String(ogDimensions.width))
       .replace(/\{\{OG_IMAGE_HEIGHT\}\}/g, String(ogDimensions.height))
       .replace(/\{\{OG_IMAGE_ALT\}\}/g, escapeHtml(ogImageAlt))
-      .replace(/\{\{TWITTER_CARD\}\}/g, twitterCardForSocialImage(socialImage.kind))
+      .replace(/\{\{TWITTER_CARD\}\}/g, twitterCard)
+      .replace(/\{\{OG_TITLE\}\}/g, escapeHtml(node.name || node.id))
+      .replace(/\{\{OG_DESCRIPTION\}\}/g, escapeHtml(shareDesc))
       .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
       .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
       .replace(/\{\{HEADER_SUMMARY\}\}/g, buildHeaderSummary(node, baseGraphData.nodes, allLinks))

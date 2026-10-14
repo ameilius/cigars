@@ -43,6 +43,9 @@ jobs:
           grep -q "Industry Connections" node/padron/index.html
           grep -q 'property="og:image:width"' node/lapalina/index.html
           grep -q 'property="og:image:height"' node/lapalina/index.html
+          test -s og/lapalina.jpg && test -s og/default.jpg
+          grep -q 'og/lapalina.jpg' node/lapalina/index.html
+          grep -q 'summary_large_image' node/lapalina/index.html
           if grep -R --include='index.html' -F 'SEO:' node; then
             echo "ERROR: leaked SEO: editor notes in generated node pages"
             exit 1
