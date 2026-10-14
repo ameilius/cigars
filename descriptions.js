@@ -10,7 +10,7 @@ var drawerDescriptions = {
   "tatuaje": "Tatuaje is Pete Johnson's 2003 boutique brand. The García family rolls it: first at El Rey de los Habanos in Miami, then at My Father in Estelí. Brown Label, Black Label, Havana VI, Fausto, Cojonú, Reserva. L'Atelier is his later sister marca, also García-made.",
   "espinosa": "Espinosa Premium Cigars (Erik Espinosa) runs La Zona in Estelí and the 601, Murciélago, Laranja, and Knuckle Sandwich portfolio. Brand owner plus contract manufacturer for other boutiques.",
   "erikespinosa": "Erik Espinosa founded Espinosa Premium Cigars and La Zona after co-creating 601/Murciélago under EO Brands with Eddie Ortega. Brand owner plus Estelí factory operator.",
-  "guyfieri": "Guy Fieri partners with Espinosa on Knuckle Sandwich cigars, routing celebrity branding through La Zona manufacturing.",
+  "guyfieri": "Guy Fieri's Knuckle Sandwich (2022) is blended by Espinosa Premium Cigars and rolled at A.J. Fernández's San Lotano factory in Ocotal, Nicaragua.",
   "knucklesandwich": "Knuckle Sandwich is the Guy Fieri + Espinosa collaboration, rolled in the La Zona / Espinosa ecosystem (Habano, Maduro, and related lines).",
   "padron": "Padrón is the family-owned Nicaraguan icon founded in 1964 by José Orlando Padrón, produced at Tabacos Cubanica in Estelí. Famous for consistency, multi-year aging, and the regular line plus 1964 Anniversary and Serie 1926; led today with Jorge Padrón as president.",
   "joseopadron": "José Orlando Padrón (1926–2017) founded Padrón Cigars in Miami in 1964 and moved production to Estelí by 1970. His vertical, anti-hype model and Nicaraguan bet still define the brand; 1964 and 1926 series mark his founding and birth years.",
@@ -89,7 +89,7 @@ var drawerDescriptions = {
 
   // === CLE / Eiroa family (Honduras) ===
   "cle": "CLE Cigar Company (Christian Eiroa) is Honduran vertical Corojo power (Corojo, Cuarenta, Plus, Eiroa lines) based in Danlí, separate from Oettinger-owned Camacho.",
-  "christianeiroa": "Christian Eiroa built Camacho, then founded CLE with family vertical integration at the Aladino factory in Danlí, Honduras.",
+  "christianeiroa": "Christian Eiroa ran Camacho until after Davidoff bought it in 2008, founded CLE in 2012, and in 2013 opened his own factory in Danlí's former Cine Aladino theater.",
   "eiroafamily": "The Eiroa Family (Aladino) is a multigenerational Honduran tobacco dynasty centered on Corojo, CLE/Christian Eiroa manufacturing in Danlí, and earlier Camacho leadership history.",
   "eiroadanli": "CLE/Aladino factory in Danlí is Christian Eiroa's vertical Honduran home for CLE and Aladino Corojo-forward cigars.",
 
@@ -104,7 +104,7 @@ var drawerDescriptions = {
 
   // === Warped / Kyle Gellis ===
   "warped": "Warped Cigars (Kyle Gellis) is a traditionalist boutique with lines like Corto, Sarto, and Cloud Hopper. Major production at NACSA and historical Aganorsa/TABSA ties in Estelí.",
-  "kylegellis": "Kyle Gellis founded Warped Cigars (Corto, Sarto, Cloud Hopper), hands-on with NACSA and historical Aganorsa/TABSA production.",
+  "kylegellis": "Kyle Gellis founded Warped Cigars in 2009 (Corto, Futuro, Cloud Hopper), made at Aganorsa's TABSA, El Titan de Bronze in Miami and, for Corto Maduro, NACSA.",
   "nacsa": "NACSA in Estelí is a prominent factory closely tied to Warped/Kyle Gellis production and boutique Nicaraguan craft.",
 
   // === Oliva ===
@@ -133,7 +133,7 @@ var drawerDescriptions = {
 
   // === Viaje ===
   "viaje": "Viaje (Andre Farkas) is a limited-release boutique known for Exclusivo, Double Ligero, Placeres, Oro, and Summerfest. Production spans TABSA, Joya, La Zona, and other top floors.",
-  "andrefarkas": "Andre Farkas founded Viaje Cigars, the limited-release boutique known for Summerfest, Exclusivo, and multi-factory Estelí experiments.",
+  "andrefarkas": "Andre Farkas founded Viaje Cigars around 2007–2008: small-batch releases such as Zombie, made at contract factories from Joya de Nicaragua to Raíces Cubanas, TABSA and PDR.",
 
   // === HVC ===
   "hvc": "HVC Cigars (Reinier Lorenzo) built from contract Estelí production to its own HVC factory. Known for Hot Cake, Black Friday, Edición Limitada, and bold value Nicaraguan blends.",
@@ -223,7 +223,7 @@ var drawerDescriptions = {
   "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line (No. 9, T52, H99, Unico), broadleaf-driven and rolled at La Gran Fábrica in Estelí.",
   "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a veteran-owned boutique made by A.J. Fernandez in Estelí since 2014.",
-  "kristoff": "Kristoff was founded by Lissette Perez-Carrillo (Ernesto's daughter): accessible Dominican premiums with production at William Ventura, sister story to Casa Carrillo but separate marca.",
+  "kristoff": "Kristoff was founded in 2004 by Glen Case of suburban Chicago, named for his son, and has always been made at the Charles Fairmorn factory (Tabacalera Von Eicken) in Santiago, DR.",
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line, blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
   "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
   "nub": "NUB is Oliva's short, fat vitola sub-brand created by Sam Leccia in 2008 and rolled at Tabolisa. ~4-inch large-ring formats (460/464/358) with Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB lines.",
@@ -254,12 +254,12 @@ var drawerDescriptions = {
   "rafaelnodal": "Rafael Nodal is the Cuban-born founder of Aging Room and Boutique Blends, and vice president of product capability at Altadis U.S.A. / Tabacalera USA. He still owns Aging Room while blending Altadis heritage projects with partners such as A.J. Fernandez.",
   "boutiqueblends": "Boutique Blends is Rafael Nodal's Miami company (formerly Habana Cuba Cigar Co.), owner of Aging Room. Partners have included Alina Nodal, Hank Bischoff, and Jochy Blanco. Altadis distributes; it is not an Altadis-owned house.",
   "lapalma": "Tabacalera Palma in Tamboril, Dominican Republic, is Jochy Blanco's family factory: house La Galera work plus contract rolling for Aging Room and other boutiques.",
-  "jochyblanco": "José \"Jochy\" Blanco runs Tabacalera Palma in Tamboril and is a longtime blending and manufacturing partner (and Boutique Blends partner) on Aging Room's Dominican lines.",
+  "jochyblanco": "José \"Jochy\" Blanco, a fourth-generation grower, is CEO of Tabacalera Palma in Tamboril, maker of La Galera and partner in Boutique Blends' Aging Room.",
   "hupmannnc": "H. Upmann (Non-Cuban) is Altadis U.S.A.'s U.S. marca, separate from Habanos Cuban H. Upmann. Core Dominican production historically at Tabacalera de García (La Romana); Nicaraguan prestige lines (Nicaragua by AJ Fernandez, Heritage, anniversary projects) at San Lotano. Vintage Cameroon, The Banker, 1844 Reserve, and Legacy are the familiar shop names.",
   "tabdegarcia": "Tabacalera de García in La Romana is the large Dominican factory long associated with Altadis U.S.A. volume for non-Cuban Montecristo, Romeo y Julieta, and H. Upmann. Recent ownership and U.S. sanctions issues have pushed some Altadis SKUs toward other partners, including A.J. Fernandez.",
   "romacraft": "RoMa Craft Tobac is Skip Martin and Michael Rosales's boutique house (the name is Ro-sales + Ma-rtin), launched in 2012. Nearly everything is rolled at their Estelí factory Nica Sueño: CroMagnon, Intemperance, Neanderthal, Aquitaine, Baka, Maestranza, and CRAFT Maquette limiteds.",
   "skipmartin": "Skip Martin is co-founder of RoMa Craft and co-owner/operator of Nica Sueño in Estelí, where he lives and blends. Former Austin/Galveston retailer who built the factory with Esteban Disla after early Costa Rica experiments.",
-  "michaelrosales": "Michael Rosales (the \"Ro\" in RoMa) co-founded RoMa Craft with Skip Martin. Austin-based, formerly Costa Rican Imports; he handles the U.S. side while Martin runs the Estelí factory.",
+  "michaelrosales": "Michael Rosales (the \"Ro\" in RoMa) co-founded RoMa Craft Tobac with Skip Martin in 2012, merging his Costa Rican Imports (Adrians Costa Rica) with Martin's Galveston Bay Tobacco.",
   "latelier": "L'Atelier (French for \"the workshop\") is Pete Johnson's 2012 sister marca to Tatuaje, rolled at My Father in Estelí. Signature Sancti Spíritus hybrid leaf; lines include LAT, La Mission, Selection Speciale, Côte d'Or, and Surrogates.",
   "petejohnson": "Pete Johnson founded Tatuaje (2003) and L'Atelier (2012). He owns the brands. The García family rolls them: first at El Rey de los Habanos in Miami, then at My Father in Estelí. He is not a factory owner.",
   "hoyonc": "Hoyo de Monterrey (Non-Cuban) is General Cigar / STG's U.S. marca, separate from Habanos Cuban Hoyo. Villazon brought it to Honduras in the 1960s; General bought Villazon in 1997. Core Honduras production at STG Danlí; La Amistad Dark Sumatra with A.J. Fernandez.",
