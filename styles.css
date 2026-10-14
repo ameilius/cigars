@@ -2557,3 +2557,47 @@ h1, h2, .font-display,
     /* Graph fills most of the viewport below the controls */
     .home-polish #graph-container { height: calc(100svh - 150px) !important; min-height: 480px !important; }
 }
+
+/* ---------- Age gate: dark tobacco / leather styling ---------- */
+#age-gate {
+    background:
+        radial-gradient(120% 90% at 50% 0%, rgba(206,166,97,0.10) 0%, transparent 55%),
+        repeating-linear-gradient(115deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 7px),
+        repeating-linear-gradient(25deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 5px),
+        linear-gradient(160deg, #3a2417 0%, #24150d 45%, #140b06 100%) !important;
+}
+#age-gate > div {
+    background:
+        radial-gradient(140% 100% at 50% -10%, rgba(206,166,97,0.14) 0%, transparent 60%),
+        repeating-linear-gradient(100deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 4px),
+        linear-gradient(170deg, #4a2e1d 0%, #321e12 55%, #24150c 100%) !important;
+    border: 1px solid rgba(206,166,97,0.45) !important;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.75), inset 0 0 0 1px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,230,180,0.08) !important;
+    position: relative;
+}
+#age-gate > div::before {
+    content: ''; position: absolute; inset: 10px; border: 1px dashed rgba(206,166,97,0.28); border-radius: 1.15rem; pointer-events: none;
+}
+#age-gate .site-logo--age-gate { filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5)); }
+#age-gate h2 { color: #CEA661 !important; letter-spacing: 0.01em; }
+#age-gate h2 + p { color: #EADFCB !important; }
+#age-gate p.text-\[11px\] { color: #B9A88C !important; }
+.age-gate__remember { margin-top: 1rem; font-size: 13px; color: #D9C9A8; }
+#age-yes {
+    background: linear-gradient(180deg, #DDB874 0%, #CEA661 55%, #B38C4F 100%) !important;
+    color: #1E120A !important;
+    border: 1px solid #E6C88A !important;
+    box-shadow: 0 6px 18px -6px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,245,220,0.5) !important;
+}
+#age-yes:hover { background: linear-gradient(180deg, #E6C483 0%, #D6B06C 55%, #BD955A 100%) !important; color: #140b06 !important; }
+#age-gate #age-no, #age-gate #age-no:focus, #age-gate #age-no:focus-visible {
+    background: transparent !important;
+    border: 1px solid rgba(206,166,97,0.6) !important;
+    color: #EADFCB !important;
+    -webkit-text-fill-color: #EADFCB;
+    box-shadow: none;
+}
+@media (hover: hover) {
+    #age-gate #age-no:hover { background: rgba(206,166,97,0.12) !important; border-color: #CEA661 !important; color: #F5ECDA !important; -webkit-text-fill-color: #F5ECDA; }
+}
+#age-gate #age-no:active { background: rgba(206,166,97,0.18) !important; }
