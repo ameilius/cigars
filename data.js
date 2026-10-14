@@ -695,5 +695,9 @@ var baseGraphData = {
                 { source: "ajfesteli", target: "foundation", type: "manufactures (Tabernacle, Olmec)" },
                 { source: "ajfesteli", target: "sanlotano", type: "sister factory (Ocotal, 2017)" },
                 { source: "sanlotano", target: "ajfesteli", type: "sister factory (Estelí)" },
+                { source: "laflordecopan", target: "zino", type: "manufactured (past)" },
+                { source: "zino", target: "laflordecopan", type: "historically made at" },
+                { source: "altadis", target: "laflordecopan", type: "Henry Clay War Hawk, San Luis Rey Carenas made at" },
+                { source: "laflordecopan", target: "altadis", type: "manufactures for" },
             ]
         };

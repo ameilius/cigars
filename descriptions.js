@@ -138,7 +138,7 @@ var drawerDescriptions = {
 
   // === HVC ===
   "hvc": "HVC Cigars (Reinier Lorenzo) had Hot Cake, Black Friday and First Selection made at Aganorsa factories, then opened its own Estelí factory in 2022 with Selección No. 1.",
-  "reinierlorenzo": "Reinier Lorenzo founded HVC and moved from TABSA-era contract work to owning the HVC Factory in Estelí (Hot Cake, Black Friday).",
+  "reinierlorenzo": "Reinier Lorenzo founded HVC Cigars in 2011. Early cigars were made at TABSA; in 2022 he opened his own Estelí factory, starting with Selección No. 1.",
   "hvcfactory": "HVC Factory in Estelí is Reinier Lorenzo's owned production home for Hot Cake, Black Friday, and related HVC lines.",
 
   // === Additional corporate / other ===
@@ -168,13 +168,13 @@ var drawerDescriptions = {
   "lure": "Lure Cigars (Lou Cross III) is a fishing-themed boutique, first made at Tabacalera Pages and since fall 2025 at La Tabacaria in Estelí.",
   "definition": "Definition Cigars (Jamond Hackley) is a boutique brand associated with Tabacalera Pichardo / Luciano production in Estelí.",
   "lagloriacubana": "La Gloria Cubana (non-Cuban) is a General Cigar/STG brand born in Miami with Ernesto Perez-Carrillo, sold to General in 1999. Famous for full-flavored classics and Serie R large-ring cigars; Ernesto later left to found Casa Carrillo, while LGC remains a corporate full-body staple.",
-  "domain": "Domain Cigars is a vertically integrated boutique brand co-founded by Esteban Disla and Daniel Lance. Their partnership began when Disla chose Lance by phone. Tobacco comes from Valle Regadío, and cigars are rolled at Familia Disla in Estelí.",
-  "estebandisla": "Esteban Disla is a veteran Nicaraguan master blender and Domain Cigars co-founder. He spent 10+ years at Nica Sueño (RoMa Craft), blended for dozens of brands at STG Estelí, and chose Daniel Lance as his vertical partner.",
+  "domain": "Domain Cigars (Esteban Disla and Daniel Lance, 2024) makes Neutron, Negentropy and Entropy at Tabacalera Familia Disla in Estelí.",
+  "estebandisla": "Esteban Disla co-founded Domain Cigars (2024). Before that: 10+ years at Nica Sueño (RoMa Craft) and blending for CAO, Alec Bradley and others at Latin Cigars, now STG Estelí.",
   "daniellance": "Daniel Lance co-founded Domain Cigars (2024) and Tabacalera Familia Disla with Esteban Disla. A 17-year retail veteran (Outlaw, Fidel's), he also co-founded Lujo Concepts (BTX cutter).",
   "familiadisla": "Tabacalera Familia Disla S.A. (Esteban Disla and Daniel Lance, 2024) is an Estelí factory and leaf business that makes Domain Cigars. Disla came from Latin Cigars (now STG Estelí) and Nica Sueño.",
   "elseptimo": "El Septimo is a Costa Rican ultra-premium brand founded in 2005 by Gilles Botquin and owned since 2019 by Zaya Younan. Collection-driven lines (Sacred Arts, Emperor, Zaya, Culinary Art, Gilgamesh).",
   "zayayounan": "Zaya Younan bought El Septimo in 2019 and pushed the Costa Rican luxury marca into the U.S. Separate from Selected Tobacco's Atabey/Byron house.",
-  "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic (León family since 1903): Preferidos, 1903, León Jimenes, still family-vertical at the La Aurora factory.",
+  "laaurora": "La Aurora (1903, Eduardo León Jimenes) is the Dominican Republic's oldest cigar company: Preferidos, 1495, 107, ADN Dominicano. Guillermo León bought it in 2011.",
   "mayflower": "Mayflower Cigars is Michael Knowles's premium brand, launched in 2023 with The Daily Wire and handmade at Oliva's Tabolisa factory in Estelí. Named for Knowles's Mayflower ancestors, the portfolio spans Dawn (mild-medium Ecuador Connecticut), Dusk (medium-full Habano), and Dream (Pennsylvania Broadleaf double maduro), with limited Dawn of America for the U.S. 250th.",
 
   // Karen Berger Cigars
@@ -202,7 +202,7 @@ var drawerDescriptions = {
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
   "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey and Bolivar Cofradia.",
   "rojasfactory": "Rojas Cigar Factory: Noel Rojas's Estelí factory in a converted movie theater (2021–), making Rojas Cigars and Stolen Throne.",
-  "raicescubanas": "Raíces Cubanas is the Endemaño family's factory in Danlí, Honduras, making cigars for Alec Bradley, Illusione, Viaje, and private labels.",
+  "raicescubanas": "Raíces Cubanas (Danlí, 2003, Endemaño family) makes cigars for Alec Bradley, Illusione and Viaje. Its own brand launched in late 2024 with Ralph Montero.",
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under León family ownership.",
   "elreyhabanos": "El Rey de los Habanos in Miami is Pepín García's Little Havana chapter and the origin story behind Tatuaje before My Father scale.",
   "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (founded 2009 as EPC Cigar Co.; renamed in 2025) behind E.P. Carrillo, Pérez-Carrillo and INCH, made at its Santiago factory.",
@@ -213,7 +213,7 @@ var drawerDescriptions = {
   "costaricatabacos": "Tabacos de Costa Rica is the Puriscal-region factory hub for Atabey, Byron, Lampert, Villa Casdagli, LH Premium, Nick & Jim, and Vegas de Santiago, spanning ultra-luxury allocations to local heritage.",
   "ovejanegra": "Fábrica Oveja Negra (Estelí, 2015) is Black Label Trading Co.'s small-batch factory, run by James and Angela Brown: BLTC, BLK WKS and contract work. Moved to a larger building in 2017.",
   "lanuzafactory": "Lanuza Cigars is Raúl Lanuza's small, family-run Estelí factory: house Lanuza Habano and Mechudo plus private-label blends (TUX and other small brands).",
-  "laflordecopan": "La Flor de Copán is a cigar factory in Santa Rosa de Copán, Honduras, founded in 1976 by the Tabacos Hondureños grower group.",
+  "laflordecopan": "La Flor de Copán (Santa Rosa de Copán, 1976) grew from the Tabacos Hondureños grower group. It once made Zino and now rolls Henry Clay and San Luis Rey.",
 
   // P2 brand nodes
   "gurkha": "Gurkha is a high-distribution negociant brand with ornate packaging and many SKUs, using Dominican contract floors such as William Ventura and Casa Carrillo/La Alianza.",
