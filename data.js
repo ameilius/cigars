@@ -459,7 +459,6 @@ var baseGraphData = {
                 { source: "laisla", target: "fratello", type: "manufactures" },
                 { source: "nicasueno", target: "caldwell", type: "manufactures" },
                 { source: "lucianopichardo", target: "definition", type: "manufactures (GEN413)" },
-                { source: "lanuzafactory", target: "ovejanegra", type: "related facility" },
                 { source: "plasenciahonduras", target: "lapalina", type: "manufactures" },
                 { source: "stgdanli", target: "room101", type: "manufactures" },
                 { source: "islandjim", target: "jimrobinson", type: "founded by" },

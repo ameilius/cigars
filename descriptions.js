@@ -68,7 +68,7 @@ var drawerDescriptions = {
   "plasencia": "Plasencia is a five-generation grower-manufacturer that has farmed tobacco since 1865. The family rolls Alma, Cosecha, and 1865 in Nicaragua and Honduras, and still makes cigars for many other brands. STG holds a minority stake; Plasencia is not an STG house brand.",
   "nestorplasencia": "Nestor Plasencia Sr. leads the Plasencia family's tobacco and cigar business in Nicaragua and Honduras. He started rolling cigars in 1985; Cuban-born, raised in Estelí.",
   "nestorandres": "Nestor Andrés Plasencia is a fifth-generation Plasencia who, with brothers Gustavo and José Luis, launched the family's own brand (Alma Fuerte 2016, Cosecha 146 2017).",
-  "plasenciaesteli": "Plasencia Estelí (\"The Cathedral\") is Plasencia's Nicaraguan flagship factory for Alma series and premium production.",
+  "plasenciaesteli": "Plasencia Estelí, \"the Cathedral,\" was built in 1996 with Dannemann; the Plasencias later bought it out. Home of Plasencia Alma Fuerte (2016) and Alma del Fuego.",
 
   // === Rocky Patel ===
   "rakeshpatel": "Rakesh \"Rocky\" Patel is the founder of Rocky Patel Premium Cigars. Former Los Angeles lawyer; Indian Tabac in 1995; his name on the company in 2003. Cigars made with Plasencia in Honduras and at TaviCusa in Estelí. Brother Nish Patel helps run the company.",
@@ -101,7 +101,7 @@ var drawerDescriptions = {
 
   // === Foundation ===
   "foundation": "Foundation is Nick Melillo's Connecticut company, started in 2015 after Drew Estate. El Güegüense debuted at TABSA and was retired in 2024. Tabernacle and Olmec are made at A.J. Fernández's Estelí factory; The Wise Man at My Father.",
-  "nickmelillo": "Nick Melillo founded Foundation in 2015 after years at Drew Estate. He owns no factory. The Wise Man is made at My Father, Aksum by A.J. Fernández; El Güegüense was Aganorsa's.",
+  "nickmelillo": "Nick Melillo (New Haven, Conn.) worked at Drew Estate in Estelí from 2003 to 2014, then founded Foundation Cigar Co. in 2015 (El Güegüense, The Wise Man, Charter Oak, Tabernacle).",
 
   // === Warped / Kyle Gellis ===
   "warped": "Warped Cigars (Kyle Gellis) is a traditionalist boutique with lines like Corto, Sarto, and Cloud Hopper. Major production at NACSA and historical Aganorsa/TABSA ties in Estelí.",
@@ -115,7 +115,7 @@ var drawerDescriptions = {
 
   // === Perdomo ===
   "perdomo": "Perdomo is Nick Perdomo Jr.'s vertically integrated Estelí brand (Lot 23, Champagne, Reserve, anniversaries) rolled at Tabacalera Perdomo \"El Monstro.\"",
-  "nickperdomo": "Nick Perdomo Jr. leads Perdomo Cigars and El Monstro, the family's vertically integrated Estelí campus.",
+  "nickperdomo": "Nick Perdomo Jr. founded Nick's Cigar Co. in his Hialeah garage in 1992 while an air-traffic controller. Now Perdomo Cigars, made at Tabacalera Perdomo in Estelí.",
   "perdomofactory": "Tabacalera Perdomo (El Monstro) is Perdomo's vertically integrated Estelí campus from farms through rolling.",
 
   // === Joya de Nicaragua ===
@@ -154,12 +154,12 @@ var drawerDescriptions = {
   // West Tampa Tobacco Co.
   "westtampa": "West Tampa Tobacco Co. (2022) is Rick Rodriguez and Gus Martinez's company after Rodriguez's years at General Cigar (CAO). White and Black are made at Garmendia; some later releases at NACSA.",
   "rickrodriguez": "Rick Rodriguez joined General Cigar in 2000, became CAO's blender and ambassador in 2010, and left in 2022 to co-found West Tampa Tobacco Co. with his daughter Sara and Gus Martinez. Grandparents were Cuban rollers in West Tampa. West Tampa cigars are made at Garmendia in Estelí.",
-  "garmendia": "Garmendia in Estelí is a boutique factory closely associated with West Tampa / Rick Rodriguez Nicaraguan production.",
+  "garmendia": "Garmendia Cigars is José Arquímides Pérez Palacios's small Estelí factory: West Tampa White and Black, and the Fosforo store blend for Riverside Cigar Shop.",
 
   // Bella Dama Cigars (Chantel Leavitt - independent)
   "belladamacigars": "Bella Dama is an independent woman-owned boutique brand using established Central American manufacturing partners.",
   "chantelleavitt": "Chantel Leavitt founded Bella Dama Cigars in 2020. Poker-themed lines (King, Ace, All-In) rolled at Tabacalera Aragon in Estelí. She owns the brand, not the factory.",
-  "tabacaleraaragon": "Tabacalera Aragon in Estelí has been the sole producer of Bella Dama Cigars since 2024.",
+  "tabacaleraaragon": "Tabacalera Aragón (Roniel and Roidel Aragón) is a small Estelí factory: Jas Sum Kral 2018–2024, and all Bella Dama Cigars since 2024.",
 
   // New brands added
   "laaromadecuba": "La Aroma de Cuba is Ashton's revived brand, made by the García family: Edición Especial (2008), then the reblended original (2009), Mi Amor and Pasión, now at My Father in Estelí.",
@@ -171,7 +171,7 @@ var drawerDescriptions = {
   "domain": "Domain Cigars is a vertically integrated boutique brand co-founded by Esteban Disla and Daniel Lance. Their partnership began when Disla chose Lance by phone. Tobacco comes from Valle Regadío, and cigars are rolled at Familia Disla in Estelí.",
   "estebandisla": "Esteban Disla is a veteran Nicaraguan master blender and Domain Cigars co-founder. He spent 10+ years at Nica Sueño (RoMa Craft), blended for dozens of brands at STG Estelí, and chose Daniel Lance as his vertical partner.",
   "daniellance": "Daniel Lance co-founded Domain Cigars (2024) and Tabacalera Familia Disla with Esteban Disla. A 17-year retail veteran (Outlaw, Fidel's), he also co-founded Lujo Concepts (BTX cutter).",
-  "familiadisla": "Tabacalera Familia Disla is Domain Cigars' Estelí factory for Disla-family tobacco and Neutron/Negentropy/Entropy lines.",
+  "familiadisla": "Tabacalera Familia Disla S.A. (Esteban Disla and Daniel Lance, 2024) is an Estelí factory and leaf business that makes Domain Cigars. Disla came from Latin Cigars (now STG Estelí) and Nica Sueño.",
   "elseptimo": "El Septimo is a Costa Rican ultra-premium brand founded in 2005 by Gilles Botquin and owned since 2019 by Zaya Younan. Collection-driven lines (Sacred Arts, Emperor, Zaya, Culinary Art, Gilgamesh).",
   "zayayounan": "Zaya Younan bought El Septimo in 2019 and pushed the Costa Rican luxury marca into the U.S. Separate from Selected Tobacco's Atabey/Byron house.",
   "laaurora": "La Aurora is the oldest premium cigar manufacturer in the Dominican Republic (León family since 1903): Preferidos, 1903, León Jimenes, still family-vertical at the La Aurora factory.",
@@ -185,7 +185,7 @@ var drawerDescriptions = {
   // La Palina
   "lapalina": "La Palina dates to 1896, when Samuel Paley founded Congress Cigar Factory in Chicago and named the marca after his wife, Goldie Drell Paley. Revived in 2010 by great-grandson Bill Paley, the company is a negociant: it owns its tobacco, brands, and finished cigars, but not a factory. Goldie is rolled at El Titan de Bronze in Miami, with other lines made in Honduras, Nicaragua, the Dominican Republic, and Miami.",
   "billpaley": "William \"Bill\" Paley revived La Palina in 2010 on a New York City rooftop, honoring the Congress Cigar legacy his great-grandfather Samuel Paley began in 1896. He remains chairman and principal as industry veterans Sammy Phillips and Clay Roberts steer day-to-day operations.",
-  "eltitandebronze": "El Titan de Bronze is a Miami Little Havana small-batch factory famous for La Palina Goldie and ultra-premium limiteds.",
+  "eltitandebronze": "El Titan de Bronze (Sandy Cobas, 1995) is a family-owned, women-run factory on Calle Ocho in Little Havana. It made La Palina Goldie, Padilla Miami lines and Southern Draw's Decennium.",
   "pdr": "PDR Cigars (Abe Flores) is a Dominican boutique factory/brand house, including contract work for La Palina and other craft projects.",
 
   // Rojas Cigars (Noel Rojas)
@@ -208,19 +208,19 @@ var drawerDescriptions = {
   "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (founded 2009 as EPC Cigar Co.; renamed in 2025) behind E.P. Carrillo, Pérez-Carrillo and INCH, made at its Santiago factory.",
   "ernestoperezcarrillo": "Ernesto Perez-Carrillo Jr. built non-Cuban La Gloria Cubana in Miami, sold it to Swedish Match/General in 1999, left in 2009, and founded E.P. Carrillo / Casa Carrillo. Pledge and Encore won Cigar of the Year. Factory is Casa Carrillo (La Alianza) in Santiago.",
   "lacarrillo": "Casa Carrillo (Tabacalera La Alianza until its February 2024 rename) is Ernesto Perez-Carrillo's factory in Santiago. It rolls E.P. Carrillo/INCH and contract brands (Gurkha, Casdagli, Crowned Heads, Caldwell).",
-  "laisla": "Tabacalera La iSLA is Hostos Fernández Quesada's contract factory in Santiago, DR, with clients such as Viaje.",
+  "laisla": "TABACALERA LA iSLA (Hostos Fernández Quesada, opened December 2020) is a Gurabo free-zone contract factory in Santiago for Warped, Viaje, Fratello, La Sirena, Matilde and others. ProCigar member since 2024.",
   "caoamerican": "CAO American Caribbean is STG/General-linked Nicaraguan capacity for CAO-family and related negociant routing.",
   "costaricatabacos": "Tabacos de Costa Rica is the Puriscal-region factory hub for Atabey, Byron, Lampert, Villa Casdagli, LH Premium, Nick & Jim, and Vegas de Santiago, spanning ultra-luxury allocations to local heritage.",
-  "ovejanegra": "Fábrica Oveja Negra is Black Label Trading Co.'s small-batch factory in Estelí (opened 2015), making BLTC, BLK WKS, and contract cigars.",
-  "lanuzafactory": "Lanuza Cigar Factory in Estelí is part of the Oveja Negra/Lanuza craft cluster (including Lure-related work).",
+  "ovejanegra": "Fábrica Oveja Negra (Estelí, 2015) is Black Label Trading Co.'s small-batch factory, run by James and Angela Brown: BLTC, BLK WKS and contract work. Moved to a larger building in 2017.",
+  "lanuzafactory": "Lanuza Cigars is Raúl Lanuza's small, family-run Estelí factory: house Lanuza Habano and Mechudo plus private-label blends (TUX and other small brands).",
   "laflordecopan": "La Flor de Copán is a cigar factory in Santa Rosa de Copán, Honduras, founded in 1976 by the Tabacos Hondureños grower group.",
 
   // P2 brand nodes
   "gurkha": "Gurkha is a high-distribution negociant brand with ornate packaging and many SKUs, using Dominican contract floors such as William Ventura and Casa Carrillo/La Alianza.",
   "caldwell": "Caldwell Cigar Co. was founded in 2013 by Robert Caldwell and friends to do everything differently: distinctive packaging, proprietary tobaccos, and blends such as Blind Man's Bluff, Long Live the King, Lost & Found, and Eastern Standard. Production spans partner factories including PDR, Nica Sueño, William Ventura, and La Alianza.",
   "lfd": "La Flor Dominicana (Litto Gomez) is a vertically integrated Dominican boutique in Tamboril famous for Double Ligero, Air Bender, and the patented Chisel vitola.",
-  "littogomez": "Litto Gomez founded La Flor Dominicana with Ines: Tamboril vertical boutique, Double Ligero, and the patented Chisel.",
-  "lfdfactory": "Tabacalera La Flor in Tamboril is LFD's integrated Dominican factory for Chisel, Ligero, and Air Bender lines.",
+  "littogomez": "Litto Gomez, a former Miami jeweler, co-founded La Flor Dominicana with Inés Lorenzo-Gomez in 1994 (first called Los Libertadores). La Canela farm (1997), Double Ligero, the Chisel (2003).",
+  "lfdfactory": "Tabacalera La Flor S.A. in Tamboril rolls La Flor Dominicana: Double Ligero, the Chisel (2003) and the Andalusian Bull (2016 Cigar of the Year), much of it from LFD's La Canela farm.",
   "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line (No. 9, T52, H99, Unico), broadleaf-driven and rolled at La Gran Fábrica in Estelí.",
   "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a veteran-owned boutique made by A.J. Fernandez in Estelí since 2014.",
@@ -268,8 +268,8 @@ var drawerDescriptions = {
 
   // Fallback for anything added later
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families.",
-  "tabacalerapages": "Tabacalera Pages de Nicaragua in Estelí made Valacari and Lure cigars until both moved to La Tabacaria in 2025.",
-  "latabacaria": "La Tabacaria in Estelí is Valacari's in-house factory, also making Lure Cigars since fall 2025.",
+  "tabacalerapages": "Tabacalera Pages de Nicaragua in Estelí made Valacari and the first Lure cigars (2023) until both moved to La Tabacaria in fall 2025.",
+  "latabacaria": "La Tabacaria Cigars in Estelí has made Valacari and Lure since fall 2025, when both moved from Tabacalera Pages.",
 };
 
 if (typeof module !== 'undefined' && module.exports) {
