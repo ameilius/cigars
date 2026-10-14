@@ -94,8 +94,8 @@ var drawerDescriptions = {
   "eiroadanli": "CLE/Aladino factory in Danlí is Christian Eiroa's vertical Honduran home for CLE and Aladino Corojo-forward cigars.",
 
   // === Aganorsa / TABSA ===
-  "aganorsa": "Aganorsa Leaf (Max Fernández Pujals) is a major Nicaraguan grower-manufacturer operating TABSA in Estelí. Supplies and rolls for Illusione, Viaje, Warped, and other tobacco-driven boutiques while making its own Aganorsa brands.",
-  "maxfernandez": "Max Fernández Pujals leads Aganorsa Leaf and TABSA: grower-manufacturer hub for Illusione, Viaje, Warped, and Aganorsa house brands.",
+  "aganorsa": "Aganorsa Leaf, owned by founder Eduardo Fernández, is a major Nicaraguan grower-manufacturer operating TABSA in Estelí. Supplies and rolls for Illusione, Viaje, Warped, and others.",
+  "maxfernandez": "Max Fernández, son of owner Eduardo Fernández, runs the factory and blending at Aganorsa Leaf and TABSA in Estelí.",
   "tabsa": "TABSA is Aganorsa's flagship Estelí factory, a top contract floor for Illusione, Viaje, Warped (historical), Foundation's early El Güegüense, early HVC, and other boutiques seeking grower-linked Nicaraguan production.",
 
   // === Foundation ===
@@ -191,7 +191,7 @@ var drawerDescriptions = {
   "noelrojas": "Noel Rojas is a Cuban-American master blender and founder of Rojas Cigars, known for boutique Nicaraguan blends and small-ring craft. Runs the Rojas/New Order Estelí factory cluster and partners with brands like Stolen Throne; also works with A.J. Fernandez capacity.",
   "rojas": "Rojas Cigars is Noel Rojas's boutique house (Guayacan, Havana Nights, and more), centered on Estelí production via the Rojas/New Order factory cluster and related Nicaraguan partners.",
   "guayacan": "Guayacan is Noel Rojas's breakthrough line: approachable Nicaraguan boutique cigars that built his reputation before the wider Rojas portfolio and factory partnerships.",
-  "neworder": "New Order of the Ages (NOA) is Noel Rojas's collaborative Estelí factory/brand lineage; early home for some boutiques (including early JSK stories) and still linked to the Rojas factory and Stolen Throne production web.",
+  "neworder": "New Order of the Ages (NOA): the Estelí factory Noel Rojas and Brandon Hayes opened in 2016; made Guayacan, Rojas and boutique brands such as Jas Sum Kral before closing by mid-2018.",
 
   // P0-P3 factory nodes
   "williamventura": "Tabacalera William Ventura is a major Santiago, DR contract factory for Viaje, Kristoff, Caldwell, La Palina, Gurkha, and many outside brands.",
@@ -200,7 +200,7 @@ var drawerDescriptions = {
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
   "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey and Bolivar Cofradia.",
-  "rojasfactory": "Tabacalera New Order / Rojas factory in Estelí hosts Rojas house brands, NOA history, and Stolen Throne production.",
+  "rojasfactory": "Rojas Cigar Factory: Noel Rojas's Estelí factory in a converted movie theater (2021–), making Rojas Cigars and Stolen Throne.",
   "raicescubanas": "Raíces Cubanas is the Endemaño family's factory in Danlí, Honduras, making cigars for Alec Bradley, Illusione, Viaje, and private labels.",
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under León family ownership.",
   "elreyhabanos": "El Rey de los Habanos in Miami is Pepín García's Little Havana chapter and the origin story behind Tatuaje before My Father scale.",
