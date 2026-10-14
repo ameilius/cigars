@@ -123,7 +123,7 @@ var baseGraphData = {
                 { id: "eltitandebronze", name: "El Titan de Bronze (Miami)", type: "factory", group: "family", country: "usa", logo: "logos/eltitan.jpg" },
                 { id: "pdr", name: "PDR Cigars (Dominican Republic)", type: "factory", group: "family", country: "dominican", logo: "logos/pdrcigars.jpg" },
                 { id: "noelrojas", name: "Noel Rojas", type: "person", group: "family", country: "usa", photo: "logos/noelrojas.png" },
-                { id: "rojas", name: "Rojas Cigars", type: "brand", group: "family", country: "usa", productLines: ["Unfinished Business", "Street Tacos", "Havana Nights", "Guayacan", "Rojas Reserve", "Sabor de Estelí"], logo: "logos/rojas.png" },
+                { id: "rojas", name: "Rojas Cigars", type: "brand", group: "family", country: "usa", productLines: ["Unfinished Business", "Street Tacos", "Guayacan", "Rojas Reserve", "Sabor de Estelí"], logo: "logos/rojas.png" },
                 { id: "guayacan", name: "Guayacan", type: "brand", group: "family", country: "nicaragua", productLines: ["Guayacan Habano", "Guayacan Maduro", "Sabor de Estelí", "Gallo Pinto", "Rojas Reserve", "Rojas Cabinet Selection"], logo: "logos/guayacan.png" },
                 { id: "neworder", name: "New Order of the Ages", type: "brand", group: "family", country: "nicaragua" , productLines: ["Guayacan", "Rojas Reserve", "Ohana Pulse"] },
                 { id: "williamventura", name: "Tabacalera William Ventura", type: "factory", group: "family", country: "dominican" },

@@ -76,6 +76,6 @@ module.exports = {
   nacsa: "NACSA (Nicaraguan American Cigars, S.A.) is a prominent Estelí factory closely associated in recent years with Warped Cigars and Kyle Gellis 's hands-on",
   stgesteli: "STG Estelí is Scandinavian Tobacco Group 's major Nicaraguan rolling facility, producing portfolio brands and related routing for Macanudo, CAO-adjacent",
   maxfernandez: "Max Fernández, son of owner Eduardo Fernández, runs the factory and blending at Aganorsa Leaf, the Nicaraguan grower-manufacturer behind a lot of 2000s boutique leaf.",
-  rojas: "Rojas Cigars is the boutique brand founded by Noel Rojas. Lines such as Guayacan, Havana Nights, Unfinished Business, and Street Tacos showcase a",
+  rojas: "Rojas Cigars is the boutique brand founded by Noel Rojas. Lines such as Guayacan, KSG, Unfinished Business, and Street Tacos showcase a",
   noelrojas: "Noel Rojas is a Cuban-American blender and founder of Rojas Cigars. He is known for boutique, balanced blends and small-ring gauges. After leaving Cuba",
 };
