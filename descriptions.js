@@ -158,13 +158,13 @@ var drawerDescriptions = {
   // Bella Dama Cigars (Chantel Leavitt - independent)
   "belladamacigars": "Bella Dama is an independent woman-owned boutique brand using established Central American manufacturing partners.",
   "chantelleavitt": "Chantel Leavitt founded Bella Dama Cigars in 2020. Poker-themed lines (King, Ace, All-In) rolled at Tabacalera Aragon in Estelí. She owns the brand, not the factory.",
-  "tabacaleraaragon": "Tabacalera Aragon in Estelí is a boutique-oriented factory used by independents including West Tampa–era Nicaraguan production associations.",
+  "tabacaleraaragon": "Tabacalera Aragon in Estelí has been the sole producer of Bella Dama Cigars since 2024.",
 
   // New brands added
   "laaromadecuba": "La Aroma de Cuba is the Ashton/Levin Nicaraguan sister brand, rolled by the García family at My Father in Estelí (Edición Especial, Mi Amor, Noblesse, and more). Fuller Nica power vs Dominican Fuente-made Ashton classics.",
   "sancristobal": "San Cristóbal (Ashton portfolio) is a Levin-family Nicaraguan brand handmade at My Father, sibling to La Aroma de Cuba: Ashton ownership, García construction.",
   "ashton": "Ashton is the Levin family brand known for refined Dominican cigars (Classic, Cabinet, VSG, ESG, Symmetry) handmade at Tabacalera A. Fuente. Sister brands La Aroma de Cuba and San Cristóbal are Nicaraguan My Father products under the same ownership umbrella.",
-  "lure": "Lure Cigars (Lou Cross III) is a fishing-themed boutique brand with Estelí production in the Oveja Negra/Lanuza factory cluster.",
+  "lure": "Lure Cigars (Lou Cross III) is a fishing-themed boutique, first made at Tabacalera Pages and since fall 2025 at La Tabacaria in Estelí.",
   "definition": "Definition Cigars (Jamond Hackley) is a boutique brand associated with Tabacalera Pichardo / Luciano production in Estelí.",
   "lagloriacubana": "La Gloria Cubana (non-Cuban) is a General Cigar/STG brand born in Miami with Ernesto Perez-Carrillo, sold to General in 1999. Famous for full-flavored classics and Serie R large-ring cigars; Ernesto later left to found Casa Carrillo, while LGC remains a corporate full-body staple.",
   "domain": "Domain Cigars is a vertically integrated boutique brand co-founded by Esteban Disla and Daniel Lance. Their partnership began when Disla chose Lance by phone. Tobacco comes from Valle Regadío, and cigars are rolled at Familia Disla in Estelí.",
@@ -195,7 +195,7 @@ var drawerDescriptions = {
 
   // P0-P3 factory nodes
   "williamventura": "Tabacalera William Ventura is a major Santiago, DR contract factory for Viaje, Kristoff, Caldwell, La Palina, Gurkha, and many outside brands.",
-  "lucianopichardo": "Tabacalera Pichardo / Luciano in Estelí rolls Luciano-related work and boutique clients such as Definition Cigars.",
+  "lucianopichardo": "Tabacalera Pichardo in Estelí (Eradio Pichardo and Luciano Meirelles) made Mil Dias for Crowned Heads and the first Ozgener Bosphorus.",
   "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the boutique factory Skip Martin co-owns with Esteban Disla: house production for RoMa Craft (CroMagnon, Intemperance, Neanderthal) plus outside work such as Caldwell projects.",
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
@@ -208,10 +208,10 @@ var drawerDescriptions = {
   "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (from 2009 relaunch): E.P. Carrillo lines and INCH, rolled at La Alianza in Santiago, with deep contract work for other brands.",
   "ernestoperezcarrillo": "Ernesto Perez-Carrillo Jr. built non-Cuban La Gloria Cubana in Miami, sold it to Swedish Match/General in 1999, left in 2009, and founded E.P. Carrillo / Casa Carrillo. Pledge and Encore won Cigar of the Year. Factory is Casa Carrillo (La Alianza) in Santiago.",
   "lacarrillo": "Tabacalera La Alianza (Casa Carrillo) in Santiago rolls Perez-Carrillo/INCH and major contract brands (Gurkha, Casdagli, Crowned Heads, Caldwell).",
-  "laisla": "Tabacalera La Isla (DR) is a mid-tier Dominican boutique factory for craft projects including Fratello and related indie brands.",
+  "laisla": "Tabacalera La iSLA is Hostos Fernández Quesada's contract factory in Santiago, DR, with clients such as Viaje.",
   "caoamerican": "CAO American Caribbean is STG/General-linked Nicaraguan capacity for CAO-family and related negociant routing.",
   "costaricatabacos": "Tabacos de Costa Rica is the Puriscal-region factory hub for Atabey, Byron, Lampert, Villa Casdagli, LH Premium, Nick & Jim, and Vegas de Santiago, spanning ultra-luxury allocations to local heritage.",
-  "ovejanegra": "Oveja Negra (Lanuza) is a boutique Estelí factory cluster for Lanuza lines and select contracts such as Lure.",
+  "ovejanegra": "Fábrica Oveja Negra is Black Label Trading Co.'s small-batch factory in Estelí (opened 2015), making BLTC, BLK WKS, and contract cigars.",
   "lanuzafactory": "Lanuza Cigar Factory in Estelí is part of the Oveja Negra/Lanuza craft cluster (including Lure-related work).",
   "laflordecopan": "La Flor de Copán (Honduras) produces Oscar Valladares house lines plus Leaf by Oscar and Island Jim.",
 
@@ -223,7 +223,7 @@ var drawerDescriptions = {
   "lfdfactory": "Tabacalera La Flor in Tamboril is LFD's integrated Dominican factory for Chisel, Ligero, and Air Bender lines.",
   "ligaprivada": "Liga Privada is Drew Estate's ultra-premium line (No. 9, T52, H99, Unico), broadleaf-driven and rolled at La Gran Fábrica in Estelí.",
   "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
-  "southerndraw": "Southern Draw (Robert & Sharon Holt) is a family boutique with core production at Plasencia Honduras (El Paraíso).",
+  "southerndraw": "Southern Draw (Robert & Sharon Holt) is a veteran-owned boutique made by A.J. Fernandez in Estelí since 2014.",
   "kristoff": "Kristoff was founded by Lissette Perez-Carrillo (Ernesto's daughter): accessible Dominican premiums with production at William Ventura, sister story to Casa Carrillo but separate marca.",
   "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan-forward Trinidad line, blended by Rafael Nodal and A.J. Fernandez, rolled at San Lotano in Estelí. Series No. 1, 2, and 3 explore Nicaragua, Brazil, and Mexico; Miami Edition is a limited Nicaraguan release.",
   "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
@@ -233,7 +233,7 @@ var drawerDescriptions = {
   "ryjnc": "Romeo y Julieta (Non-Cuban) is an Altadis U.S.A. (Imperial) brand, separate from Cuban RyJ and not STG. Everyday U.S. lines like 1875 and Reserva Real sit beside Nicaraguan projects with Plasencia and A.J. Fernandez (Romeo San Andrés).",
   "fratello": "Fratello (Omar de Frias, ex-NASA) is a boutique brand rolled at La Zona and Tabacalera La Isla, known for Classico, Navetta, Bianco, and Arlequin.",
   "padilla": "Padilla is Ernesto Padilla's boutique brand with multi-factory production (TABSA, Plasencia Honduras, STG Estelí) and Miami-Cuban brand identity.",
-  "ozgener": "Ozgener Family Cigars (Tim & Emre) produces Bosphorus, Aramas, and Cypher at La Corona Factory in Estelí.",
+  "ozgener": "Ozgener Family Cigars (Tim Ozgener, of the CAO family) makes Bosphorus and Aramas at E.P. Carrillo's La Alianza in the DR.",
   "jassumkral": "Jas Sum Kral (Riste Ristevski) is a full-Nicaraguan boutique (Red Knight, La Bomba, Fenix, Kral). Early NOA/Rojas factory ties; later production associated with My Father on this map.",
   "stolenthrone": "Stolen Throne (Lee Marsh & JR Cannon, ~2018) is a Virginia boutique with regal branding and a simple catalog, handmade with Noel Rojas at the Rojas/New Order factory in Estelí (Castle 919 and related lines).",
   "deadwood": "Deadwood is Drew Estate's infused-adjacent boutique line (Fat Bottom Betty, Sweet Jane) produced at Raíces Cubanas in Nicaragua.",
@@ -266,7 +266,9 @@ var drawerDescriptions = {
   "hoyonc": "Hoyo de Monterrey (Non-Cuban) is General Cigar / STG's U.S. marca, separate from Habanos Cuban Hoyo. Villazon brought it to Honduras in the 1960s; General bought Villazon in 1997. Core Honduras production at STG Danlí; La Amistad Dark Sumatra with A.J. Fernandez.",
 
   // Fallback for anything added later
-  "default": "A key player in the modern cigar industry with connections across brands, factories, and families."
+  "default": "A key player in the modern cigar industry with connections across brands, factories, and families.",
+  "tabacalerapages": "Tabacalera Pages de Nicaragua in Estelí made Valacari and Lure cigars until both moved to La Tabacaria in 2025.",
+  "latabacaria": "La Tabacaria in Estelí is Valacari's in-house factory, also making Lure Cigars since fall 2025.",
 };
 
 if (typeof module !== 'undefined' && module.exports) {
