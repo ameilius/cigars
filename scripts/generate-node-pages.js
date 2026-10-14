@@ -318,18 +318,27 @@ function buildConnectionsHtml(node, allNodes, allLinks) {
   };
   const kindLabel = { factory: 'Factory', corporate: 'Corporate group', family: 'Family / independent', other: 'Node' };
 
-  let html = '<ul class="connection-grid" role="list">';
+  // One card per connected node: same-node pairs (e.g. "contract production" + "manufactures")
+  // collapse into a single card with every role shown as a pill. Exact repeat roles are dropped.
+  const grouped = new Map();
   connections.forEach(c => {
-    const dir = c.direction === 'out' ? '→' : '←';
-    const url = getNodeUrl(c.otherId);
-    const kind = kindOf(byId.get(c.otherId));
+    if (!grouped.has(c.otherId)) grouped.set(c.otherId, { otherId: c.otherId, otherName: c.otherName, roles: [] });
+    const g = grouped.get(c.otherId);
+    if (!g.roles.some(r => r.rel === c.rel && r.direction === c.direction)) g.roles.push({ rel: c.rel, direction: c.direction });
+  });
+
+  let html = '<ul class="connection-grid" role="list">';
+  grouped.forEach(g => {
+    const url = getNodeUrl(g.otherId);
+    const kind = kindOf(byId.get(g.otherId));
+    const pills = g.roles.map(r => {
+      const dir = r.direction === 'out' ? '→' : '←';
+      return `<span class="connection-role"><span class="connection-type" data-rel="${escapeHtml(r.rel)}" title="${escapeHtml(r.rel)}">${escapeHtml(r.rel)}</span><span class="connection-card__dir" aria-hidden="true">${dir}</span></span>`;
+    }).join('');
     html += `
       <li class="connection-item connection-card connection-card--${kind}">
-        <span class="connection-card__top">
-          <span class="connection-type" data-rel="${escapeHtml(c.rel)}" title="${escapeHtml(c.rel)}">${escapeHtml(c.rel)}</span>
-          <span class="connection-card__dir" aria-hidden="true">${dir}</span>
-        </span>
-        <a href="${url}" class="connection-card__link"><span class="connection-card__dot" title="${kindLabel[kind]}" aria-hidden="true"></span>${escapeHtml(c.otherName)}</a>
+        <span class="connection-card__top">${pills}</span>
+        <a href="${url}" class="connection-card__link"><span class="connection-card__dot" title="${kindLabel[kind]}" aria-hidden="true"></span>${escapeHtml(g.otherName)}</a>
       </li>`;
   });
   html += '</ul>';

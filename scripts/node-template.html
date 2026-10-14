@@ -297,9 +297,10 @@
      .connection-card--corporate { --kind: #CEA661; }
      .connection-card--factory { --kind: #b45309; }
      .connection-card--other { --kind: #6b5b4f; }
-     .connection-card__top { display: flex; align-items: center; gap: 6px; min-width: 0; }
+     .connection-card__top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+     .connection-role { display: inline-flex; align-items: center; gap: 3px; min-width: 0; max-width: 100%; }
      .connection-card .connection-type { font-size: 10px; line-height: 1.3; padding: 1px 7px; border-radius: 999px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-     .connection-card__dir { color: #CEA661; font-size: 11px; margin-left: auto; }
+     .connection-card__dir { color: #CEA661; font-size: 11px; }
      .connection-card__link { display: flex; align-items: flex-start; gap: 7px; font-size: 14px; font-weight: 600; line-height: 1.3; color: #1A3330; text-decoration: none; }
      .connection-card__link::after { content: ''; position: absolute; inset: 0; border-radius: 12px; }
      .connection-card__link:hover { color: #14817A; }
