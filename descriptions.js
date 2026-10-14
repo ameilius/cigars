@@ -123,7 +123,7 @@ var drawerDescriptions = {
   "alejandromartinez": "Dr. Alejandro Martínez Cuenca bought Joya de Nicaragua in the early 1990s and rebuilt Nicaragua's oldest premium brand. Son Juan is executive president. Factory in Estelí.",
 
   // === Dunbarton / Steve Saka ===
-  "dunbarton": "Dunbarton Tobacco & Trust is Steve Saka's boutique house (post-Drew Estate): Sobremesa, Mi Querida, Sin Compromiso, Muestra de Saka. Major production ties to Joya de Nicaragua.",
+  "dunbarton": "Dunbarton Tobacco & Trust is Steve Saka's company (post-Drew Estate): Sobremesa, Mi Querida, Sin Compromiso, Muestra de Saka. Made at Joya de Nicaragua and NACSA in Estelí.",
   "stevesaka": "Steve Saka drove Drew Estate's growth era, then founded Dunbarton Tobacco & Trust (Sobremesa, Mi Querida, Sin Compromiso).",
   "sobremesa": "Sobremesa is Dunbarton/Steve Saka's flagship line (plus Brûlée extensions), widely associated with Joya de Nicaragua production in Estelí.",
 
@@ -201,7 +201,7 @@ var drawerDescriptions = {
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
   "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey and Bolivar Cofradia.",
   "rojasfactory": "Tabacalera New Order / Rojas factory in Estelí hosts Rojas house brands, NOA history, and Stolen Throne production.",
-  "raicescubanas": "Raíces Cubanas is a Nicaraguan factory linked to Drew Estate's Deadwood line, distinct from La Gran Fábrica.",
+  "raicescubanas": "Raíces Cubanas is the Endemaño family's factory in Danlí, Honduras, making cigars for Alec Bradley, Illusione, Viaje, and private labels.",
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under León family ownership.",
   "elreyhabanos": "El Rey de los Habanos in Miami is Pepín García's Little Havana chapter and the origin story behind Tatuaje before My Father scale.",
   "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (from 2009 relaunch): E.P. Carrillo lines and INCH, rolled at La Alianza in Santiago, with deep contract work for other brands.",
@@ -212,7 +212,7 @@ var drawerDescriptions = {
   "costaricatabacos": "Tabacos de Costa Rica is the Puriscal-region factory hub for Atabey, Byron, Lampert, Villa Casdagli, LH Premium, Nick & Jim, and Vegas de Santiago, spanning ultra-luxury allocations to local heritage.",
   "ovejanegra": "Fábrica Oveja Negra is Black Label Trading Co.'s small-batch factory in Estelí (opened 2015), making BLTC, BLK WKS, and contract cigars.",
   "lanuzafactory": "Lanuza Cigar Factory in Estelí is part of the Oveja Negra/Lanuza craft cluster (including Lure-related work).",
-  "laflordecopan": "La Flor de Copán (Honduras) produces Oscar Valladares house lines plus Leaf by Oscar and Island Jim.",
+  "laflordecopan": "La Flor de Copán is a cigar factory in Santa Rosa de Copán, Honduras, founded in 1976 by the Tabacos Hondureños grower group.",
 
   // P2 brand nodes
   "gurkha": "Gurkha is a high-distribution negociant brand with ornate packaging and many SKUs, using Dominican contract floors such as William Ventura and Casa Carrillo/La Alianza.",
@@ -235,10 +235,10 @@ var drawerDescriptions = {
   "ozgener": "Ozgener Family Cigars (Tim Ozgener, of the CAO family) makes Bosphorus and Aramas at E.P. Carrillo's La Alianza in the DR.",
   "jassumkral": "Jas Sum Kral (Riste Ristevski) is a full-Nicaraguan boutique (Red Knight, La Bomba, Fenix, Kral). Early NOA/Rojas factory ties; later production associated with My Father on this map.",
   "stolenthrone": "Stolen Throne (Lee Marsh & JR Cannon, ~2018) is a Virginia boutique with regal branding and a simple catalog, handmade with Noel Rojas at the Rojas/New Order factory in Estelí (Castle 919 and related lines).",
-  "deadwood": "Deadwood is Drew Estate's infused-adjacent boutique line (Fat Bottom Betty, Sweet Jane) produced at Raíces Cubanas in Nicaragua.",
-  "leafbyoscar": "Leaf by Oscar is the candela-wrapped Oscar Valladares + Island Jim Robinson line, handmade at La Flor de Copán in Honduras.",
-  "oscarvalladares": "Oscar Valladares is a Honduran boutique house (Super Fly, 2012, The Oscar) based around La Flor de Copán, also home to Leaf by Oscar and Island Jim collaborations.",
-  "islandjim": "Island Jim is Jim Robinson's Honduran brand (No. 2, Connecticut No. 2, Barber Pole) rolled at Oscar Valladares / La Flor de Copán, separate from the Costa Rican Nick & Jim collab.",
+  "deadwood": "Deadwood is Drew Estate's dessert-leaning boutique line (Fat Bottom Betty, Sweet Jane).",
+  "leafbyoscar": "Leaf by Oscar is Island Jim Robinson's leaf-wrapped line, made by Oscar Valladares at his factory in Danlí, Honduras.",
+  "oscarvalladares": "Oscar Valladares is a Honduran boutique house (Super Fly, 2012, The Oscar) with its factory in Danlí, also making Leaf by Oscar and Island Jim.",
+  "islandjim": "Island Jim is Jim Robinson's Honduran brand (No. 2, Connecticut No. 2, Barber Pole) rolled at Oscar Valladares's factory in Danlí, separate from the Costa Rican Nick & Jim collab.",
   "jimrobinson": "\"Island Jim\" Robinson is a Pittsburgh cigar retailer (Leaf & Bean Strip) who created Leaf by Oscar and the Island Jim line with Oscar Valladares, and co-branded Nick & Jim cigars with Nicholas Syris.",
   "nicholassyris": "Nicholas Syris is a Greek-American master blender and founder of LH Premium Cigars (Lavida Habana). Non-Cuban LH blends are rolled at Tabacos de Costa Rica; he blended Nick & Jim with Jim Robinson.",
   "lhpremium": "LH Premium / Lavida Habana is Nicholas Syris's boutique brand (Claro, Colorado, Maduro, Nick lines) rolled at Tabacos de Costa Rica; home base for the Nick & Jim collab.",

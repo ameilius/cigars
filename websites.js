@@ -141,7 +141,7 @@ var nodeWebsites = {
   stgesteli: { website: "https://www.st-group.com", websiteLabel: "Scandinavian Tobacco Group" },
   stgdanli: { website: "https://www.st-group.com", websiteLabel: "Scandinavian Tobacco Group" },
   rojasfactory: { website: "https://www.rojascigars.com", websiteLabel: "Rojas Cigars" },
-  raicescubanas: { website: "https://drewestate.com", websiteLabel: "Drew Estate" },
+  raicescubanas: { website: "https://raicescubanas.com", websiteLabel: "Raíces Cubanas" },
   laaurorafactory: { website: "https://www.laaurora.com.do", websiteLabel: "La Aurora" },
   elreyhabanos: { website: "https://myfathercigars.com", websiteLabel: "My Father Cigars (historic Miami origin)" },
   jaimegarcia: { website: "https://myfathercigars.com", websiteLabel: "My Father Cigars" },
@@ -152,7 +152,6 @@ var nodeWebsites = {
 
   ovejanegra: { website: "https://ovejanegracigars.com", websiteLabel: "Oveja Negra Brands" },
   lanuzafactory: { website: "https://www.lanuza.com", websiteLabel: "Lanuza Cigars" },
-  laflordecopan: { website: "https://oscarcigars.com", websiteLabel: "Oscar Valladares" },
   nacsa: { website: "https://www.warpedcigars.com", websiteLabel: "Warped Cigars (NACSA partner)" },
 
   // P2 brand nodes
@@ -177,7 +176,7 @@ var nodeWebsites = {
   jassumkral: { website: "https://jassumkral.com" },
   stolenthrone: { website: "https://stolenthronecigars.com" },
   deadwood: { website: "https://drewestate.com", websiteLabel: "Drew Estate (Deadwood)" },
-  leafbyoscar: { website: "https://oscarcigars.com", websiteLabel: "Oscar Valladares" },
+  leafbyoscar: { website: "https://oscartobacco.com", websiteLabel: "Oscar Valladares Tobacco & Co." },
   oscarvalladares: { website: "https://oscarcigars.com" },
   islandjim: { website: "https://oscartobacco.com", websiteLabel: "Oscar Valladares Tobacco & Co." },
   jimrobinson: { website: "https://www.leafandbean.com/stripdistrict", websiteLabel: "Leaf & Bean Strip District" },
