@@ -2535,3 +2535,25 @@ h1, h2, .font-display,
     padding-top: 1.75rem;
     border-top: 1px solid rgba(206, 166, 97, 0.55);
 }
+/* ---------- Mobile map: more screen for the graph (max-width 768px only) ---------- */
+@media (max-width: 768px) {
+    .home-polish .map-page-title { margin-bottom: 0; }
+    .home-polish #filter-chips { gap: 0.3rem; }
+    .home-polish .filter-row .filter-chip { padding-top: 0.3rem; padding-bottom: 0.3rem; min-height: 34px; }
+
+    /* Legend collapses to a chip; tap to open */
+    .graph-legend--flow.legend-collapsible { display: flex; flex-direction: column; align-items: flex-start; padding: 0; margin: 0.35rem 0 0.4rem; background: transparent; border: 0; box-shadow: none; }
+    .graph-legend--flow.legend-collapsible > :not(.legend-chip) { display: none; }
+    .graph-legend--flow.legend-collapsible.legend-open { padding: 0.55rem 0.7rem 0.6rem; background: rgba(236,244,242,0.97); border: 1px solid #CFE0DC; border-radius: 1rem; box-shadow: 0 2px 8px rgba(20,129,122,0.12); align-items: stretch; }
+    .graph-legend--flow.legend-collapsible.legend-open > :not(.legend-chip):not(.graph-legend__title) { display: block; }
+    .graph-legend--flow.legend-collapsible.legend-open > .graph-legend__nodes { display: grid; }
+    .legend-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #CFE0DC; background: #fff; color: #3D5A55; font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+    .legend-chip__dots { display: inline-flex; gap: 3px; }
+    .legend-chip__dots i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+    .legend-chip__chev { color: #CEA661; transition: transform .15s; }
+    .legend-open .legend-chip { align-self: flex-start; margin-bottom: 0.45rem; }
+    .legend-open .legend-chip__chev { transform: rotate(90deg); }
+
+    /* Graph fills most of the viewport below the controls */
+    .home-polish #graph-container { height: calc(100svh - 150px) !important; min-height: 480px !important; }
+}

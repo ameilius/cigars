@@ -32,8 +32,15 @@ function getNodeColor(node) {
   return '#6b5b4f';
 }
 
+const MOBILE_MAP_MQ = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+
 function getNodeRadius(node) {
   if (!node) return 6;
+  if (MOBILE_MAP_MQ && MOBILE_MAP_MQ.matches) return getNodeRadiusBase(node) * 1.2;
+  return getNodeRadiusBase(node);
+}
+
+function getNodeRadiusBase(node) {
   let base = 7;
   if (node.type === 'company') base = 9;
   if (isFactoryNode(node)) base = 8;
@@ -2256,6 +2263,10 @@ function showDesktopHowTo() {
 function showMobileWelcome() {
   const el = document.getElementById('mobile-welcome');
   if (!el) return;
+  // Mobile: the tip card shows once; mark it seen as soon as it appears
+  if (MOBILE_MAP_MQ && MOBILE_MAP_MQ.matches) {
+    try { localStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
+  }
   el.classList.remove('hidden');
   el.setAttribute('aria-hidden', 'false');
 }
@@ -2406,3 +2417,25 @@ window.CigarNexus = {
   reinitialize: initializeApp,
   getData: () => graphData
 };
+
+// Mobile map: collapse the in-flow legend into a chip (max-width 768px only)
+(function initMobileLegendChip() {
+  function setup() {
+    if (!MOBILE_MAP_MQ || !MOBILE_MAP_MQ.matches) return;
+    const legend = document.querySelector('.graph-legend--flow');
+    if (!legend || legend.querySelector('.legend-chip')) return;
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'legend-chip';
+    chip.setAttribute('aria-expanded', 'false');
+    chip.innerHTML = '<span class="legend-chip__dots" aria-hidden="true"><i style="background:#13817b"></i><i style="background:#CEA661"></i><i style="background:#b45309"></i></span>Legend<span class="legend-chip__chev" aria-hidden="true">▸</span>';
+    chip.addEventListener('click', () => {
+      const open = legend.classList.toggle('legend-open');
+      chip.setAttribute('aria-expanded', String(open));
+    });
+    legend.prepend(chip);
+    legend.classList.add('legend-collapsible');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
+})();
