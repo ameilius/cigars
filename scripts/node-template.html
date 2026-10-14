@@ -308,6 +308,21 @@
      .connection-card:focus-within { box-shadow: 0 0 0 2px #14817A; }
      .connection-card__dot { flex: none; width: 9px; height: 9px; margin-top: 4px; border-radius: 50%; background: var(--kind); box-shadow: 0 0 0 2px #fff, 0 0 0 3px color-mix(in srgb, var(--kind) 35%, transparent); }
      @media (max-width: 420px) { .connection-card__link { font-size: 13px; } .connection-grid .connection-card { padding: 8px 9px; } }
+
+     /* Node header: kind accent + who-makes-it summary */
+     .node-hero--family { --kind: #13817b; } .node-hero--corporate { --kind: #CEA661; } .node-hero--factory { --kind: #b45309; } .node-hero--other { --kind: #6b5b4f; }
+     .node-hero[class*="node-hero--"] { position: relative; overflow: hidden; border-top: 4px solid var(--kind);
+        background: radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--kind) 9%, transparent) 0%, transparent 55%), linear-gradient(135deg, #F8FBFA 0%, #ECF4F2 100%); }
+     .node-summary { margin: .55rem 0 0; font-size: 15px; line-height: 1.5; color: #3D5A55; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+     .node-summary__part { display: inline; }
+     .node-summary__label { font-weight: 500; color: #6B8A84; }
+     .node-summary__label::after { content: ' →'; color: #CEA661; }
+     .node-summary__sep { color: #A9C2BD; }
+     .node-summary__link { font-weight: 650; color: #1A3330; text-decoration: none; border-bottom: 2px solid color-mix(in srgb, var(--lk, #13817b) 45%, transparent); }
+     .node-summary__link:hover { color: #14817A; border-bottom-color: var(--lk, #13817b); }
+     .node-summary__link--factory { --lk: #b45309; } .node-summary__link--corporate { --lk: #CEA661; } .node-summary__link--family { --lk: #13817b; }
+     .node-summary__more { font-size: 13px; color: #6B8A84; }
+     @media (max-width: 640px) { .node-summary { justify-content: center; font-size: 14px; } }
     </style>
 </head>
 <body class="text-[#1A3330]">
@@ -335,10 +350,11 @@
 
     <article>
       <header class="node-header">
-        <div class="node-hero">
+        <div class="node-hero node-hero--{{NODE_KIND}}">
           <div class="node-hero__logo" id="node-logo-slot">{{LOGO_BOX}}</div>
           <div class="node-hero__identity">
             <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1A3330]">{{NAME}}</h1>
+            {{HEADER_SUMMARY}}
             <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
             {{WEBSITE_LINK}}
             <div class="node-profile-actions">

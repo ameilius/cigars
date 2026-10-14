@@ -298,6 +298,78 @@ function resolveDescription(node, connections, drawerDescriptions, expandedOverr
   return stripEditorNotes(buildAutoExpandedDescription(node, connections, short));
 }
 
+// -----------------------------
+// Node header summary ("who makes it" line) + kind accent
+// -----------------------------
+const HEADER_EXCLUDE = /historical|early|former|some production|before/i;
+const MADE_AT_OUT = /manufactured at|contract manufactured|associated factory|manufactured by|production at|produced at|rolled at|made at|contract production|operates own factory|manufactures at/i;
+const MADE_AT_IN = /^manufactures( \(|$)|^contract production|^produces|^rolls/i;
+const OWNED_OUT = /^owned by|^brand of|^sold by|^operated by/i;
+const OWNED_IN = /^owns|^operates|^sells/i;
+const FOUNDED_OUT = /^founded by|^co-founded by|^created by/i;
+const FOUNDED_IN = /^founded( \/|$)|^co-founded$|^created$/i;
+
+function nodeKind(n) {
+  if (!n) return 'other';
+  if (n.type === 'factory') return 'factory';
+  if (n.group === 'corporate') return 'corporate';
+  if (n.group === 'family') return 'family';
+  return 'other';
+}
+
+function buildHeaderSummary(node, allNodes, allLinks) {
+  const byId = new Map(allNodes.map(n => [n.id, n]));
+  const pick = (outRe, inRe, filter) => {
+    const ids = [];
+    allLinks.forEach(l => {
+      const rel = String(l.type || '');
+      if (HEADER_EXCLUDE.test(rel)) return;
+      let other = null;
+      if (l.source === node.id && outRe && outRe.test(rel)) other = l.target;
+      else if (l.target === node.id && inRe && inRe.test(rel)) other = l.source;
+      if (!other || other === node.id || ids.includes(other)) return;
+      const o = byId.get(other);
+      if (!o || (filter && !filter(o))) return;
+      ids.push(other);
+    });
+    return ids;
+  };
+  const isFactory = o => o.type === 'factory';
+  const notFactory = o => o.type !== 'factory';
+  const isBrand = o => o.type === 'brand';
+  const link = id => {
+    const o = byId.get(id);
+    return `<a href="${getNodeUrl(id)}" class="node-summary__link node-summary__link--${nodeKind(o)}">${escapeHtml(o.name)}</a>`;
+  };
+  const list = (ids, max) => {
+    const shown = ids.slice(0, max).map(link).join(', ');
+    return ids.length > max ? `${shown} <span class="node-summary__more">+${ids.length - max} more</span>` : shown;
+  };
+  const parts = [];
+  const add = (label, ids, max) => { if (ids.length) parts.push(`<span class="node-summary__part"><span class="node-summary__label">${label}</span> ${list(ids, max)}</span>`); };
+
+  if (node.type === 'factory') {
+    const brands = pick(/^manufactures|^contract production|^produces/i, new RegExp(MADE_AT_OUT.source + '|originated at', 'i'), o => o.type === 'brand' || o.type === 'company');
+    if (brands.length) parts.push(`<span class="node-summary__part"><span class="node-summary__label">Makes ${brands.length} brand${brands.length === 1 ? '' : 's'}</span> ${list(brands, 3)}</span>`);
+    add('Operated by', pick(/^operated by|^owned by/i, /^operates|^owns/i, notFactory), 2);
+  } else if (node.type === 'brand') {
+    add('Made at', pick(MADE_AT_OUT, MADE_AT_IN), 2);
+    add('Owned by', pick(OWNED_OUT, OWNED_IN, notFactory), 2);
+    if (parts.length < 2) add('Founded by', pick(FOUNDED_OUT, FOUNDED_IN, o => o.type === 'person'), 2);
+  } else if (node.type === 'person') {
+    add('Founded', pick(/^founded( \/|$)|^co-founded$|^created$/i, FOUNDED_OUT), 3);
+    add('Owns', pick(/^owns/i, /^owned by/i), 2);
+    if (parts.length < 2) add('Makes', pick(/^manufactures|^contract production|^produces/i, MADE_AT_OUT, o => o.type === 'brand' || o.type === 'company'), 3);
+  } else {
+    add('Made at', pick(MADE_AT_OUT, MADE_AT_IN), 3);
+    add('Owns', pick(/^owns|^operates|^sells/i, OWNED_OUT, isBrand), 3);
+    if (parts.length < 2) add('Operates', pick(/^operates(?! own factory)/i, /^operated by/i, isFactory), 2);
+    if (parts.length < 2) add('Founded by', pick(FOUNDED_OUT, FOUNDED_IN), 2);
+  }
+  if (!parts.length) return '';
+  return `<p class="node-summary">${parts.join('<span class="node-summary__sep" aria-hidden="true">·</span>')}</p>`;
+}
+
 function getNodeUrl(nodeId) {
   return `/node/${nodeId}/`;
 }
@@ -913,6 +985,8 @@ function generateAllNodePages() {
       .replace(/\{\{TWITTER_CARD\}\}/g, twitterCardForSocialImage(socialImage.kind))
       .replace(/\{\{DESCRIPTION_HTML\}\}/g, descHtml)
       .replace(/\{\{META_PILLS\}\}/g, buildMetaPills(node))
+      .replace(/\{\{HEADER_SUMMARY\}\}/g, buildHeaderSummary(node, baseGraphData.nodes, allLinks))
+      .replace(/\{\{NODE_KIND\}\}/g, nodeKind(node))
       .replace(/\{\{WEBSITE_LINK\}\}/g, buildWebsiteLinkHtml(node, nodeWebsites))
       .replace(/\{\{BREADCRUMBS\}\}/g, buildBreadcrumbs(node))
       .replace(/\{\{CONNECTIONS\}\}/g, buildConnectionsHtml(node, baseGraphData.nodes, allLinks))
