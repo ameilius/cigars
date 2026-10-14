@@ -80,6 +80,38 @@ function loadNodeWebsites() {
   }
 }
 
+function loadAffiliateClickUrl() {
+  try {
+    const sandbox = {};
+    vm.createContext(sandbox);
+    vm.runInContext(readUtf8(path.join(ROOT, 'affiliates.js')), sandbox);
+    return (sandbox.famousSmokeAffiliate && sandbox.famousSmokeAffiliate.clickUrl) || null;
+  } catch (err) {
+    return null;
+  }
+}
+
+function loadAffiliateLines() {
+  try {
+    return require(path.join(ROOT, 'content', 'affiliate-lines.js')) || {};
+  } catch (err) {
+    return {};
+  }
+}
+
+const AFFILIATE_CLICK_URL = loadAffiliateClickUrl();
+const AFFILIATE_LINES = loadAffiliateLines();
+
+// Only emitted on pages that have product-line shop links, so other pages stay byte-identical.
+const PRODUCT_SHOP_CSS = `.product-chip--shop.inline-block { text-decoration: none; cursor: pointer; transition: transform .15s, box-shadow .15s, border-color .15s; } .product-chip--shop.inline-block:hover { border-color: #B8873E !important; box-shadow: 0 3px 10px rgba(90,58,30,.16); transform: translateY(-1px); } .product-chip__shop { margin-left: 5px; font-size: 11px; color: #13817b; font-weight: 700; } .product-chip-note { margin: 8px 0 0; font-size: 11.5px; color: #7A6A50; }`;
+
+function productLineShopUrl(node, line) {
+  const map = AFFILIATE_LINES[node.id];
+  const dest = map && map[line];
+  if (!dest || !AFFILIATE_CLICK_URL) return null;
+  return `${AFFILIATE_CLICK_URL}?url=${encodeURIComponent(dest)}`;
+}
+
 function loadAffiliateBuilder() {
   try {
     const code = readUtf8(path.join(ROOT, 'affiliates.js'));
@@ -567,10 +599,20 @@ function buildProductLinesHtml(node) {
   let html = '<section class="mt-8" aria-labelledby="product-lines-heading">';
   html += '<h2 id="product-lines-heading" class="node-section-label">Notable Cigars &amp; Product Lines</h2>';
   html += '<div class="product-chip-row flex flex-wrap gap-1.5">';
+  let shopLinks = 0;
   node.productLines.forEach(line => {
-    html += `<span class="product-chip inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#CFE0DC] text-[#14817A]">${escapeHtml(line)}</span>`;
+    const shopUrl = productLineShopUrl(node, line);
+    if (shopUrl) {
+      shopLinks++;
+      html += `<a href="${escapeHtml(shopUrl)}" target="_blank" rel="sponsored noopener noreferrer" class="product-chip product-chip--shop inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#CFE0DC] text-[#14817A]" title="Shop ${escapeHtml(line)} at Famous Smoke Shop">${escapeHtml(line)}<span class="product-chip__shop" aria-hidden="true">↗</span></a>`;
+    } else {
+      html += `<span class="product-chip inline-block px-2.5 py-0.5 text-xs rounded-full bg-white border border-[#CFE0DC] text-[#14817A]">${escapeHtml(line)}</span>`;
+    }
   });
-  html += '</div></section>';
+  html += '</div>';
+  if (shopLinks) html += `<style>${PRODUCT_SHOP_CSS}</style>`;
+  if (shopLinks) html += '<p class="product-chip-note">↗ Linked lines open Famous Smoke Shop. As an affiliate I may earn a commission from qualifying purchases.</p>';
+  html += '</section>';
   return html;
 }
 
