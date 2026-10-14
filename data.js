@@ -139,7 +139,7 @@ var baseGraphData = {
                 { id: "raicescubanas", name: "Raíces Cubanas", type: "factory", group: "family", country: "honduras" },
                 { id: "laaurorafactory", name: "La Aurora Cigar Factory", type: "factory", group: "family", country: "dominican" },
                 { id: "elreyhabanos", name: "El Rey de los Habanos (Miami)", type: "factory", group: "family", country: "usa" },
-                { id: "lacarrillo", name: "Casa Carrillo Factory (La Alianza)", type: "factory", group: "family", country: "dominican", logo: "logos/casacarillo.png" },
+                { id: "lacarrillo", name: "Casa Carrillo Factory (Santiago)", type: "factory", group: "family", country: "dominican", logo: "logos/casacarillo.png" },
                 { id: "casacarrillo", name: "Casa Carrillo", type: "company", group: "family", country: "usa", productLines: ["La Historia", "Encore", "Pledge", "Allegiance", "Endure", "INCH", "New Wave Connecticut", "Essence", "Deep Blue"], logo: "logos/casacarillo.png" },
                 { id: "ernestoperezcarrillo", name: "Ernesto Perez-Carrillo", type: "person", group: "family", country: "usa", photo: "logos/ernestoperezcarillo.png" },
                 { id: "laisla", name: "Tabacalera La Isla", type: "factory", group: "family", country: "dominican" },

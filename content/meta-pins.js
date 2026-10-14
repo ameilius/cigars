@@ -63,7 +63,7 @@ module.exports = {
   stgdanli: "STG Danlí (HATSA) is Scandinavian Tobacco Group 's major Honduran manufacturing facility in Danlí. It rolls Hoyo de Monterrey (Non-Cuban) and Bolivar",
   williamventura: "Tabacalera William Ventura is a major Dominican contract manufacturer in Santiago, rolling for a long list of outside brands. Graph clients and",
   caoamerican: "American Caribbean Cigars is an independently owned factory in Estelí, Nicaragua, that rolls cigars for CAO and outside brands, above all Gurkha, which once planned to buy it.",
-  lacarrillo: "Tabacalera La Alianza is Casa Carrillo 's flagship factory in Santiago's Zona Franca, rolling Perez-Carrillo, Essence, and INCH lines plus substantial",
+  lacarrillo: "Casa Carrillo, called Tabacalera La Alianza until February 2024, is Ernesto Perez-Carrillo's factory in Santiago's Zona Franca, rolling E.P. Carrillo and INCH.",
   hvcfactory: "The HVC Factory in Estelí is the dedicated production facility built by HVC Cigars founder Reinier Lorenzo after earlier contract years (including TABSA)",
   espinosahabano: "Espinosa Habano is a core house line from Espinosa Premium Cigars: Habano-wrapper Nicaraguan blending executed at La Zona. It sits among the everyday",
   islandjim: "Island Jim is the Honduran brand created by Pittsburgh retailer Jim Robinson, rolled at Oscar Valladares's factory in Danlí. Lines such as Island",

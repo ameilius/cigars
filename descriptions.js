@@ -207,7 +207,7 @@ var drawerDescriptions = {
   "elreyhabanos": "El Rey de los Habanos in Miami is Pepín García's Little Havana chapter and the origin story behind Tatuaje before My Father scale.",
   "casacarrillo": "Casa Carrillo is the Perez-Carrillo family company (founded 2009 as EPC Cigar Co.; renamed in 2025) behind E.P. Carrillo, Pérez-Carrillo and INCH, made at its Santiago factory.",
   "ernestoperezcarrillo": "Ernesto Perez-Carrillo Jr. built non-Cuban La Gloria Cubana in Miami, sold it to Swedish Match/General in 1999, left in 2009, and founded E.P. Carrillo / Casa Carrillo. Pledge and Encore won Cigar of the Year. Factory is Casa Carrillo (La Alianza) in Santiago.",
-  "lacarrillo": "Tabacalera La Alianza (Casa Carrillo) in Santiago rolls Perez-Carrillo/INCH and major contract brands (Gurkha, Casdagli, Crowned Heads, Caldwell).",
+  "lacarrillo": "Casa Carrillo (Tabacalera La Alianza until its February 2024 rename) is Ernesto Perez-Carrillo's factory in Santiago. It rolls E.P. Carrillo/INCH and contract brands (Gurkha, Casdagli, Crowned Heads, Caldwell).",
   "laisla": "Tabacalera La iSLA is Hostos Fernández Quesada's contract factory in Santiago, DR, with clients such as Viaje.",
   "caoamerican": "CAO American Caribbean is STG/General-linked Nicaraguan capacity for CAO-family and related negociant routing.",
   "costaricatabacos": "Tabacos de Costa Rica is the Puriscal-region factory hub for Atabey, Byron, Lampert, Villa Casdagli, LH Premium, Nick & Jim, and Vegas de Santiago, spanning ultra-luxury allocations to local heritage.",
