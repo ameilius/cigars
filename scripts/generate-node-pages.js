@@ -99,6 +99,15 @@ function loadAffiliateLines() {
   }
 }
 
+function loadMetaPins() {
+  try {
+    return require(path.join(ROOT, 'content', 'meta-pins.js')) || {};
+  } catch (err) {
+    return {};
+  }
+}
+const META_PINS = loadMetaPins();
+
 const AFFILIATE_CLICK_URL = loadAffiliateClickUrl();
 const AFFILIATE_LINES = loadAffiliateLines();
 
@@ -1074,7 +1083,7 @@ function generateAllNodePages() {
     if (expandedOverrides[node.id]) overrideCount++;
     else autoCount++;
 
-    const plainDesc = buildMetaDescription(descHtml);
+    const plainDesc = META_PINS[node.id] || buildMetaDescription(descHtml);
     const canonical = `${SITE}/node/${node.id}/`;
     const mapUrl = `/?node=${node.id}`;
     const socialImage = resolveSocialImage(node);
