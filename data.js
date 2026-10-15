@@ -700,5 +700,6 @@ var baseGraphData = {
                 { source: "elseptimo", target: "knucklesandwich", type: "Pure Aroma owner Santana Díaz partners in KS Dominican factory (planned 2026)" },
                 { source: "room101", target: "camacho", type: "made by Davidoff at Camacho's Honduras factory (2009–17)" },
                 { source: "punch_nc", target: "stgdanli", type: "manufactured at (HATSA)" },
+                { source: "diesel", target: "stg", type: "owned by" },
             ]
         };

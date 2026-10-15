@@ -49,7 +49,7 @@ var drawerDescriptions = {
   "espinosahabano": "Espinosa Habano is a core Espinosa Premium Cigars line, among the first made at the company's own La Zona factory in Estelí.",
   "crema": "Espinosa Crema (2016) is Espinosa's first Connecticut-wrapped cigar, made at the company's own La Zona factory in Estelí.",
 
-  "eobrands": "EO Brands (2003–2012) was Erik Espinosa and Eddie Ortega's company behind 601 and Murciélago, rolled at My Father. The partners split the brands in 2012.",
+  "eobrands": "EO Brands (2003–2012) was Erik Espinosa and Eddie Ortega's company behind 601 and Murciélago, rolled at My Father. It owned no factory; the partners split the brands in 2012.",
   "eddieortega": "Eddie Ortega co-founded EO Brands with Erik Espinosa in 2003 (601, Murciélago, rolled at My Father). The partners split in 2012; he runs Ortega Cigar Co. and named Jim Robinson \"Island Jim.\"",
 
   "sixzeroone": "601 began at EO Brands (made at My Father). After 2012 it moved to La Zona and TAVICUSA, then to A.J. Fernández's San Lotano in 2016.",
@@ -71,14 +71,14 @@ var drawerDescriptions = {
   "plasenciaesteli": "Plasencia Estelí, \"the Cathedral,\" is the Plasencia family's Nicaraguan factory, built in 1996 with Dannemann and later bought out by the family.",
 
   // === Rocky Patel ===
-  "rakeshpatel": "Rakesh \"Rocky\" Patel is the founder of Rocky Patel Premium Cigars. Former Los Angeles lawyer; Indian Tabac in 1995; his name on the company in 2003. Cigars made with Plasencia in Honduras and at TaviCusa in Estelí. Brother Nish Patel helps run the company.",
+  "rakeshpatel": "Rakesh \"Rocky\" Patel founded Rocky Patel Premium Cigars. Former Los Angeles lawyer; Indian Tabac in 1995; his name on the company in 2003. Cigars made at his TaviCusa factory in Estelí and by the Plasencias in Honduras.",
   "rockypatel": "Rocky Patel Premium Cigars (Rocky Patel, mid-1990s) makes cigars at its own TaviCusa in Estelí and at Plasencia's Honduran factory (The Edge, Decade).",
   "nishpatel": "Nish Patel is Rocky Patel's younger brother and executive vice president of Rocky Patel Premium Cigars. His lines are Xen and Bold.",
   "tavicusa": "TaviCusa (Tabacalera Villa Cuba) is Rocky Patel's own Estelí factory, opened in 2009 with Amilcar Perez-Castro. Makes the Fifteenth Anniversary, Royale and other Nicaraguan lines.",
 
   // === Drew Estate / Swisher ===
   "acid": "Acid is Drew Estate's infused cigar line (1999), made at La Gran Fábrica in Estelí. Created with artist Scott \"Acid\" Chester; Kuba Kuba and Blondie are staples. Swisher-owned since 2014.",
-  "diesel": "Diesel is made by A.J. Fernández in Nicaragua. It began in 2009 as a Cigars International brand (Unholy Cocktail) and is now sold by STG's Forged.",
+  "diesel": "Diesel is made by A.J. Fernández in Nicaragua for STG. It began in 2009 as a Cigars International brand (Unholy Cocktail) and is sold by STG's Forged.",
   "brickhouse": "Brick House is a J.C. Newman brand from 1937, revived in 2009 as a Nicaraguan cigar and now made at the Newmans' PENSA factory in Estelí.",
   "undercrown": "Undercrown is Drew Estate's maduro, made at La Gran Fábrica in Estelí. It began as the rollers' own smoke and launched in 2011; Shade and Sun Grown followed.",
   "manowar": "Man O' War is A.J. Fernández's 2009 brand for Cigars International (Ruination, Virtue), made at his San Lotano factory in Ocotal since 2017.",
@@ -129,7 +129,7 @@ var drawerDescriptions = {
   "sobremesa": "Sobremesa (2015) is Steve Saka's Dunbarton flagship, made at Joya de Nicaragua in Estelí. Brûlée followed in 2019.",
 
   // === Illusione ===
-  "illusione": "Illusione (Dion Giolito) is made mainly at Aganorsa's TABSA in Estelí, with some lines at Raíces Cubanas and San Lotano. Original Documents, Epernay, Singularé.",
+  "illusione": "Illusione (Dion Giolito) is made mainly at Aganorsa's TABSA in Estelí since 2011, with Epernay at Raíces Cubanas and Original Documents Habano at San Lotano.",
   "diongiolito": "Dion Giolito founded Illusione Cigars, made mainly at Aganorsa's TABSA in Estelí, with Epernay at Raíces Cubanas. A Reno retailer before he made cigars.",
 
   // === Viaje ===
@@ -166,7 +166,7 @@ var drawerDescriptions = {
   "sancristobal": "San Cristóbal (2007) is Ashton's first Nicaraguan cigar, made by the García family at My Father in Estelí.",
   "ashton": "Ashton is made by the Fuente family at Tabacalera A. Fuente in the DR for Philadelphia's Levin family (Holt's). Launched 1985; VSG 1999. La Aroma de Cuba and San Cristóbal come from My Father.",
   "lure": "Lure Cigars (Lou Cross III, 2023) is a fishing-themed brand made at La Tabacaria in Estelí since fall 2025, after starting at Tabacalera Pages.",
-  "definition": "Definition Cigars (Jamond Hackley) is a boutique brand associated with Tabacalera Pichardo / Luciano production in Estelí.",
+  "definition": "Definition Cigars is Jamond Hackley's Dallas boutique brand (2019), known for rope bands. GEN413 was made with Luciano Meirelles at Luciano Tabacos in Estelí; newer lines come from an undisclosed Nicaraguan factory.",
   "lagloriacubana": "La Gloria Cubana (non-Cuban) is a General Cigar/STG brand born in Miami with Ernesto Perez-Carrillo, sold to General in 1999. Famous for full-flavored classics and Serie R large-ring cigars; Ernesto later left to found Casa Carrillo, while LGC remains a corporate full-body staple.",
   "domain": "Domain Cigars (Esteban Disla and Daniel Lance, 2024) is made at their own Tabacalera Familia Disla in Estelí.",
   "estebandisla": "Esteban Disla co-founded Domain Cigars and Tabacalera Familia Disla (2024). Before that he blended at Latin Cigars (now STG Estelí) and co-built the Nica Sueño factory.",
@@ -195,9 +195,9 @@ var drawerDescriptions = {
   "neworder": "New Order of the Ages was Noel Rojas and Brandon Hayes's Estelí factory (2016–18), maker of Guayacan, Rojas and early Jas Sum Kral.",
 
   // P0-P3 factory nodes
-  "williamventura": "Tabacalera William Ventura is a family contract factory in Tamboril, DR, rolling for Room101, J. London, Partagás and Gurkha. Rebuilt after a 2022 fire.",
+  "williamventura": "Tabacalera William Ventura is a family contract factory in Tamboril, DR, rolling for Caldwell, Room101, J. London, Partagás and Gurkha, plus its own brands. Rebuilt after a 2022 fire.",
   "lucianopichardo": "Tabacalera Pichardo in Estelí (Eradio Pichardo and Luciano Meirelles) made cigars for outside brands, including Crowned Heads' Mil Dias and the first Ozgener Bosphorus.",
-  "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the factory Skip Martin built with Esteban Disla. It makes RoMa Craft Tobac's cigars and outside work.",
+  "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the factory Skip Martin built with Esteban Disla in 2011. It makes RoMa Craft Tobac's cigars and outside work; halfwheel's Factory of the Year 2020, 2022 and 2024.",
   "plasenciahonduras": "El Paraíso is the Plasencia family's Honduran operation. It makes Rocky Patel's The Edge, Decade and Sun Grown and three La Palina lines.",
   "stgesteli": "STG Estelí, formerly Latin Cigars S.A., was bought by STG in 2009 and makes CAO's Nicaraguan lines for General Cigar.",
   "stgdanli": "STG Danlí (HATSA), founded by Villazon's Frank Llaneza around 1964, makes General Cigar's Honduran Hoyo de Monterrey and Punch, plus Bolivar Cofradia.",
@@ -241,16 +241,16 @@ var drawerDescriptions = {
   "oscarvalladares": "Oscar Valladares Tobacco & Co. makes 2012, The Oscar and Super Fly at its own factory in Danlí, Honduras, plus Leaf by Oscar and Island Jim.",
   "islandjim": "Island Jim cigars are made by Oscar Valladares in Danlí, Honduras, for Leaf & Bean retailer Jim Robinson. Lines: No. 2, Connecticut #Two, Barber Pole.",
   "jimrobinson": "\"Island Jim\" Robinson is the Pittsburgh retailer behind Leaf & Bean. He created Leaf by Oscar and Island Jim with Oscar Valladares in Danlí, and Nick & Jim with Nicholas Syris.",
-  "nicholassyris": "Nicholas Syris is a Greek-American master blender and founder of LH Premium Cigars (Lavida Habana). Non-Cuban LH blends are rolled at Tabacos de Costa Rica; he blended Nick & Jim with Jim Robinson.",
+  "nicholassyris": "Nicholas Syris is the Greek-American founder of LH Premium Cigars (Lavida Habana), made at Tabacos de Costa Rica. He made Nick & Jim with Jim Robinson.",
   "lhpremium": "LH Premium is Nicholas Syris's brand, named for his Lavida Habana lounges and made at Tabacos de Costa Rica: Claro, Colorado and Maduro. Home of the Nick & Jim collaboration.",
-  "nickandjim": "Nick & Jim is Nicholas Syris and Jim Robinson's collaboration (2017), made at Tabacos de Costa Rica.",
+  "nickandjim": "Nick & Jim is Nicholas Syris and Jim Robinson's collaboration (2017), made at Tabacos de Costa Rica. Announced as Lavida Isla, it shipped as P.B.E.",
   "lampert": "Lampert Cigars (Stefan Lampert, 2017) makes its Oro and Ocean Breeze lines at Tabacos de Costa Rica, plus a 1675 line in Nicaragua and Dominican cigars.",
   "casdagli": "Casdagli Cigars (Jeremy Casdagli, 1997): early cigars rolled in Havana, then Kelner Boutique Factory in the DR (2013), IGM in Costa Rica and Tabacos de Costa Rica (Villa Casdagli).",
   "vegassantiago": "Vegas de Santiago is a Puriscal, Costa Rica brand rolled at Tabacos de Costa Rica. It began as a growers' cooperative taught by ex-H. Upmann manager Luis Santana Lamas.",
   "selectedtobacco": "Selected Tobacco S.A. is Nelson Alfonso's Costa Rican company (2012): Atabey, Byron and Bandolero, made at Tabacos de Costa Rica.",
   "nelsonalfonso": "Nelson Alfonso founded Selected Tobacco (Atabey, Byron, Bandolero), made at Tabacos de Costa Rica. He designed the Cohiba Behike branding.",
   "atabey": "Atabey is Selected Tobacco's flagship luxury brand (Nelson Alfonso), made at Tabacos de Costa Rica in Santiago de Puriscal.",
-  "byron": "Byron is Selected Tobacco's revived 1850 brand, launched in 2012 by Nelson Alfonso with Atabey and Bandolero and made at Tabacos de Costa Rica.",
+  "byron": "Byron is Selected Tobacco's revived 1850 brand, launched in 2012 by Nelson Alfonso with Atabey and Bandolero and made at Tabacos de Costa Rica in Puriscal.",
   "agingroom": "Aging Room is Rafael Nodal's boutique marca (Boutique Blends), launched in 2011. Dominican production at Tabacalera Palma with Jochy Blanco; Quattro Nicaragua and La Boheme at Tabacalera A.J. Fernández in Estelí. Altadis distributes.",
   "rafaelnodal": "Rafael Nodal owns Boutique Blends (Aging Room) and has been Tabacalera USA's head of product capability since 2017, blending Altadis projects with A.J. Fernández.",
   "boutiqueblends": "Boutique Blends is Rafael Nodal's Miami company (Aging Room, La Bohème, Oliveros), made mainly at Jochy Blanco's Tabacalera Palma. Altadis distributes it but does not own it.",
@@ -263,7 +263,7 @@ var drawerDescriptions = {
   "skipmartin": "Skip Martin co-founded RoMa Craft Tobac and co-owns its Nica Sueño factory in Estelí with Esteban Disla. A former Galveston retailer.",
   "michaelrosales": "Michael Rosales co-founded RoMa Craft Tobac with Skip Martin in 2012; its cigars are made at Nica Sueño in Estelí. Before that he ran Costa Rican Imports (Adrians).",
   "latelier": "L'Atelier (Pete Johnson, 2012) is Tatuaje's sister company, rolled at My Father in Estelí. Lines include LAT, La Mission, Côte d'Or and Surrogates.",
-  "petejohnson": "Pete Johnson founded Tatuaje (2003) and L'Atelier (2012). He owns the brands. The García family rolls them: first at El Rey de los Habanos in Miami, then at My Father in Estelí. He is not a factory owner.",
+  "petejohnson": "Pete Johnson owns Tatuaje (2003) and co-founded L'Atelier (2012). He owns no factory: Pepín García rolled the first Tatuajes in Miami, and the García family makes both brands, today mostly at My Father in Estelí.",
   "hoyonc": "Non-Cuban Hoyo de Monterrey is made at STG Danlí (HATSA) in Honduras for General Cigar. Villazon bought the U.S. rights around 1965; General bought Villazon in 1996–97.",
 
   // Fallback for anything added later
