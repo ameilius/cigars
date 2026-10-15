@@ -19,7 +19,7 @@ var drawerDescriptions = {
 
   "davidoff": "Davidoff is the flagship luxury brand of Oettinger Davidoff (Basel), rebuilt as a non-Cuban house after the Cuban era with core production at Tabadom in the Dominican Republic. Lines include Grand Cru, Millennium, Winston Churchill, Late Hour, Aniversario, and Nicaragua.",
   "avo": "AVO is the Dominican brand created by jazz pianist Avo Uvezian with Henke Kelner in the late 1980s, later acquired by Oettinger Davidoff. Rolled at Tabadom in Villa González, the portfolio spans Classic, Classic Maduro, XO, Heritage, and Syncro Nicaragua, music-named lines built for smooth, approachable premium smoking.",
-  "griffins": "The Griffin's is an Oettinger Davidoff Dominican brand from Henke Kelner's early Tabadom era, known for elegant mild-to-medium profiles (Classic, Vintage, Escudo, Naturale). Rolled at Tabadom alongside Davidoff and AVO.",
+  "griffins": "The Griffin's (1984): made by Henke Kelner for Bernard Grobet's Geneva club, taken to Tabadom, and sold to Oettinger Davidoff in 1992.",
   "oettinger": "Oettinger Davidoff AG is the Swiss parent of Davidoff, AVO, The Griffin's, Zino, and Camacho. Headquartered in Basel, with Dominican manufacturing at Tabadom and multi-country leaf/factory programs for Camacho and Zino.",
   "tabadom": "Tabadom in Villa González is Oettinger Davidoff's Dominican factory for Davidoff, AVO, and The Griffin's.",
 
@@ -52,7 +52,7 @@ var drawerDescriptions = {
   "eobrands": "EO Brands (2003–2012) was the Erik Espinosa and Eddie Ortega company behind 601 and Murciélago, rolled at My Father. The partners split the brands in 2012.",
   "eddieortega": "Eddie Ortega co-founded EO Brands with Erik Espinosa (601, Murciélago). After the split he pursued separate projects; also linked to the \"Island Jim\" nickname story.",
 
-  "sixzeroone": "601 is Espinosa's flagship line from the EO Brands era: bold full Nicaraguan profiles (Red, Blue, La Bomba, and more), now centered at La Zona with historical A.J. Fernandez ties.",
+  "sixzeroone": "601 started at EO Brands (made at My Father). After the 2012 split, Espinosa moved it to La Zona and TAVICUSA, then to A.J. Fernández's San Lotano factory in 2016.",
   "murcielago": "Murciélago is Espinosa's bold dark line from the EO Brands era, continued under Espinosa Premium Cigars / La Zona as a full-power portfolio staple.",
 
   "ajfernandez": "A.J. Fernández is a Cuban-born blender who started in 2004 with six rollers in Estelí. His San Lotano brand came in 2010. He runs Tabacalera A.J. Fernández in Estelí and San Lotano in Ocotal.",
@@ -89,7 +89,7 @@ var drawerDescriptions = {
   "lagranfabrica": "La Gran Fábrica Drew Estate is the huge Estelí campus behind Liga Privada, Undercrown, Acid, Deadwood, and most Drew Estate volume.",
 
   // === CLE / Eiroa family (Honduras) ===
-  "cle": "CLE Cigar Company (Christian Eiroa) is Honduran vertical Corojo power (Corojo, Cuarenta, Plus, Eiroa lines) based in Danlí, separate from Oettinger-owned Camacho.",
+  "cle": "C.L.E. Cigar Company (Christian Eiroa, 2012): CLE Corojo and Cuarenta, first rolled at Rancho Jamastran, then at the Aladino factory in Danlí from 2013.",
   "christianeiroa": "Christian Eiroa ran Camacho until after Davidoff bought it in 2008, founded CLE in 2012, and in 2013 opened his own factory in Danlí's former Cine Aladino theater.",
   "eiroafamily": "The Eiroa family (Julio R. Eiroa) owned Camacho from 1995 to 2008 and now makes Aladino as JRE Tobacco Co. in Jamastran, Honduras. Christian Eiroa runs CLE in Danlí.",
   "eiroadanli": "CLE/Aladino factory in Danlí is Christian Eiroa's vertical Honduran home for CLE and Aladino Corojo-forward cigars.",
@@ -139,7 +139,7 @@ var drawerDescriptions = {
   // === HVC ===
   "hvc": "HVC Cigars (Reinier Lorenzo) had Hot Cake, Black Friday and First Selection made at Aganorsa factories, then opened its own Estelí factory in 2022 with Selección No. 1.",
   "reinierlorenzo": "Reinier Lorenzo founded HVC Cigars in 2011. Early cigars were made at TABSA; in 2022 he opened his own Estelí factory, starting with Selección No. 1.",
-  "hvcfactory": "HVC Factory in Estelí is Reinier Lorenzo's owned production home for Hot Cake, Black Friday, and related HVC lines.",
+  "hvcfactory": "Fábrica de Tabacos HVC (Estelí, 2022): Reinier Lorenzo's own factory. Selección No. 1 came first, then Black Friday 2022 and Hot Cake.",
 
   // === Additional corporate / other ===
   "alecbradley": "Alec Bradley (Alan Rubin) is a broad catalog brand (Prensado, Black Market, Tempus) now under STG after 2023 acquisition, with multi-factory Central American production.",

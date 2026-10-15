@@ -699,5 +699,7 @@ var baseGraphData = {
                 { source: "zino", target: "laflordecopan", type: "historically made at" },
                 { source: "altadis", target: "laflordecopan", type: "Henry Clay War Hawk, San Luis Rey Carenas made at" },
                 { source: "laflordecopan", target: "altadis", type: "manufactures for" },
+                { source: "sixzeroone", target: "lazona", type: "made at (2012–2016)" },
+                { source: "sixzeroone", target: "tavicusa", type: "partly made at (from 2012)" },
             ]
         };
