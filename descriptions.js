@@ -9,12 +9,12 @@ var drawerDescriptions = {
   "pepin": "Pepín García is the Cuban-born cigar maker behind My Father Cigars in Estelí (2009). He opened El Rey de los Habanos in Miami in 2003; first client Tatuaje.",
   "tatuaje": "Tatuaje is Pete Johnson's 2003 boutique brand. The García family rolls it: first at El Rey de los Habanos in Miami, then at My Father in Estelí. Brown Label, Black Label, Havana VI, Fausto, Cojonú, Reserva. L'Atelier is his later sister marca, also García-made.",
   "espinosa": "Espinosa Premium Cigars (Erik Espinosa, 2012) makes Laranja, Crema and Espinosa Habano at its La Zona factory in Estelí; 601, Murciélago and Knuckle Sandwich are made by A.J. Fernández.",
-  "erikespinosa": "Erik Espinosa runs Espinosa Premium Cigars and its La Zona factory in Estelí (2012), after co-founding EO Brands with Eddie Ortega in 2003. Partner in Knuckle Sandwich.",
-  "guyfieri": "Guy Fieri's Knuckle Sandwich (2022), made with Erik Espinosa, is rolled at A.J. Fernández's San Lotano factory in Ocotal, Nicaragua.",
+  "erikespinosa": "Erik Espinosa runs Espinosa Premium Cigars and its La Zona factory in Estelí (2012), after co-founding EO Brands in 2003. 601, Murciélago and Knuckle Sandwich are made by A.J. Fernández.",
+  "guyfieri": "Guy Fieri co-owns Knuckle Sandwich (2022), blended by Erik Espinosa and rolled at A.J. Fernández's San Lotano factory in Ocotal, Nicaragua. Partner in Espinosa's new Santiago factory.",
   "knucklesandwich": "Knuckle Sandwich (Guy Fieri and Erik Espinosa, 2022) is made by A.J. Fernández at San Lotano in Ocotal, Nicaragua, not at La Zona. Habano, Maduro, Connecticut, Puro Nicaragua.",
   "padron": "Padrón is the family-owned Nicaraguan icon founded in 1964 by José Orlando Padrón, produced at Tabacos Cubanica in Estelí. Famous for consistency, multi-year aging, and the regular line plus 1964 Anniversary and Serie 1926; led today with Jorge Padrón as president.",
   "joseopadron": "José Orlando Padrón (1926–2017) founded Padrón Cigars in Miami in 1964 and opened his Estelí factory, Tabacos Cubanica, in 1970.",
-  "jorgepadron": "Jorge Padrón is president of Padrón Cigars, made at Tabacos Cubanica in Estelí. He helped start the brand's national push in 1993 and the 1964 Anniversary Series in 1994.",
+  "jorgepadron": "Jorge Padrón is president of Padrón Cigars, made at Tabacos Cubanica in Estelí. He led the brand's national push in 1993 and the 1964 Anniversary Series in 1994.",
   "orlandopadron": "Orlando \"Orly\" Padrón, eldest son of José Orlando Padrón, has worked at Padrón Cigars since boyhood. The cigars are made at Tabacos Cubanica in Estelí.",
 
   "davidoff": "Davidoff (Oettinger Davidoff, Basel) has been made in the DR at Tabadom, Villa González, since 1991, after leaving Cuba. Grand Cru, Winston Churchill, Nicaragua, Escurio.",
@@ -36,7 +36,7 @@ var drawerDescriptions = {
   "cohiba_nc": "Cohiba (Non-Cuban) is the U.S. STG/Forged Cohiba, legally separate from Cuban Habanos Cohiba after decades of trademark litigation. Dominican and Nicaraguan blends (including STG Estelí capacity) range from milder classics to fuller Blue Dot, Black, and Nicaragua lines for American retail.",
   "partagas_nc": "Partagas (Non-Cuban) is a General Cigar/STG heritage brand, not Cuban Partagás. Licensed after the Revolution and first sold in 1977 (Jamaica, then Dominican), it remains a full-flavored U.S. staple with classic Cameroon-era roots and newer multi-origin lines under STG distribution.",
   "bolivar_nc": "Non-Cuban Bolivar is made at STG Danlí (HATSA) in Honduras and sold by STG's Forged. Main lines: Cofradia, Cofradia Oscuro and Gran Republica.",
-  "punch_nc": "Punch (Non-Cuban) is the STG/Forged U.S. Punch, separate from Cuban Punch. Via Villazon into General (1997), it is a full-flavored, value-forward heritage brand with Honduras and Nicaragua production (including STG Danlí and Estelí) across Classic, Signature, Deluxe, Rare Corojo, and Gran Puro lines.",
+  "punch_nc": "Non-Cuban Punch is made at STG Danlí (HATSA) in Honduras for General Cigar and sold by Forged. Villazon bought the U.S. rights from Fernando Palicio around 1965; General bought Villazon in 1997. Rare Corojo went regular in 2025.",
 
   "jcnewman": "J.C. Newman (Cleveland, 1895; Tampa's El Reloj since 1954) makes Brick House at its PENSA factory in Estelí; Diamond Crown and La Unica are made by the Fuentes.",
   "diamondcrown": "Diamond Crown is J.C. Newman's ultra-premium flagship, created for the company's 1995 centennial with Carlos Fuente Jr. and handmade at Tabacalera A. Fuente. Aged Dominican blends, ornate packaging, and later projects like Diamond Crown Tampa define the Newman-Fuente peak.",
@@ -50,7 +50,7 @@ var drawerDescriptions = {
   "crema": "Espinosa Crema (2016) is Espinosa's first Connecticut-wrapped cigar, made at the company's own La Zona factory in Estelí.",
 
   "eobrands": "EO Brands (2003–2012) was Erik Espinosa and Eddie Ortega's company behind 601 and Murciélago, rolled at My Father. The partners split the brands in 2012.",
-  "eddieortega": "Eddie Ortega co-founded EO Brands with Erik Espinosa in 2003 (601, Murciélago, rolled at My Father). The partners split in 2012. He also gave Jim Robinson the \"Island Jim\" nickname.",
+  "eddieortega": "Eddie Ortega co-founded EO Brands with Erik Espinosa in 2003 (601, Murciélago, rolled at My Father). The partners split in 2012; he runs Ortega Cigar Co. and named Jim Robinson \"Island Jim.\"",
 
   "sixzeroone": "601 began at EO Brands (made at My Father). After 2012 it moved to La Zona and TAVICUSA, then to A.J. Fernández's San Lotano in 2016.",
   "murcielago": "Murciélago is an Espinosa line (2009, San Andrés wrapper) first rolled at My Father. Since 2017 it has been made at A.J. Fernández's San Lotano factory.",
@@ -74,7 +74,7 @@ var drawerDescriptions = {
   "rakeshpatel": "Rakesh \"Rocky\" Patel is the founder of Rocky Patel Premium Cigars. Former Los Angeles lawyer; Indian Tabac in 1995; his name on the company in 2003. Cigars made with Plasencia in Honduras and at TaviCusa in Estelí. Brother Nish Patel helps run the company.",
   "rockypatel": "Rocky Patel Premium Cigars (Rocky Patel, mid-1990s) makes cigars at its own TaviCusa in Estelí and at Plasencia's Honduran factory (The Edge, Decade).",
   "nishpatel": "Nish Patel is Rocky Patel's younger brother and executive vice president of Rocky Patel Premium Cigars. His lines are Xen and Bold.",
-  "tavicusa": "TaviCusa (Tabacalera Villa Cuba) is Rocky Patel's own Estelí factory, opened in 2009 with Amilcar Perez-Castro.",
+  "tavicusa": "TaviCusa (Tabacalera Villa Cuba) is Rocky Patel's own Estelí factory, opened in 2009 with Amilcar Perez-Castro. Makes the Fifteenth Anniversary, Royale and other Nicaraguan lines.",
 
   // === Drew Estate / Swisher ===
   "acid": "Acid is Drew Estate's infused cigar line (1999), made at La Gran Fábrica in Estelí. Created with artist Scott \"Acid\" Chester; Kuba Kuba and Blondie are staples. Swisher-owned since 2014.",
@@ -90,7 +90,7 @@ var drawerDescriptions = {
 
   // === CLE / Eiroa family (Honduras) ===
   "cle": "C.L.E. Cigar Company (Christian Eiroa, 2012) makes CLE Corojo and Cuarenta at its own Aladino factory in Danlí, Honduras, after early production at Rancho Jamastran.",
-  "christianeiroa": "Christian Eiroa ran Camacho until 2011, founded CLE in 2012 and in 2013 opened his own Aladino factory in Danlí, Honduras, on the site of his grandfather's movie theater.",
+  "christianeiroa": "Christian Eiroa founded CLE in 2012 and makes it at his own Aladino factory in Danlí, Honduras (2013), on the site of his grandfather's movie theater. He earlier ran Camacho.",
   "eiroafamily": "The Eiroa family (Julio R. Eiroa) are Honduran growers in the Jamastran Valley. They owned Camacho until 2008; Christian Eiroa now runs CLE in Danlí.",
   "eiroadanli": "The Aladino (CLE) factory in Danlí, Honduras, is Christian Eiroa's own factory, opened in 2013 on the site of his grandfather's movie theater. It makes CLE cigars and its own boxes.",
 
@@ -121,7 +121,7 @@ var drawerDescriptions = {
   // === Joya de Nicaragua ===
   "joya": "Joya de Nicaragua (1968) is Nicaragua's oldest cigar brand, made at its own factory in Estelí: Antaño, Clásico, Cinco Décadas. Owned by the Martínez Cuenca family.",
   "joyafactory": "The Joya de Nicaragua factory in Estelí makes Joya's own lines plus contract cigars for Dunbarton (Sobremesa), Fratello and Viaje.",
-  "alejandromartinez": "Alejandro Martínez Cuenca, a former Sandinista trade minister, bought Joya de Nicaragua in 1994 and rebuilt Nicaragua's oldest cigar brand in Estelí.",
+  "alejandromartinez": "Alejandro Martínez Cuenca, a former Nicaraguan trade minister, bought Joya de Nicaragua and its Estelí factory in 1994 and rebuilt Nicaragua's oldest cigar brand.",
 
   // === Dunbarton / Steve Saka ===
   "dunbarton": "Dunbarton Tobacco & Trust is Steve Saka's company (2015): Sobremesa, Mi Querida, Sin Compromiso. All its cigars are made at Joya de Nicaragua and NACSA in Estelí.",
@@ -134,7 +134,7 @@ var drawerDescriptions = {
 
   // === Viaje ===
   "viaje": "Viaje (Andre Farkas) is a limited-release boutique: Exclusivo, Zombie, Summerfest. It owns no factory; most releases come from Aganorsa's TABSA, others from Joya, PDR and La iSLA.",
-  "andrefarkas": "Andre Farkas founded Viaje Cigars around 2007–2008. He owns no factory: Viaje's limited releases, such as Zombie, come from TABSA, Joya, Raíces Cubanas, PDR and La iSLA.",
+  "andrefarkas": "Andre Farkas founded Viaje Cigars around 2007–2008. He owns no factory: most Viaje releases come from TABSA, others from Joya, Raíces Cubanas, PDR and La iSLA.",
 
   // === HVC ===
   "hvc": "HVC Cigars (Reinier Lorenzo) were made at Aganorsa's TABSA until 2022, when HVC opened its own Estelí factory. Lines: Hot Cake, Black Friday, Selección No. 1.",
@@ -143,7 +143,7 @@ var drawerDescriptions = {
 
   // === Additional corporate / other ===
   "alecbradley": "Alec Bradley (Alan Rubin, 1996) is made mainly at Raíces Cubanas in Danlí, Honduras. Owned by STG since 2023; Prensado was 2011 Cigar of the Year.",
-  "room101": "Room101 is Matt Booth's irreverent cult brand, acquired by STG in 2022 and sold via General Cigar. Full-flavored, design-heavy limiteds with Honduran and Nicaraguan STG-network production (including Danlí and Estelí capacity) rather than a single boutique factory story.",
+  "room101": "Room101 is Matt Booth's cigar brand, owned by STG since 2022 and sold by General Cigar. Davidoff made it in Honduras 2009–2017; today's cigars come from William Ventura (DR) and STG Danlí (HATSA).",
 
   // Camacho
   "camacho": "Camacho is Oettinger Davidoff's Honduran brand. Simon Camacho opened a Miami factory in 1961, the Eiroa family built the Corojo reputation at Rancho Jamastran in Danlí, and Oettinger bought the company and that factory in 2008 without the farms. Corojo, Connecticut, Triple Maduro, and the annual Liberty release are the core lines. Current rolling is at Davidoff's Diadema factory outside Danlí, not at Christian Eiroa's CLE floor.",
@@ -183,8 +183,8 @@ var drawerDescriptions = {
   "tabacaleraesteli": "Tabacalera Estelí is the factory Don Kiki Berger founded in Estelí in 1996, now run by Karen Berger for Karen Berger Cigars and Don Kiki.",
 
   // La Palina
-  "lapalina": "La Palina dates to 1896, when Samuel Paley founded Congress Cigar Factory in Chicago and named the marca after his wife, Goldie Drell Paley. Revived in 2010 by great-grandson Bill Paley, the company is a negociant: it owns its tobacco, brands, and finished cigars, but not a factory. Goldie is rolled at El Titan de Bronze in Miami, with other lines made in Honduras, Nicaragua, the Dominican Republic, and Miami.",
-  "billpaley": "William \"Bill\" Paley revived La Palina in 2010 on a New York City rooftop, honoring the Congress Cigar legacy his great-grandfather Samuel Paley began in 1896. He remains chairman and principal as industry veterans Sammy Phillips and Clay Roberts steer day-to-day operations.",
+  "lapalina": "La Palina dates to 1896, when Samuel Paley founded Congress Cigar Factory in Chicago and named the marca after his wife, Goldie Drell Paley. Revived in 2010 by grandson Bill Paley, the company is a negociant: it owns its tobacco, brands, and finished cigars, but not a factory. Goldie is rolled at El Titan de Bronze in Miami, with other lines made in Honduras, Nicaragua, the Dominican Republic, and Miami.",
+  "billpaley": "Bill Paley revived La Palina in 2010, his grandfather Samuel Paley's 1896 brand. It owns no factory: Goldie is rolled at El Titan de Bronze in Miami, other lines in Honduras, Nicaragua and the DR.",
   "eltitandebronze": "El Titan de Bronze (Sandy Cobas, 1995) is a family-owned, women-run factory on Calle Ocho in Little Havana. It has made La Palina Goldie, Padilla, Warped and Southern Draw's Decennium.",
   "pdr": "PDR Cigars is Abe Flores's factory in Tamboril, DR (2011). It makes its own brands and contract cigars for La Palina, Gurkha, Kristoff, Viaje and Caldwell.",
 
@@ -222,11 +222,11 @@ var drawerDescriptions = {
   "littogomez": "Litto Gomez, a former Miami jeweler, co-founded La Flor Dominicana with Inés Lorenzo-Gomez in 1994. Its Tamboril, DR factory uses leaf from the La Canela farm.",
   "lfdfactory": "Tabacalera La Flor S.A. in Tamboril, DR, makes La Flor Dominicana: Double Ligero, the Chisel (2003) and the Andalusian Bull (2016 Cigar of the Year).",
   "ligaprivada": "Liga Privada is Drew Estate's top traditional line, made at La Gran Fábrica in Estelí. Steve Saka's No. 9 began in 2005; T52 followed in 2009.",
-  "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
+  "crownedheads": "Crowned Heads is a Nashville boutique founded in 2011 by ex-CAO staff Jon Huber and Mike Conder. No factory of its own: Four Kicks and Headley Grange come from Casa Carrillo (DR), Jericho Hill from My Father (Estelí), Mil Dias from Tabacalera Pichardo.",
   "southerndraw": "Southern Draw (Robert and Sharon Holt, 2014) is made by A.J. Fernández in Estelí: Kudzu, Rose of Sharon, Jacob's Ladder. Decennium (2024) came from El Titan de Bronze.",
   "kristoff": "Kristoff (Glen Case, 2004) has always been made at the Charles Fairmorn factory, now Tabacalera Von Eicken, in Santiago, DR.",
   "trinidadespiritu": "Trinidad Espiritu is made by A.J. Fernández in Estelí for Altadis U.S.A., blended with Rafael Nodal. Series No. 1 shipped in July 2019.",
-  "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
+  "cain": "Cain is Oliva Cigar Co.'s high-ligero brand, made at Tabolisa in Estelí. Launched in 2009 with Sam Leccia, it blends triple-fermented Estelí, Condega and Jalapa ligero; Cain F is the strongest.",
   "nub": "NUB is Oliva's short, fat cigar (2008), made at Tabolisa in Estelí. Sam Leccia's idea: no more than four inches long.",
   "altadis": "Altadis U.S.A. (Tabacalera USA / Imperial Brands) holds U.S. rights to non-Cuban Montecristo, Romeo y Julieta, H. Upmann, Trinidad, and related marques. The counterpart to STG's General/Forged tree, it pairs heritage names with Nicaraguan partners like A.J. Fernandez and Plasencia, and distributes Rafael Nodal's independently owned Aging Room.",
   "montecristonc": "Montecristo (Non-Cuban) is owned by Altadis U.S.A. (Imperial Brands), not STG. Dominican core lines plus Nicaraguan projects with A.J. Fernández: the Nicaragua Series in Estelí and 1935 Anniversary Nicaragua No. 2 at San Lotano.",
@@ -242,7 +242,7 @@ var drawerDescriptions = {
   "islandjim": "Island Jim cigars are made by Oscar Valladares in Danlí, Honduras, for Leaf & Bean retailer Jim Robinson. Lines: No. 2, Connecticut #Two, Barber Pole.",
   "jimrobinson": "\"Island Jim\" Robinson is the Pittsburgh retailer behind Leaf & Bean. He created Leaf by Oscar and Island Jim with Oscar Valladares in Danlí, and Nick & Jim with Nicholas Syris.",
   "nicholassyris": "Nicholas Syris is a Greek-American master blender and founder of LH Premium Cigars (Lavida Habana). Non-Cuban LH blends are rolled at Tabacos de Costa Rica; he blended Nick & Jim with Jim Robinson.",
-  "lhpremium": "LH Premium is Nicholas Syris's brand, named for his Lavida Habana lounges, made at Tabacos de Costa Rica. Home base of the Nick & Jim collaboration.",
+  "lhpremium": "LH Premium is Nicholas Syris's brand, named for his Lavida Habana lounges and made at Tabacos de Costa Rica: Claro, Colorado and Maduro. Home of the Nick & Jim collaboration.",
   "nickandjim": "Nick & Jim is Nicholas Syris and Jim Robinson's collaboration (2017), made at Tabacos de Costa Rica.",
   "lampert": "Lampert Cigars (Stefan Lampert, 2017) makes its Oro and Ocean Breeze lines at Tabacos de Costa Rica, plus a 1675 line in Nicaragua and Dominican cigars.",
   "casdagli": "Casdagli Cigars (Jeremy Casdagli, 1997): early cigars rolled in Havana, then Kelner Boutique Factory in the DR (2013), IGM in Costa Rica and Tabacos de Costa Rica (Villa Casdagli).",
@@ -260,7 +260,7 @@ var drawerDescriptions = {
   "hupmannnc": "Non-Cuban H. Upmann (Altadis U.S.A.): Dominican lines at Tabacalera de García (The Banker, 1844 Reserve), Nicaraguan lines by A.J. Fernández in Estelí since 2017.",
   "tabdegarcia": "Tabacalera de García in La Romana, DR (1969), makes non-Cuban Montecristo, Romeo y Julieta and H. Upmann. U.S. shipments halted by 2025 sanctions resumed in May 2026.",
   "romacraft": "RoMa Craft Tobac, formed in 2012 by Skip Martin and Michael Rosales, makes CroMagnon and Intemperance at its own Nica Sueño factory in Estelí.",
-  "skipmartin": "Skip Martin co-founded RoMa Craft Tobac and, with Esteban Disla, the Nica Sueño factory in Estelí. A former Galveston retailer.",
+  "skipmartin": "Skip Martin co-founded RoMa Craft Tobac and co-owns its Nica Sueño factory in Estelí with Esteban Disla. A former Galveston retailer.",
   "michaelrosales": "Michael Rosales co-founded RoMa Craft Tobac with Skip Martin in 2012; its cigars are made at Nica Sueño in Estelí. Before that he ran Costa Rican Imports (Adrians).",
   "latelier": "L'Atelier (Pete Johnson, 2012) is Tatuaje's sister company, rolled at My Father in Estelí. Lines include LAT, La Mission, Côte d'Or and Surrogates.",
   "petejohnson": "Pete Johnson founded Tatuaje (2003) and L'Atelier (2012). He owns the brands. The García family rolls them: first at El Rey de los Habanos in Miami, then at My Father in Estelí. He is not a factory owner.",
