@@ -182,7 +182,7 @@ var baseGraphData = {
                 { id: "selectedtobacco", name: "Selected Tobacco S.A.", type: "company", group: "family", country: "costa rica", logo: "logos/selectedtobacco.png" },
                 { id: "nelsonalfonso", name: "Nelson Alfonso", type: "person", group: "family", country: "costa rica", photo: "logos/nelsonalfonso.png" },
                 { id: "atabey", name: "Atabey", type: "brand", group: "family", country: "costa rica", productLines: ["Ritos", "Delirios", "Brujos", "Black"], logo: "logos/atabey.png" },
-                { id: "byron", name: "Byron", type: "brand", group: "family", country: "costa rica", productLines: ["Siglo XIX", "Siglo XX", "Siglo XXI", "Epicure", "Edición Limitada"], logo: "logos/byron.png" },
+                { id: "byron", name: "Byron", type: "brand", group: "family", country: "costa rica", productLines: ["Siglo XIX", "Siglo XX", "Siglo XXI"], logo: "logos/byron.png" },
                 { id: "agingroom", name: "Aging Room", type: "brand", group: "family", country: "dominican", productLines: ["Quattro Nicaragua", "Quattro Original", "Small Batch", "La Boheme", "Solera", "Blue Amber"], logo: "logos/agingroom.png" },
                 { id: "rafaelnodal", name: "Rafael Nodal", type: "person", group: "family", country: "usa", photo: "logos/rafael-nodal.jpg" },
                 { id: "boutiqueblends", name: "Boutique Blends", type: "company", group: "family", country: "usa", logo: "logos/boutiqueblends.jpg" },
