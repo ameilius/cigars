@@ -104,7 +104,7 @@ var drawerDescriptions = {
   "nickmelillo": "Nick Melillo (New Haven, Conn.) worked at Drew Estate in Estelí from 2003 to 2014, then founded Foundation Cigar Co. in 2015 (El Güegüense, The Wise Man, Charter Oak, Tabernacle).",
 
   // === Warped / Kyle Gellis ===
-  "warped": "Warped Cigars (Kyle Gellis) is a traditionalist boutique with lines like Corto, Sarto, and Cloud Hopper. Major production at NACSA and historical Aganorsa/TABSA ties in Estelí.",
+  "warped": "Warped Cigars (Kyle Gellis, 2009): El Titan de Bronze in Miami, TABSA in Estelí (Flor del Valle, Futuro), NACSA (Corto Maduro) and La iSLA in the DR (Nicotina).",
   "kylegellis": "Kyle Gellis founded Warped Cigars in 2009 (Corto, Futuro, Cloud Hopper), made at Aganorsa's TABSA, El Titan de Bronze in Miami and, for Corto Maduro, NACSA.",
   "nacsa": "NACSA in Estelí is a prominent factory closely tied to Warped/Kyle Gellis production and boutique Nicaraguan craft.",
 
@@ -200,7 +200,7 @@ var drawerDescriptions = {
   "nicasueno": "Fábrica de Tabacos Nica Sueño in Estelí is the factory Skip Martin built with Esteban Disla: home of RoMa Craft (CroMagnon) and Powstanie. halfwheel Factory of the Year 2020, 2022, 2024.",
   "plasenciahonduras": "El Paraíso (Plasencia Honduras) is Plasencia's Honduran flagship for house work and contracts like Southern Draw and Padilla.",
   "stgesteli": "STG Estelí is Scandinavian Tobacco Group's major Nicaraguan factory for portfolio brands and corporate volume routing.",
-  "stgdanli": "STG Danlí (HATSA) is Scandinavian Tobacco Group's Honduran factory, the Danlí twin to STG Estelí for corporate portfolio volume, including core non-Cuban Hoyo de Monterrey and Bolivar Cofradia.",
+  "stgdanli": "STG Danlí (HATSA): Frank Llaneza's Danlí factory (c. 1964), bought by General Cigar with Villazon in 1996. Home of Honduran Hoyo de Monterrey and Punch.",
   "rojasfactory": "Rojas Cigar Factory: Noel Rojas's Estelí factory in a converted movie theater (2021–), making Rojas Cigars and Stolen Throne.",
   "raicescubanas": "Raíces Cubanas (Danlí, 2003, Endemaño family) makes cigars for Alec Bradley, Illusione and Viaje. Its own brand launched in late 2024 with Ralph Montero.",
   "laaurorafactory": "La Aurora Cigar Factory is the historic Dominican home of La Aurora (1903), producing the house portfolio under León family ownership.",
@@ -210,7 +210,7 @@ var drawerDescriptions = {
   "lacarrillo": "Casa Carrillo (Tabacalera La Alianza until its February 2024 rename) is Ernesto Perez-Carrillo's factory in Santiago. It rolls E.P. Carrillo/INCH and contract brands (Gurkha, Casdagli, Crowned Heads, Caldwell).",
   "laisla": "TABACALERA LA iSLA (Hostos Fernández Quesada, opened December 2020) is a Gurabo free-zone contract factory in Santiago for Warped, Viaje, Fratello, La Sirena, Matilde and others. ProCigar member since 2024.",
   "caoamerican": "CAO American Caribbean is STG/General-linked Nicaraguan capacity for CAO-family and related negociant routing.",
-  "costaricatabacos": "Tabacos de Costa Rica is the Puriscal-region factory hub for Atabey, Byron, Lampert, Villa Casdagli, LH Premium, Nick & Jim, and Vegas de Santiago, spanning ultra-luxury allocations to local heritage.",
+  "costaricatabacos": "Tabacos de Costa Rica (Puriscal, 1997, Olman family) makes Atabey and Byron for Selected Tobacco, plus Lampert, Vegas de Santiago and its own Olman lines.",
   "ovejanegra": "Fábrica Oveja Negra (Estelí, 2015) is Black Label Trading Co.'s small-batch factory, run by James and Angela Brown: BLTC, BLK WKS and contract work. Moved to a larger building in 2017.",
   "lanuzafactory": "Lanuza Cigars is Raúl Lanuza's small, family-run Estelí factory: house Lanuza Habano and Mechudo plus private-label blends (TUX and other small brands).",
   "laflordecopan": "La Flor de Copán (Santa Rosa de Copán, 1976) grew from the Tabacos Hondureños grower group. It once made Zino and now rolls Henry Clay and San Luis Rey.",

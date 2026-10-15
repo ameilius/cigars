@@ -701,5 +701,7 @@ var baseGraphData = {
                 { source: "laflordecopan", target: "altadis", type: "manufactures for" },
                 { source: "sixzeroone", target: "lazona", type: "made at (2012–2016)" },
                 { source: "sixzeroone", target: "tavicusa", type: "partly made at (from 2012)" },
+                { source: "warped", target: "laisla", type: "Nicotina and Dominican lines produced at" },
+                { source: "laisla", target: "warped", type: "manufactures" },
             ]
         };
