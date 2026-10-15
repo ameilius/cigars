@@ -703,5 +703,6 @@ var baseGraphData = {
                 { source: "sixzeroone", target: "tavicusa", type: "partly made at (from 2012)" },
                 { source: "warped", target: "laisla", type: "Nicotina and Dominican lines produced at" },
                 { source: "laisla", target: "warped", type: "manufactures" },
+                { source: "elseptimo", target: "knucklesandwich", type: "Pure Aroma owner Santana Díaz partners in KS Dominican factory (planned 2026)" },
             ]
         };

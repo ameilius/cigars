@@ -35,7 +35,7 @@ var drawerDescriptions = {
   "cao": "CAO is the bold General Cigar/STG brand known for colorful packaging and full-flavored multi-origin lines (Brazilia, Flathead, MX2, Ecuador, and more). Long associated with blender Rick Rodriguez before he founded West Tampa; a creative counterweight to mild Macanudo in the STG portfolio.",
   "cohiba_nc": "Cohiba (Non-Cuban) is the U.S. STG/Forged Cohiba, legally separate from Cuban Habanos Cohiba after decades of trademark litigation. Dominican and Nicaraguan blends (including STG Estelí capacity) range from milder classics to fuller Blue Dot, Black, and Nicaragua lines for American retail.",
   "partagas_nc": "Partagas (Non-Cuban) is a General Cigar/STG heritage brand, not Cuban Partagás. Licensed after the Revolution and first sold in 1977 (Jamaica, then Dominican), it remains a full-flavored U.S. staple with classic Cameroon-era roots and newer multi-origin lines under STG distribution.",
-  "bolivar_nc": "Bolivar (Non-Cuban) is Forged's U.S. Bolivar, owned by STG, separate from the Cuban Habanos brand. Cofradia and Cofradia Oscuro are rolled at STG Danlí (HATSA) in Honduras.",
+  "bolivar_nc": "Non-Cuban Bolivar: made at STG Danlí (HATSA), Honduras; sold by Forged. Cofradia, Cofradia Oscuro and Gran Republica.",
   "punch_nc": "Punch (Non-Cuban) is the STG/Forged U.S. Punch, separate from Cuban Punch. Via Villazon into General (1997), it is a full-flavored, value-forward heritage brand with Honduras and Nicaragua production (including STG Danlí and Estelí) across Classic, Signature, Deluxe, Rare Corojo, and Gran Puro lines.",
 
   "jcnewman": "J.C. Newman (founded 1895, based in Tampa) is America's oldest family-owned premium cigar company. Dominican ultra-premiums like Diamond Crown are handmade at Tabacalera A. Fuente; other Newman brands use separate Nicaraguan capacity. Partnership with Fuente dates to 1986.",
@@ -95,7 +95,7 @@ var drawerDescriptions = {
   "eiroadanli": "CLE/Aladino factory in Danlí is Christian Eiroa's vertical Honduran home for CLE and Aladino Corojo-forward cigars.",
 
   // === Aganorsa / TABSA ===
-  "aganorsa": "Aganorsa Leaf, owned by founder Eduardo Fernández, is a major Nicaraguan grower-manufacturer operating TABSA in Estelí. Supplies and rolls for Illusione, Viaje, Warped, and others.",
+  "aganorsa": "Aganorsa Leaf: Eduardo and Max Fernández's Nicaraguan grower (1997) and TABSA factory in Estelí. Own brands and leaf for Illusione, Viaje, Warped, Foundation.",
   "maxfernandez": "Max Fernández, son of owner Eduardo Fernández, runs the factory and blending at Aganorsa Leaf and TABSA in Estelí.",
   "tabsa": "TABSA is Aganorsa's flagship Estelí factory, a top contract floor for Illusione, Viaje, Warped (historical), Foundation's early El Güegüense, early HVC, and other boutiques seeking grower-linked Nicaraguan production.",
 
@@ -225,7 +225,7 @@ var drawerDescriptions = {
   "crownedheads": "Crowned Heads (Jon Huber) is a Nashville boutique brand famous for Jericho Hill, Four Kicks, and La Imperiosa. Core production at My Father in Estelí, with historical NACSA and select Dominican work.",
   "southerndraw": "Southern Draw (Robert & Sharon Holt) is a veteran-owned boutique made by A.J. Fernandez in Estelí since 2014.",
   "kristoff": "Kristoff was founded in 2004 by Glen Case of suburban Chicago, named for his son, and has always been made at the Charles Fairmorn factory (Tabacalera Von Eicken) in Santiago, DR.",
-  "trinidadespiritu": "Trinidad Espiritu is Altadis U.S.A.'s Nicaraguan Trinidad line, by Rafael Nodal and A.J. Fernández, made at Tabacalera A.J. Fernández in Estelí. Series No. 3 Belicoso: No. 5 of 2025.",
+  "trinidadespiritu": "Trinidad Espiritu (Altadis U.S.A., 2019): A.J. Fernández's Nicaraguan Trinidad, blended with Rafael Nodal at Tabacalera A.J. Fernández in Estelí.",
   "cain": "Cain is Oliva's ligero-forward sub-brand (2009, Studio Tobac / Sam Leccia), rolled at Tabolisa. Serie F and related Black, Habano, Maduro, CT, and Daytona lines chase Nicaraguan power; Cain NUB crosses over to short formats.",
   "nub": "NUB is Oliva's short, fat vitola sub-brand created by Sam Leccia in 2008 and rolled at Tabolisa. ~4-inch large-ring formats (460/464/358) with Connecticut, Cameroon, Habano, Maduro, Dub, Nuance, and Cain NUB lines.",
   "altadis": "Altadis U.S.A. (Tabacalera USA / Imperial Brands) holds U.S. rights to non-Cuban Montecristo, Romeo y Julieta, H. Upmann, Trinidad, and related marques. The counterpart to STG's General/Forged tree, it pairs heritage names with Nicaraguan partners like A.J. Fernandez and Plasencia, and distributes Rafael Nodal's independently owned Aging Room.",
