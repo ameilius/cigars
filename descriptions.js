@@ -253,7 +253,7 @@ var drawerDescriptions = {
   "byron": "Byron is Selected Tobacco's revived 1850 brand, launched in 2012 by Nelson Alfonso with Atabey and Bandolero and made at Tabacos de Costa Rica in Puriscal.",
   "agingroom": "Aging Room is Rafael Nodal's boutique marca (Boutique Blends), launched in 2011. Dominican production at Tabacalera Palma with Jochy Blanco; Quattro Nicaragua and La Boheme at Tabacalera A.J. Fernández in Estelí. Altadis distributes.",
   "rafaelnodal": "Rafael Nodal owns Boutique Blends (Aging Room) and has been Tabacalera USA's head of product capability since 2017, blending Altadis projects with A.J. Fernández.",
-  "boutiqueblends": "Boutique Blends is Rafael Nodal's Miami company (Aging Room, La Bohème, Oliveros), made mainly at Jochy Blanco's Tabacalera Palma. Altadis distributes it but does not own it.",
+  "boutiqueblends": "Boutique Blends is Rafael Nodal's Miami company (Aging Room, La Bohème, Oliveros). Aging Room is made mainly at Jochy Blanco's Tabacalera Palma; Oliveros Gran Retorno is made by Plasencia. Altadis distributes it but does not own it.",
   "voneicken": "Tabacalera Von Eicken in Santiago, DR (formerly the Charles Fairmorn factory) belongs to Germany's Joh. Wilh. von Eicken. It makes Kristoff.",
   "lapalma": "Tabacalera Palma (Tamboril, DR, 1925) is the Blanco family's factory, run by Jochy Blanco. It makes La Galera and cigars for Aging Room and other brands.",
   "jochyblanco": "José \"Jochy\" Blanco, a fourth-generation grower, is CEO of Tabacalera Palma in Tamboril, DR, his family's factory, which makes La Galera and Aging Room.",
