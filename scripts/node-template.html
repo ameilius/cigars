@@ -377,6 +377,17 @@
         .node-cta-row > a[href="/about.html"] { margin-left: 0; flex: 1 1 100%; text-align: center; justify-content: center; }
         .node-cta-row > .drawer-report-link { justify-content: center; }
      }
+     /* Design pass: one card per page. Hero and explore row sit flat inside the article; contrast and spacing carry hierarchy. */
+     .node-page article .node-hero, .node-page article .node-hero[class*="node-hero--"] {
+        background: none; border: 0; border-radius: 0; box-shadow: none; overflow: visible;
+        padding: 0 0 1.75rem; margin-bottom: 1.75rem; border-bottom: 1px solid #E3EEEB; }
+     .node-page article .node-hero[class*="node-hero--"]::before { content: ''; position: absolute; left: 0; top: -2rem; width: 56px; height: 4px; border-radius: 0 0 4px 4px; background: var(--kind); }
+     .node-page article .node-cta-row { background: none; border: 0 !important; border-top: 1px solid #E3EEEB !important; border-radius: 0; padding: 1.5rem 0 0 !important; margin-top: 2rem; }
+     .node-page article .node-cta-row > .drawer-report-link { border-top: 0; padding-top: 4px; }
+     @media (max-width: 640px) {
+        .node-page article .node-hero[class*="node-hero--"]::before { left: 50%; margin-left: -28px; top: -1.25rem; }
+        .node-page article .node-cta-row { padding: 1.25rem 0 0 !important; }
+     }
     </style>
 </head>
 <body class="text-[#1A3330]">
