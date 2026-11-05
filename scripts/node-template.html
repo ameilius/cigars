@@ -113,8 +113,9 @@
      .node-hero__identity { flex: 1; min-width: 0; }
       @media (max-width: 600px) {
        .node-hero { flex-direction: column; text-align: center; align-items: center; }
-       .node-hero__identity.flex { justify-content: center; }
-       .node-hero__identity.node-profile-actions { justify-content: center; }
+       .node-hero__identity { width: 100%; }
+       .node-hero__identity .node-meta-pills { justify-content: center; }
+       .node-hero__identity .node-profile-actions { justify-content: center; }
       }
      .node-hero:not(:has(.node-logo-box)):not(:has(.node-photo-box)) {
         padding: 1.25rem 1.5rem;
@@ -420,7 +421,7 @@
           <div class="node-hero__identity">
             <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1A3330]">{{NAME}}</h1>
             {{HEADER_SUMMARY}}
-            <div class="flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
+            <div class="node-meta-pills flex flex-wrap gap-1.5 mt-3">{{META_PILLS}}</div>
             {{WEBSITE_LINK}}
             <div class="node-profile-actions">
               <button type="button"
