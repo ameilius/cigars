@@ -136,7 +136,7 @@ var baseGraphData = {
                 { id: "tabacalerapages", name: "Tabacalera Pages de Nicaragua", type: "factory", group: "family", country: "nicaragua" },
                 { id: "latabacaria", name: "La Tabacaria (Estelí)", type: "factory", group: "family", country: "nicaragua" },
                 { id: "rojasfactory", name: "Rojas Cigar Factory", type: "factory", group: "family", country: "nicaragua" },
-                { id: "raicescubanas", name: "Raíces Cubanas", type: "factory", group: "family", country: "honduras" },
+                { id: "raicescubanas", name: "Raíces Cubanas", type: "factory", group: "family", country: "honduras", logo: "logos/raicescubanas.png" },
                 { id: "laaurorafactory", name: "La Aurora Cigar Factory", type: "factory", group: "family", country: "dominican" },
                 { id: "elreyhabanos", name: "El Rey de los Habanos (Miami)", type: "factory", group: "family", country: "usa" },
                 { id: "lacarrillo", name: "Casa Carrillo Factory (Santiago)", type: "factory", group: "family", country: "dominican", logo: "logos/casacarillo.png" },
