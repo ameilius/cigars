@@ -919,6 +919,7 @@ function buildSitemap(nodes, { includeDirectory = false } = {}) {
   if (includeDirectory) {
     xml += `  <url>\n    <loc>${SITE}/directory.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.85</priority>\n  </url>\n`;
   }
+  xml += `  <url>\n    <loc>${SITE}/llms.txt</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>\n`;
   sorted.forEach(node => {
     xml += `  <url>\n    <loc>${SITE}/node/${node.id}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
   });
@@ -927,7 +928,7 @@ function buildSitemap(nodes, { includeDirectory = false } = {}) {
 }
 
 function extraSitemapPages(includeDirectory) {
-  return includeDirectory ? 5 : 4;
+  return includeDirectory ? 6 : 5;
 }
 
 function validateSitemap(xml, nodes, { includeDirectory = false } = {}) {
@@ -964,6 +965,9 @@ function validateSitemap(xml, nodes, { includeDirectory = false } = {}) {
   }
   if (!xml.includes(`${SITE}/disclosures.html`)) {
     throw new Error('Sitemap missing disclosures.html');
+  }
+  if (!xml.includes(`${SITE}/llms.txt`)) {
+    throw new Error('Sitemap missing llms.txt');
   }
 
   const expectedTotal = nodeIds.size + extraSitemapPages(includeDirectory);
