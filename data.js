@@ -204,7 +204,7 @@ var baseGraphData = {
                 { id: "manowar", name: "Man O' War", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Virtue", "Ruination", "Armada"], logo: "logos/manowar.jpg" },
                 { id: "seriev", name: "Serie V", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Serie V Maduro", "Melanio", "Melanio Maduro"], logo: "logos/oliva-serie-v.jpg" },
                 { id: "bolivar_nc", name: "Bolivar (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Cofradia", "Cofradia Oscuro", "Gran Republica"], logo: "logos/bolivar.jpg" },
-                { id: "tabacaleraturrent", name: "Tabacalera Turrent (San Andrés Tuxtla)", type: "factory", group: "family", country: "mexico", logo: "logos/tabacaleraturrent.png" },
+                { id: "tabacaleraturrent", name: "Tabacalera Turrent (San Andrés Tuxtla)", type: "factory", group: "family", country: "mexico", logo: "logos/tabacaleraturrent.png?v=2" },
                 { id: "casaturrent", name: "Casa Turrent", type: "brand", group: "family", country: "mexico", productLines: ["Serie 1901", "Serie 1942", "Serie 1973", "1880"], logo: "logos/casaturrent.png" },
                 { id: "teamo", name: "Te-Amo", type: "brand", group: "family", country: "mexico", productLines: ["The Original San Andrés Valley Cigar"], logo: "logos/teamo.png" },
             ],
