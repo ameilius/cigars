@@ -2256,8 +2256,10 @@ h1, h2, .font-display,
 .filter-chip[data-key="nicaragua"] { order: 4; }
 .filter-chip[data-key="dominican"] { order: 5; }
 .filter-chip[data-key="honduras"] { order: 6; }
-.filter-chip[data-key="boutique"] { order: 7; }
-.filter-chip[data-key="factory"] { order: 8; }
+.filter-chip[data-key="mexico"] { order: 7; }
+.filter-chip[data-key="costa rica"] { order: 8; }
+.filter-chip[data-key="boutique"] { order: 9; }
+.filter-chip[data-key="factory"] { order: 10; }
 
 .intro-houses {
     display: grid;
@@ -2465,6 +2467,14 @@ h1, h2, .font-display,
 .home-polish .filter-chip[data-key="honduras"] {
     --chip: #9a6232;
     --chip-ink: #fffaf6;
+}
+.home-polish .filter-chip[data-key="mexico"] {
+    --chip: #a3453a;
+    --chip-ink: #fffaf7;
+}
+.home-polish .filter-chip[data-key="costa rica"] {
+    --chip: #1e6f78;
+    --chip-ink: #f6fbfb;
 }
 .home-polish .filter-chip[data-key="all"]:not(.filter-active) {
     background: rgba(255, 255, 255, 0.72);

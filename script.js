@@ -759,7 +759,7 @@ function getFilteredData() {
 
   if (!hasAll) {
     const ownershipActive = ['family', 'corporate'].filter(k => activeFilters.has(k));
-    const countryActive = ['nicaragua', 'dominican', 'honduras'].filter(k => activeFilters.has(k));
+    const countryActive = ['nicaragua', 'dominican', 'honduras', 'mexico', 'costa rica'].filter(k => activeFilters.has(k));
     const typeActive = ['boutique', 'factory'].filter(k => activeFilters.has(k));
 
     filteredNodes = filteredNodes.filter(n => {
@@ -777,7 +777,9 @@ function getFilteredData() {
         const matchesCountry = countryActive.some(k =>
           (k === 'nicaragua' && country.includes('nicaragua')) ||
           (k === 'dominican' && country.includes('dominican')) ||
-          (k === 'honduras' && country.includes('honduras'))
+          (k === 'honduras' && country.includes('honduras')) ||
+          (k === 'mexico' && country.includes('mexico')) ||
+          (k === 'costa rica' && country.includes('costa rica'))
         );
         if (!matchesCountry) return false;
       }
@@ -1180,6 +1182,10 @@ function updateFilterChipCounts() {
       count = nodes.filter(n => (n.country || '').toLowerCase().includes('dominican')).length;
     } else if (key === 'honduras') {
       count = nodes.filter(n => (n.country || '').toLowerCase().includes('honduras')).length;
+    } else if (key === 'mexico') {
+      count = nodes.filter(n => (n.country || '').toLowerCase().includes('mexico')).length;
+    } else if (key === 'costa rica') {
+      count = nodes.filter(n => (n.country || '').toLowerCase().includes('costa rica')).length;
     } else if (key === 'boutique') {
       count = nodes.filter(n => n.type === 'brand' && n.group === 'family').length;
     } else if (key === 'factory') {
