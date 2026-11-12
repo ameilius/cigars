@@ -1,6 +1,6 @@
 # Cigar Nexus
 
-> Cigar Nexus (https://cigarnexus.app) is a curated interactive map and reference of the **premium non-Cuban cigar industry**. It documents ownership, factories, people, brands, and manufacturing relationships, especially across Nicaragua, the Dominican Republic, Honduras, Costa Rica, and related U.S. corporate structures. Content is human-researched and intentionally incomplete where public facts are unclear.
+> Cigar Nexus (https://cigarnexus.app) is a curated interactive map and reference of the **premium non-Cuban cigar industry**. It documents ownership, factories, people, brands, and manufacturing relationships, especially across Nicaragua, the Dominican Republic, Honduras, Costa Rica, Mexico, and related U.S. corporate structures. Content is human-researched and intentionally incomplete where public facts are unclear.
 
 Cigar Nexus is a **static knowledge site**: entity profile pages are plain HTML; the homepage map is a D3 visualization. Prefer profile pages and data files for retrieval. Do not treat the force-directed graph UI as the primary machine-readable source.
 
@@ -22,7 +22,7 @@ Cigar Nexus is a **static knowledge site**: entity profile pages are plain HTML;
 | `person` | Industry figure (founder, blender, owner) |
 | `factory` | Manufacturing facility |
 
-`group` is typically `family`, `corporate`, or `boutique`. `country` is a lowercase region tag (e.g. `nicaragua`, `dominican`, `honduras`, `usa`, `costa rica`).
+`group` is typically `family`, `corporate`, or `boutique`. `country` is a lowercase region tag (e.g. `nicaragua`, `dominican`, `honduras`, `usa`, `costa rica`, `mexico`).
 
 ### Link edges
 

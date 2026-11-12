@@ -270,7 +270,11 @@ var drawerDescriptions = {
   "default": "A key player in the modern cigar industry with connections across brands, factories, and families.",
   "tabacalerapages": "Tabacalera Pages de Nicaragua in Estelí made Valacari and the first Lure cigars until both moved to La Tabacaria in fall 2025.",
   "latabacaria": "La Tabacaria Cigars in Estelí has made Valacari and Lure since fall 2025, when both moved from Tabacalera Pages.",
+  "tabacaleraturrent": "Tabacalera Turrent is the Turrent family's tobacco and cigar operation in the San Andrés Valley of Veracruz, Mexico. It grows leaf and rolls Te-Amo and Casa Turrent at Nueva Matacapan Tabacos in the San Andrés Tuxtla area.",
+  "casaturrent": "Casa Turrent is the Turrent family's ultra-premium brand, made at Tabacalera Turrent's Nueva Matacapan factory in San Andrés Tuxtla, Veracruz. Lines include Serie 1901, Serie 1942, Serie 1973 and 1880.",
+  "teamo": "Te-Amo is a Mexican brand created by the Turrent family in 1966 and made at their Nueva Matacapan factory in San Andrés Tuxtla, Veracruz. Altadis U.S.A. distributes it in the United States.",
 };
+
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = drawerDescriptions;

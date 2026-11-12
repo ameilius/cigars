@@ -472,4 +472,10 @@ module.exports = {
     'Cofradia Oscuro': 'https://www.famous-smoke.com/bolivar-cofradia-toro-oscuro-cigars-oscuro',
     'Gran Republica': 'https://www.famous-smoke.com/brand-bolivar-gran-republica',
   },
+  casaturrent: {
+    'Serie 1901': 'https://www.famous-smoke.com/brands/casa-turrent-cigars',
+    'Serie 1942': 'https://www.famous-smoke.com/brands/casa-turrent-cigars',
+    'Serie 1973': 'https://www.famous-smoke.com/brands/casa-turrent-cigars',
+    '1880': 'https://www.famous-smoke.com/brands/casa-turrent-cigars',
+  },
 };

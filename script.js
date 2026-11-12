@@ -177,6 +177,7 @@ function buildMetaPills(node) {
     if (c.includes('nicaragua')) push(node.country, 'nicaragua');
     else if (c.includes('dominican')) push(node.country, 'dominican');
     else if (c.includes('honduras')) push(node.country, 'honduras');
+    else if (c === 'mexico') push('Mexico', 'neutral');
     else push(node.country, 'neutral');
   }
   return pills.join('');

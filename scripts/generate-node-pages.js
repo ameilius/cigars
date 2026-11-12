@@ -260,6 +260,7 @@ function formatCountry(country) {
   if (c === 'nicaragua') return 'Nicaragua';
   if (c === 'dominican') return 'the Dominican Republic';
   if (c === 'honduras') return 'Honduras';
+  if (c === 'mexico') return 'Mexico';
   return country.charAt(0).toUpperCase() + country.slice(1);
 }
 
@@ -429,7 +430,7 @@ function buildHeaderSummary(node, allNodes, allLinks) {
 // Social previews: OG cards + short share descriptions
 // -----------------------------
 const OG_TYPE_LABEL = { brand: 'Brand', factory: 'Factory', person: 'Person', company: 'Company' };
-const OG_COUNTRY = { usa: 'United States', dominican: 'Dominican Republic', 'costa rica': 'Costa Rica' };
+const OG_COUNTRY = { usa: 'United States', dominican: 'Dominican Republic', 'costa rica': 'Costa Rica', mexico: 'Mexico' };
 const ABBREV = /(?:\b(?:Jr|Sr|Dr|Mr|Mrs|Ms|St|Co|Inc|Ltd|Corp|Bros|vs|No|Mt|Ft|approx|Av|Ave)|\b[A-Z]|\bS\.A|\bS\. de R\.L|\bU\.S|\bE\.P|\bA\.J|\bJ\.C|\bL\.P)\.$/;
 
 function ogCountry(c) {
@@ -1015,7 +1016,7 @@ function buildDirectoryGroupsHtml(nodes, { open = false } = {}) {
 const DIRECTORY_FLAGS = {
   nicaragua: ['🇳🇮', 'Nicaragua'], dominican: ['🇩🇴', 'Dominican Republic'], honduras: ['🇭🇳', 'Honduras'],
   usa: ['🇺🇸', 'United States'], 'costa rica': ['🇨🇷', 'Costa Rica'], belgium: ['🇧🇪', 'Belgium'],
-  denmark: ['🇩🇰', 'Denmark'], switzerland: ['🇨🇭', 'Switzerland'],
+  denmark: ['🇩🇰', 'Denmark'], switzerland: ['🇨🇭', 'Switzerland'], mexico: ['🇲🇽', 'Mexico'],
 };
 
 function directoryNodeKind(n) {

@@ -1,6 +1,6 @@
 ﻿/**
- * Cigar Nexus graph data: 197 nodes, 478 links
- * Updated: Montecristo/RyJ (NC) ownership corrected to Altadis; Sprint 2 SEO expansions
+ * Cigar Nexus graph data: 203 nodes, 501 links
+ * Updated: added Tabacalera Turrent, Casa Turrent and Te-Amo (Mexico)
  */
 var baseGraphData = {
             nodes: [
@@ -204,6 +204,9 @@ var baseGraphData = {
                 { id: "manowar", name: "Man O' War", type: "brand", group: "family", country: "nicaragua", productLines: ["Original", "Virtue", "Ruination", "Armada"], logo: "logos/manowar.jpg" },
                 { id: "seriev", name: "Serie V", type: "brand", group: "corporate", country: "nicaragua", productLines: ["Serie V", "Serie V Maduro", "Melanio", "Melanio Maduro"], logo: "logos/oliva-serie-v.jpg" },
                 { id: "bolivar_nc", name: "Bolivar (Non-Cuban)", type: "brand", group: "corporate", country: "honduras", productLines: ["Cofradia", "Cofradia Oscuro", "Gran Republica"], logo: "logos/bolivar.jpg" },
+                { id: "tabacaleraturrent", name: "Tabacalera Turrent (San Andrés Tuxtla)", type: "factory", group: "family", country: "mexico", logo: "logos/tabacaleraturrent.png" },
+                { id: "casaturrent", name: "Casa Turrent", type: "brand", group: "family", country: "mexico", productLines: ["Serie 1901", "Serie 1942", "Serie 1973", "1880"], logo: "logos/casaturrent.png" },
+                { id: "teamo", name: "Te-Amo", type: "brand", group: "family", country: "mexico", productLines: ["The Original San Andrés Valley Cigar"], logo: "logos/teamo.png" },
             ],
             links: [
                 { source: "myfather", target: "pepin", type: "founded by" },
@@ -700,5 +703,13 @@ var baseGraphData = {
                 { source: "room101", target: "camacho", type: "made by Davidoff at Camacho's Honduras factory (2009–17)" },
                 { source: "punch_nc", target: "stgdanli", type: "manufactured at (HATSA)" },
                 { source: "diesel", target: "stg", type: "owned by" },
+                { source: "casaturrent", target: "tabacaleraturrent", type: "made at" },
+                { source: "tabacaleraturrent", target: "casaturrent", type: "manufactures" },
+                { source: "teamo", target: "tabacaleraturrent", type: "made at" },
+                { source: "tabacaleraturrent", target: "teamo", type: "manufactures" },
+                { source: "teamo", target: "altadis", type: "distributed in the U.S. by" },
+                { source: "altadis", target: "teamo", type: "distributes (U.S.)" },
+                { source: "casaturrent", target: "teamo", type: "sibling brand" },
+                { source: "teamo", target: "casaturrent", type: "sibling brand" },
             ]
         };
