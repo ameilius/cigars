@@ -57,13 +57,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tailwind.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="styles.css?v=15">
 
     <!-- Data + descriptions, then main script -->
     <script src="data.js?v=50"></script>
     <script src="descriptions.js?v=24"></script>
     <script src="affiliates.js"></script>
-    <script src="script.js?v=13" defer></script>
+    <script src="script.js?v=14" defer></script>
 
     <!-- JSON-LD Structured Data for SEO and LLMs -->
     <script type="application/ld+json">
@@ -359,11 +359,11 @@
         <div id="drawer-mobile" 
              class="drawer-panel drawer-panel--mobile lg:hidden w-full bg-[#ECF4F2] shadow-2xl border border-[#CFE0DC] hidden flex-col fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl max-h-[75vh]">
             
-            <div class="flex justify-center pt-2 pb-1" aria-hidden="true">
+            <div id="drawer-mobile-handle" class="drawer-sheet-handle flex justify-center pt-2 pb-1" aria-hidden="true">
                 <div></div>
             </div>
 
-            <div class="p-5 border-b border-[#CFE0DC]">
+            <div class="drawer-sheet-header p-5 border-b border-[#CFE0DC]">
                 <!-- Logo in its own prominent box (mimicking example) -->
                 <div id="drawer-logo-container-mobile" class="hidden mb-3 bg-white rounded-2xl border border-[#CFE0DC] p-3 flex items-center justify-center">
                     <img id="drawer-logo-mobile" class="max-h-[90px] max-w-full object-contain" alt="Brand logo">
@@ -382,7 +382,7 @@
                 </button>
             </div>
             
-            <div class="p-5 flex-1 overflow-auto text-[#1A3330]">
+            <div class="drawer-sheet-scroll p-5 flex-1 overflow-auto text-[#1A3330]">
                 <div id="drawer-description-mobile" class="text-[13.5px] leading-relaxed text-[#3D5A55]"></div>
                 <div id="drawer-dedicated-link-mobile" class="mt-2 mb-1"></div>
                 

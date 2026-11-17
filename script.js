@@ -421,6 +421,7 @@ function initializeApp() {
   setupUrlHistory();
   setupGraphLegend();
   setupDragHint();
+  initMobileSheetDismiss();
 
   // Initialize the graph (wrapped so one error doesn't kill filters or drawer)
   try {
@@ -1989,6 +1990,7 @@ function showDrawer(node, options = {}) {
     mBuyWrap.style.display = 'block';
     mDrawer.classList.remove('hidden');
     mDrawer.style.display = 'flex';
+    resetMobileSheetDragStyles(mDrawer);
     pulseDrawerOpen(mDrawer);
 
     // Backdrop
@@ -2060,6 +2062,7 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
       mobileDrawerHideTimer = null;
     }
     const hideMobile = () => {
+      resetMobileSheetDragStyles(mDrawer);
       mDrawer.style.display = 'none';
       mDrawer.classList.add('hidden');
       mobileDrawerHideTimer = null;
@@ -2075,6 +2078,209 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
   if (!keepMapFocus && !skipUrlUpdate && !suppressUrlSync) {
     clearNodeUrl();
   }
+}
+
+
+// -----------------------------
+// Mobile bottom sheet: swipe down to dismiss
+// -----------------------------
+const SHEET_DISMISS_RATIO = 0.3;
+const SHEET_DISMISS_MAX_PX = 120;
+const SHEET_FLICK_PX_PER_MS = 0.5;
+const SHEET_SNAP_MS = 220;
+const SHEET_SLOP_PX = 8;
+const SHEET_RUBBER = 0.22;
+const SHEET_RUBBER_MAX = 28;
+
+function isMobileSheetView() {
+  return window.matchMedia('(max-width: 1023px)').matches;
+}
+
+function isMobileSheetOpen(sheet) {
+  if (!sheet || sheet.classList.contains('hidden')) return false;
+  const display = sheet.style.display || getComputedStyle(sheet).display;
+  return display !== 'none';
+}
+
+function resetMobileSheetDragStyles(sheet) {
+  if (!sheet) return;
+  sheet.classList.remove('drawer-sheet-dragging', 'drawer-sheet-snapping');
+  sheet.style.transform = '';
+  sheet.style.transition = '';
+  sheet.style.opacity = '';
+  sheet.style.animation = '';
+  const backdrop = document.getElementById('drawer-backdrop');
+  if (backdrop) {
+    backdrop.style.opacity = '';
+    backdrop.style.transition = '';
+  }
+}
+
+function initMobileSheetDismiss() {
+  const sheet = document.getElementById('drawer-mobile');
+  if (!sheet || sheet.dataset.sheetDismissBound === '1') return;
+  sheet.dataset.sheetDismissBound = '1';
+
+  const handle = document.getElementById('drawer-mobile-handle') || sheet.querySelector(':scope > div:first-child');
+  const header = sheet.querySelector('.drawer-sheet-header') || sheet.querySelector(':scope > div.p-5.border-b');
+  const scroller = sheet.querySelector('.drawer-sheet-scroll') || sheet.querySelector(':scope > div.p-5.flex-1');
+
+  let drag = null;
+
+  function scrollerAtTop() {
+    return !scroller || scroller.scrollTop <= 0;
+  }
+
+  function regionFromEvent(e) {
+    const t = e.target;
+    if (!(t instanceof Element)) return null;
+    if (handle && handle.contains(t)) return 'handle';
+    if (header && header.contains(t)) return 'header';
+    if (scroller && scroller.contains(t)) return 'scroll';
+    return 'scroll';
+  }
+
+  function clearDragListeners() {
+    window.removeEventListener('pointermove', onPointerMove, true);
+    window.removeEventListener('pointerup', onPointerUp, true);
+    window.removeEventListener('pointercancel', onPointerUp, true);
+  }
+
+  function onPointerDown(e) {
+    if (!isMobileSheetView() || !isMobileSheetOpen(sheet)) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const region = regionFromEvent(e);
+    if (!region) return;
+    if (region === 'scroll' && !scrollerAtTop()) return;
+
+    drag = {
+      id: e.pointerId,
+      startY: e.clientY,
+      startX: e.clientX,
+      lastY: e.clientY,
+      lastT: e.timeStamp,
+      samples: [{ y: e.clientY, t: e.timeStamp }],
+      region,
+      active: false
+    };
+    window.addEventListener('pointermove', onPointerMove, { passive: false, capture: true });
+    window.addEventListener('pointerup', onPointerUp, { capture: true });
+    window.addEventListener('pointercancel', onPointerUp, { capture: true });
+  }
+
+  function onPointerMove(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dy = e.clientY - drag.startY;
+    const dx = e.clientX - drag.startX;
+    drag.samples.push({ y: e.clientY, t: e.timeStamp });
+    if (drag.samples.length > 8) drag.samples.shift();
+    drag.lastY = e.clientY;
+    drag.lastT = e.timeStamp;
+
+    if (!drag.active) {
+      if (Math.abs(dy) < SHEET_SLOP_PX && Math.abs(dx) < SHEET_SLOP_PX) return;
+      if (Math.abs(dx) > Math.abs(dy) * 1.2 || dy < 0) {
+        clearDragListeners();
+        drag = null;
+        return;
+      }
+      if (drag.region === 'scroll' && !scrollerAtTop()) {
+        clearDragListeners();
+        drag = null;
+        return;
+      }
+      drag.active = true;
+      try { sheet.setPointerCapture(e.pointerId); } catch (_) {}
+      sheet.classList.add('drawer-sheet-dragging');
+      sheet.classList.remove('drawer-sheet-snapping');
+      sheet.style.animation = 'none';
+      sheet.style.transition = 'none';
+    }
+
+    if (e.cancelable) e.preventDefault();
+    const offset = dy >= 0 ? dy : Math.max(-SHEET_RUBBER_MAX, dy * SHEET_RUBBER);
+    sheet.style.transform = 'translateY(' + offset + 'px)';
+    const backdrop = document.getElementById('drawer-backdrop');
+    if (backdrop) {
+      const h = sheet.offsetHeight || 1;
+      backdrop.style.opacity = String(Math.max(0.15, 1 - Math.max(0, offset) / h));
+    }
+  }
+
+  function flickVelocity() {
+    if (!drag || drag.samples.length < 2) return 0;
+    const now = drag.samples[drag.samples.length - 1];
+    let first = drag.samples[0];
+    for (let i = 0; i < drag.samples.length; i++) {
+      if (now.t - drag.samples[i].t <= 100) {
+        first = drag.samples[i];
+        break;
+      }
+    }
+    const dt = now.t - first.t;
+    if (dt <= 0) return 0;
+    return (now.y - first.y) / dt;
+  }
+
+  function onPointerUp(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    const wasActive = drag.active;
+    const dy = (typeof e.clientY === 'number' ? e.clientY : drag.lastY) - drag.startY;
+    const v = flickVelocity();
+    clearDragListeners();
+    try {
+      if (sheet.hasPointerCapture && sheet.hasPointerCapture(e.pointerId)) {
+        sheet.releasePointerCapture(e.pointerId);
+      }
+    } catch (_) {}
+    drag = null;
+    if (!wasActive) return;
+
+    const height = sheet.offsetHeight || 1;
+    const threshold = Math.min(height * SHEET_DISMISS_RATIO, SHEET_DISMISS_MAX_PX);
+    const shouldClose = dy > threshold || v > SHEET_FLICK_PX_PER_MS;
+    const reduced = prefersReducedMotion();
+
+    sheet.classList.remove('drawer-sheet-dragging');
+
+    if (shouldClose) {
+      if (reduced) {
+        resetMobileSheetDragStyles(sheet);
+        closeDrawer();
+        return;
+      }
+      sheet.classList.add('drawer-sheet-snapping');
+      sheet.style.transition = 'transform ' + SHEET_SNAP_MS + 'ms cubic-bezier(0.32, 0.72, 0, 1), opacity ' + SHEET_SNAP_MS + 'ms ease';
+      sheet.style.transform = 'translateY(' + Math.max(height, dy) + 'px)';
+      sheet.style.opacity = '0';
+      closeDrawer();
+      return;
+    }
+
+    if (reduced) {
+      resetMobileSheetDragStyles(sheet);
+      return;
+    }
+    sheet.classList.add('drawer-sheet-snapping');
+    sheet.style.transition = 'transform ' + SHEET_SNAP_MS + 'ms cubic-bezier(0.32, 0.72, 0, 1)';
+    sheet.style.transform = 'translateY(0)';
+    const backdrop = document.getElementById('drawer-backdrop');
+    if (backdrop) {
+      backdrop.style.transition = 'opacity 0.22s ease';
+      backdrop.style.opacity = '1';
+    }
+    let cleaned = false;
+    const done = () => {
+      if (cleaned) return;
+      cleaned = true;
+      sheet.removeEventListener('transitionend', done);
+      resetMobileSheetDragStyles(sheet);
+    };
+    sheet.addEventListener('transitionend', done);
+    setTimeout(done, SHEET_SNAP_MS + 40);
+  }
+
+  sheet.addEventListener('pointerdown', onPointerDown);
 }
 
 function createOrShowBackdrop() {
@@ -2328,6 +2534,7 @@ function showMobileHowTo() {
   mDrawer.classList.add('drawer-panel--howto');
   mDrawer.style.display = 'flex';
   mDrawer.classList.remove('hidden');
+  resetMobileSheetDragStyles(mDrawer);
   pulseDrawerOpen(mDrawer);
   createOrShowBackdrop();
 }

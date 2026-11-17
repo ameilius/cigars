@@ -1470,6 +1470,28 @@ h1, h2, .font-display,
     width: 56px;
 }
 
+.drawer-sheet-handle,
+.drawer-sheet-header {
+    touch-action: none;
+}
+#drawer-mobile.drawer-sheet-dragging {
+    transition: none !important;
+    animation: none !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+#drawer-mobile.drawer-sheet-snapping {
+    animation: none !important;
+    transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+                opacity 0.22s ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+    #drawer-mobile.drawer-sheet-snapping {
+        transition: none !important;
+    }
+}
+
+
 /* Clip drawer children to rounded outline (header bg was breaking corner borders) */
 #drawer,
 #drawer-mobile {
