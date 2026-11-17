@@ -1,7 +1,7 @@
-/* Allo 1.0 by Josh Puckett. SIL Open Font License 1.1. See fonts/OFL.txt */
+/* Allo 1.0 Friendly cut (roundness fixed at 50) by Josh Puckett. SIL Open Font License 1.1. See fonts/OFL.txt */
 @font-face {
     font-family: "Allo";
-    src: url("fonts/AlloVariable.woff2") format("woff2");
+    src: url("fonts/AlloVariableFriendly.woff2") format("woff2");
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
