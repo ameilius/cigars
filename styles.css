@@ -1,3 +1,12 @@
+/* Allo 1.0 by Josh Puckett. SIL Open Font License 1.1. See fonts/OFL.txt */
+@font-face {
+    font-family: "Allo";
+    src: url("fonts/AlloVariable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --cn-teal: #14817A;
     --cn-teal-mid: #1A7570;
@@ -59,7 +68,8 @@
 }
 
 body { 
-    font-family: "Figtree", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: "Allo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-optical-sizing: auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
