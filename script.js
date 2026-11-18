@@ -199,18 +199,52 @@ const FOCUS_ZOOM_ENABLED = true;
 const HOME_POLISH_ENABLED = true;
 if (HOME_POLISH_ENABLED && document.body) document.body.classList.add('home-polish');
 
+// Brand focus also lights its factory and the factory-mates (other nodes linked to that factory): set false for plain 1-hop focus
+const FOCUS_FACTORY_MATES_ENABLED = true;
+// Search-first hero card over the map: set false to restore the header-search-only homepage
+const MAP_HERO_ENABLED = true;
+if (MAP_HERO_ENABLED && document.body) document.body.classList.add('map-hero-on');
+
+function linkEndId(end) {
+  return end && end.id ? end.id : end;
+}
+
+function getDirectNeighborIds(nodeId) {
+  const ids = new Set();
+  const linksList = (graphData && graphData.links) || [];
+  for (let i = 0; i < linksList.length; i++) {
+    const s = linkEndId(linksList[i].source);
+    const t = linkEndId(linksList[i].target);
+    if (s === nodeId) ids.add(t);
+    else if (t === nodeId) ids.add(s);
+  }
+  return ids;
+}
+
+function getNodeById(id) {
+  return ((graphData && graphData.nodes) || []).find(n => n.id === id) || null;
+}
+
+// Factories a brand is linked to (empty for non-brands or when the flag is off)
+function getFocusFactoryIds(nodeId) {
+  const out = new Set();
+  const node = getNodeById(nodeId);
+  if (!FOCUS_FACTORY_MATES_ENABLED || !node || node.type !== 'brand') return out;
+  getDirectNeighborIds(nodeId).forEach(id => {
+    if (isFactoryNode(getNodeById(id))) out.add(id);
+  });
+  return out;
+}
+
 function getFocusNeighborIds(nodeId) {
   const ids = new Set();
   if (!nodeId) return ids;
   ids.add(nodeId);
-  const linksList = (graphData && graphData.links) || [];
-  for (let i = 0; i < linksList.length; i++) {
-    const l = linksList[i];
-    const s = l.source.id || l.source;
-    const t = l.target.id || l.target;
-    if (s === nodeId) ids.add(t);
-    else if (t === nodeId) ids.add(s);
-  }
+  getDirectNeighborIds(nodeId).forEach(id => ids.add(id));
+  // Factory-mates: everything else linked to this brand's factory
+  getFocusFactoryIds(nodeId).forEach(fid => {
+    getDirectNeighborIds(fid).forEach(id => ids.add(id));
+  });
   return ids;
 }
 
@@ -314,17 +348,17 @@ function updateLinkHighlight(nodeId) {
     lines.attr('stroke-opacity', null).attr('stroke-width', null);
     return;
   }
+  // Links on the selected node, plus links on its factory (to the factory-mates)
+  const hubs = getFocusFactoryIds(nodeId);
+  hubs.add(nodeId);
+  const isLit = d => {
+    const s = linkEndId(d.source);
+    const t = linkEndId(d.target);
+    return hubs.has(s) || hubs.has(t);
+  };
   lines
-    .attr('stroke-opacity', d => {
-      const s = d.source.id || d.source;
-      const t = d.target.id || d.target;
-      return (s === nodeId || t === nodeId) ? 1 : 0.1;
-    })
-    .attr('stroke-width', d => {
-      const s = d.source.id || d.source;
-      const t = d.target.id || d.target;
-      return (s === nodeId || t === nodeId) ? 2.5 : 1.2;
-    });
+    .attr('stroke-opacity', d => isLit(d) ? 1 : 0.1)
+    .attr('stroke-width', d => isLit(d) ? 2.5 : 1.2);
 }
 
 function pulseDrawerOpen(el) {
@@ -417,6 +451,7 @@ function initializeApp() {
   if (allChip) allChip.classList.add('filter-active');
 
   setupSearch();
+  setupMapHero();
   setupFilterStatus();
   setupUrlHistory();
   setupGraphLegend();
@@ -745,6 +780,17 @@ function updateLabelVisibility() {
     } else if (scale > 0.38 && isLandmark) {
       show = true;
       el.attr('font-size', '8.5px').attr('dy', getNodeRadius(d) + 11);
+    }
+
+    // Hero mode: when the focus camera is zoomed far out (phones), keep focused labels readable
+    if (MAP_HERO_ENABLED) {
+      const boost = !!(focusIds && show && scale < 0.9);
+      if (boost) {
+        const fs = Math.min(17, 8.5 / scale);
+        el.attr('font-size', fs + 'px').attr('dy', getNodeRadius(d) + fs * 1.15).classed('label-boost', true);
+      } else if (el.classed('label-boost')) {
+        el.attr('font-size', '9.5px').attr('dy', getNodeRadius(d) + 12).classed('label-boost', false);
+      }
     }
 
     const opacity = show ? ((scale > 0.9 || focusIds) ? 0.95 : 0.75) : 0;
@@ -1161,6 +1207,192 @@ function setupSearch() {
   if (cancelBtn) cancelBtn.addEventListener('click', closeSearchOverlay);
 }
 
+// -----------------------------
+// Map hero: search-first card over the map
+// -----------------------------
+const HERO_MAX_RESULTS = 6;
+let heroActiveIndex = -1;
+let heroMatches = [];
+
+function stripParen(text) {
+  return String(text || '').replace(/\s*\([^)]*\)\s*$/, '').trim();
+}
+
+function describeHeroNode(node) {
+  const factories = [...getFocusFactoryIds(node.id)].map(id => getNodeById(id)).filter(Boolean);
+  if (factories.length) {
+    const first = stripParen(factories[0].name);
+    const extra = factories.length > 1 ? ' +' + (factories.length - 1) : '';
+    return 'Made at ' + first + extra;
+  }
+  if (isFactoryNode(node)) {
+    const n = getDirectNeighborIds(node.id).size;
+    return 'Factory, ' + n + ' connections';
+  }
+  const country = node.country
+    ? (node.country.length <= 3 ? node.country.toUpperCase() : node.country.charAt(0).toUpperCase() + node.country.slice(1))
+    : '';
+  return [node.type ? node.type.charAt(0).toUpperCase() + node.type.slice(1) : '', country].filter(Boolean).join(', ');
+}
+
+function heroSearch(query) {
+  const q = normalizeSearchText(query.trim());
+  if (!q) return [];
+  const scored = [];
+  (graphData.nodes || []).forEach(n => {
+    const name = normalizeSearchText(n.name);
+    let score = -1;
+    if (name.startsWith(q)) score = 0;
+    else if (name.split(/[\s.\-/]+/).some(w => w.startsWith(q))) score = 1;
+    else if (name.includes(q)) score = 2;
+    else if ((n.productLines || []).some(l => normalizeSearchText(l).includes(q))) score = 3;
+    if (score < 0) return;
+    // Brands first (the "cigar you smoke"), then companies, then factories and people
+    const typeRank = n.type === 'brand' ? 0 : (n.type === 'company' ? 1 : (isFactoryNode(n) ? 2 : 3));
+    scored.push({ n, score, typeRank, name });
+  });
+  scored.sort((a, b) => a.score - b.score || a.typeRank - b.typeRank || a.name.localeCompare(b.name));
+  return scored.slice(0, HERO_MAX_RESULTS).map(x => x.n);
+}
+
+function renderHeroList() {
+  const input = document.getElementById('map-hero-input');
+  const list = document.getElementById('map-hero-list');
+  if (!input || !list) return;
+  const q = input.value.trim();
+  heroMatches = heroSearch(q);
+  heroActiveIndex = heroMatches.length ? 0 : -1;
+  if (!q) {
+    list.hidden = true;
+    list.innerHTML = '';
+    input.setAttribute('aria-expanded', 'false');
+    return;
+  }
+  if (!heroMatches.length) {
+    list.innerHTML = '<li class="map-hero__empty" role="presentation">No match. Try a brand, maker, or factory.</li>';
+  } else {
+    list.innerHTML = heroMatches.map((n, i) => `
+      <li role="option" id="map-hero-opt-${i}" class="map-hero__opt${i === heroActiveIndex ? ' is-active' : ''}" data-hero-pick="${escapeMetaLabel(n.id)}" aria-selected="${i === heroActiveIndex}">
+        <span class="map-hero__opt-name">${escapeMetaLabel(n.name)}</span>
+        <span class="map-hero__opt-meta">${escapeMetaLabel(describeHeroNode(n))}</span>
+      </li>`).join('');
+  }
+  list.hidden = false;
+  input.setAttribute('aria-expanded', 'true');
+}
+
+function setHeroActive(index) {
+  const list = document.getElementById('map-hero-list');
+  const input = document.getElementById('map-hero-input');
+  if (!list || !heroMatches.length) return;
+  heroActiveIndex = (index + heroMatches.length) % heroMatches.length;
+  list.querySelectorAll('.map-hero__opt').forEach((el, i) => {
+    el.classList.toggle('is-active', i === heroActiveIndex);
+    el.setAttribute('aria-selected', i === heroActiveIndex ? 'true' : 'false');
+  });
+  if (input) input.setAttribute('aria-activedescendant', 'map-hero-opt-' + heroActiveIndex);
+}
+
+function closeHeroList() {
+  const list = document.getElementById('map-hero-list');
+  const input = document.getElementById('map-hero-input');
+  if (list) { list.hidden = true; list.innerHTML = ''; }
+  if (input) { input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); }
+  heroMatches = [];
+  heroActiveIndex = -1;
+}
+
+// Same path as picking a result in the mobile search overlay: select, focus camera, open the node sheet/drawer
+function heroPick(nodeId) {
+  if (!getNodeById(nodeId)) return;
+  const input = document.getElementById('map-hero-input');
+  if (input) { input.value = ''; input.blur(); }
+  closeHeroList();
+  dismissMobileWelcomeQuiet();
+  selectSearchResult(nodeId);
+}
+
+function dismissMobileWelcomeQuiet() {
+  try {
+    if (typeof dismissMobileWelcome === 'function') dismissMobileWelcome(false);
+  } catch (e) { /* non-fatal */ }
+}
+
+function heroClear() {
+  const input = document.getElementById('map-hero-input');
+  exitMapFocus();
+  if (input) {
+    input.value = '';
+    // Leave the keyboard closed on phones; desktop gets the caret back
+    if (window.innerWidth >= 1024) input.focus();
+  }
+  closeHeroList();
+}
+
+function updateMapHero() {
+  const root = document.getElementById('map-hero');
+  if (!root) return;
+  const card = root.querySelector('.map-hero__card');
+  const bar = document.getElementById('map-hero-bar');
+  const node = selectedNodeId ? getNodeById(selectedNodeId) : null;
+  root.classList.toggle('map-hero--compact', !!node);
+  if (card) card.hidden = !!node;
+  if (bar) bar.hidden = !node;
+  if (node) {
+    const nameEl = document.getElementById('map-hero-bar-name');
+    const subEl = document.getElementById('map-hero-bar-sub');
+    if (nameEl) nameEl.textContent = node.name;
+    if (subEl) {
+      const factoryIds = getFocusFactoryIds(node.id);
+      const mateIds = new Set();
+      factoryIds.forEach(fid => getDirectNeighborIds(fid).forEach(id => { if (id !== node.id && !factoryIds.has(id)) mateIds.add(id); }));
+      const mates = mateIds.size;
+      subEl.textContent = describeHeroNode(node);
+      if (getFocusFactoryIds(node.id).size && mates > 0) {
+        const count = document.createElement('span');
+        count.className = 'map-hero__bar-count';
+        count.textContent = ' \u00b7 ' + mates + (mates === 1 ? ' neighbor there' : ' neighbors there');
+        subEl.appendChild(count);
+      }
+    }
+  }
+}
+
+function setupMapHero() {
+  const root = document.getElementById('map-hero');
+  if (!root || !MAP_HERO_ENABLED) return;
+  root.hidden = false;
+  const input = document.getElementById('map-hero-input');
+  if (input) {
+    input.addEventListener('input', renderHeroList);
+    input.addEventListener('focus', () => { if (input.value.trim()) renderHeroList(); });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setHeroActive(heroActiveIndex + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); setHeroActive(heroActiveIndex - 1); }
+      else if (e.key === 'Enter') {
+        e.preventDefault();
+        const pick = heroMatches[heroActiveIndex];
+        if (pick) heroPick(pick.id);
+      } else if (e.key === 'Escape') {
+        const list = document.getElementById('map-hero-list');
+        if (list && !list.hidden) { e.stopPropagation(); closeHeroList(); }
+      }
+    });
+    input.addEventListener('blur', () => setTimeout(closeHeroList, 150));
+  }
+  root.addEventListener('pointerdown', (e) => {
+    // Keep the input focused long enough for the tap on a result to register
+    if (e.target.closest('[data-hero-pick]') && input === document.activeElement) e.preventDefault();
+  });
+  root.addEventListener('click', (e) => {
+    const pick = e.target.closest('[data-hero-pick]');
+    if (pick) heroPick(pick.getAttribute('data-hero-pick'));
+  });
+  const clearBtn = document.getElementById('map-hero-clear');
+  if (clearBtn) clearBtn.addEventListener('click', heroClear);
+  updateMapHero();
+}
+
 // Update the counts shown inside each filter chip (full dataset totals)
 function updateFilterChipCounts() {
   const chips = document.querySelectorAll('#filter-chips [data-key]');
@@ -1332,6 +1564,7 @@ function updateFocusExitControl() {
     el.setAttribute('aria-hidden', on ? 'false' : 'true');
   });
   if (on) dismissDragHint(false);
+  updateMapHero();
 }
 
 function exitMapFocus() {
@@ -1416,6 +1649,18 @@ function zoomToNode(targetNode, options = {}) {
   return true;
 }
 
+// Space the hero's compact bar takes at the top of the map (0 when the hero is off)
+function getHeroTopInset() {
+  if (!MAP_HERO_ENABLED) return 0;
+  const bar = document.getElementById('map-hero-bar');
+  const wrap = document.getElementById('graph');
+  if (!bar || !wrap || bar.hidden) return window.innerWidth >= 1024 ? 120 : 112;
+  const b = bar.getBoundingClientRect();
+  const g = wrap.getBoundingClientRect();
+  if (!b.height) return window.innerWidth >= 1024 ? 120 : 112;
+  return Math.max(0, b.bottom - g.top + 10);
+}
+
 function zoomToFocusNeighborhood(nodeId, options = {}) {
   if (!svg || !viewport || !nodeId) return false;
 
@@ -1430,8 +1675,13 @@ function zoomToFocusNeighborhood(nodeId, options = {}) {
 
   const raiseForDrawer = !!options.raiseForDrawer;
   const viewW = graphWidth;
-  const viewH = raiseForDrawer ? graphHeight * 0.52 : graphHeight;
-  const focusY = raiseForDrawer ? graphHeight * 0.30 : graphHeight / 2;
+  // Keep the focus cluster clear of the hero's compact bar at the top of the map
+  const heroInset = getHeroTopInset();
+  const top0 = raiseForDrawer ? graphHeight * 0.04 : 0;
+  const bottom0 = raiseForDrawer ? graphHeight * 0.56 : graphHeight;
+  const viewTop = Math.min(Math.max(top0, heroInset), bottom0 - 120);
+  const viewH = bottom0 - viewTop;
+  const focusY = viewTop + viewH / 2;
   const paddingFactor = options.paddingFactor ?? 0.72;
   const maxScale = options.maxScale ?? 2.15;
   const minScale = options.minScale ?? 0.5;

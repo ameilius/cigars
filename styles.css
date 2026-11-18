@@ -2646,3 +2646,196 @@ h1, h2, .font-display,
 
 /* font option tuning */
 h1, h2, .font-display { letter-spacing: -0.015em; }
+
+/* ---------- Map hero: search-first card over the map (MAP_HERO_ENABLED in script.js) ---------- */
+/* Header search is replaced by the hero on the homepage */
+.map-hero-on .search-container,
+.map-hero-on #search-mobile-open { display: none !important; }
+/* The compact bar has its own Clear, so the bottom "Show full map" pill steps aside */
+.map-hero-on .focus-exit { display: none !important; }
+
+.map-hero {
+    position: absolute;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    padding: 0 0.75rem;
+    pointer-events: none;
+}
+.map-hero[hidden] { display: none; }
+.map-hero__card,
+.map-hero__bar { pointer-events: auto; }
+
+.map-hero__card {
+    position: relative;
+    width: min(100%, 31rem);
+    padding: 1.1rem 1.25rem 1rem;
+    border-radius: 1.5rem;
+    background: #1A3330;
+    border: 1px solid rgba(206, 166, 97, 0.35);
+    box-shadow: 0 14px 36px -14px rgba(10, 10, 10, 0.55);
+    color: #ECF4F2;
+}
+.map-hero__card[hidden], .map-hero__bar[hidden] { display: none; }
+.map-hero__title {
+    margin: 0 0 0.7rem;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: #ffffff;
+}
+.map-hero__field { position: relative; }
+.map-hero__field-icon {
+    position: absolute;
+    left: 0.95rem;
+    top: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    transform: translateY(-50%);
+    color: #6B8A84;
+    pointer-events: none;
+}
+.map-hero__input {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.75rem 1rem 0.75rem 2.8rem;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+    background: #ECF4F2;
+    color: #1A3330;
+    font-family: inherit;
+    font-size: 1.0625rem; /* 17px: no iOS focus zoom */
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.map-hero__input::placeholder { color: #6B8A84; }
+.map-hero__input:focus { border-color: #CEA661; }
+.map-hero__input::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
+
+.map-hero__list {
+    list-style: none;
+    margin: 0.4rem 0 0;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    background: #ECF4F2;
+    color: #1A3330;
+    max-height: 15rem;
+    overflow-y: auto;
+}
+.map-hero__list[hidden] { display: none; }
+.map-hero__opt {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    min-height: 44px;
+    justify-content: center;
+}
+.map-hero__opt.is-active, .map-hero__opt:hover { background: #D6E6E2; }
+.map-hero__opt-name { font-weight: 600; font-size: 0.97rem; line-height: 1.2; }
+.map-hero__opt-meta { font-size: 0.78rem; color: #3D5A55; line-height: 1.25; }
+.map-hero__empty { padding: 0.75rem; font-size: 0.85rem; color: #3D5A55; }
+
+.map-hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.8rem;
+}
+.map-hero__chip {
+    min-height: 36px;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(206, 166, 97, 0.7);
+    background: transparent;
+    color: #E9D6AE;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.map-hero__chip:hover { background: #CEA661; color: #0a0a0a; }
+.map-hero__chip:focus-visible,
+.map-hero__bar-clear:focus-visible { outline: 2px solid #CEA661; outline-offset: 2px; }
+
+/* Compact bar after a pick */
+.map-hero__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: min(100%, 31rem);
+    min-height: 3.25rem;
+    padding: 0.4rem 0.45rem 0.4rem 1rem;
+    border-radius: 1rem;
+    background: #1A3330;
+    border: 1px solid rgba(206, 166, 97, 0.35);
+    box-shadow: 0 8px 22px -12px rgba(10, 10, 10, 0.5);
+    color: #ECF4F2;
+}
+.map-hero__bar-text { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.2; }
+.map-hero__bar-name {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.map-hero__bar-sub {
+    font-size: 0.78rem;
+    color: #B9D0CB;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.map-hero__bar-clear {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-height: 44px;
+    padding: 0 0.9rem 0 0.75rem;
+    border-radius: 0.75rem;
+    border: 0;
+    background: #CEA661;
+    color: #0a0a0a;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.map-hero__bar-clear svg { width: 14px; height: 14px; }
+.map-hero__bar-clear:active { transform: scale(0.97); }
+
+/* An expanded legend stays reachable above the hero */
+.map-hero-on .graph-legend--overlay.graph-legend--expanded { z-index: 18; }
+
+@media (max-width: 1023px) {
+    .map-hero { top: 3.1rem; padding: 0 0.5rem; }
+}
+@media (max-width: 480px) {
+    .map-hero__chip--extra { display: none; }
+    .map-hero__bar-count { display: none; }
+    .map-hero__card { padding: 0.8rem 0.85rem 0.75rem; border-radius: 1.25rem; }
+    .map-hero__title { font-size: 1.3rem; margin-bottom: 0.55rem; }
+    .map-hero__input { min-height: 3rem; }
+    .map-hero__chips { gap: 0.35rem; margin-top: 0.6rem; }
+    .map-hero__chip { padding: 0.3rem 0.65rem; font-size: 0.8125rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+    .map-hero__card, .map-hero__bar { animation: mapHeroIn 0.25s ease-out; }
+}
+@keyframes mapHeroIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}

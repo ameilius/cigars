@@ -57,13 +57,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tailwind.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="styles.css?v=15">
+    <link rel="stylesheet" href="styles.css?v=16">
 
     <!-- Data + descriptions, then main script -->
     <script src="data.js?v=50"></script>
     <script src="descriptions.js?v=24"></script>
     <script src="affiliates.js"></script>
-    <script src="script.js?v=14" defer></script>
+    <script src="script.js?v=15" defer></script>
 
     <!-- JSON-LD Structured Data for SEO and LLMs -->
     <script type="application/ld+json">
@@ -226,6 +226,36 @@
                         <img src="logos/cigarnexus-trans.png" alt="" width="375" height="289" decoding="async" />
                     </div>
                     <div id="graph" class="w-full h-full"></div>
+
+                    <!-- Map hero: search as the starting point (mockup; flag MAP_HERO_ENABLED in script.js) -->
+                    <div id="map-hero" class="map-hero" hidden>
+                        <div class="map-hero__card" role="search">
+                            <h2 class="map-hero__title" id="map-hero-title">Who makes your cigar?</h2>
+                            <div class="map-hero__field">
+                                <svg class="map-hero__field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+                                <input id="map-hero-input" class="map-hero__input" type="search" inputmode="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                                       placeholder="Type a cigar you smoke" aria-label="Type a cigar you smoke"
+                                       role="combobox" aria-expanded="false" aria-controls="map-hero-list" aria-autocomplete="list">
+                            </div>
+                            <ul id="map-hero-list" class="map-hero__list" role="listbox" aria-label="Matching cigars" hidden></ul>
+                            <div class="map-hero__chips" id="map-hero-chips" aria-label="Try one of these">
+                                <button type="button" class="map-hero__chip" data-hero-pick="padron">Padr&oacute;n</button>
+                                <button type="button" class="map-hero__chip" data-hero-pick="tatuaje">Tatuaje</button>
+                                <button type="button" class="map-hero__chip" data-hero-pick="ligaprivada">Liga Privada</button>
+                                <button type="button" class="map-hero__chip map-hero__chip--extra" data-hero-pick="arturo">Arturo Fuente</button>
+                            </div>
+                        </div>
+                        <div class="map-hero__bar" id="map-hero-bar" hidden>
+                            <div class="map-hero__bar-text">
+                                <span class="map-hero__bar-name" id="map-hero-bar-name"></span>
+                                <span class="map-hero__bar-sub" id="map-hero-bar-sub"></span>
+                            </div>
+                            <button type="button" class="map-hero__bar-clear" id="map-hero-clear" aria-label="Clear selection and search again">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+                                <span>Clear</span>
+                            </button>
+                        </div>
+                    </div>
 
                     <div id="drag-hint" class="drag-hint hidden" role="status" aria-live="polite" aria-hidden="true">
                         <svg class="drag-hint__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 9 2 12 5 15"></polyline><polyline points="9 5 12 2 15 5"></polyline><polyline points="15 19 12 22 9 19"></polyline><polyline points="19 9 22 12 19 15"></polyline><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line></svg>
