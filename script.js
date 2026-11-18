@@ -190,6 +190,7 @@ const LINK_TRACE_ENABLED = true;
 const LINK_TRACE_DURATION_MS = 680;
 const LINK_TRACE_STAGGER_MS = 35;
 let linkTraceTimer = null;
+let heroLabelFrame = 0;
 
 // 1-hop grey-out on node select: set false to restore the full-map look without a git revert
 const FOCUS_DIM_ENABLED = true;
@@ -243,9 +244,20 @@ function getFocusNeighborIds(nodeId) {
   getDirectNeighborIds(nodeId).forEach(id => ids.add(id));
   // Factory-mates: everything else linked to this brand's factory
   getFocusFactoryIds(nodeId).forEach(fid => {
-    getDirectNeighborIds(fid).forEach(id => ids.add(id));
+    getFactoryMateIds(nodeId, fid).forEach(id => ids.add(id));
   });
   return ids;
+}
+
+// Other brands and companies linked to a factory (people and other factories are not factory-mates)
+function getFactoryMateIds(nodeId, factoryId) {
+  const out = new Set();
+  getDirectNeighborIds(factoryId).forEach(id => {
+    if (id === nodeId) return;
+    const n = getNodeById(id);
+    if (n && (n.type === 'brand' || n.type === 'company')) out.add(id);
+  });
+  return out;
 }
 
 function updateFocusDim(nodeId) {
@@ -348,13 +360,14 @@ function updateLinkHighlight(nodeId) {
     lines.attr('stroke-opacity', null).attr('stroke-width', null);
     return;
   }
-  // Links on the selected node, plus links on its factory (to the factory-mates)
-  const hubs = getFocusFactoryIds(nodeId);
-  hubs.add(nodeId);
+  // Links on the selected node, plus links from its factory to the factory-mates
+  const factories = getFocusFactoryIds(nodeId);
+  const focusIds = getFocusNeighborIds(nodeId);
   const isLit = d => {
     const s = linkEndId(d.source);
     const t = linkEndId(d.target);
-    return hubs.has(s) || hubs.has(t);
+    if (s === nodeId || t === nodeId) return true;
+    return (factories.has(s) && focusIds.has(t)) || (factories.has(t) && focusIds.has(s));
   };
   lines
     .attr('stroke-opacity', d => isLit(d) ? 1 : 0.1)
@@ -745,7 +758,14 @@ function updateGraph() {
     labels
       .attr('x', d => d.x)
       .attr('y', d => d.y);
+
+    // Hero mode: keep focused labels collision-free while the layout is still moving
+    if (MAP_HERO_ENABLED && selectedNodeId && !heroLabelFrame) {
+      heroLabelFrame = requestAnimationFrame(() => { heroLabelFrame = 0; updateLabelVisibility(); });
+    }
   });
+
+  simulation.on('end.heroLabels', () => { if (MAP_HERO_ENABLED && selectedNodeId) updateLabelVisibility(); });
 
   if (selectedNodeId) setSelectedNode(selectedNodeId);
   else {
@@ -762,6 +782,7 @@ function updateLabelVisibility() {
   const focusIds = (FOCUS_DIM_ENABLED && selectedNodeId)
     ? getFocusNeighborIds(selectedNodeId)
     : null;
+  const placements = (MAP_HERO_ENABLED && focusIds) ? computeFocusLabelPlacements(selectedNodeId, focusIds, scale) : null;
 
   // Show labels when reasonably zoomed in, or for high-degree nodes when zoomed out (landmarks).
   // In 1-hop focus mode, only the selected node and its neighbors keep labels.
@@ -782,20 +803,92 @@ function updateLabelVisibility() {
       el.attr('font-size', '8.5px').attr('dy', getNodeRadius(d) + 11);
     }
 
-    // Hero mode: when the focus camera is zoomed far out (phones), keep focused labels readable
+    // Hero mode: focused labels get a readable size when zoomed out and a collision-free spot
     if (MAP_HERO_ENABLED) {
-      const boost = !!(focusIds && show && scale < 0.9);
-      if (boost) {
-        const fs = Math.min(17, 8.5 / scale);
-        el.attr('font-size', fs + 'px').attr('dy', getNodeRadius(d) + fs * 1.15).classed('label-boost', true);
+      const place = placements ? placements.get(d.id) : null;
+      if (place) {
+        el.attr('font-size', place.fs + 'px').attr('dx', place.dx).attr('dy', place.dy).classed('label-boost', true);
       } else if (el.classed('label-boost')) {
-        el.attr('font-size', '9.5px').attr('dy', getNodeRadius(d) + 12).classed('label-boost', false);
+        el.attr('font-size', '9.5px').attr('dx', null).attr('dy', getNodeRadius(d) + 12).classed('label-boost', false);
       }
+      if (placements && show && !place) show = false; // no free spot: key labels only
     }
 
     const opacity = show ? ((scale > 0.9 || focusIds) ? 0.95 : 0.75) : 0;
     el.style('opacity', opacity);
   });
+}
+
+// Greedy label layout for the focus set: selected node, factories and factory-mates first.
+// Each label tries below, above, right, left (then further out); the first spot that clears
+// already-placed labels and the focused bubbles wins, and is nudged to stay inside the map.
+function computeFocusLabelPlacements(nodeId, focusIds, k) {
+  const out = new Map();
+  const factories = getFocusFactoryIds(nodeId);
+  const items = [];
+  labels.each(function(d) {
+    if (focusIds.has(d.id) && hasNodeCoords(d)) items.push(d);
+  });
+  const rank = d => d.id === nodeId ? 0 : (factories.has(d.id) ? 1 : (d.type === 'brand' || d.type === 'company' ? 2 : 3));
+  items.sort((a, b) => rank(a) - rank(b));
+
+  const fsGraph = k < 0.9 ? Math.min(17, 8.5 / k) : 9.5;
+  const fs = fsGraph * k;                 // screen px
+  const h = fs * 1.35;
+  const gap = 3;
+  const W = graphWidth;
+  const H = graphHeight;
+  const boxes = [];
+  const sx = d => k * d.x + currentTransform.x;
+  const sy = d => k * d.y + currentTransform.y;
+
+  // The hero's compact bar and the bubbles are obstacles too
+  const inset = getHeroTopInset();
+  if (inset > 0) boxes.push({ x0: 0, x1: W, y0: 0, y1: inset });
+  items.forEach(d => {
+    const r = getNodeRadius(d) * k + 2;
+    boxes.push({ x0: sx(d) - r, x1: sx(d) + r, y0: sy(d) - r, y1: sy(d) + r });
+  });
+  const hit = (a, b) => a.x0 < b.x1 && a.x1 > b.x0 && a.y0 < b.y1 && a.y1 > b.y0;
+
+  items.forEach(d => {
+    const w = String(d.name || '').length * fs * 0.52 + 8;
+    const cx = sx(d);
+    const cy = sy(d);
+    const r = getNodeRadius(d) * k + gap;
+    const spots = [
+      [0, r + h / 2], [0, -(r + h / 2)], [r + w / 2, 0], [-(r + w / 2), 0],
+      [0, r + h * 1.5], [0, -(r + h * 1.5)], [r + w / 2, h], [-(r + w / 2), h],
+      [r + w / 2, -h], [-(r + w / 2), -h]
+    ];
+    let chosen = null;
+    for (const [ox, oy] of spots) {
+      let bx = cx + ox;
+      const by = cy + oy;
+      // Keep inside the map: slide sideways (and drop the spot if it still does not fit)
+      const shift = Math.max(6 - (bx - w / 2), 0) - Math.max((bx + w / 2) - (W - 6), 0);
+      bx += shift;
+      const box = { x0: bx - w / 2, x1: bx + w / 2, y0: by - h / 2, y1: by + h / 2 };
+      if (box.x0 < 2 || box.x1 > W - 2 || box.y0 < 2 || box.y1 > H - 2) continue;
+      if (boxes.some(b => hit(box, b))) continue;
+      chosen = { box, bx, by };
+      break;
+    }
+    // The selected node and factories always keep a label, even if it has to overlap
+    if (!chosen && rank(d) <= 1) {
+      const bx = Math.min(Math.max(cx, w / 2 + 6), W - w / 2 - 6);
+      const by = cy + r + h / 2;
+      chosen = { box: { x0: bx - w / 2, x1: bx + w / 2, y0: by - h / 2, y1: by + h / 2 }, bx, by };
+    }
+    if (!chosen) return;
+    boxes.push(chosen.box);
+    out.set(d.id, {
+      fs: fsGraph,
+      dx: (chosen.bx - cx) / k,
+      dy: (chosen.by + fs * 0.35 - cy) / k
+    });
+  });
+  return out;
 }
 
 function getFilteredData() {
@@ -1007,14 +1100,39 @@ function getFilteredNodeBounds(extraPadding = 48) {
   return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
 }
 
+// Nodes the focus camera fits. For a brand with a factory in hero mode this is the core set (the brand,
+// its factories, factory-mates and any neighbor that sits close by); far-flung members stay highlighted
+// but do not drag the camera out to minimum zoom.
+function getCameraNodeIds(nodeId, positioned) {
+  const factories = getFocusFactoryIds(nodeId);
+  const all = new Set(positioned.map(n => n.id));
+  if (!MAP_HERO_ENABLED || !factories.size) return all;
+  const pos = new Map(positioned.map(n => [n.id, n]));
+  const anchors = [nodeId, ...factories].map(id => pos.get(id)).filter(Boolean);
+  if (!anchors.length) return all;
+  const cx = anchors.reduce((a, n) => a + n.x, 0) / anchors.length;
+  const cy = anchors.reduce((a, n) => a + n.y, 0) / anchors.length;
+  const dist = n => Math.hypot(n.x - cx, n.y - cy);
+  const others = positioned.filter(n => n.id !== nodeId && !factories.has(n.id));
+  if (!others.length) return all;
+  const sorted = others.map(dist).sort((a, b) => a - b);
+  const median = sorted[Math.floor(sorted.length / 2)];
+  const limit = Math.max(median * 1.25, 100);
+  const keep = new Set([nodeId, ...factories]);
+  others.forEach(n => { if (dist(n) <= limit) keep.add(n.id); });
+  return keep;
+}
+
 function getFocusNodeBounds(nodeId, extraPadding = 42) {
   if (!nodeId || !viewport) return null;
   const focusIds = getFocusNeighborIds(nodeId);
-  const positioned = [];
+  let positioned = [];
   viewport.selectAll('.node-group').each(function(d) {
     if (focusIds.has(d.id) && hasNodeCoords(d)) positioned.push(d);
   });
   if (!positioned.length) return null;
+  const camIds = getCameraNodeIds(nodeId, positioned);
+  positioned = positioned.filter(n => camIds.has(n.id));
 
   let minX = Infinity;
   let minY = Infinity;
@@ -1022,11 +1140,13 @@ function getFocusNodeBounds(nodeId, extraPadding = 42) {
   let maxY = -Infinity;
 
   for (const n of positioned) {
-    const pad = getNodeRadius(n) + extraPadding;
-    minX = Math.min(minX, n.x - pad);
-    minY = Math.min(minY, n.y - pad);
-    maxX = Math.max(maxX, n.x + pad);
-    maxY = Math.max(maxY, n.y + pad);
+    const padY = getNodeRadius(n) + extraPadding;
+    // Wide labels sit centered under the bubble: pad sideways so they are not clipped at the map edge
+    const padX = Math.max(padY, String(n.name || '').length * 1.7 + 8);
+    minX = Math.min(minX, n.x - padX);
+    minY = Math.min(minY, n.y - padY);
+    maxX = Math.max(maxX, n.x + padX);
+    maxY = Math.max(maxY, n.y + padY);
   }
 
   // Labels sit below the bubble
@@ -1309,6 +1429,11 @@ function heroPick(nodeId) {
   if (input) { input.value = ''; input.blur(); }
   closeHeroList();
   dismissMobileWelcomeQuiet();
+  // Phones: bring the whole map into view first so the highlighted cluster is not below the fold
+  if (window.innerWidth < 1024) {
+    const wrap = document.getElementById('graph-container');
+    if (wrap) window.scrollTo({ top: Math.max(0, wrap.getBoundingClientRect().top + window.scrollY - 8), behavior: 'auto' });
+  }
   selectSearchResult(nodeId);
 }
 
@@ -1343,15 +1468,14 @@ function updateMapHero() {
     const subEl = document.getElementById('map-hero-bar-sub');
     if (nameEl) nameEl.textContent = node.name;
     if (subEl) {
-      const factoryIds = getFocusFactoryIds(node.id);
       const mateIds = new Set();
-      factoryIds.forEach(fid => getDirectNeighborIds(fid).forEach(id => { if (id !== node.id && !factoryIds.has(id)) mateIds.add(id); }));
+      getFocusFactoryIds(node.id).forEach(fid => getFactoryMateIds(node.id, fid).forEach(id => mateIds.add(id)));
       const mates = mateIds.size;
       subEl.textContent = describeHeroNode(node);
       if (getFocusFactoryIds(node.id).size && mates > 0) {
         const count = document.createElement('span');
         count.className = 'map-hero__bar-count';
-        count.textContent = ' \u00b7 ' + mates + (mates === 1 ? ' neighbor there' : ' neighbors there');
+        count.textContent = ' \u00b7 ' + mates + (mates === 1 ? ' other made there' : ' others made there');
         subEl.appendChild(count);
       }
     }
@@ -1658,7 +1782,7 @@ function getHeroTopInset() {
   const b = bar.getBoundingClientRect();
   const g = wrap.getBoundingClientRect();
   if (!b.height) return window.innerWidth >= 1024 ? 120 : 112;
-  return Math.max(0, b.bottom - g.top + 10);
+  return Math.max(0, b.bottom - g.top + 16);
 }
 
 function zoomToFocusNeighborhood(nodeId, options = {}) {
@@ -2573,10 +2697,10 @@ const HOME_HOUSES = [
 function buildHowToIntro(mobile) {
   const choose = mobile
     ? 'Tap a house below, or any bubble.'
-    : 'Click a house below, or any bubble.';
+    : (MAP_HERO_ENABLED ? 'Search a cigar above, or click any bubble.' : 'Click a house below, or any bubble.');
   const reset = mobile
-    ? 'Show on map keeps that cluster. Show full map clears it.'
-    : 'Show full map brings the whole industry back.';
+    ? (MAP_HERO_ENABLED ? 'Show on map keeps that cluster. Clear resets it.' : 'Show on map keeps that cluster. Show full map clears it.')
+    : (MAP_HERO_ENABLED ? 'Clear brings the whole industry back.' : 'Show full map brings the whole industry back.');
   return `<div class="howto">
     <p class="howto__lead">Each bubble is a house, a person, or a factory. The lines show who owns it, and where it is made.</p>
     <div class="howto__key" aria-label="Bubble colors">
@@ -2726,6 +2850,11 @@ function showDesktopHowTo() {
 function showMobileWelcome() {
   const el = document.getElementById('mobile-welcome');
   if (!el) return;
+  // The map hero is the starting point now: skip the separate first-visit tip card
+  if (MAP_HERO_ENABLED) {
+    try { localStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}
+    return;
+  }
   // Mobile: the tip card shows once; mark it seen as soon as it appears
   if (MOBILE_MAP_MQ && MOBILE_MAP_MQ.matches) {
     try { localStorage.setItem('cigarNexus_seenIntro', 'true'); } catch (e) {}

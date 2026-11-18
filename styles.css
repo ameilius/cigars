@@ -2654,6 +2654,17 @@ h1, h2, .font-display { letter-spacing: -0.015em; }
 /* The compact bar has its own Clear, so the bottom "Show full map" pill steps aside */
 .map-hero-on .focus-exit { display: none !important; }
 
+:root {
+    /* Logo teal #14817A (var --cn-teal) and gold #CEA661 (var --cn-gold) are the exact SVG fills.
+       The card uses a dark shade of the logo teal: same hue (176deg) and saturation (73%), lightness 12%. */
+    --hero-green-dark: #083532;
+}
+/* Desktop: the hero replaces the "Start with a house" starters in the sidebar guide */
+@media (min-width: 1024px) {
+    .map-hero-on #drawer.drawer-panel--guide .p-5.flex-1 > .mb-4:has(#drawer-connections),
+    .map-hero-on #drawer.drawer-panel--guide .p-5.flex-1 > .my-6.h-px { display: none; }
+}
+
 .map-hero {
     position: absolute;
     top: 3.5rem;
@@ -2674,8 +2685,8 @@ h1, h2, .font-display { letter-spacing: -0.015em; }
     width: min(100%, 31rem);
     padding: 1.1rem 1.25rem 1rem;
     border-radius: 1.5rem;
-    background: #1A3330;
-    border: 1px solid rgba(206, 166, 97, 0.35);
+    background: var(--hero-green-dark);
+    border: 1px solid var(--cn-gold);
     box-shadow: 0 14px 36px -14px rgba(10, 10, 10, 0.55);
     color: #ECF4F2;
 }
@@ -2697,7 +2708,7 @@ h1, h2, .font-display { letter-spacing: -0.015em; }
     width: 1.25rem;
     height: 1.25rem;
     transform: translateY(-50%);
-    color: #6B8A84;
+    color: var(--cn-teal);
     pointer-events: none;
 }
 .map-hero__input {
@@ -2715,7 +2726,7 @@ h1, h2, .font-display { letter-spacing: -0.015em; }
     appearance: none;
 }
 .map-hero__input::placeholder { color: #6B8A84; }
-.map-hero__input:focus { border-color: #CEA661; }
+.map-hero__input:focus { border-color: var(--cn-teal); box-shadow: 0 0 0 3px rgba(20, 129, 122, 0.55); }
 .map-hero__input::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
 
 .map-hero__list {
@@ -2754,18 +2765,18 @@ h1, h2, .font-display { letter-spacing: -0.015em; }
     min-height: 36px;
     padding: 0.35rem 0.85rem;
     border-radius: 9999px;
-    border: 1px solid rgba(206, 166, 97, 0.7);
+    border: 1px solid var(--cn-gold);
     background: transparent;
-    color: #E9D6AE;
+    color: var(--cn-gold);
     font-family: inherit;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.15s ease, color 0.15s ease;
 }
-.map-hero__chip:hover { background: #CEA661; color: #0a0a0a; }
+.map-hero__chip:hover { background: var(--cn-gold); color: var(--cn-black); }
 .map-hero__chip:focus-visible,
-.map-hero__bar-clear:focus-visible { outline: 2px solid #CEA661; outline-offset: 2px; }
+.map-hero__bar-clear:focus-visible { outline: 2px solid var(--cn-gold); outline-offset: 2px; }
 
 /* Compact bar after a pick */
 .map-hero__bar {
@@ -2776,8 +2787,11 @@ h1, h2, .font-display { letter-spacing: -0.015em; }
     min-height: 3.25rem;
     padding: 0.4rem 0.45rem 0.4rem 1rem;
     border-radius: 1rem;
-    background: #1A3330;
-    border: 1px solid rgba(206, 166, 97, 0.35);
+    background: var(--hero-green-dark);
+    border-left: 4px solid var(--cn-teal);
+    border-top: 1px solid var(--cn-gold);
+    border-right: 1px solid var(--cn-gold);
+    border-bottom: 1px solid var(--cn-gold);
     box-shadow: 0 8px 22px -12px rgba(10, 10, 10, 0.5);
     color: #ECF4F2;
 }
@@ -2807,8 +2821,8 @@ h1, h2, .font-display { letter-spacing: -0.015em; }
     padding: 0 0.9rem 0 0.75rem;
     border-radius: 0.75rem;
     border: 0;
-    background: #CEA661;
-    color: #0a0a0a;
+    background: var(--cn-gold);
+    color: var(--cn-black);
     font-family: inherit;
     font-size: 0.875rem;
     font-weight: 700;
