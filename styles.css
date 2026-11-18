@@ -1530,13 +1530,15 @@ h1, h2, .font-display,
     position: relative;
 }
 
-#drawer-affiliate,
-#drawer-affiliate-mobile {
-    background: linear-gradient(to bottom, rgba(232, 217, 195, 0.6), rgba(226, 208, 184, 0.8));
-    border-top: 1px solid #D9CDB0;
+/* Disclosure sits in normal flow right under the buy links (never fixed or pinned) */
+.drawer-affiliate-note {
+    margin: 0.65rem 0 0;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #6B8A84;
     font-style: italic;
     letter-spacing: 0.2px;
-    text-align: center;
+    text-align: left;
 }
 
 /* Section headers inside drawer (Connections, Notable Cigars, Find These Cigars) */
