@@ -2196,16 +2196,16 @@ function showDrawer(node, options = {}) {
   const connSection = document.querySelector('#drawer-connections')?.parentElement;
   let connLabel = connSection ? connSection.querySelector('.text-xs.font-semibold') : null;
   if (!connLabel && connSection) {
-    connLabel = Array.from(connSection.querySelectorAll('div')).find(d => /start here|connections/i.test(d.textContent || ''));
+    connLabel = Array.from(connSection.querySelectorAll('div')).find(d => /start here|start with a house|connections/i.test(d.textContent || ''));
   }
-  if (connLabel && /start here/i.test(connLabel.textContent)) connLabel.textContent = 'Connections';
+  if (connLabel && /start here|start with a house/i.test(connLabel.textContent)) connLabel.textContent = 'Connections';
 
   const mConnSection = document.querySelector('#drawer-connections-mobile')?.parentElement;
   let mConnLabel = mConnSection ? mConnSection.querySelector('.text-xs.font-semibold') : null;
   if (!mConnLabel && mConnSection) {
-    mConnLabel = Array.from(mConnSection.querySelectorAll('div')).find(d => /start here|connections/i.test(d.textContent || ''));
+    mConnLabel = Array.from(mConnSection.querySelectorAll('div')).find(d => /start here|start with a house|connections/i.test(d.textContent || ''));
   }
-  if (mConnLabel && /start here/i.test(mConnLabel.textContent)) mConnLabel.textContent = 'Connections';
+  if (mConnLabel && /start here|start with a house/i.test(mConnLabel.textContent)) mConnLabel.textContent = 'Connections';
 
   // Reset intro sections without redeclaring variables that exist later in the function
   const _pw = document.getElementById('drawer-product-lines-wrap');
