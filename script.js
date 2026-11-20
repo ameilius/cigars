@@ -1422,9 +1422,39 @@ function closeHeroList() {
   heroActiveIndex = -1;
 }
 
+// -----------------------------
+// GA4 custom events (no new scripts: uses the existing gtag, beacon transport, never blocks navigation)
+// -----------------------------
+function trackEvent(name, params) {
+  try {
+    if (typeof gtag !== 'function') return;
+    gtag('event', name, Object.assign({ transport_type: 'beacon' }, params || {}));
+  } catch (e) {}
+}
+
+let lastTrackedSheetId = null;
+function trackSheetOpen(node) {
+  if (!node || lastTrackedSheetId === node.id) return;
+  lastTrackedSheetId = node.id;
+  trackEvent('node_sheet_open', { node_id: node.id, node_type: node.type || 'unknown' });
+}
+
+document.addEventListener('click', (e) => {
+  const a = e.target && e.target.closest ? e.target.closest('a[rel~="sponsored"]') : null;
+  if (!a) return;
+  let dest = 'other';
+  try {
+    const host = new URL(a.href, window.location.href).hostname;
+    dest = /(^|\.)(jdoqocy|awltovhc|anrdoezrs|tkqlhce|dpbolvw|kqzyfj)\.com$/.test(host) ? 'famous_smoke_shop' : host;
+  } catch (err) {}
+  trackEvent('affiliate_click', { node_id: currentDrawerNode ? currentDrawerNode.id : '(none)', destination: dest });
+}, true);
+
 // Same path as picking a result in the mobile search overlay: select, focus camera, open the node sheet/drawer
-function heroPick(nodeId) {
-  if (!getNodeById(nodeId)) return;
+function heroPick(nodeId, method) {
+  const picked = getNodeById(nodeId);
+  if (!picked) return;
+  trackEvent('hero_search_select', { node_id: nodeId, node_type: picked.type || 'unknown', method: method || 'typed' });
   const input = document.getElementById('map-hero-input');
   if (input) { input.value = ''; input.blur(); }
   closeHeroList();
@@ -1510,7 +1540,7 @@ function setupMapHero() {
   });
   root.addEventListener('click', (e) => {
     const pick = e.target.closest('[data-hero-pick]');
-    if (pick) heroPick(pick.getAttribute('data-hero-pick'));
+    if (pick) heroPick(pick.getAttribute('data-hero-pick'), pick.classList.contains('map-hero__chip') ? 'chip' : 'typed');
   });
   const clearBtn = document.getElementById('map-hero-clear');
   if (clearBtn) clearBtn.addEventListener('click', heroClear);
@@ -2189,6 +2219,7 @@ function setupUrlHistory() {
 
 function showDrawer(node, options = {}) {
   currentDrawerNode = node;
+  trackSheetOpen(node);
 
   const isMobile = window.innerWidth < 1024;
 
@@ -2393,6 +2424,7 @@ function closeDrawer({ keepMapFocus = true, suppressDefault = false, skipUrlUpda
   const drawer = document.getElementById('drawer');
   const mDrawer = document.getElementById('drawer-mobile');
   const node = currentDrawerNode;
+  lastTrackedSheetId = null;
   const shouldExpandGraph = keepMapFocus && searchTerm && node;
 
   if (shouldExpandGraph) {

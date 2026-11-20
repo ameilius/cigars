@@ -392,7 +392,7 @@
      }
     </style>
 </head>
-<body class="text-[#1A3330]">
+<body class="text-[#1A3330]" data-node-id="{{ID}}" data-node-type="{{NODE_TYPE}}">
   <header class="site-header">
     <div class="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="site-lockup">
@@ -582,6 +582,30 @@
     document.querySelectorAll('.drawer-share-btn[data-share-url]').forEach(function (btn) {
       btn.addEventListener('click', function () { shareProfile(btn); });
     });
+  })();
+  </script>
+
+  <script>
+  // GA4 events: reuse the existing gtag, beacon transport, never blocks navigation
+  (function () {
+    function track(name, extra) {
+      try {
+        if (typeof gtag !== 'function') return;
+        var p = { node_id: document.body.getAttribute('data-node-id') || '(none)', transport_type: 'beacon' };
+        for (var k in extra) p[k] = extra[k];
+        gtag('event', name, p);
+      } catch (_) {}
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var rel = (a.getAttribute('rel') || '').split(/\s+/);
+      if (rel.indexOf('sponsored') !== -1) {
+        track('affiliate_click', { destination: 'famous_smoke_shop' });
+      } else if ((a.getAttribute('href') || '').indexOf('/?node=') === 0) {
+        track('show_on_map', { node_type: document.body.getAttribute('data-node-type') || 'unknown' });
+      }
+    }, true);
   })();
   </script>
 

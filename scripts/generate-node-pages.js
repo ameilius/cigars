@@ -1223,6 +1223,7 @@ function generateAllNodePages() {
     const page = template
       .replace(/\{\{NAME\}\}/g, escapeHtml(node.name))
       .replace(/\{\{ID\}\}/g, node.id)
+      .replace(/\{\{NODE_TYPE\}\}/g, escapeHtml(node.type || 'unknown'))
       .replace(/\{\{CANONICAL\}\}/g, canonical)
       .replace(/\{\{META_DESCRIPTION\}\}/g, escapeHtml(plainDesc))
       .replace(/\{\{OG_IMAGE\}\}/g, escapeHtml(socialImage.url))
